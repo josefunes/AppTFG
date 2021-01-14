@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTFG.Paginas.PaginaRuta">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Label Text="Detalle Ruta" TextColor="Black" FontSize="Large" Margin="15"/>
+
+            <StackLayout Padding="15">
+                <Label Text="Nombre: " TextColor="#263238" FontSize="Large"/>
+                <Entry x:Name="txtNombre" TextColor="White" Text="{Binding Nombre}" 
+                       Placeholder="Ingresa el nombre de la ruta" 
+                       PlaceholderColor="LightGray" BackgroundColor="Black" FontSize="Medium"/>
+                <Button x:Name="btnImagen" Text="Añadir imagen" BackgroundColor="LightBlue" Margin="10" TextColor="Black" WidthRequest="200" HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
+                <Image x:Name="imgRuta" Source="{Binding ImagenPrincipal}" VerticalOptions="StartAndExpand" HorizontalOptions="Center" Aspect="AspectFill" HeightRequest="150" WidthRequest="150" Margin="10"/>
+            </StackLayout>
+
+            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnRegistrar" Text="Registrar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
+        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
+    </ContentPage.ToolbarItems>
+</ContentPage>

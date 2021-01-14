@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AppTFG.Paginas.ListaVideosPueblo"
+             Title="Vídeos del pueblo">
+    <StackLayout>
+        <video:VideoPlayer x:Name="videoPlayer" VerticalOptions="FillAndExpand" />
+
+        <Button Text="Show Video Library"
+                Margin="10"
+                HorizontalOptions="Center"
+                Clicked="OnShowVideoLibraryClicked" />
+    </StackLayout>
+</ContentPage>

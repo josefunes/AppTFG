@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<!-- Set theme colors from https://aka.ms/material-colors -->
+	<style name="MyTheme.Base" parent="Theme.AppCompat.Light">
+	</style>
+
+	<style name="MyTheme" parent="MyTheme.Base">
+		<!-- colorPrimary is used for the default action bar background -->
+		<item name="colorPrimary">#263238</item>
+		<!-- colorPrimaryDark is used for the status bar -->
+		<item name="colorPrimaryDark">#263238</item>
+		<!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+		<item name="colorAccent">#FF4081</item>
+	</style>
+
+	<style name="MyTheme.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+
+	<style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowBackground">@drawable/splash_screen</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowActionBar">true</item>
+	</style>
+</resources>

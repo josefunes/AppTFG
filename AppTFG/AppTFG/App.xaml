@@ -1,0 +1,139 @@
+﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTFG.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#263238</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#263238"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value= "#263238" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+        <!--<DataTemplate x:Key="PueblosTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImagenPrincipal}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="RutasTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImagenPrincipal}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Text}" 
+                       FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="ActividadesTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImagenPrincipal}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Text}" 
+                       FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>-->
+    </Application.Resources>
+</Application>
+
+
+<!--
+        <Application.Resources>
+    <DataTemplate x:Key="AnimalTemplate">
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.RowSpan="2" 
+                       Source="{Binding ImagenPrincipal}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+            <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+            <Label Grid.Row="1"
+                       Grid.Column="1" 
+                       Text="{Binding Location}"
+                       FontAttributes="Italic" 
+                       VerticalOptions="End" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AnimalSearchTemplate">
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="0.85*" />
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding ImagenPrincipal}" 
+                       Aspect="AspectFill"
+                       HeightRequest="40" 
+                       WidthRequest="40" />
+            <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+        </Grid>
+    </DataTemplate>
+
+    </Application.Resources>
+    -->

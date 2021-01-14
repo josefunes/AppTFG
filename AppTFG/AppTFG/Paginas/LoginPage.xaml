@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vm="clr-namespace:AppTFG.VistaModelos"
+             mc:Ignorable="d"
+             x:Class="AppTFG.Paginas.LoginPage"
+             Shell.NavBarIsVisible="False"
+             Title="Iniciar sesión">
+
+    <ContentPage.BindingContext>
+        <vm:LoginView />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center" >
+            <Entry Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F"/>
+            <Entry Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F"/>
+            <Button VerticalOptions="Center"  Text="Login" Command="{Binding LoginCommand}" BackgroundColor="#FFB13F55"/>
+            <Button VerticalOptions="End"  Text="Login with Facebook" BackgroundColor="#FF3B5998"/>
+            <Button VerticalOptions="End" Text="Login with Google" BackgroundColor="#FF50C7C7"/>
+            <Button VerticalOptions="End" Text="Login with Twitter" BackgroundColor="#FF1DA1F2"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

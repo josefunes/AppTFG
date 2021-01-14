@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTFG.Paginas.PaginaPueblo">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="White">
+                <Label Text="Detalle Pueblo" TextColor="Black" FontSize="Large" Margin="15"/>
+
+                <StackLayout Padding="15">
+                    <Label Text="Nombre: " TextColor="#263238" FontSize="Large"/>
+                    <Entry x:Name="txtNombre" TextColor="White" Text="{Binding Nombre}" 
+                       Placeholder="Ingresa el nombre del pueblo" 
+                       PlaceholderColor="LightGray" BackgroundColor="Black" FontSize="Medium"/>
+                    <Button x:Name="btnImagen" Text="Añadir imagen" 
+                            BackgroundColor="LightBlue" Margin="10" 
+                            TextColor="Black" WidthRequest="200" 
+                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
+                    <Image x:Name="imgPueblo" Source="{Binding ImagenPrincipal}" 
+                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
+                           Aspect="AspectFill" HeightRequest="150" 
+                           WidthRequest="150" Margin="10"/>
+                    <Button x:Name="btnVideo" Text="Añadir vídeo" 
+                            BackgroundColor="LightBlue" Margin="10" 
+                            TextColor="Black" WidthRequest="200" 
+                            HorizontalOptions="Center" Clicked="BtnVideo_Clicked"/>
+                    <video:VideoPlayer x:Name="videoPlayer"
+                           VerticalOptions="FillAndExpand" />
+                    <Button x:Name="btnFotos" Text="Añadir imágenes"
+                            BackgroundColor="LightBlue" Margin="10" 
+                            TextColor="Black" WidthRequest="200" 
+                            HorizontalOptions="Center" Clicked="BtnFotos_Clicked"/>
+                </StackLayout>
+
+                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem x:Name="btnRegistrar" Text="Registrar | " Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>--><!-- Cambiar por guardar pueblo-->
+        <ToolbarItem x:Name="btnRutas" Text="Rutas | " Order="Primary" Priority="0" Clicked="BtnRutas_Clicked"/>
+        <ToolbarItem x:Name="btnActividades" Text="Actividades | " Order="Primary" Priority="1" Clicked="BtnActividades_Clicked"/>
+        <ToolbarItem x:Name="btnFotos" Text="Fotos" Order="Primary" Priority="2" Clicked="BtnFotos_Clicked"/>
+        <!--<ToolbarItem x:Name="btnEliminar" Text="Eliminar " Order="Primary" Priority="2" Clicked="BtnEliminar_Clicked"/>-->
+    </ContentPage.ToolbarItems>
+</ContentPage>
