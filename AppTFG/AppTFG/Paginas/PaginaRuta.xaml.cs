@@ -1,4 +1,5 @@
-﻿using AppTFG.Modelos;
+﻿using AppTFG.Helpers;
+using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
 using System.Text;
@@ -15,6 +16,7 @@ namespace AppTFG.Paginas
         public PaginaRuta(Ruta ruta)
         {
             InitializeComponent();
+            Title = "Nueva ruta";
             Ruta = ruta;
             this.BindingContext = ruta;
             bd = new ServicioBaseDatos<Ruta>();
@@ -40,7 +42,16 @@ namespace AppTFG.Paginas
         {
             Loading(true);
             var ruta = (Ruta)this.BindingContext;
-
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                await DisplayAlert("Advertencia", Constantes.TitleRutaRequired, "OK");
+                return;
+            }
+            if (imgRuta.Equals(null))
+            {
+                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
+                return;
+            }
             if (ruta.Id > 0)
                 await bd.Actualizar(ruta);
             else

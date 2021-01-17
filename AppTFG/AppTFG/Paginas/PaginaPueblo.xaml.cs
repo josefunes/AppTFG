@@ -1,4 +1,5 @@
 ﻿using AppTFG.FormsVideoLibrary;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
@@ -15,13 +16,14 @@ namespace AppTFG.Paginas
         public PaginaPueblo(Pueblo pueblo)
         {
             InitializeComponent();
+            Title = "Nuevo Pueblo";
             Pueblo = pueblo;
-            this.BindingContext = pueblo;
+            BindingContext = pueblo;
             bd = new ServicioBaseDatos<Pueblo>();
 
             if (pueblo.Id == 0)
             {
-                this.ToolbarItems.RemoveAt(2);
+                //this.ToolbarItems.RemoveAt(2);
                 this.ToolbarItems.RemoveAt(1);
             }
         }
@@ -39,24 +41,33 @@ namespace AppTFG.Paginas
             imgPueblo.Source = ImageSource.FromFile(imagen.Path);
         }
 
-        private async void BtnVideo_Clicked(object sender, EventArgs e)
-        {
-            var video = await ServicioMultimedia.SeleccionarVideo();
-            Pueblo.VideoUrl = video.Path;
-            videoPlayer.Source = VideoSource.FromFile(video.Path);
-        }
+        //private async void BtnVideo_Clicked(object sender, EventArgs e)
+        //{
+        //    var video = await ServicioMultimedia.SeleccionarVideo();
+        //    Pueblo.VideoUrl = video.Path;
+        //    videoPlayer.Source = VideoSource.FromFile(video.Path);
+        //}
 
-        private async void BtnFotos_Clicked(object sender, EventArgs e)
+        async void BtnFotos_Clicked(object sender, EventArgs e)
         {
-            var pueblo = (Pueblo)this.BindingContext;
-            await Navigation.PushAsync(new ListaImagenes(pueblo));
+            var pueblo = (Pueblo)BindingContext;
+            await Navigation.PushAsync(new ListaFotos(pueblo));
         }
 
         async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
             Loading(true);
-            var pueblo = (Pueblo)this.BindingContext;
-
+            var pueblo = (Pueblo)BindingContext;
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
+                return;
+            }
+            if (string.IsNullOrEmpty(imgPueblo.ToString()))
+            {
+                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
+                return;
+            }
             if (pueblo.Id > 0)
                 await bd.Actualizar(pueblo);
             else
@@ -72,7 +83,7 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Pueblo)this.BindingContext).Id);
+                await bd.Eliminar(((Pueblo)BindingContext).Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();
@@ -81,13 +92,13 @@ namespace AppTFG.Paginas
 
         async void BtnRutas_Clicked(object sender, EventArgs e)
         {
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new ListaRutasPueblo(pueblo));
         }
 
         async void BtnActividades_Clicked(object sender, EventArgs e)
         {
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new ListaActividadesPueblo(pueblo));
         }
 

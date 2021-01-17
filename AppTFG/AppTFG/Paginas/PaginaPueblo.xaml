@@ -1,48 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaPueblo">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout BackgroundColor="White">
-                <Label Text="Detalle Pueblo" TextColor="Black" FontSize="Large" Margin="15"/>
-
+        <ScrollView Margin="0">
+            <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
+                <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="0" Padding="0" HeightRequest="60">
+                    <Grid ColumnSpacing="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <Button x:Name="btnRutas" Text="Rutas"
+                            BackgroundColor="White"
+                            TextColor="Gray" HorizontalOptions="FillAndExpand" 
+                            Clicked="BtnRutas_Clicked" Grid.Column="0" BorderColor="Gray"/>
+                    <Button x:Name="btnActividades" Text="Acts"
+                            BackgroundColor="White" 
+                            TextColor="Gray" HorizontalOptions="FillAndExpand" 
+                            Clicked="BtnActividades_Clicked" Grid.Column="1" BorderColor="Gray"/>
+                    <Button x:Name="btnFotos" Text="Fotos"
+                            BackgroundColor="White" 
+                            TextColor="Gray" HorizontalOptions="FillAndExpand" 
+                            Clicked="BtnFotos_Clicked" Grid.Column="2" BorderColor="Gray"/>
+                    <Button x:Name="btnVideo" Text="Vídeos" 
+                            BackgroundColor="White" 
+                            TextColor="Gray" 
+                            HorizontalOptions="FillAndExpand" Grid.Column="3" BorderColor="Gray"/>
+                    <!--Clicked="BtnVideo_Clicked"-->
+                </StackLayout>
                 <StackLayout Padding="15">
-                    <Label Text="Nombre: " TextColor="#263238" FontSize="Large"/>
-                    <Entry x:Name="txtNombre" TextColor="White" Text="{Binding Nombre}" 
+                    <Label Text="Nombre: " TextColor="Gray" FontSize="Medium"/>
+                    <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
                        Placeholder="Ingresa el nombre del pueblo" 
-                       PlaceholderColor="LightGray" BackgroundColor="Black" FontSize="Medium"/>
-                    <Button x:Name="btnImagen" Text="Añadir imagen" 
-                            BackgroundColor="LightBlue" Margin="10" 
-                            TextColor="Black" WidthRequest="200" 
+                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                    <Button x:Name="btnImagen" Text="Abrir galería" 
+                            BackgroundColor="White" Margin="10" 
+                            TextColor="Gray" WidthRequest="150"  
                             HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
                     <Image x:Name="imgPueblo" Source="{Binding ImagenPrincipal}" 
                            VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           Aspect="AspectFill" HeightRequest="150" 
-                           WidthRequest="150" Margin="10"/>
-                    <Button x:Name="btnVideo" Text="Añadir vídeo" 
-                            BackgroundColor="LightBlue" Margin="10" 
-                            TextColor="Black" WidthRequest="200" 
-                            HorizontalOptions="Center" Clicked="BtnVideo_Clicked"/>
-                    <video:VideoPlayer x:Name="videoPlayer"
-                           VerticalOptions="FillAndExpand" />
-                    <Button x:Name="btnFotos" Text="Añadir imágenes"
-                            BackgroundColor="LightBlue" Margin="10" 
-                            TextColor="Black" WidthRequest="200" 
-                            HorizontalOptions="Center" Clicked="BtnFotos_Clicked"/>
+                           Aspect="AspectFill" HeightRequest="-1" 
+                           WidthRequest="-1" />
                 </StackLayout>
-
-                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="0" Padding="0" HeightRequest="60">
+                    <Grid ColumnSpacing="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <Button x:Name="btnRegistrar" Text="Guardar"
+                            BackgroundColor="White"
+                            TextColor="Gray" HorizontalOptions="CenterAndExpand" 
+                            Clicked="BtnRegistrar_Clicked" Grid.Column="0"/>
+                    <Button x:Name="btnEliminar" Text="Eliminar"
+                            BackgroundColor="White"
+                            TextColor="Gray" HorizontalOptions="CenterAndExpand" 
+                            Clicked="BtnEliminar_Clicked" Grid.Column="1"/>
+                </StackLayout>
+                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-
-    <ContentPage.ToolbarItems>
-        <!--<ToolbarItem x:Name="btnRegistrar" Text="Registrar | " Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>--><!-- Cambiar por guardar pueblo-->
-        <ToolbarItem x:Name="btnRutas" Text="Rutas | " Order="Primary" Priority="0" Clicked="BtnRutas_Clicked"/>
-        <ToolbarItem x:Name="btnActividades" Text="Actividades | " Order="Primary" Priority="1" Clicked="BtnActividades_Clicked"/>
-        <ToolbarItem x:Name="btnFotos" Text="Fotos" Order="Primary" Priority="2" Clicked="BtnFotos_Clicked"/>
-        <!--<ToolbarItem x:Name="btnEliminar" Text="Eliminar " Order="Primary" Priority="2" Clicked="BtnEliminar_Clicked"/>-->
-    </ContentPage.ToolbarItems>
 </ContentPage>

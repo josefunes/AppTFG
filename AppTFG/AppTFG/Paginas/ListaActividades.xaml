@@ -4,10 +4,7 @@
              x:Class="AppTFG.Paginas.ListaActividades">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Label Text="Lista de Actividades" TextColor="Black" FontSize="Medium" Margin="15"/>
-
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
-
             <ListView x:Name="lsvActividades" ItemsSource="{Binding Actividades}" ItemSelected="LsvActividades_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

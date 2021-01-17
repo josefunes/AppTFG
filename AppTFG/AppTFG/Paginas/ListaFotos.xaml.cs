@@ -1,4 +1,5 @@
 ﻿using AppTFG.Modelos;
+using AppTFG.Servicios;
 using System;
 
 using Xamarin.Forms;
@@ -7,12 +8,12 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaActividadesPueblo : ContentPage
+    public partial class ListaFotos : ContentPage
     {
-        public ListaActividadesPueblo(Pueblo pueblo)
+        public ListaFotos(Pueblo pueblo)
         {
             InitializeComponent();
-            Title = "Actividades de " + pueblo.Nombre;
+            Title = "Fotos de " + pueblo.Nombre;
             this.BindingContext = pueblo;
         }
 
@@ -24,8 +25,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)this.BindingContext;
             if (pueblo != null)
             {
-                lsvActividadesPueblo.ItemsSource = null;
-                lsvActividadesPueblo.ItemsSource = pueblo.Actividades;
+                lsvFotosPueblo.ItemsSource = null;
+                lsvFotosPueblo.ItemsSource = pueblo.Fotos;
             }
             Loading(false);
         }
@@ -36,13 +37,13 @@ namespace AppTFG.Paginas
             indicator.IsRunning = mostrar;
         }
 
-        private async void LsvActividadesPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void LsvFotosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
-                var dato = (Actividad)e.SelectedItem;
-                await Navigation.PushAsync(new PaginaActividad(dato));
-                lsvActividadesPueblo.SelectedItem = null;
+                var dato = (Foto)e.SelectedItem;
+                await Navigation.PushAsync(new SubirFoto(dato));
+                lsvFotosPueblo.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -52,7 +53,7 @@ namespace AppTFG.Paginas
         public async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)this.BindingContext;
-            await Navigation.PushAsync(new PaginaActividad(new Actividad() { Pueblo = pueblo }));
+            await Navigation.PushAsync(new SubirFoto(new Foto() { Pueblo = pueblo }));
         }
     }
 }

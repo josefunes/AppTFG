@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Icon="Rutas"
              x:Class="AppTFG.Paginas.ListaRutasPueblo">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Label Text="{Binding Nombre}" TextColor="#263238" FontSize="Large" Margin="15"/>
-            <Label Text="Lista de Rutas" TextColor="Black" FontSize="Medium" Margin="15"/>
-
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
-
+            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <ListView x:Name="lsvRutasPueblo" ItemsSource="{Binding Rutas}" ItemSelected="LsvRutasPueblo_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -4,8 +4,6 @@
              x:Class="AppTFG.Paginas.PaginaActividad">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Label Text="Detalle Actividad" TextColor="Black" FontSize="Large" Margin="15"/>
-
             <StackLayout Padding="15">
                 <Label Text="Nombre: " TextColor="#263238" FontSize="Large"/>
                 <Entry x:Name="txtNombre" TextColor="White" Text="{Binding Nombre}" 

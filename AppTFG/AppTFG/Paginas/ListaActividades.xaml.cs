@@ -13,6 +13,7 @@ namespace AppTFG.Paginas
         public ListaActividades()
         {
             InitializeComponent();
+            Title = "Lista de Actividades";
         }
 
         public ListaActividades(Pueblo pueblo)

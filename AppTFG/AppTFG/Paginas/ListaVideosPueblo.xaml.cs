@@ -1,4 +1,5 @@
 ﻿using AppTFG.FormsVideoLibrary;
+using AppTFG.Modelos;
 using System;
 
 using Xamarin.Forms;
@@ -7,9 +8,11 @@ namespace AppTFG.Paginas
 {
     public partial class ListaVideosPueblo : ContentPage
     {
-        public ListaVideosPueblo()
+        public ListaVideosPueblo(Pueblo pueblo)
         {
             InitializeComponent();
+            Title = "Videos de " + pueblo.Nombre;
+            this.BindingContext = pueblo;
         }
 
         async void OnShowVideoLibraryClicked(object sender, EventArgs args)

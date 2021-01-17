@@ -1,7 +1,7 @@
-﻿using AppTFG.Helpers;
+﻿using AppTFG.FormsVideoLibrary;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
-using Plugin.Media;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,25 +11,20 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SubirFoto : ContentPage
     {
-        string filePath;
-        ServicioBaseDatos<Imagenes> bd;
-        Imagenes Imagen;
-        public SubirFoto(Imagenes imagen)
+        ServicioBaseDatos<Foto> bd;
+        Foto Foto;
+        public SubirFoto(Foto foto)
         {
             InitializeComponent();
-            Imagen = imagen;
-            this.BindingContext = imagen;
-            bd = new ServicioBaseDatos<Imagenes>();
+            Title = "Subir foto";
+            Foto = foto;
+            BindingContext = foto;
+            bd = new ServicioBaseDatos<Foto>();
 
-            if (imagen.Id == 0)
+            if (foto.Id == 0)
+            {
                 this.ToolbarItems.RemoveAt(1);
-
-            Title = Constantes.AppUploadTitle;
-        }
-
-        async void BtnAbrirGaleria_Clicked(object sender, EventArgs e)
-        {
-            PickImage();
+            }
         }
 
         void Loading(bool mostrar)
@@ -38,49 +33,47 @@ namespace AppTFG.Paginas
             indicator.IsRunning = mostrar;
         }
 
-        async void BtnSubirFoto_Clicked(object sender, EventArgs e)
+        private async void BtnImagen_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TittleEntry.Text))
+            var imagen = await ServicioMultimedia.SeleccionarImagen();
+            Foto.Imagen = imagen.Path;
+            imgFoto.Source = ImageSource.FromFile(imagen.Path);
+        }
+
+        async void BtnRegistrar_Clicked(object sender, EventArgs e)
+        {
+            Loading(true);
+            var foto = (Foto)BindingContext;
+            if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                await DisplayAlert(Constantes.AppTitle, Constantes.TitleRequired, Constantes.Ok);
+                await DisplayAlert("Advertencia", Constantes.TitleImagenRequired, "OK");
                 return;
             }
-            var imagen = new Imagenes
+            if (imgFoto.Equals(null))
             {
-                Nombre = TittleEntry.Text,
-                Path = filePath,
-            };
-            Constantes.GalleryCollection.Add(imagen);
-            await App.NavigationRef.PopAsync();
+                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
 
-            Loading(true);
-            var image = (Imagenes)this.BindingContext;
-
-            if (image.Id > 0)
-                await bd.Actualizar(image);
+            }
+            if (foto.Id > 0)
+                await bd.Actualizar(foto);
             else
-                await bd.Agregar(image);
+                await bd.Agregar(foto);
 
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
 
-        async void PickImage()
+        async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
-            if (!CrossMedia.Current.IsPickPhotoSupported)
+            if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
-                await DisplayAlert(Constantes.AppTitle, Constantes.PermissionDenied, Constantes.Ok);
-                return;
+                Loading(true);
+                await bd.Eliminar(((Foto)BindingContext).Id);
+                Loading(false);
+                await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
+                await Navigation.PopAsync();
             }
-            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-            {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.MaxWidthHeight
-            });
-            if (file == null)
-                return;
-            image.Source = file.Path;
-            filePath = file.Path;
         }
     }
 }

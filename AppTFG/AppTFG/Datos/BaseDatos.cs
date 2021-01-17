@@ -9,7 +9,7 @@ namespace AppTFG.Datos
         public DbSet<Pueblo> Pueblos { get; set; }
         public DbSet<Ruta> Rutas { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
-        public DbSet<Imagenes> Imagenes { get; set; }
+        public DbSet<Foto> Foto { get; set; }
 
         private readonly string rutaBD;
 

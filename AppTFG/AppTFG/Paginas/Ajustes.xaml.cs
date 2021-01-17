@@ -15,6 +15,7 @@ namespace AppTFG.Paginas
     {
         public Ajustes()
         {
+            Title = "Ajustes";
             InitializeComponent();
         }
     }

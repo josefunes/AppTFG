@@ -12,7 +12,7 @@ namespace AppTFG.Paginas
         public ListaRutasPueblo(Pueblo pueblo)
         {
             InitializeComponent();
-
+            Title = "Rutas de " + pueblo.Nombre;
             this.BindingContext = pueblo;
         }
 

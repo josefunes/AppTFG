@@ -7,11 +7,11 @@ namespace AppTFG.Helpers
     {
         public Constantes() { }
         public static readonly string NombreBD = "BD_SistemaRural.db";
-        public static ObservableCollection<Imagenes> GalleryCollection;
         public const string AppTitle = "AppTFG";//Cambiar cuando haya un nombre final
-        public const string TitleRequired = "Por favor, introduce un título para la imagen.";
-        public const string Ok = "Ok";
-        public const string AppUploadTitle = "Subir imagen";
-        public const string PermissionDenied = "Permiso no otorgado para fotos";
+        public const string TitleImagenRequired = "Por favor, introduce un título para la imagen.";
+        public const string TitlePuebloRequired = "Por favor, introduce un título para el pueblo.";
+        public const string TitleRutaRequired = "Por favor, introduce un título para la ruta.";
+        public const string TitleActividadRequired = "Por favor, introduce un título para la actividad.";
+        public const string InsertImageRequired = "Por favor, añade una imagen.";
     }
 }

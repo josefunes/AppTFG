@@ -159,7 +159,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AppTFG\AppTFG.csproj">
       <Project>{6BB6BC23-2E46-43D4-9B06-5C1831DB0CE6}</Project>

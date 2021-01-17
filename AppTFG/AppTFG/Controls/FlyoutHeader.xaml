@@ -2,8 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Controls.FlyoutHeader"
-             HeightRequest="150">
-    <Grid BackgroundColor="{StaticResource Primary}">
+             HeightRequest="100">
+    <Grid BackgroundColor="LightGray">
         <Label Text="App de turismo" FontSize="25" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
     </Grid>
 </ContentView>

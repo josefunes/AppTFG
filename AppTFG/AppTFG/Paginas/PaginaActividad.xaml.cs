@@ -1,4 +1,5 @@
-﻿using AppTFG.Modelos;
+﻿using AppTFG.Helpers;
+using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace AppTFG.Paginas
         public PaginaActividad(Actividad actividad)
         {
             InitializeComponent();
+            Title = "Nueva Actividad";
             Actividad = actividad;
             this.BindingContext = actividad;
             bd = new ServicioBaseDatos<Actividad>();
@@ -44,7 +46,16 @@ namespace AppTFG.Paginas
         {
             Loading(true);
             var actividad = (Actividad)this.BindingContext;
-
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                await DisplayAlert("Advertencia", Constantes.TitleActividadRequired, "OK");
+                return;
+            }
+            if (imgActividad.Equals(null))
+            {
+                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
+                return;
+            }
             if (actividad.Id > 0)
                 await bd.Actualizar(actividad);
             else

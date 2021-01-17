@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppTFG.Modelos
 {
-    public class Imagenes
+    public class Foto
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, AutoIncrement]
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Path { get; set; }
+        public string Imagen { get; set; }
 
         [ForeignKey("FK_NombrePueblo")]
         public int IdPueblo { get; set; }

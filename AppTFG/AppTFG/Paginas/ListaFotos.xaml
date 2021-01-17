@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.ListaActividadesPueblo">
+             x:Class="AppTFG.Paginas.ListaFotos">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
-            <ListView x:Name="lsvActividadesPueblo" ItemsSource="{Binding Actividades}" ItemSelected="LsvActividadesPueblo_ItemSelected" HasUnevenRows="True">
+            <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Nombre}" FontSize="Medium" 
-                                   LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
+                            <StackLayout BackgroundColor="White" Spacing="5" Orientation="Horizontal" Padding="5">
+                                <Image Source="{Binding Imagen}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Nombre}" FontSize="Medium" 
+                                       LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -13,6 +13,7 @@ namespace AppTFG.Paginas
         public ListaPueblos()
         {
             InitializeComponent();
+            Title = "Lista de Pueblos";
         }
 
         protected async override void OnAppearing()

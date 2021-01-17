@@ -16,6 +16,7 @@ namespace AppTFG.Paginas
         public InicioPage()
         {
             InitializeComponent();
+            Title = "Inicio";
         }
     }
 }

@@ -18,7 +18,7 @@ namespace AppTFG.Modelos
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
         public string VideoUrl { get; set; }
-        public List<Imagenes> Imagenes { get; set; }
+        public List<Foto> Fotos { get; set; }
         public List<Ruta> Rutas { get; set; }
         public List<Actividad> Actividades { get; set; }
     }

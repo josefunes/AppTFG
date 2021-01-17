@@ -17,6 +17,7 @@ namespace AppTFG.Paginas
         public ListaRutas()
         {
             InitializeComponent();
+            Title = "Lista de Rutas";
         }
 
         protected async override void OnAppearing()
