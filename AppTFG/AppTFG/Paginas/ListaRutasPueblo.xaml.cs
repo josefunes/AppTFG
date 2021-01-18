@@ -1,4 +1,5 @@
 ﻿using AppTFG.Modelos;
+using AppTFG.Servicios;
 using System;
 
 using Xamarin.Forms;
@@ -16,15 +17,17 @@ namespace AppTFG.Paginas
             this.BindingContext = pueblo;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
             Loading(true);
+            var bd = new ServicioBaseDatos<Ruta>();
             var pueblo = (Pueblo)this.BindingContext;
             if (pueblo != null)
             {
                 lsvRutasPueblo.ItemsSource = null;
+                lsvRutasPueblo.ItemsSource = await bd.ObtenerTabla();
                 lsvRutasPueblo.ItemsSource = pueblo.Rutas;
             }
             Loading(false);

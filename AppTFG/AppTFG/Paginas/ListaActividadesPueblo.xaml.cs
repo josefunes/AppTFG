@@ -1,4 +1,5 @@
 ﻿using AppTFG.Modelos;
+using AppTFG.Servicios;
 using System;
 
 using Xamarin.Forms;
@@ -13,18 +14,20 @@ namespace AppTFG.Paginas
         {
             InitializeComponent();
             Title = "Actividades de " + pueblo.Nombre;
-            this.BindingContext = pueblo;
+            BindingContext = pueblo;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
             Loading(true);
-            var pueblo = (Pueblo)this.BindingContext;
+            var bd = new ServicioBaseDatos<Actividad>();
+            var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
                 lsvActividadesPueblo.ItemsSource = null;
+                lsvActividadesPueblo.ItemsSource = await bd.ObtenerTabla();
                 lsvActividadesPueblo.ItemsSource = pueblo.Actividades;
             }
             Loading(false);
@@ -51,7 +54,7 @@ namespace AppTFG.Paginas
 
         public async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new PaginaActividad(new Actividad() { Pueblo = pueblo }));
         }
     }

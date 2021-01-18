@@ -4,13 +4,15 @@
              x:Class="AppTFG.Paginas.ListaActividadesPueblo">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <ListView x:Name="lsvActividadesPueblo" ItemsSource="{Binding Actividades}" ItemSelected="LsvActividadesPueblo_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Nombre}" FontSize="Medium" 
-                                   LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
+                            <StackLayout BackgroundColor="White" Spacing="0" Orientation="Horizontal" Padding="5">
+                                <Image Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="20" TextColor="Gray" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

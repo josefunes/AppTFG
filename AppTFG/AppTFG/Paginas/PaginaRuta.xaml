@@ -5,20 +5,26 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <StackLayout Padding="15">
-                <Label Text="Nombre: " TextColor="#263238" FontSize="Large"/>
-                <Entry x:Name="txtNombre" TextColor="White" Text="{Binding Nombre}" 
+                <Label Text="Nombre: " TextColor="Gray" FontSize="Medium"/>
+                <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
                        Placeholder="Ingresa el nombre de la ruta" 
-                       PlaceholderColor="LightGray" BackgroundColor="Black" FontSize="Medium"/>
-                <Button x:Name="btnImagen" Text="Añadir imagen" BackgroundColor="LightBlue" Margin="10" TextColor="Black" WidthRequest="200" HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
-                <Image x:Name="imgRuta" Source="{Binding ImagenPrincipal}" VerticalOptions="StartAndExpand" HorizontalOptions="Center" Aspect="AspectFill" HeightRequest="150" WidthRequest="150" Margin="10"/>
+                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                <Button x:Name="btnImagen" Text="Abrir galería" 
+                            BackgroundColor="White" Margin="10" 
+                            TextColor="Gray" WidthRequest="150"  
+                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
+                <Image x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
+                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
+                           Aspect="AspectFill" HeightRequest="-1" 
+                           WidthRequest="-1" />
             </StackLayout>
 
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
         </StackLayout>
     </ContentPage.Content>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Registrar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
     </ContentPage.ToolbarItems>
 </ContentPage>

@@ -16,14 +16,13 @@ namespace AppTFG.Paginas
         public PaginaPueblo(Pueblo pueblo)
         {
             InitializeComponent();
-            Title = "Nuevo Pueblo";
+            Title = pueblo.Nombre;
             Pueblo = pueblo;
             BindingContext = pueblo;
             bd = new ServicioBaseDatos<Pueblo>();
-
             if (pueblo.Id == 0)
             {
-                //this.ToolbarItems.RemoveAt(2);
+                Title = "Nuevo Pueblo";
                 this.ToolbarItems.RemoveAt(1);
             }
         }

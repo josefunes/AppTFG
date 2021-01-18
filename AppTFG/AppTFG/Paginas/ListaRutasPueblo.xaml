@@ -10,8 +10,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Nombre}" FontSize="Medium" 
-                                   LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
+                            <StackLayout BackgroundColor="White" Spacing="0" Orientation="Horizontal" Padding="5">
+                                <Image Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="20" TextColor="Gray" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

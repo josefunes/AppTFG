@@ -20,13 +20,16 @@ namespace AppTFG.Paginas
         public PaginaActividad(Actividad actividad)
         {
             InitializeComponent();
-            Title = "Nueva Actividad";
+            Title = Actividad.Nombre;
             Actividad = actividad;
-            this.BindingContext = actividad;
+            BindingContext = actividad;
             bd = new ServicioBaseDatos<Actividad>();
 
             if (actividad.Id == 0)
-                this.ToolbarItems.RemoveAt(1);
+            {
+                Title = "Nueva Actividad";
+                ToolbarItems.RemoveAt(1);
+            }
         }
 
         void Loading(bool mostrar)
@@ -45,7 +48,7 @@ namespace AppTFG.Paginas
         async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
             Loading(true);
-            var actividad = (Actividad)this.BindingContext;
+            var actividad = (Actividad)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 await DisplayAlert("Advertencia", Constantes.TitleActividadRequired, "OK");
@@ -71,7 +74,7 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Actividad)this.BindingContext).Id);
+                await bd.Eliminar(((Actividad)BindingContext).Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();

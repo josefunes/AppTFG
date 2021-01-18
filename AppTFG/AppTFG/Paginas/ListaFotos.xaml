@@ -4,7 +4,7 @@
              x:Class="AppTFG.Paginas.ListaFotos">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

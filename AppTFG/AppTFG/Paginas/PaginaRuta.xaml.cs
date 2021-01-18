@@ -16,13 +16,16 @@ namespace AppTFG.Paginas
         public PaginaRuta(Ruta ruta)
         {
             InitializeComponent();
-            Title = "Nueva ruta";
+            Title = Ruta.Nombre;
             Ruta = ruta;
-            this.BindingContext = ruta;
+            BindingContext = ruta;
             bd = new ServicioBaseDatos<Ruta>();
 
-            if (ruta.Id == 0)
-                this.ToolbarItems.RemoveAt(1);
+            if (ruta.Id == 0) 
+            { 
+                ToolbarItems.RemoveAt(1);
+                Title = "Nueva ruta";
+            }
         }
 
         void Loading(bool mostrar)

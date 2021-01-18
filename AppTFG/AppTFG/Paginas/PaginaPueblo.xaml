@@ -46,24 +46,12 @@
                            Aspect="AspectFill" HeightRequest="-1" 
                            WidthRequest="-1" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="0" Padding="0" HeightRequest="60">
-                    <Grid ColumnSpacing="0" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                    <Button x:Name="btnRegistrar" Text="Guardar"
-                            BackgroundColor="White"
-                            TextColor="Gray" HorizontalOptions="CenterAndExpand" 
-                            Clicked="BtnRegistrar_Clicked" Grid.Column="0"/>
-                    <Button x:Name="btnEliminar" Text="Eliminar"
-                            BackgroundColor="White"
-                            TextColor="Gray" HorizontalOptions="CenterAndExpand" 
-                            Clicked="BtnEliminar_Clicked" Grid.Column="1"/>
-                </StackLayout>
                 <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
+        <ToolbarItem x:Name="btnEliminar" Text="Eliminar " Order="Primary" Priority="3" Clicked="BtnEliminar_Clicked"/>
+    </ContentPage.ToolbarItems>
 </ContentPage>

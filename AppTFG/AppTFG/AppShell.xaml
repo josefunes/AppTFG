@@ -98,8 +98,8 @@
     -->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Inicio" Icon="inicio.png" Route="AboutPage" ContentTemplate="{DataTemplate local:InicioPage}" />
-        <ShellContent Title="Buscar pueblo" Icon="lupa.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}" />
-        <ShellContent Title="Rutas Turisticas" Icon="brujula.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
+        <ShellContent Title="Pueblos" Icon="lupa.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}" />
+        <ShellContent Title="Rutas" Icon="brujula.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
     </FlyoutItem>
 
     <ShellContent Title="Actividades" Icon="senderismo.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>

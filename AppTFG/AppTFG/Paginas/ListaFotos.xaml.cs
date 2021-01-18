@@ -17,15 +17,17 @@ namespace AppTFG.Paginas
             this.BindingContext = pueblo;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
             Loading(true);
+            var bd = new ServicioBaseDatos<Foto>();
             var pueblo = (Pueblo)this.BindingContext;
             if (pueblo != null)
             {
                 lsvFotosPueblo.ItemsSource = null;
+                lsvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
                 lsvFotosPueblo.ItemsSource = pueblo.Fotos;
             }
             Loading(false);
