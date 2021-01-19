@@ -1,11 +1,13 @@
-﻿using AppTFG.FormsVideoLibrary;
-using AppTFG.Modelos;
+﻿using AppTFG.Modelos;
+using AppTFG.Servicios;
 using System;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace AppTFG.Paginas
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaVideosPueblo : ContentPage
     {
         public ListaVideosPueblo(Pueblo pueblo)
@@ -15,22 +17,45 @@ namespace AppTFG.Paginas
             this.BindingContext = pueblo;
         }
 
-        async void OnShowVideoLibraryClicked(object sender, EventArgs args)
+        protected async override void OnAppearing()
         {
-            Button btn = (Button)sender;
-            btn.IsEnabled = false;
+            base.OnAppearing();
 
-            string filename = await DependencyService.Get<IVideoPicker>().GetVideoFileAsync();
-
-            if (!string.IsNullOrWhiteSpace(filename))
+            Loading(true);
+            var bd = new ServicioBaseDatos<Video>();
+            var pueblo = (Pueblo)BindingContext;
+            if (pueblo != null)
             {
-                videoPlayer.Source = new FileVideoSource
-                {
-                    File = filename
-                };
+                lsvVideosPueblo.ItemsSource = null;
+                lsvVideosPueblo.ItemsSource = await bd.ObtenerTabla();
+                lsvVideosPueblo.ItemsSource = pueblo.Videos;
             }
+            Loading(false);
+        }
 
-            btn.IsEnabled = true;
+        void Loading(bool mostrar)
+        {
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
+        }
+
+        private async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            try
+            {
+                var dato = (Video)e.SelectedItem;
+                await Navigation.PushAsync(new SubirVideo(dato));
+                lsvVideosPueblo.SelectedItem = null;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public async void BtnAgregar_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            await Navigation.PushAsync(new SubirVideo(new Video() { Pueblo = pueblo }));
         }
     }
 }

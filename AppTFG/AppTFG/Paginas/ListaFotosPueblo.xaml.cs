@@ -8,9 +8,9 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaFotos : ContentPage
+    public partial class ListaFotosPueblo : ContentPage
     {
-        public ListaFotos(Pueblo pueblo)
+        public ListaFotosPueblo(Pueblo pueblo)
         {
             InitializeComponent();
             Title = "Fotos de " + pueblo.Nombre;
@@ -23,7 +23,7 @@ namespace AppTFG.Paginas
 
             Loading(true);
             var bd = new ServicioBaseDatos<Foto>();
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
                 lsvFotosPueblo.ItemsSource = null;
@@ -54,7 +54,7 @@ namespace AppTFG.Paginas
 
         public async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new SubirFoto(new Foto() { Pueblo = pueblo }));
         }
     }

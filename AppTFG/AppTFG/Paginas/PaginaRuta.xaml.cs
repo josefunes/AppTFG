@@ -2,7 +2,6 @@
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +15,6 @@ namespace AppTFG.Paginas
         public PaginaRuta(Ruta ruta)
         {
             InitializeComponent();
-            Title = Ruta.Nombre;
             Ruta = ruta;
             BindingContext = ruta;
             bd = new ServicioBaseDatos<Ruta>();
@@ -25,6 +23,10 @@ namespace AppTFG.Paginas
             { 
                 ToolbarItems.RemoveAt(1);
                 Title = "Nueva ruta";
+            }
+            else
+            {
+                Title = Ruta.Nombre;
             }
         }
 
@@ -44,15 +46,10 @@ namespace AppTFG.Paginas
         async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
             Loading(true);
-            var ruta = (Ruta)this.BindingContext;
+            var ruta = (Ruta)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 await DisplayAlert("Advertencia", Constantes.TitleRutaRequired, "OK");
-                return;
-            }
-            if (imgRuta.Equals(null))
-            {
-                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
                 return;
             }
             if (ruta.Id > 0)
@@ -70,7 +67,7 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Ruta)this.BindingContext).Id);
+                await bd.Eliminar(((Ruta)BindingContext).Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();

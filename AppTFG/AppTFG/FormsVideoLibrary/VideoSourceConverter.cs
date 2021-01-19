@@ -7,7 +7,7 @@ namespace AppTFG.FormsVideoLibrary
     {
         public override object ConvertFromInvariantString(string value)
         {
-            if (!String.IsNullOrWhiteSpace(value))
+            if (!string.IsNullOrWhiteSpace(value))
             {
                 Uri uri;
                 return Uri.TryCreate(value, UriKind.Absolute, out uri) && uri.Scheme != "file" ?

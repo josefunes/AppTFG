@@ -14,7 +14,7 @@ namespace AppTFG.Paginas
         {
             InitializeComponent();
             Title = "Rutas de " + pueblo.Nombre;
-            this.BindingContext = pueblo;
+            BindingContext = pueblo;
         }
 
         protected async override void OnAppearing()
@@ -23,7 +23,7 @@ namespace AppTFG.Paginas
 
             Loading(true);
             var bd = new ServicioBaseDatos<Ruta>();
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
                 lsvRutasPueblo.ItemsSource = null;
@@ -54,7 +54,7 @@ namespace AppTFG.Paginas
 
         public async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
-            var pueblo = (Pueblo)this.BindingContext;
+            var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new PaginaRuta(new Ruta() { Pueblo = pueblo }));
         }
     }

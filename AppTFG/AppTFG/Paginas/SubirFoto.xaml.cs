@@ -1,5 +1,4 @@
-﻿using AppTFG.FormsVideoLibrary;
-using AppTFG.Helpers;
+﻿using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
@@ -16,7 +15,6 @@ namespace AppTFG.Paginas
         public SubirFoto(Foto foto)
         {
             InitializeComponent();
-            Title = "Subir foto";
             Foto = foto;
             BindingContext = foto;
             bd = new ServicioBaseDatos<Foto>();
@@ -24,6 +22,11 @@ namespace AppTFG.Paginas
             if (foto.Id == 0)
             {
                 this.ToolbarItems.RemoveAt(1);
+                Title = "Nueva foto";
+            }
+            else
+            {
+                Title = Foto.Nombre;
             }
         }
 
@@ -48,11 +51,6 @@ namespace AppTFG.Paginas
             {
                 await DisplayAlert("Advertencia", Constantes.TitleImagenRequired, "OK");
                 return;
-            }
-            if (imgFoto.Equals(null))
-            {
-                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
-
             }
             if (foto.Id > 0)
                 await bd.Actualizar(foto);

@@ -28,9 +28,8 @@
                             Clicked="BtnFotos_Clicked" Grid.Column="2" BorderColor="Gray"/>
                     <Button x:Name="btnVideo" Text="Vídeos" 
                             BackgroundColor="White" 
-                            TextColor="Gray" 
-                            HorizontalOptions="FillAndExpand" Grid.Column="3" BorderColor="Gray"/>
-                    <!--Clicked="BtnVideo_Clicked"-->
+                            TextColor="Gray"  HorizontalOptions="FillAndExpand" 
+                            Clicked="BtnVideo_Clicked" Grid.Column="3" BorderColor="Gray"/>
                 </StackLayout>
                 <StackLayout Padding="15">
                     <Label Text="Nombre: " TextColor="Gray" FontSize="Medium"/>

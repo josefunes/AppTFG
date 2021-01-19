@@ -20,7 +20,6 @@ namespace AppTFG.Paginas
         public PaginaActividad(Actividad actividad)
         {
             InitializeComponent();
-            Title = Actividad.Nombre;
             Actividad = actividad;
             BindingContext = actividad;
             bd = new ServicioBaseDatos<Actividad>();
@@ -29,6 +28,10 @@ namespace AppTFG.Paginas
             {
                 Title = "Nueva Actividad";
                 ToolbarItems.RemoveAt(1);
+            }
+            else
+            {
+                Title = Actividad.Nombre;
             }
         }
 
@@ -52,11 +55,6 @@ namespace AppTFG.Paginas
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 await DisplayAlert("Advertencia", Constantes.TitleActividadRequired, "OK");
-                return;
-            }
-            if (imgActividad.Equals(null))
-            {
-                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
                 return;
             }
             if (actividad.Id > 0)

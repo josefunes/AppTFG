@@ -100,9 +100,9 @@
         <ShellContent Title="Inicio" Icon="inicio.png" Route="AboutPage" ContentTemplate="{DataTemplate local:InicioPage}" />
         <ShellContent Title="Pueblos" Icon="lupa.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}" />
         <ShellContent Title="Rutas" Icon="brujula.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
+        <ShellContent Title="Actividades" Icon="senderismo.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
     </FlyoutItem>
 
-    <ShellContent Title="Actividades" Icon="senderismo.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
     <ShellContent Title="Comentarios" Icon="comentarios.png" Route="Comentarios" ContentTemplate="{DataTemplate local:Comentarios}"/>
     <ShellContent Title="Ajustes" Icon="ajustes.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
     <ShellContent Title="Cerrar sesión" Icon="logout.png" ContentTemplate="{DataTemplate local:LoginPage}" />

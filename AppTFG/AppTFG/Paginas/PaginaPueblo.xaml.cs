@@ -40,19 +40,6 @@ namespace AppTFG.Paginas
             imgPueblo.Source = ImageSource.FromFile(imagen.Path);
         }
 
-        //private async void BtnVideo_Clicked(object sender, EventArgs e)
-        //{
-        //    var video = await ServicioMultimedia.SeleccionarVideo();
-        //    Pueblo.VideoUrl = video.Path;
-        //    videoPlayer.Source = VideoSource.FromFile(video.Path);
-        //}
-
-        async void BtnFotos_Clicked(object sender, EventArgs e)
-        {
-            var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaFotos(pueblo));
-        }
-
         async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
             Loading(true);
@@ -60,11 +47,6 @@ namespace AppTFG.Paginas
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
-                return;
-            }
-            if (string.IsNullOrEmpty(imgPueblo.ToString()))
-            {
-                await DisplayAlert("Advertencia", Constantes.InsertImageRequired, "OK");
                 return;
             }
             if (pueblo.Id > 0)
@@ -101,5 +83,16 @@ namespace AppTFG.Paginas
             await Navigation.PushAsync(new ListaActividadesPueblo(pueblo));
         }
 
+        async void BtnFotos_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            await Navigation.PushAsync(new ListaFotosPueblo(pueblo));
+        }
+
+        private async void BtnVideo_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            await Navigation.PushAsync(new ListaVideosPueblo(pueblo));
+        }
     }
 }
