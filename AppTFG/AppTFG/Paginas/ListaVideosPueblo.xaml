@@ -1,22 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
              x:Class="AppTFG.Paginas.ListaVideosPueblo">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout BackgroundColor="White" Spacing="5" Orientation="Horizontal" Padding="5">
-                                <Label Text="{Binding Nombre}" FontSize="Medium" 
-                                       LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <video:VideoPlayer x:Name="videoPlayer" 
+                                       Grid.Row="0" />
+                    <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout BackgroundColor="White" Spacing="5" Orientation="Horizontal" Padding="5">
+                                        <Label Text="{Binding Nombre}" FontSize="Medium" 
+                                           LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 

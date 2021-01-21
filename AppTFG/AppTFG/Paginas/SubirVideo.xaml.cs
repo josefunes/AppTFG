@@ -53,13 +53,13 @@ namespace AppTFG.Paginas
             
             if (!string.IsNullOrWhiteSpace(videoPath))
             {
-                Video.Videoclip = videoPath;
+                 
                 videoPlayer.Source = new FileVideoSource
                 {
                     File = videoPath
                 };
+                Video.Videoclip = videoPath;
             }
-
             btn.IsEnabled = true;
         }
 

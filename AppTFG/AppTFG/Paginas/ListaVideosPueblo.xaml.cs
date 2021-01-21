@@ -1,4 +1,5 @@
-﻿using AppTFG.Modelos;
+﻿using AppTFG.FormsVideoLibrary;
+using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
 
@@ -10,6 +11,7 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaVideosPueblo : ContentPage
     {
+        Video Video;
         public ListaVideosPueblo(Pueblo pueblo)
         {
             InitializeComponent();
@@ -39,13 +41,22 @@ namespace AppTFG.Paginas
             indicator.IsRunning = mostrar;
         }
 
-        private async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
+                var bd = new ServicioBaseDatos<Video>().ObtenerTabla();
                 var dato = (Video)e.SelectedItem;
-                await Navigation.PushAsync(new SubirVideo(dato));
-                lsvVideosPueblo.SelectedItem = null;
+                if (!string.IsNullOrWhiteSpace(dato.Videoclip))
+                {
+
+                    videoPlayer.Source = new FileVideoSource
+                    {
+                        File = dato.Videoclip
+                    };
+                    Video.Videoclip = dato.Videoclip;
+                }
+                //lsvVideosPueblo.SelectedItem = null;
             }
             catch (Exception ex)
             {

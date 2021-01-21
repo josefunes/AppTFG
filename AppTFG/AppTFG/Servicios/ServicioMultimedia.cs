@@ -12,12 +12,5 @@ namespace AppTFG.Servicios
             MediaFile file = await CrossMedia.Current.PickPhotoAsync();
             return file;
         }
-
-        public static async Task<MediaFile> SeleccionarVideo()
-        {
-            await CrossMedia.Current.Initialize();
-            MediaFile file = await CrossMedia.Current.PickVideoAsync();
-            return file;
-        }
     }
 }

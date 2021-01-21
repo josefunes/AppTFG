@@ -11,17 +11,14 @@
                     <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
                        Placeholder="Ingresa título del vídeo" 
                        PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                    <video:VideoPlayer x:Name="videoPlayer" HeightRequest="400" WidthRequest="100" VerticalOptions="StartAndExpand"/>
                     <Button x:Name="btnVideo" Text="Abrir galería" 
                             BackgroundColor="White" Margin="10" 
                             TextColor="Gray" WidthRequest="150"  
                             HorizontalOptions="Center" Clicked="BtnVideo_Clicked"/>
-                    <video:VideoPlayer x:Name="videoPlayer" Source="{Binding Videoclip}" 
-                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           HeightRequest="-1" 
-                           WidthRequest="-1" />
                 </StackLayout>
 
-                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
