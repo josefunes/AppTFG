@@ -10,7 +10,6 @@ namespace AppTFG.Modelos
         [Key, AutoIncrement]
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Introduccion { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
         public string VideoUrl { get; set; }

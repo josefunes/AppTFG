@@ -4,6 +4,7 @@ using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace AppTFG.Paginas
@@ -13,6 +14,10 @@ namespace AppTFG.Paginas
     {
         ServicioBaseDatos<Pueblo> bd;
         Pueblo Pueblo;
+        //Position position;
+        //MapSpan mapSpan;
+        //Map map;
+        
         public PaginaPueblo(Pueblo pueblo)
         {
             InitializeComponent();
@@ -23,7 +28,13 @@ namespace AppTFG.Paginas
             if (pueblo.Id == 0)
             {
                 Title = "Nuevo Pueblo";
-                this.ToolbarItems.RemoveAt(1);
+                ToolbarItems.RemoveAt(1);
+                //Corrdenadas de la ciudad de Almería
+                //Pueblo.CoordenadaX = 36.8345130509077;
+                //Pueblo.CoordenadaY = -2.463471054337188;
+                //position = new Position(Pueblo.CoordenadaX, Pueblo.CoordenadaY);
+                //mapSpan = new MapSpan(position, 0.01, 0.01);
+                //map = new Map(mapSpan);
             }
         }
 
@@ -89,10 +100,48 @@ namespace AppTFG.Paginas
             await Navigation.PushAsync(new ListaFotosPueblo(pueblo));
         }
 
-        private async void BtnVideo_Clicked(object sender, EventArgs e)
+        async void BtnVideo_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new ListaVideosPueblo(pueblo));
         }
+
+        void BtnMapa_Clicked(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            switch (button.Text)
+            {
+                case "Street":
+                    map.MapType = MapType.Street;
+                    break;
+                case "Satellite":
+                    map.MapType = MapType.Satellite;
+                    break;
+                case "Hybrid":
+                    map.MapType = MapType.Hybrid;
+                    break;
+            }
+        }
+
+        //private async void BtnCrearMapa_Clicked(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(Pueblo.Nombre))
+        //    {
+        //        await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
+        //        return;
+        //    }
+        //    Pueblo.CoordenadaX = double.Parse(txtCoordenadaX.Text);
+        //    Pueblo.CoordenadaY = double.Parse(txtCoordenadaY.Text);
+        //    Position position = new Position(Pueblo.CoordenadaX, Pueblo.CoordenadaY);
+        //    MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
+        //    map = new Map(mapSpan);
+        //    Pin pin = new Pin
+        //    {
+        //        Label = Pueblo.Nombre,
+        //        Type = PinType.Place,
+        //        Position = position
+        //    };
+        //    map.Pins.Add(pin);
+        //}
     }
 }

@@ -14,9 +14,10 @@ namespace AppTFG.Modelos
         [Key, AutoIncrement]
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Introduccion { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
+        public double CoordenadaX { get; set; }
+        public double CoordenadaY { get; set; }
         public List<Foto> Fotos { get; set; }
         public List<Video> Videos { get; set; }
         public List<Ruta> Rutas { get; set; }
