@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using AppTFG.Datos;
 using AppTFG.Droid.Datos;
 using AppTFG.Helpers;
@@ -9,12 +10,14 @@ namespace AppTFG.Droid.Datos
 {
     public class BaseDatosAndroid : IBaseDatos
     {
+        
         public string GetDatabasePath()
         {
-            return Path.Combine(
-                System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal),
-                Constantes.NombreBD);
+            var filename = Constantes.NombreBD;
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var path = Path.Combine(documentsPath, filename);
+            //var connection = new SQLiteConnection(path);
+            return path;
         }
     }
 }

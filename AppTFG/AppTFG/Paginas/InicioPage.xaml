@@ -1,11 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.InicioPage">
+             x:Class="AppTFG.Paginas.InicioPage"
+             Title="Inicio">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand">
+        <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
+            <Frame CornerRadius="15" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Label Text="Almócita" Grid.ColumnSpan="4" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                    <Label Grid.Row="3" Grid.Column="0" Text="678" HorizontalOptions="Center" FontSize="Large"/>
+
+                    <Label Grid.Row="2" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="340" HorizontalOptions="Center" FontSize="Large"/>
+
+                    <Label Grid.Row="2" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                    <Label Grid.Row="3" Grid.Column="2" Text="67k" HorizontalOptions="Center" FontSize="Large"/>
+
+                    <Label Grid.Row="2" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                    <Label Grid.Row="3" Grid.Column="3" Text="67k" HorizontalOptions="Center" FontSize="Large"/>
+                </Grid>
+            </Frame>
+            <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                    <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Text="Rutas en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                    </Grid>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                    <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Text="Ruta más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+            <Frame CornerRadius="10" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Actividades en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                    <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Actividad más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                    <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Fotos subidas" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                    <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Foto con más visualizaciones" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                    <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Vídeos subidos" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                    <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Vídeo con más visualizaciones" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
+                    <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 

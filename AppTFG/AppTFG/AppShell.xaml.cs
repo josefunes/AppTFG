@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppTFG.Paginas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,5 +32,10 @@ namespace AppTFG
                 Routing.RegisterRoute(item.Key, item.Value);
             }
         }
+
+        //private async void OnMenuItemClicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new LoginPage());
+        //}
     }
 }

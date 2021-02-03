@@ -35,8 +35,10 @@
                 <!--Color de los iconos del menú inferior que están seleccionados-->
                 <Setter Property="Shell.TabBarTitleColor" Value="Gray"/>
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <!--<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />-->
+            <!--Así le doy el mismo diseño que he definido arriba al FlyoutItem y al ShellContent-->
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="ShellContent" BasedOn="{StaticResource BaseStyle}"/>
 
             <!--
             Default Styles for all Flyout Items
@@ -64,7 +66,7 @@
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
                                     <!--Color del fondo de la propiedad del menú desplegable seleccionada-->
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -91,20 +93,16 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!-- 
-        When the Flyout is visible this defines the content to display in the flyout.
-        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
-        https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
-    -->
+    <!--Al establecer la propiedad FlyoutItem.FlyoutDisplayOptions en AsMultipleItems, 
+    se creará un elemento de control flotante para cada objeto Tab dentro de un objeto 
+    FlyoutItem-->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Inicio" Icon="inicio.png" Route="AboutPage" ContentTemplate="{DataTemplate local:InicioPage}" />
-        <ShellContent Title="Pueblos" Icon="lupa.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}" />
-        <ShellContent Title="Rutas" Icon="brujula.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
-        <ShellContent Title="Actividades" Icon="senderismo.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
+        <ShellContent Title="Inicio" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:InicioPage}" />
+        <ShellContent Title="Pueblos" Icon="marker.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}" />
+        <ShellContent Title="Rutas" Icon="compass.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
+        <ShellContent Title="Actividades" Icon="location.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
     </FlyoutItem>
-
-    <ShellContent Title="Comentarios" Icon="comentarios.png" Route="Comentarios" ContentTemplate="{DataTemplate local:Comentarios}"/>
-    <ShellContent Title="Ajustes" Icon="ajustes.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
-    <ShellContent Title="Cerrar sesión" Icon="logout.png" ContentTemplate="{DataTemplate local:LoginPage}" />
-    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <ShellContent Title="Comentarios" Icon="comments.png" Route="Comentarios" ContentTemplate="{DataTemplate local:Comentarios}"/>
+    <ShellContent Title="Ajustes" Icon="settings.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
+    <ShellContent Title="Cerrar sesión" Icon="logout1.png" ContentTemplate="{DataTemplate local:LoginPage}" />
 </Shell>

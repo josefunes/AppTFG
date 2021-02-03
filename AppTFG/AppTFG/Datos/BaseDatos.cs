@@ -1,6 +1,7 @@
 ﻿using AppTFG.Modelos;
 using Xamarin.Forms;
 using Microsoft.EntityFrameworkCore;
+using SQLite;
 
 namespace AppTFG.Datos
 {
@@ -10,6 +11,7 @@ namespace AppTFG.Datos
         public DbSet<Ruta> Rutas { get; set; }
         public DbSet<Actividad> Actividades { get; set; }
         public DbSet<Foto> Foto { get; set; }
+        public DbSet<Video> Video { get; set; }
 
         private readonly string rutaBD;
 
@@ -23,6 +25,7 @@ namespace AppTFG.Datos
         {
             var dbPath = DependencyService.Get<IBaseDatos>().GetDatabasePath();
             optionsBuilder.UseSqlite($"Filename={dbPath}");
+            //dbPath.CreateTable<Pueblo>();
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:AppTFG.Helpers"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="AppTFG.Paginas.PaginaPueblo">
-             <!--xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"-->
-             
+
     <ScrollView Margin="0">
         <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
             <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="0" Padding="0" HeightRequest="60">
@@ -62,8 +61,7 @@
                             TextColor="Gray" WidthRequest="150"  
                             HorizontalOptions="Center" /> <!--Clicked="BtnCrearMapa_Clicked"-->
                 <StackLayout x:Name="stackMapa" Margin="0" HeightRequest="-1" WidthRequest="-1">
-                    <!--<maps:Map x:Name="map" WidthRequest="-1" HeightRequest="400" HasScrollEnabled="True"/>-->
-                    <local:BindableMap x:Name="map" MapPosition="{Binding MyPosition}" MapPins="{Binding PinCollection}" />
+                    <maps:Map x:Name="map" WidthRequest="-1" HeightRequest="400" HasScrollEnabled="True"/>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
                         <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Gray" />
                         <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Gray" />

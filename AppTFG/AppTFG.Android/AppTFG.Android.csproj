@@ -68,11 +68,11 @@
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
-    <PackageReference Include="Polly">
-      <Version>7.2.1</Version>
-    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
+    </PackageReference>
+    <PackageReference Include="SQLite.Net-PCL">
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="SQLiteNetExtensions">
       <Version>2.1.0</Version>
@@ -144,9 +144,13 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundedCornerViewRenderer.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -199,6 +203,27 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\senderismo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\logout1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\marker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\comments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\compass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
