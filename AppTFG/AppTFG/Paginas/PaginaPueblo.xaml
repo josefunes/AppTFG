@@ -3,77 +3,102 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="AppTFG.Paginas.PaginaPueblo">
-
-    <ScrollView Margin="0">
-        <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
-            <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="0" Padding="0" HeightRequest="60">
-                <Grid ColumnSpacing="0" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <Button x:Name="btnRutas" Text="Rutas"
-                            BackgroundColor="White"
-                            TextColor="Gray" HorizontalOptions="FillAndExpand" 
-                            Clicked="BtnRutas_Clicked" Grid.Column="0" BorderColor="Gray"/>
-                <Button x:Name="btnActividades" Text="Acts"
-                            BackgroundColor="White" 
-                            TextColor="Gray" HorizontalOptions="FillAndExpand" 
-                            Clicked="BtnActividades_Clicked" Grid.Column="1" BorderColor="Gray"/>
-                <Button x:Name="btnFotos" Text="Fotos"
-                            BackgroundColor="White" 
-                            TextColor="Gray" HorizontalOptions="FillAndExpand" 
-                            Clicked="BtnFotos_Clicked" Grid.Column="2" BorderColor="Gray"/>
-                <Button x:Name="btnVideo" Text="Vídeos" 
-                            BackgroundColor="White" 
-                            TextColor="Gray"  HorizontalOptions="FillAndExpand" 
-                            Clicked="BtnVideo_Clicked" Grid.Column="3" BorderColor="Gray"/>
-            </StackLayout>
-            <StackLayout Padding="5">
-                <Label Text="Nombre: " TextColor="Gray" FontSize="Medium" />
-                <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
-                       Placeholder="Ingresa el nombre del pueblo" 
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium" />
-                <Button x:Name="btnImagen" Text="Abrir galería" 
-                            BackgroundColor="White" Margin="10" 
-                            TextColor="Gray" WidthRequest="150"  
-                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
-                <Image x:Name="imgPueblo" Source="{Binding ImagenPrincipal}" 
-                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           Aspect="AspectFill" HeightRequest="-1" 
-                           WidthRequest="-1" />
-                <Label Text="Descripción del pueblo: " TextColor="Gray" FontSize="Medium"/>
-                <Entry x:Name="txtDescripcion" TextColor="DarkGray" Text="{Binding Descripcion}" 
-                       Placeholder="Ingresa una descripción del pueblo"  
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
-                <Label Text="Coordenadas del pueblo(Latitud, Longitud): " TextColor="Gray" FontSize="Medium"/>
-                <Entry x:Name="txtCoordenadaX" TextColor="DarkGray" Text="{Binding CoordenadaX}" 
-                       Placeholder="Por ejemplo: 37.003000" 
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
-                <Entry x:Name="txtCoordenadaY" TextColor="DarkGray" Text="{Binding CoordenadaY}" 
-                       Placeholder="Por ejemplo: -37.003000" 
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
-                <Button x:Name="btnMapa" Text="Cargar mapa con coordenadas" 
-                            BackgroundColor="White" Margin="10" 
-                            TextColor="Gray" WidthRequest="150"  
-                            HorizontalOptions="Center" /> <!--Clicked="BtnCrearMapa_Clicked"-->
-                <StackLayout x:Name="stackMapa" Margin="0" HeightRequest="-1" WidthRequest="-1">
-                    <maps:Map x:Name="map" WidthRequest="-1" HeightRequest="400" HasScrollEnabled="True"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
-                        <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Gray" />
-                        <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Gray" />
-                        <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Gray" />
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-        </StackLayout>
-    </ScrollView>
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar " Order="Primary" Priority="3" Clicked="BtnEliminar_Clicked"/>
     </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+            <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="400"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" x:Name="imgPueblo" Source="{Binding ImagenPrincipal}" 
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                               Aspect="AspectFill"/>
+                    <Frame Grid.Row="1" CornerRadius="15" Padding="0">
+                            <StackLayout>
+                                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Entry Grid.Column="0" x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                                Placeholder="Ingresa el nombre del pueblo" HorizontalOptions="Start"
+                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium" FontFamily="BSDR"/>
+                                    <Button Grid.Column="1" x:Name="btnImagen" Text="Foto perfil" 
+                                BackgroundColor="Transparent" Margin="0" FontSize="Small"
+                                TextColor="Black" WidthRequest="90"  
+                                HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
+                                </Grid>
+                                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Button x:Name="btnRutas" Text="Rutas"
+                                    BackgroundColor="White"
+                                    TextColor="Black" HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnRutas_Clicked" Grid.Column="0" Grid.Row="0" BorderColor="Gray"/>
+                                    <Label Text="Rutas" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center"/>
+                                    <Button x:Name="btnActividades" Text="Acts"
+                                    BackgroundColor="White" 
+                                    TextColor="Black" HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnActividades_Clicked" Grid.Column="1" Grid.Row="0" BorderColor="Gray"/>
+                                    <Label Text="Actividades" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center"/>
+                                    <Button x:Name="btnFotos" Text="Fotos"
+                                    BackgroundColor="White" 
+                                    TextColor="Black" HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnFotos_Clicked" Grid.Column="2" Grid.Row="0" BorderColor="Gray"/>
+                                    <Label Text="Fotos" Grid.Column="2" Grid.Row="1" HorizontalOptions="Center"/>
+                                    <Button x:Name="btnVideo" Text="Vídeos" 
+                                    BackgroundColor="White" 
+                                    TextColor="Black"  HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnVideo_Clicked" Grid.Column="3" Grid.Row="0" BorderColor="Gray"/>
+                                    <Label Text="Vídeos" Grid.Column="3" Grid.Row="1" HorizontalOptions="Center"/>
+                                </Grid>
+                                <Entry x:Name="txtDescripcion" TextColor="DarkGray" Text="{Binding Descripcion}" 
+                                Placeholder="Ingresa una descripción del pueblo"  Margin="10, 0, 10, 25" 
+                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                            </StackLayout>
+                        </Frame>
+                        <!--<Label Text="Coordenadas del pueblo(Latitud, Longitud): " TextColor="Gray" FontSize="Medium"/>
+                        <Entry x:Name="txtCoordenadaX" TextColor="DarkGray" Text="{Binding CoordenadaX}" 
+                                   Placeholder="Por ejemplo: 37.003000" 
+                                   PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                        <Entry x:Name="txtCoordenadaY" TextColor="DarkGray" Text="{Binding CoordenadaY}" 
+                                   Placeholder="Por ejemplo: -37.003000" 
+                                   PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                        <Button x:Name="btnMapa" Text="Cargar mapa con coordenadas" 
+                                        BackgroundColor="White" Margin="10" 
+                                        TextColor="Gray" WidthRequest="150"  
+                                        HorizontalOptions="Center" />
+                        -->
+                        <!--Clicked="BtnCrearMapa_Clicked"-->
+                        <!--
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>-->
+                    <StackLayout Grid.Row="2" x:Name="stackMapa" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">
+                        <maps:Map x:Name="map" WidthRequest="-1" HeightRequest="300" HasScrollEnabled="True"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Black" />
+                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Black" />
+                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Black" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
 </ContentPage>

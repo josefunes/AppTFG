@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
              x:Class="AppTFG.Paginas.ListaVideosPueblo">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <ScrollView>
+            <ScrollView VerticalScrollBarVisibility="Never">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="200" />
@@ -31,8 +34,4 @@
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
-    </ContentPage.ToolbarItems>
 </ContentPage>

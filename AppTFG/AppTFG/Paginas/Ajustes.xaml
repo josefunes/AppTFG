@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

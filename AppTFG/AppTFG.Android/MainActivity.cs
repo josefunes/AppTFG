@@ -6,6 +6,11 @@ using Android.Content;
 using Android;
 using System;
 using Android.Content.PM;
+//using System.IO;
+//using AppTFG.Helpers;
+//using SQLite;
+//using Microsoft.Data.Sqlite;
+//using Environment = System.Environment;
 
 namespace AppTFG.Droid
 {
@@ -31,6 +36,32 @@ namespace AppTFG.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+
+
+            //var sqliteFilename = Constantes.NombreBD;
+            //string documentsPath = Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
+            //var path = Path.Combine(documentsPath, sqliteFilename);
+            //using (SqliteConnection db = new SqliteConnection("Filename=" + documentsPath))
+            //{
+            //    db.Open();
+            //}
+            //This is where we copy in the prepopulated database
+            //    Console.WriteLine(path);
+            //if (!File.Exists(path))
+            //{
+            //    var s = Resources.OpenRawResource(Resource.Raw.BD_SistemaRural);  // RESOURCE NAME ###
+
+            //    create a write stream
+            //    FileStream writeStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
+            //    write to the stream
+            //    ReadWriteStream(s, writeStream);
+            //}
+            //var plat = new Platform.XamarinAndroid.SQLitePlatformAndroid();
+            //var conn = new SQLiteAsyncConnection(path);
+
+            //Set the database connection string
+            //App.SetDatabaseConnection(conn);
+
             LoadApplication(new App());
         }
 
@@ -97,5 +128,21 @@ namespace AppTFG.Droid
 
             //base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        //void ReadWriteStream(Stream readStream, Stream writeStream)
+        //{
+        //    int Length = 256;
+        //    byte[] buffer = new byte[Length];
+        //    int bytesRead = readStream.Read(buffer, 0, Length);
+        //    // write the required bytes
+        //    while (bytesRead > 0)
+        //    {
+        //        writeStream.Write(buffer, 0, bytesRead);
+        //        bytesRead = readStream.Read(buffer, 0, Length);
+        //    }
+        //    readStream.Close();
+        //    writeStream.Close();
+        //}
+
     }
 }

@@ -11,6 +11,68 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\BSD\BigShouldersDisplay-Black.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-Bold.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-ExtraBold.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-Light.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-Medium.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-Regular.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-SemiBold.ttf" />
+    <None Remove="Fonts\BSD\BigShouldersDisplay-Thin.ttf" />
+    <None Remove="Fonts\PS\PublicSans-Italic-VariableFont_wght.ttf" />
+    <None Remove="Fonts\PS\PublicSans-VariableFont_wght.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Black.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-BlackItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Bold.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-BoldItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-ExtraBold.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-ExtraBoldItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-ExtraLight.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-ExtraLightItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Italic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Light.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-LightItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Medium.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-MediumItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Regular.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-SemiBold.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-SemiBoldItalic.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-Thin.ttf" />
+    <None Remove="Fonts\PS\static\PublicSans-ThinItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-Black.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-Bold.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-ExtraBold.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-Light.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-Medium.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-SemiBold.ttf" />
+    <EmbeddedResource Include="Fonts\BSD\BigShouldersDisplay-Thin.ttf" />
+    <EmbeddedResource Include="Fonts\PS\PublicSans-Italic-VariableFont_wght.ttf" />
+    <EmbeddedResource Include="Fonts\PS\PublicSans-VariableFont_wght.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Black.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-BlackItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Bold.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-BoldItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-ExtraBold.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-ExtraBoldItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-ExtraLight.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-ExtraLightItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Italic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Light.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-LightItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Medium.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-MediumItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-SemiBold.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-SemiBoldItalic.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-Thin.ttf" />
+    <EmbeddedResource Include="Fonts\PS\static\PublicSans-ThinItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.2" />
     <PackageReference Include="Polly" Version="7.2.1" />
@@ -20,9 +82,11 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="Xam.Plugin.ExternalMaps" Version="4.0.1" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1905" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.1905" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.1.5" />
+    <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>

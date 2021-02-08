@@ -114,10 +114,10 @@ namespace AppTFG.Paginas
                 case "Street":
                     map.MapType = MapType.Street;
                     break;
-                case "Satellite":
+                case "Satélite":
                     map.MapType = MapType.Satellite;
                     break;
-                case "Hybrid":
+                case "Híbrido":
                     map.MapType = MapType.Hybrid;
                     break;
             }

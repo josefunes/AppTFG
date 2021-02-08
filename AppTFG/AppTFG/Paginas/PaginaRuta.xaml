@@ -2,29 +2,42 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaRuta">
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <StackLayout Padding="15">
-                <Label Text="Nombre: " TextColor="Gray" FontSize="Medium"/>
-                <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
-                       Placeholder="Ingresa el nombre de la ruta" 
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
-                <Button x:Name="btnImagen" Text="Abrir galería" 
-                            BackgroundColor="White" Margin="10" 
-                            TextColor="Gray" WidthRequest="150"  
-                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
-                <Image x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
-                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           Aspect="AspectFill" HeightRequest="-1" 
-                           WidthRequest="-1" />
-            </StackLayout>
-
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-        </StackLayout>
-    </ContentPage.Content>
-
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
     </ContentPage.ToolbarItems>
+    <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+        <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="400"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
+                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
+                           Aspect="AspectFill" HeightRequest="-1" 
+                           WidthRequest="-1"/>
+                <Frame Grid.Row="1" CornerRadius="15" Padding="0">
+                    <StackLayout>
+                        <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                                Placeholder="Ingresa el nombre de la ruta" 
+                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                            <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta" 
+                                BackgroundColor="Transparent" Margin="0" FontSize="Small"
+                                TextColor="Black" WidthRequest="90"  
+                                HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="Black"/>
+            </Grid>
+            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

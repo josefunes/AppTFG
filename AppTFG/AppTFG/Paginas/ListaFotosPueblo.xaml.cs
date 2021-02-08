@@ -13,6 +13,7 @@ namespace AppTFG.Paginas
         public ListaFotosPueblo(Pueblo pueblo)
         {
             InitializeComponent();
+
             Title = "Fotos de " + pueblo.Nombre;
             this.BindingContext = pueblo;
         }
@@ -26,9 +27,9 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
-                lsvFotosPueblo.ItemsSource = null;
-                lsvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
-                lsvFotosPueblo.ItemsSource = pueblo.Fotos;
+                clvFotosPueblo.ItemsSource = null;
+                clvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
+                clvFotosPueblo.ItemsSource = pueblo.Fotos;
             }
             Loading(false);
         }
@@ -45,7 +46,7 @@ namespace AppTFG.Paginas
             {
                 var dato = (Foto)e.SelectedItem;
                 await Navigation.PushAsync(new SubirFoto(dato));
-                lsvFotosPueblo.SelectedItem = null;
+                clvFotosPueblo.SelectedItem = null;
             }
             catch (Exception ex)
             {
