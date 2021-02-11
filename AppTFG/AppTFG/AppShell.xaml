@@ -17,9 +17,9 @@
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 
                 <!--Color de lo que está en los toolbars y del menú-->
-                <Setter Property="Shell.ForegroundColor" Value="Gray" />
+                <Setter Property="Shell.ForegroundColor" Value="Black" />
                 <!--Color de los títulos que aparecen en los toolbars-->
-                <Setter Property="Shell.TitleColor" Value="Gray" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
                 
                 <!--<Setter Property="Shell.DisabledColor" Value="Black" />
                 <Setter Property="Shell.UnselectedColor" Value="Blue" />-->
@@ -33,7 +33,7 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="LightGray"/>
 
                 <!--Color de los iconos del menú inferior que están seleccionados-->
-                <Setter Property="Shell.TabBarTitleColor" Value="Gray"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="Black"/>
             </Style>
             <!--<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />-->
             <!--Así le doy el mismo diseño que he definido arriba al FlyoutItem y al ShellContent-->
@@ -46,7 +46,7 @@
             -->
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <!--Color de la propiedad seleccionada en el menú lateral-->
-                <Setter Property="TextColor" Value="Gray"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter>
             </Style>
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
                 

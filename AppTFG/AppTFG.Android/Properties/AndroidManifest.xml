@@ -1,7 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.appTFG" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="29" />
-	<application android:label="AppTFG.Android" android:theme="@style/MyTheme.NoActionBar" android:icon="@mipmap/icon" android:allowBackup="true">
+	<application 
+		android:label="AppTFG.Android" 
+		android:theme="@style/MyTheme.NoActionBar"
+		android:icon="@mipmap/icon" 
+		android:allowBackup="true"
+		largeHeap="true" 
+		android:hardwareAccelerated="false">
+		<!--
+		Para el fallo de memoria:
+			- largeHeap="true" 
+			- android:hardwareAccelerated="false"
+				-->
 		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCBRp6rrhdAPgg56XWlRolF8P0iL-i0idA" />
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 		<uses-library android:name="org.apache.http.legacy" android:required="false" />

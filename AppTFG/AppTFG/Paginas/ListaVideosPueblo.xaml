@@ -10,27 +10,27 @@
         <StackLayout BackgroundColor="White">
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <ScrollView VerticalScrollBarVisibility="Never">
-                <Grid>
+                <!--<Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="200" />
                         <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                    </Grid.RowDefinitions>-->
 
-                    <video:VideoPlayer x:Name="videoPlayer" 
-                                       Grid.Row="0" />
-                    <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True" Grid.Row="1">
-                        <ListView.ItemTemplate>
+                    <!--<video:VideoPlayer x:Name="videoPlayer" 
+                                       Grid.Row="0" />-->
+                <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True"> <!--Grid.Row="1"-->
+                    <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout BackgroundColor="White" Spacing="5" Orientation="Horizontal" Padding="5">
-                                        <Label Text="{Binding Nombre}" FontSize="Medium" 
-                                           LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
+                                    <Label Text="{Binding Nombre}" FontSize="Title" 
+                                            LineBreakMode="WordWrap" TextColor="Black" Margin="10" FontFamily="BSDRegular"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </Grid>
+                <!--</Grid>-->
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

@@ -26,16 +26,16 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
-                                Placeholder="Ingresa el nombre de la ruta" 
+                                Placeholder="Ingresa el nombre de la ruta" FontFamily="BSDRegular"
                                 PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
                             <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta" 
                                 BackgroundColor="Transparent" Margin="0" FontSize="Small"
-                                TextColor="Black" WidthRequest="90"  
+                                TextColor="Black" WidthRequest="90"  FontFamily="BSDRegular"
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
                         </Grid>
                     </StackLayout>
                 </Frame>
-                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="Black"/>
+                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="Black" FontFamily="BSDRegular"/>
             </Grid>
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
         </StackLayout>

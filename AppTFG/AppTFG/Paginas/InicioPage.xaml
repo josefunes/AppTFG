@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
             <!--Frame del Pueblo donde se ve la información más general-->
-            <Frame CornerRadius="15" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+            <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
                 <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -21,20 +21,20 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Text="Almócita" Grid.ColumnSpan="4" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDBold"/>
+                    <Label Grid.Row="0" Text="Almócita" Grid.ColumnSpan="4" BackgroundColor="#FACFCF" HorizontalTextAlignment="Center" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDSemiBold"/>
 
-                    <Label Grid.Row="1" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
-                    <Label Grid.Row="2" Grid.Column="0" Text="678" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="678" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
 
-                    <Label Grid.Row="1" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="340" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="340" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
 
-                    <Label Grid.Row="1" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
-                    <Label Grid.Row="2" Grid.Column="2" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular"/>
+                    <Label Grid.Row="1" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="2" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
 
-                    <Label Grid.Row="1" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
-                    <Label Grid.Row="2" Grid.Column="3" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular"/>
+                    <Label Grid.Row="1" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="2" Grid.Column="3" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                 </Grid>
             </Frame>
             <!--Frames de las rutas-->
@@ -52,9 +52,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Rutas en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDBold"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center"  FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Rutas en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center"  FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
                 <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
@@ -63,9 +63,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Ruta más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDBold"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Ruta más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
             </Grid>
@@ -84,9 +84,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Actividades en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDBold"/>
-                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Actividades en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
+                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
                 <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
@@ -95,9 +95,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Actividad más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDBold"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
-                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Actividad más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
+                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
             </Grid>
@@ -116,9 +116,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Fotos subidas" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDBold"/>
-                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Fotos subidas" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
+                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
                 <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
@@ -127,9 +127,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Foto más vista" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDBold"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
-                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Foto más vista" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
+                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
             </Grid>
@@ -148,9 +148,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Vídeos subidos" BackgroundColor="Salmon" HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDBold"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Vídeos subidos" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
                 <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
@@ -159,9 +159,9 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Vídeo más visto" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDBold"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular"/>
+                        <Label Grid.Row="0" Text="Vídeo más visto" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
                     </Grid>
                 </Frame>
             </Grid>

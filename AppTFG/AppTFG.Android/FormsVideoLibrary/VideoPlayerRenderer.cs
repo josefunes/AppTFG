@@ -141,7 +141,7 @@ namespace AppTFG.Droid
             {
                 string uri = (Element.Source as UriVideoSource).Uri;
 
-                if (!String.IsNullOrWhiteSpace(uri))
+                if (!string.IsNullOrWhiteSpace(uri))
                 {
                     videoView.SetVideoURI(Android.Net.Uri.Parse(uri));
                     hasSetSource = true;
@@ -151,7 +151,7 @@ namespace AppTFG.Droid
             {
                 string filename = (Element.Source as FileVideoSource).File;
 
-                if (!String.IsNullOrWhiteSpace(filename))
+                if (!string.IsNullOrWhiteSpace(filename))
                 {
                     videoView.SetVideoPath(filename);
                     hasSetSource = true;
@@ -162,7 +162,7 @@ namespace AppTFG.Droid
                 string package = Context.PackageName;
                 string path = (Element.Source as ResourceVideoSource).Path;
 
-                if (!String.IsNullOrWhiteSpace(path))
+                if (!string.IsNullOrWhiteSpace(path))
                 {
                     string filename = Path.GetFileNameWithoutExtension(path).ToLowerInvariant();
                     string uri = "android.resource://" + package + "/raw/" + filename;

@@ -16,11 +16,11 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" >
-            <Entry Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F" Margin="10,0,10,10"/>
-            <Entry Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F" Margin="10,0,10,10"/>
-            <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="#FFB13F55" Margin="60,0,60,0"/>
-            <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0"/>
-            <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding LoginCommand}" Margin="20,0,0,0"/>
+            <Entry Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+            <Entry Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+            <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="#FFB13F55" Margin="60,0,60,0" FontFamily="BSDRegular"/>
+            <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
+            <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding LoginCommand}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
             <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>

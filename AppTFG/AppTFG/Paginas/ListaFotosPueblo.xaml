@@ -1,49 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.ListaFotosPueblo">
-    <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout BackgroundColor="White">
-                <!--<ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-                <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout BackgroundColor="White" Spacing="5" Orientation="Horizontal" Padding="5">
-                                    <Image Source="{Binding Imagen}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
-                                    <Label Text="{Binding Nombre}" FontSize="Medium" 
-                                           LineBreakMode="WordWrap" TextColor="Black" Margin="10"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
-                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-                <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 2">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="1" ColumnSpacing="0" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="200" />
-                                </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Imagen}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="200" 
-                                   WidthRequest="200" />
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
-    </ContentPage.ToolbarItems>
-</ContentPage>
+    <TabbedPage.Children>
+        <ContentPage IconImageSource="icon.png">
+            <ContentPage.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
+                        <StackLayout BackgroundColor="White">
+                            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                            <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="1" ColumnSpacing="0" RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="150" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="200" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Imagen}" 
+                                           Aspect="AspectFill" 
+                                           HorizontalOptions="Fill" 
+                                           VerticalOptions="Fill"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                    <Button Grid.Row="0" Text="Añadir foto" FontFamily="BSDRegular" FontSize="Medium"
+                            BackgroundColor="White" BorderRadius="30" TextColor="Black" BorderWidth="1"
+                            BorderColor="Black" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
+                            Margin="0,0,20,22" VerticalOptions="End" Clicked="BtnAgregar_Clicked"/>
+                </Grid>
+            </ContentPage.Content>
+        </ContentPage>
+        <ContentPage IconImageSource="icon.png">
+            <ContentPage.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
+                        <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="0" >
+                            <ActivityIndicator x:Name="indicador" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                            <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="5">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="200"/>
+                                                        <RowDefinition Height="40"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="{Binding Imagen}" Aspect="AspectFill" 
+                                                           HorizontalOptions="Fill" VerticalOptions="Fill" 
+                                                           Grid.Column="0" Grid.Row="0"/>
+                                                    <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" 
+                                                           VerticalOptions="Center" FontSize="Title" TextColor="Black" 
+                                                           HorizontalOptions="Start" Margin="5, 0, 0, 5"
+                                                           HorizontalTextAlignment="Start" FontFamily="BSDRegular" 
+                                                           Grid.Column="0" Grid.Row="1"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                    <Button Grid.Row="0" Text="Añadir foto" FontFamily="BSDRegular" FontSize="Medium"
+                            BackgroundColor="White" BorderRadius="30" TextColor="Black" BorderWidth="1"
+                            BorderColor="Black" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
+                            Margin="0,0,20,22" VerticalOptions="End" Clicked="BtnAgregar_Clicked"/>
+                </Grid>
+            </ContentPage.Content>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

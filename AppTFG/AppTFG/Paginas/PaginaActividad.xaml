@@ -27,11 +27,11 @@
                             </Grid.ColumnDefinitions>
                             <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
                                 Placeholder="Ingresa el nombre de la actividad" 
-                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium" FontFamily="BSDRegular"/>
                             <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta" 
                                 BackgroundColor="Transparent" Margin="0" FontSize="Small"
                                 TextColor="Black" WidthRequest="90"  
-                                HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
+                                HorizontalOptions="End" Clicked="BtnImagen_Clicked" FontFamily="BSDRegular"/>
                         </Grid>
                     </StackLayout>
                 </Frame>

@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaFotosPueblo : ContentPage
+    public partial class ListaFotosPueblo : TabbedPage
     {
         public ListaFotosPueblo(Pueblo pueblo)
         {
@@ -31,6 +31,12 @@ namespace AppTFG.Paginas
                 clvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
                 clvFotosPueblo.ItemsSource = pueblo.Fotos;
             }
+            if (pueblo != null)
+            {
+                lsvFotosPueblo.ItemsSource = null;
+                lsvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
+                lsvFotosPueblo.ItemsSource = pueblo.Fotos;
+            }
             Loading(false);
         }
 
@@ -38,6 +44,8 @@ namespace AppTFG.Paginas
         {
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
+            indicador.IsEnabled = mostrar;
+            indicador.IsRunning = mostrar;
         }
 
         private async void LsvFotosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -46,7 +54,7 @@ namespace AppTFG.Paginas
             {
                 var dato = (Foto)e.SelectedItem;
                 await Navigation.PushAsync(new SubirFoto(dato));
-                clvFotosPueblo.SelectedItem = null;
+                lsvFotosPueblo.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -58,5 +66,6 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new SubirFoto(new Foto() { Pueblo = pueblo }));
         }
+
     }
 }

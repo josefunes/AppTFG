@@ -6,18 +6,23 @@
         <ScrollView>
             <StackLayout BackgroundColor="White">
                 <StackLayout Padding="15">
-                    <Label Text="Título: " TextColor="Gray" FontSize="Medium"/>
-                    <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
-                       Placeholder="Ingresa título de la foto" 
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
-                    <Button x:Name="btnImagen" Text="Abrir galería" 
-                            BackgroundColor="White" Margin="10" 
-                            TextColor="Gray" WidthRequest="150"  
-                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked"/>
-                    <Image x:Name="imgFoto" Source="{Binding Imagen}" 
-                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           Aspect="AspectFill" HeightRequest="-1" 
-                           WidthRequest="-1" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Image x:Name="imgFoto" Source="{Binding Imagen}"
+                            Aspect="AspectFill"  HorizontalOptions="Fill" 
+                            VerticalOptions="Fill" Grid.Row="0"/>
+                        <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                           Placeholder="Título de la foto" FontFamily="BSDRegular"  Grid.Row="1"
+                           PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large"/>
+                        <Button x:Name="btnImagen" Text="Abrir galería" 
+                            BackgroundColor="White" Margin="10" FontSize="Large"
+                            TextColor="Black" WidthRequest="150"  FontFamily="BSDRegular"
+                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked" Grid.Row="2"/>
+                    </Grid>
                 </StackLayout>
 
                 <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>

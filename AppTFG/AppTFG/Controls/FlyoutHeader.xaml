@@ -2,8 +2,18 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Controls.FlyoutHeader"
-             HeightRequest="100">
+             HeightRequest="150">
     <Grid BackgroundColor="LightGray">
-        <Label Text="App de turismo" FontSize="25" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.RowSpan="2" Text="TRAPP" FontSize="40" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="BSDSemiBold"/>
+        <Image Grid.Column="1" Grid.Row="0"  Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
+        <Label Grid.Column="1" Grid.Row="1" Text="{Binding Nombre}" FontSize="Title" FontFamily="BSDLight"/>
     </Grid>
 </ContentView>

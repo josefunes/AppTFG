@@ -7,15 +7,103 @@
         <ScrollView>
             <StackLayout BackgroundColor="White">
                 <StackLayout Padding="15">
-                    <Label Text="Título: " TextColor="Gray" FontSize="Medium"/>
-                    <Entry x:Name="txtNombre" TextColor="DarkGray" Text="{Binding Nombre}" 
-                       Placeholder="Ingresa título del vídeo" 
-                       PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
-                    <video:VideoPlayer x:Name="videoPlayer" HeightRequest="400" WidthRequest="100" VerticalOptions="StartAndExpand"/>
-                    <Button x:Name="btnVideo" Text="Abrir galería" 
-                            BackgroundColor="White" Margin="10" 
-                            TextColor="Gray" WidthRequest="150"  
-                            HorizontalOptions="Center" Clicked="BtnVideo_Clicked"/>
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="380" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <video:VideoPlayer x:Name="videoPlayer"
+                                               Grid.Row="0"
+                                               AutoPlay="False" 
+                                               AreTransportControlsEnabled="False"/>
+                            <ActivityIndicator Grid.Row="0"
+                                               Color="Gray"
+                                               IsVisible="False">
+                                <ActivityIndicator.Triggers>
+                                    <DataTrigger TargetType="ActivityIndicator"
+                                                 Binding="{Binding Source={x:Reference videoPlayer}, 
+                                                                   Path=Status}"
+                                                 Value="{x:Static video:VideoStatus.NotReady}">
+                                        <Setter Property="IsVisible" Value="True" />
+                                        <Setter Property="IsRunning" Value="True" />
+                                    </DataTrigger>
+                                </ActivityIndicator.Triggers>
+                            </ActivityIndicator>
+
+                            <StackLayout Grid.Row="1"
+                                         Orientation="Horizontal"
+                                         Margin="10, 0" BackgroundColor="White"
+                                         BindingContext="{x:Reference videoPlayer}">
+
+                                <Label Text="{Binding Path=Position,
+                                       StringFormat='{0:mm\\:ss}'}"
+                                       VerticalOptions="Center" TextColor="Black"/>
+
+                                <Button Text="▶️" 
+                                        HorizontalOptions="CenterAndExpand" TextColor="Black"
+                                        Clicked="OnPlayPauseButtonClicked" FontSize="Medium">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button"
+                                                     Binding="{Binding Status}"
+                                                     Value="{x:Static video:VideoStatus.Playing}">
+                                            <Setter Property="Text" Value="⏸️" />
+                                        </DataTrigger>
+
+                                        <DataTrigger TargetType="Button"
+                                                     Binding="{Binding Status}"
+                                                     Value="{x:Static video:VideoStatus.NotReady}">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+
+                                <Button Text="⏹️" FontSize="Medium" BackgroundColor="Transparent"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Clicked="OnStopButtonClicked">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button"
+                                                     Binding="{Binding Status}"
+                                                     Value="{x:Static video:VideoStatus.NotReady}">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+
+                                <Label Text="{Binding Path=TimeToEnd,
+                                        StringFormat='{0:mm\\:ss}'}"
+                                        VerticalOptions="Center" TextColor="Black"/>
+                            </StackLayout>
+
+                            <video:PositionSlider Grid.Row="2" ThumbColor="Black" MaximumTrackColor="DarkSlateGray"
+                                                  Margin="10, 0, 10, 10" MinimumTrackColor="Black"
+                                                  BindingContext="{x:Reference videoPlayer}"
+                                                  Duration="{Binding Duration}"           
+                                                  Position="{Binding Position}">
+                                <video:PositionSlider.Triggers>
+                                    <DataTrigger TargetType="video:PositionSlider"
+                                                 Binding="{Binding Status}"
+                                                 Value="{x:Static video:VideoStatus.NotReady}">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </video:PositionSlider.Triggers>
+                            </video:PositionSlider>
+                        </Grid>
+                        <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                            Placeholder="Título del vídeo" FontFamily="BSDRegular" Grid.Row="1" VerticalOptions="End"
+                            PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large"/>
+                        <Button x:Name="btnImagen" Text="Abrir galería" VerticalOptions="Start"
+                            BackgroundColor="Transparent" FontSize="Large"
+                            TextColor="DimGray" WidthRequest="150"  FontFamily="BSDRegular"
+                            HorizontalOptions="Center" Clicked="BtnVideo_Clicked" Grid.Row="2"/>
+                    </Grid>
                 </StackLayout>
 
                 <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>

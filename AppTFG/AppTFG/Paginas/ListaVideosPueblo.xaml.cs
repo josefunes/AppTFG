@@ -41,25 +41,39 @@ namespace AppTFG.Paginas
             indicator.IsRunning = mostrar;
         }
 
-        private void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //private void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        var bd = new ServicioBaseDatos<Video>().ObtenerTabla();
+        //        var dato = (Video)e.SelectedItem;
+        //        if (!string.IsNullOrWhiteSpace(dato.Videoclip))
+        //        {
+
+        //            videoPlayer.Source = new FileVideoSource
+        //            {
+        //                File = dato.Videoclip
+        //            };
+        //            Video.Videoclip = dato.Videoclip;
+        //        }
+        //        //lsvVideosPueblo.SelectedItem = null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //}
+
+        private async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
-                var bd = new ServicioBaseDatos<Video>().ObtenerTabla();
                 var dato = (Video)e.SelectedItem;
-                if (!string.IsNullOrWhiteSpace(dato.Videoclip))
-                {
-
-                    videoPlayer.Source = new FileVideoSource
-                    {
-                        File = dato.Videoclip
-                    };
-                    Video.Videoclip = dato.Videoclip;
-                }
-                //lsvVideosPueblo.SelectedItem = null;
+                await Navigation.PushAsync(new SubirVideo(dato));
+                lsvVideosPueblo.SelectedItem = null;
             }
             catch (Exception ex)
             {
+
             }
         }
 
