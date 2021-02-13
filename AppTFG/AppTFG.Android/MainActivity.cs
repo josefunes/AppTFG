@@ -6,6 +6,7 @@ using Android.Content;
 using Android;
 using System;
 using Android.Content.PM;
+using ImageCircle.Forms.Plugin.Droid;
 //using System.IO;
 //using AppTFG.Helpers;
 //using SQLite;
@@ -61,7 +62,7 @@ namespace AppTFG.Droid
 
             //Set the database connection string
             //App.SetDatabaseConnection(conn);
-
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
 

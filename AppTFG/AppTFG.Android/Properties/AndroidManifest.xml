@@ -4,7 +4,7 @@
 	<application 
 		android:label="AppTFG.Android" 
 		android:theme="@style/MyTheme.NoActionBar"
-		android:icon="@mipmap/icon" 
+		android:icon="@mipmap/logo_transparent" 
 		android:allowBackup="true"
 		largeHeap="true" 
 		android:hardwareAccelerated="false">

@@ -11,7 +11,10 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaVideosPueblo : ContentPage
     {
-        Video Video;
+        public Video Video;
+        public ListaVideosPueblo()
+        {
+        }
         public ListaVideosPueblo(Pueblo pueblo)
         {
             InitializeComponent();
@@ -63,7 +66,7 @@ namespace AppTFG.Paginas
         //    }
         //}
 
-        private async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        public async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {

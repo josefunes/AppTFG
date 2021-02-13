@@ -19,7 +19,11 @@ namespace AppTFG.Paginas
             Video = video;
             BindingContext = video;
             bd = new ServicioBaseDatos<Video>();
-
+            //Con esto le envío al reproductor el vídeo que he seleccionado en la pantalla anterior
+            videoPlayer.Source = new FileVideoSource
+            {
+                File = video.Videoclip
+            };
             if (video.Id == 0)
             {
                 this.ToolbarItems.RemoveAt(1);

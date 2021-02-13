@@ -26,7 +26,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Entry Grid.Column="0" x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
-                                Placeholder="Ingresa el nombre del pueblo" HorizontalOptions="Start" FontSize="Large"
+                                Placeholder="Ingresa el nombre del pueblo" HorizontalOptions="StartAndExpand" FontSize="Large"
                                 PlaceholderColor="LightGray" BackgroundColor="White" FontFamily="BSDRegular" />
                                     <Button Grid.Column="1" x:Name="btnImagen" Text="Foto perfil" 
                                 BackgroundColor="Transparent" Margin="0" FontSize="Medium"

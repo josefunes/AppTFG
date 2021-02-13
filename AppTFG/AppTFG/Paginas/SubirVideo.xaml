@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
+             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary" 
+             xmlns:p="clr-namespace:AppTFG.Paginas"
              x:Class="AppTFG.Paginas.SubirVideo">
+    <ContentPage.BindingContext>
+        <p:ListaVideosPueblo/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="White">
@@ -21,7 +25,7 @@
                             </Grid.RowDefinitions>
 
                             <video:VideoPlayer x:Name="videoPlayer"
-                                               Grid.Row="0"
+                                               Grid.Row="0" 
                                                AutoPlay="False" 
                                                AreTransportControlsEnabled="False"/>
                             <ActivityIndicator Grid.Row="0"
