@@ -1,4 +1,5 @@
 ﻿using AppTFG.Modelos;
+using AppTFG.Helpers;
 using AppTFG.Servicios;
 using System;
 
@@ -28,8 +29,9 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            var bd = new ServicioBaseDatos<Actividad>();
-            lsvActividades.ItemsSource = await bd.ObtenerTabla();
+            //var bd = new ServicioBaseDatos<Actividad>();
+            //lsvActividades.ItemsSource = await bd.ObtenerTabla();
+            lsvActividades.ItemsSource = await FirebaseHelper.ObtenerTodasActividades();
             Loading(false);
         }
 

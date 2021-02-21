@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260132236990",
+    "project_id": "pruebaauth-c50d4",
+    "storage_bucket": "pruebaauth-c50d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260132236990:android:c8b9eb21a91dcddd1478ef",
+        "android_client_info": {
+          "package_name": "com.companyname.appTFG"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260132236990-mnahcstiqee9r1ndd8a352qrds5d2nrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFgHKOekpXEbFlXYSQB_-QfoL17AjYKD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260132236990-mnahcstiqee9r1ndd8a352qrds5d2nrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

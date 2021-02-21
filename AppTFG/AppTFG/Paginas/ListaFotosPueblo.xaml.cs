@@ -1,4 +1,5 @@
 ﻿using AppTFG.Modelos;
+using AppTFG.Helpers;
 using AppTFG.Servicios;
 using System;
 
@@ -28,14 +29,12 @@ namespace AppTFG.Paginas
             if (pueblo != null)
             {
                 clvFotosPueblo.ItemsSource = null;
-                clvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
-                clvFotosPueblo.ItemsSource = pueblo.Fotos;
+                clvFotosPueblo.ItemsSource = await FirebaseHelper.ObtenerTodasFotosPueblo(pueblo.Nombre);
             }
             if (pueblo != null)
             {
                 lsvFotosPueblo.ItemsSource = null;
-                lsvFotosPueblo.ItemsSource = await bd.ObtenerTabla();
-                lsvFotosPueblo.ItemsSource = pueblo.Fotos;
+                lsvFotosPueblo.ItemsSource = await FirebaseHelper.ObtenerTodasFotosPueblo(pueblo.Nombre);
             }
             Loading(false);
         }

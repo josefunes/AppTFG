@@ -12,7 +12,7 @@ namespace AppTFG.Modelos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
-        public string VideoUrl { get; set; }
+        public Video VideoUrl { get; set; }
         [ForeignKey("FK_NombrePueblo")]
         public int IdPueblo { get; set; }
         public Pueblo Pueblo { get; set; }

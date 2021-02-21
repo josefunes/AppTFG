@@ -1,5 +1,7 @@
 ﻿using AppTFG.Modelos;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AppTFG.Helpers
 {
@@ -14,5 +16,11 @@ namespace AppTFG.Helpers
         public const string TitleRutaRequired = "Por favor, introduce un título para la ruta.";
         public const string TitleActividadRequired = "Por favor, introduce un título para la actividad.";
         //public const string InsertImageRequired = "Por favor, añade una imagen.";
+        public static int GenerarId()
+        {
+            var guid = Guid.NewGuid();
+            var numeros = new string(guid.ToString().Where(char.IsDigit).ToArray());
+            return int.Parse(numeros.Substring(0, 9));
+        }
     }
 }

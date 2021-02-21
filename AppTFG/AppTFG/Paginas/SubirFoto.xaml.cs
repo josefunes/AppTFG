@@ -2,6 +2,7 @@
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,14 +11,15 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SubirFoto : ContentPage
     {
-        ServicioBaseDatos<Foto> bd;
+        //ServicioBaseDatos<Foto> bd;
+        Stream Stream;
         Foto Foto;
         public SubirFoto(Foto foto)
         {
             InitializeComponent();
             Foto = foto;
             BindingContext = foto;
-            bd = new ServicioBaseDatos<Foto>();
+            //bd = new ServicioBaseDatos<Foto>();
 
             if (foto.Id == 0)
             {
@@ -40,6 +42,7 @@ namespace AppTFG.Paginas
         {
             var imagen = await ServicioMultimedia.SeleccionarImagen();
             Foto.Imagen = imagen.Path;
+            Stream = imagen.GetStream();
             imgFoto.Source = ImageSource.FromFile(imagen.Path);
         }
 
@@ -53,10 +56,16 @@ namespace AppTFG.Paginas
                 return;
             }
             if (foto.Id > 0)
-                await bd.Actualizar(foto);
+            {
+                //await bd.Actualizar(foto);
+                await FirebaseHelper.ActualizarFoto(foto.Id, foto.Nombre, foto.Imagen);
+            } 
             else
-                await bd.Agregar(foto);
-
+            {
+                //await bd.Agregar(foto);
+                await FirebaseHelper.SubirFoto(Stream, foto.Nombre);
+                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.CargarFoto(foto.Nombre), foto.Pueblo);
+            }
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
@@ -67,7 +76,8 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Foto)BindingContext).Id);
+                //await bd.Eliminar(((Foto)BindingContext).Id);
+                await FirebaseHelper.EliminarFoto(Foto.Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();

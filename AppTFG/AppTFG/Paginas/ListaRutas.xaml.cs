@@ -1,4 +1,5 @@
-﻿using AppTFG.Modelos;
+﻿using AppTFG.Helpers;
+using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
 
@@ -21,8 +22,9 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            var bd = new ServicioBaseDatos<Ruta>();
-            lsvRutas.ItemsSource = await bd.ObtenerTabla();
+            //var bd = new ServicioBaseDatos<Ruta>();
+            //lsvRutas.ItemsSource = await bd.ObtenerTabla();
+            lsvRutas.ItemsSource = await FirebaseHelper.ObtenerTodasRutas();
             Loading(false);
         }
 

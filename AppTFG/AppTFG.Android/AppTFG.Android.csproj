@@ -60,6 +60,18 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FirebaseDatabase.net">
+      <Version>4.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="FirebaseStorage.net">
+      <Version>1.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite">
+      <Version>6.0.0-preview.1.21102.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core">
+      <Version>6.0.0-preview.1.21102.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore">
       <Version>5.0.2</Version>
     </PackageReference>
@@ -185,6 +197,7 @@
     <AndroidAsset Include="Resources\Fonts\BSD\BigShouldersDisplay-Bold.ttf" />
     <AndroidAsset Include="Resources\Fonts\BSD\BigShouldersDisplay-ExtraBold.ttf" />
     <AndroidAsset Include="Resources\Fonts\BSD\BigShouldersDisplay-Light.ttf" />
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

@@ -1,4 +1,5 @@
 ﻿using AppTFG.FormsVideoLibrary;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
@@ -32,8 +33,7 @@ namespace AppTFG.Paginas
             if (pueblo != null)
             {
                 lsvVideosPueblo.ItemsSource = null;
-                lsvVideosPueblo.ItemsSource = await bd.ObtenerTabla();
-                lsvVideosPueblo.ItemsSource = pueblo.Videos;
+                lsvVideosPueblo.ItemsSource = await FirebaseHelper.ObtenerTodosVideosPueblo(pueblo.Nombre);
             }
             Loading(false);
         }
@@ -43,28 +43,6 @@ namespace AppTFG.Paginas
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }
-
-        //private void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        var bd = new ServicioBaseDatos<Video>().ObtenerTabla();
-        //        var dato = (Video)e.SelectedItem;
-        //        if (!string.IsNullOrWhiteSpace(dato.Videoclip))
-        //        {
-
-        //            videoPlayer.Source = new FileVideoSource
-        //            {
-        //                File = dato.Videoclip
-        //            };
-        //            Video.Videoclip = dato.Videoclip;
-        //        }
-        //        //lsvVideosPueblo.SelectedItem = null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //}
 
         public async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

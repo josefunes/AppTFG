@@ -3,6 +3,7 @@ using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -12,19 +13,19 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaginaPueblo : ContentPage
     {
-        ServicioBaseDatos<Pueblo> bd;
+        //ServicioBaseDatos<Pueblo> bd;
         Pueblo Pueblo;
         //Position position;
         //MapSpan mapSpan;
         //Map map;
-        
+
         public PaginaPueblo(Pueblo pueblo)
         {
             InitializeComponent();
             Title = pueblo.Nombre;
             Pueblo = pueblo;
             BindingContext = pueblo;
-            bd = new ServicioBaseDatos<Pueblo>();
+            //bd = new ServicioBaseDatos<Pueblo>();
             if (pueblo.Id == 0)
             {
                 Title = "Nuevo Pueblo";
@@ -61,11 +62,12 @@ namespace AppTFG.Paginas
                 return;
             }
             if (pueblo.Id > 0)
-                await bd.Actualizar(pueblo);
+                //await bd.Actualizar(pueblo);
+                await FirebaseHelper.ActualizarPueblo(Pueblo.Id, Pueblo.Nombre, Pueblo.Descripcion, Pueblo.ImagenPrincipal);
             else
-                await bd.Agregar(pueblo);
-
-            Loading(false);
+                //await bd.Agregar(pueblo);
+                await FirebaseHelper.InsertarPueblo(Pueblo.Id = Constantes.GenerarId(), Pueblo.Nombre, Pueblo.Descripcion, Pueblo.ImagenPrincipal, Pueblo.Usuario);
+                Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
@@ -75,7 +77,8 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Pueblo)BindingContext).Id);
+                //await bd.Eliminar(((Pueblo)BindingContext).Id);
+                await FirebaseHelper.EliminarPueblo(Pueblo.Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();

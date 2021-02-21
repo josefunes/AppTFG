@@ -11,14 +11,14 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SubirVideo : ContentPage
     {
-        ServicioBaseDatos<Video> bd;
+        //ServicioBaseDatos<Video> bd;
         Video Video;
         public SubirVideo(Video video)
         {
             InitializeComponent();
             Video = video;
             BindingContext = video;
-            bd = new ServicioBaseDatos<Video>();
+            //bd = new ServicioBaseDatos<Video>();
             //Con esto le envío al reproductor el vídeo que he seleccionado en la pantalla anterior
             videoPlayer.Source = new FileVideoSource
             {
@@ -94,11 +94,12 @@ namespace AppTFG.Paginas
                 return;
             }
             if (video.Id > 0)
-                await bd.Actualizar(video);
+                //await bd.Actualizar(video);
+                await FirebaseHelper.ActualizarVideo(video.Id, video.Nombre, video.Videoclip);
             else
-                await bd.Agregar(video);
-
-            Loading(false);
+                //await bd.Agregar(video);
+                await FirebaseHelper.InsertarVideo(video.Id = Constantes.GenerarId(), video.Nombre, video.Videoclip, video.Pueblo);
+                Loading(false);
             await DisplayAlert("Correcto", "Registro del vídeo realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
@@ -108,7 +109,8 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este vídeo?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Video)BindingContext).Id);
+                //await bd.Eliminar(((Video)BindingContext).Id);
+                await FirebaseHelper.EliminarVideo(Video.Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Vídeo eliminado correctamente", "OK");
                 await Navigation.PopAsync();

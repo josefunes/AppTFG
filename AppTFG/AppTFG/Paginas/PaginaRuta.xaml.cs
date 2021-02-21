@@ -10,14 +10,14 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaginaRuta : ContentPage
     {
-        ServicioBaseDatos<Ruta> bd;
+        //ServicioBaseDatos<Ruta> bd;
         Ruta Ruta;
         public PaginaRuta(Ruta ruta)
         {
             InitializeComponent();
             Ruta = ruta;
             BindingContext = ruta;
-            bd = new ServicioBaseDatos<Ruta>();
+            //bd = new ServicioBaseDatos<Ruta>();
 
             if (ruta.Id == 0) 
             { 
@@ -53,10 +53,11 @@ namespace AppTFG.Paginas
                 return;
             }
             if (ruta.Id > 0)
-                await bd.Actualizar(ruta);
+                //await bd.Actualizar(ruta);
+                await FirebaseHelper.ActualizarRuta(Ruta.Id, Ruta.Nombre, Ruta.Descripcion, Ruta.ImagenPrincipal, Ruta.VideoUrl);
             else
-                await bd.Agregar(ruta);
-
+                //await bd.Agregar(ruta);
+                await FirebaseHelper.InsertarRuta(Ruta.Id = Constantes.GenerarId(), Ruta.Nombre, Ruta.Descripcion, Ruta.ImagenPrincipal, Ruta.VideoUrl, Ruta.Pueblo);
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
@@ -67,7 +68,8 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                await bd.Eliminar(((Ruta)BindingContext).Id);
+                //await bd.Eliminar(((Ruta)BindingContext).Id);
+                await FirebaseHelper.EliminarRuta(Ruta.Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();
