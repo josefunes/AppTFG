@@ -15,9 +15,9 @@ namespace AppTFG.Helpers
     public class FirebaseHelper
     {
         //Conexión Base de datos en tiempo real
-        public static FirebaseClient firebase = new FirebaseClient("https://prueba-3b774-default-rtdb.europe-west1.firebasedatabase.app/");
+        public static FirebaseClient firebase = new FirebaseClient("https://pruebaauth-c50d4-default-rtdb.europe-west1.firebasedatabase.app/");
         //Conexión Almacenaimento contenido multimedia
-        public static FirebaseStorage firebaseStorage = new FirebaseStorage("prueba-3b774.appspot.com");
+        public static FirebaseStorage firebaseStorage = new FirebaseStorage("pruebaauth-c50d4.appspot.com");
         //MÉTODOS CRUD USUARIO
         public static async Task<List<Usuario>> ObtenerTodosUsuarios()
         {
@@ -59,13 +59,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarUsuario(string nombre, string password)
+        public static async Task<bool> InsertarUsuario(string nombre, string password, int id)
         {
             try
             {
                 await firebase
                 .Child("Usuarios")
-                .PostAsync(new Usuario() { Nombre = nombre, Password = password });
+                .PostAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id });
                 return true;
             }
             catch (Exception e)

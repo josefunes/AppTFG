@@ -5,7 +5,7 @@
              x:Class="AppTFG.Paginas.PaginaPueblo">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
-        <ToolbarItem x:Name="btnEliminar" Text="Eliminar " Order="Primary" Priority="3" Clicked="BtnEliminar_Clicked"/>
+        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
         <ScrollView Margin="0" VerticalScrollBarVisibility="Never">

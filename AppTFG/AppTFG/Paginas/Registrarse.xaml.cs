@@ -1,22 +1,27 @@
 ﻿using AppTFG.VistaModelos;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class Registrarse : ContentPage
     {
-        LoginView loginView;
-        public LoginPage()
+        RegistroView registrarse;
+        public Registrarse()
         {
             InitializeComponent();
             Task.Run(AnimateBackground);
-            loginView = new LoginView();
-            BindingContext = loginView;
+            registrarse = new RegistroView();
+            BindingContext = registrarse;
         }
+
         private async void AnimateBackground()
         {
             Action<double> forward = input => bdGradient.AnchorY = input;

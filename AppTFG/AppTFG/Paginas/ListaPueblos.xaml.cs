@@ -11,10 +11,16 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaPueblos : ContentPage
     {
+        Pueblo Pueblo;
+        Usuario Usuario;
         public ListaPueblos()
         {
             InitializeComponent();
             Title = "Lista de Pueblos";
+            if (Pueblo.Usuario.UsuarioId == Usuario.UsuarioId)
+            {
+                ToolbarItems.RemoveAt(1);
+            }
         }
 
         protected async override void OnAppearing()

@@ -24,7 +24,6 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            var bd = new ServicioBaseDatos<Foto>();
             var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {

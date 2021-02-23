@@ -157,7 +157,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Datos\BaseDatosAndroid.cs" />
     <Compile Include="FormsVideoLibrary\VideoPicker.cs" />
     <Compile Include="FormsVideoLibrary\VideoPlayerRenderer.cs" />
     <Compile Include="MainActivity.cs" />

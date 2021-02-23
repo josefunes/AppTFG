@@ -28,7 +28,6 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            var bd = new ServicioBaseDatos<Video>();
             var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {

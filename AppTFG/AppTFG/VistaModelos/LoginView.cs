@@ -1,20 +1,76 @@
-﻿using Xamarin.Forms;
+﻿using AppTFG.Helpers;
+using AppTFG.Paginas;
+using System.ComponentModel;
+using Xamarin.Forms;
 
 namespace AppTFG.VistaModelos
 {
-    public class LoginView : BaseViewModel
+    public class LoginView : INotifyPropertyChanged
     {
-        public Command LoginCommand { get; }
-
+        public event PropertyChangedEventHandler PropertyChanged;
         public LoginView()
         {
-            LoginCommand = new Command(OnLoginClicked);
+
+        }
+        private string nombre;
+        public string Nombre
+        {
+            get { return nombre; }
+            set
+            {
+                nombre = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Nombre"));
+            }
+        }
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+            }
+        }
+        public Command LoginCommand
+        {
+            get
+            {
+                return new Command(Login);
+            }
+        }
+        public Command Registro
+        {
+            get
+            {
+                return new Command(() => { App.Current.MainPage.Navigation.PushAsync(new Registrarse()); });
+            }
         }
 
-        private async void OnLoginClicked(object obj)
+        private async void Login()
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync("//AboutPage");
+            //null or empty field validation, check weather email and password is null or empty
+
+            if (string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Password))
+                await Application.Current.MainPage.DisplayAlert("Campos vacíos", "Por favor introduce un Usuario y una Contraseña", "OK");
+            else
+            {
+                //call GetUser function which we define in Firebase helper class
+                var user = await FirebaseHelper.ObtenerUsuario(Nombre);
+                //firebase return null valuse if user data not found in database
+                if (user != null)
+                    if (Nombre == user.Nombre && Password == user.Password)
+                    {
+                        //await Application.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
+                        //Navigate to Wellcom page after successfuly login
+                        //pass user email to welcom page
+                        await Application.Current.MainPage.Navigation.PushAsync(new InicioPage(Nombre));
+                    }
+                    else
+                        await Application.Current.MainPage.DisplayAlert("Fallo al iniciar sesión", "Por favor, iontroduzca un nombre de usuario y una contraseña correctos", "OK");
+                else
+                    await Application.Current.MainPage.DisplayAlert("Fallo al iniciar sesión", "El Usuario introducido no existe", "OK");
+            }
         }
     }
 }

@@ -3,16 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:vm="clr-namespace:AppTFG.VistaModelos"
              mc:Ignorable="d"
              x:Class="AppTFG.Paginas.LoginPage"
              Shell.NavBarIsVisible="False"
-             Title="Iniciar sesión">
-    <!--BackgroundImageSource="pita.jpg">-->
-
-    <ContentPage.BindingContext>
-        <vm:LoginView />
-    </ContentPage.BindingContext>
+             BackgroundColor="Transparent">
 
     <ContentPage.Content>
         <Grid>
@@ -27,12 +21,12 @@
                 </BoxView.Background>
             </BoxView>
             <StackLayout VerticalOptions="Center">
-                <Entry Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Entry Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="#FFB13F55" PlaceholderColor="#FFEE506F" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="#FFB13F55" Margin="60,0,60,0" FontFamily="BSDRegular"/>
+                <Entry Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+                <Entry Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+                <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="White" TextColor="Black" Margin="60,0,60,0" FontFamily="BSDRegular"/>
                 <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
-                <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding LoginCommand}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
-                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+                <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding Registro}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
+                <!--<Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
                         <ColumnDefinition Width="40"/>
@@ -41,7 +35,7 @@
                     <Button Grid.Column="0" BackgroundColor="Transparent" ImageSource="facebook.png" HorizontalOptions="Center"/>
                     <Button Grid.Column="1" BackgroundColor="Transparent" ImageSource="twitter.png" HorizontalOptions="Center"/>
                     <Button Grid.Column="2" BackgroundColor="Transparent" ImageSource="google.png" HorizontalOptions="Center"/>
-                </Grid>
+                </Grid>-->
             </StackLayout>
         </Grid>
     </ContentPage.Content>

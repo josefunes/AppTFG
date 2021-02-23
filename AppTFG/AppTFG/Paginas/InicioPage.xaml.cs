@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppTFG.Modelos;
+using AppTFG.VistaModelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,9 +15,14 @@ namespace AppTFG.Paginas
 
     public partial class InicioPage : ContentPage
     {
-        public InicioPage()
+        InicioView inicioView;
+        Usuario usuario;
+        public InicioPage(string nombre)
         {
             InitializeComponent();
+            nombre = usuario.Nombre;
+            inicioView = new InicioView(nombre);
+            BindingContext = inicioView;
             Title = "Inicio";
         }
     }
