@@ -29,7 +29,9 @@ namespace AppTFG.Helpers
                 new Usuario
                 {
                     Nombre = item.Object.Nombre,
-                    Password = item.Object.Password
+                    Password = item.Object.Password,
+                    UsuarioId = item.Object.UsuarioId,
+                    IdPueblo = item.Object.IdPueblo
                 }).ToList();
                 return listaUsuarios;
             }
@@ -59,13 +61,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarUsuario(string nombre, string password, int id)
+        public static async Task<bool> InsertarUsuario(string nombre, string password, int id, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Usuarios")
-                .PostAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id });
+                .PostAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id, IdPueblo = idPueblo});
                 return true;
             }
             catch (Exception e)
@@ -76,7 +78,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarUsuario(string nombre, string password)
+        public static async Task<bool> ActualizarUsuario(string nombre, string password, int id, int idPueblo)
         {
             try
             {
@@ -86,7 +88,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Usuarios")
                 .Child(actualizarUsuario.Key)
-                .PutAsync(new Usuario() { Nombre = nombre, Password = password });
+                .PutAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -133,7 +135,7 @@ namespace AppTFG.Helpers
                     Videos = item.Object.Videos,
                     Rutas = item.Object.Rutas,
                     Actividades = item.Object.Actividades,
-                    Usuario = item.Object.Usuario
+                    //IdUsuario = item.Object.IdUsuario
                 }).ToList();
                 return listaPueblos;
             }
@@ -143,6 +145,21 @@ namespace AppTFG.Helpers
                 return null;
             }
         }
+
+        //public static async Task<Pueblo> ObtenerTodosPueblosUsuario(string nombreUsuario)
+        //{
+        //    try
+        //    {
+        //        var todosPueblos = await ObtenerTodosPueblos();
+        //        await firebase.Child("Pueblos").OnceAsync<Pueblo>();
+        //        return (Pueblo)todosPueblos.Where(a => a.Usuario.Nombre.Equals(nombreUsuario));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Debug.WriteLine($"Error:{e}");
+        //        return null;
+        //    }
+        //}
 
         //Leer 
         public static async Task<Pueblo> ObtenerPueblo(int id)
@@ -163,13 +180,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarPueblo(int id, string nombre, string descrpcion, string imagen, Usuario usuario)
+        public static async Task<bool> InsertarPueblo(int id, string nombre, string descrpcion, string imagen) /*, int idUsuario*/
         {
             try
             {
                 await firebase
                 .Child("Pueblos")
-                .PostAsync(new Pueblo() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Usuario = usuario });
+                .PostAsync(new Pueblo() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen }); /*, IdUsuario = idUsuario*/
                 return true;
             }
             catch (Exception e)

@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AppTFG.Paginas.ListaPueblos">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
-        <ToolbarItem x:Name="btnModificar" Text="Modificar" Order="Primary" Priority="1" Clicked="BtnAgregar_Clicked"/>
+        <ToolbarItem x:Name="btnAgregar" Text="Mi pueblo" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="0" >

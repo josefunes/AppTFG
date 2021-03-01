@@ -21,8 +21,8 @@
                 </BoxView.Background>
             </BoxView>
             <StackLayout VerticalOptions="Center">
-                <Entry Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Entry Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+                <Entry Text="{Binding Nombre}" Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+                <Entry Text="{Binding Password}" Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="White" TextColor="Black" Margin="60,0,60,0" FontFamily="BSDRegular"/>
                 <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
                 <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding Registro}" Margin="20,0,0,0" FontFamily="BSDRegular"/>

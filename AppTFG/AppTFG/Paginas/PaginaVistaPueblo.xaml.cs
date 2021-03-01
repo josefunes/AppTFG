@@ -14,7 +14,7 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PaginaPueblo : ContentPage
+    public partial class PaginaVistaPueblo : ContentPage
     {
         Pueblo Pueblo;
         public static InicioView InicioView { get; set; }
@@ -22,7 +22,7 @@ namespace AppTFG.Paginas
         //MapSpan mapSpan;
         //Map map;
 
-        public PaginaPueblo(Pueblo pueblo)
+        public PaginaVistaPueblo(Pueblo pueblo)
         {
             InitializeComponent();
             Title = pueblo.Nombre;
@@ -41,55 +41,11 @@ namespace AppTFG.Paginas
             }
         }
 
-        void Loading(bool mostrar)
-        {
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
-        }
-
         private async void BtnImagen_Clicked(object sender, EventArgs e)
         {
             var imagen = await ServicioMultimedia.SeleccionarImagen();
             Pueblo.ImagenPrincipal = imagen.Path;
             imgPueblo.Source = ImageSource.FromFile(imagen.Path);
-        }
-
-        async void BtnRegistrar_Clicked(object sender, EventArgs e)
-        {
-            Loading(true);
-            var pueblo = (Pueblo)BindingContext;
-            Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
-            string nombre = nombreUsuario.Text;
-            Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
-            if (string.IsNullOrEmpty(txtNombre.Text))
-            {
-                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
-                return;
-            }
-            if (pueblo.Id > 0)
-                await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
-            else
-            {
-                await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal); /*, Pueblo.IdUsuario = usuario.Result.UsuarioId*/
-                await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id, pueblo.Id);
-            }
-            Loading(false);
-            await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
-            await Navigation.PopAsync();
-        }
-
-        async void BtnEliminar_Clicked(object sender, EventArgs e)
-        {
-            if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
-            {
-                Loading(true);
-                //await bd.Eliminar(((Pueblo)BindingContext).Id);
-                await FirebaseHelper.EliminarPueblo(Pueblo.Id);
-                Loading(false);
-                await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
-                await Navigation.PopAsync();
-            }
         }
 
         async void BtnRutas_Clicked(object sender, EventArgs e)

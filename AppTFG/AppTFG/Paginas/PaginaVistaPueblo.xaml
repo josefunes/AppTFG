@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="AppTFG.Paginas.PaginaVistaPueblo">
+    <StackLayout>
+        <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+            <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="400"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" x:Name="imgPueblo" Source="{Binding ImagenPrincipal}"
+                               Aspect="AspectFill" HeightRequest="150"/>
+                    <Frame Grid.Row="1" CornerRadius="15" Padding="0">
+                        <StackLayout>
+                            <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                                HorizontalOptions="StartAndExpand" FontSize="Large"
+                                BackgroundColor="White" FontFamily="BSDRegular" />
+                                <Button Grid.Column="1" x:Name="btnImagen" Text="Foto perfil" 
+                                BackgroundColor="Transparent" Margin="0" FontSize="Medium"
+                                TextColor="Black" WidthRequest="90"  FontFamily="BSDRegular"
+                                HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
+                            </Grid>
+                            <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Button x:Name="btnRutas" Text="Rutas"
+                                    BackgroundColor="White" FontFamily="BSDRegular"
+                                    TextColor="Black" HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnRutas_Clicked" Grid.Column="0" Grid.Row="0" BorderColor="Gray"/>
+                                <Label Text="Rutas" FontSize="Large" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+                                <Button x:Name="btnActividades" Text="Acts"
+                                    BackgroundColor="White" FontFamily="BSDRegular"
+                                    TextColor="Black" HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnActividades_Clicked" Grid.Column="1" Grid.Row="0" BorderColor="Gray"/>
+                                <Label Text="Actividades" FontSize="Large" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+                                <Button x:Name="btnFotos" Text="Fotos"
+                                    BackgroundColor="White" 
+                                    TextColor="Black" HorizontalOptions="FillAndExpand" FontFamily="BSDRegular"
+                                    Clicked="BtnFotos_Clicked" Grid.Column="2" Grid.Row="0" BorderColor="Gray"/>
+                                <Label Text="Fotos" FontSize="Large" Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+                                <Button x:Name="btnVideo" Text="Vídeos" 
+                                    BackgroundColor="White" 
+                                    TextColor="Black"  HorizontalOptions="FillAndExpand" 
+                                    Clicked="BtnVideo_Clicked" Grid.Column="3" Grid.Row="0" BorderColor="Gray" FontFamily="BSDRegular"/>
+                                <Label Text="Vídeos" FontSize="Large"  Grid.Column="3" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+                            </Grid>
+                            <Editor x:Name="txtDescripcion" TextColor="Black" Text="{Binding Descripcion}" 
+                                Placeholder="Ingresa una descripción del pueblo"  Margin="10, 0, 10, 25" AutoSize="TextChanges"
+                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large" FontFamily="BSDRegular"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Label Text="Coordenadas del pueblo(Latitud, Longitud): " TextColor="Gray" FontSize="Medium"/>
+                        <Entry x:Name="txtCoordenadaX" TextColor="DarkGray" Text="{Binding CoordenadaX}" 
+                                   Placeholder="Por ejemplo: 37.003000" 
+                                   PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                        <Entry x:Name="txtCoordenadaY" TextColor="DarkGray" Text="{Binding CoordenadaY}" 
+                                   Placeholder="Por ejemplo: -37.003000" 
+                                   PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                        <Button x:Name="btnMapa" Text="Cargar mapa con coordenadas" 
+                                        BackgroundColor="White" Margin="10" 
+                                        TextColor="Gray" WidthRequest="150"  
+                                        HorizontalOptions="Center" />
+                        -->
+                    <!--Clicked="BtnCrearMapa_Clicked"-->
+                    <!--
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>-->
+                    <StackLayout Grid.Row="2" x:Name="stackMapa" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">
+                        <maps:Map x:Name="map" WidthRequest="-1" HeightRequest="300" HasScrollEnabled="True"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                            <Button Text="Street" FontSize="Large" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Black" FontFamily="BSDRegular"/>
+                            <Button Text="Satélite" FontSize="Large" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Black" FontFamily="BSDRegular"/>
+                            <Button Text="Híbrido" FontSize="Large" Clicked="BtnMapa_Clicked" BackgroundColor="White" TextColor="Black" FontFamily="BSDRegular"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+                <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

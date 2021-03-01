@@ -15,15 +15,10 @@ namespace AppTFG.Paginas
 
     public partial class InicioPage : ContentPage
     {
-        InicioView inicioView;
-        Usuario usuario;
-        public InicioPage(string nombre)
+        public static InicioView InicioView { get; set; }
+        public InicioPage()
         {
             InitializeComponent();
-            nombre = usuario.Nombre;
-            inicioView = new InicioView(nombre);
-            BindingContext = inicioView;
-            Title = "Inicio";
         }
     }
 }

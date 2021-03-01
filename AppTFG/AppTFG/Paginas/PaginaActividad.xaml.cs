@@ -15,14 +15,12 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaginaActividad : ContentPage
     {
-        //ServicioBaseDatos<Actividad> bd;
-        Actividad Actividad;
+        readonly Actividad Actividad;
         public PaginaActividad(Actividad actividad)
         {
             InitializeComponent();
             Actividad = actividad;
             BindingContext = actividad;
-            //bd = new ServicioBaseDatos<Actividad>();
 
             if (actividad.Id == 0)
             {
@@ -58,10 +56,8 @@ namespace AppTFG.Paginas
                 return;
             }
             if (actividad.Id > 0)
-                //await bd.Actualizar(actividad);
                 await FirebaseHelper.ActualizarActividad(Actividad.Id, Actividad.Nombre, Actividad.Descripcion, Actividad.ImagenPrincipal, Actividad.VideoUrl);
             else
-                //await bd.Agregar(actividad);
                 await FirebaseHelper.InsertarActividad(Actividad.Id = Constantes.GenerarId(), Actividad.Nombre, Actividad.Descripcion, Actividad.ImagenPrincipal, Actividad.VideoUrl, Actividad.Pueblo);
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
@@ -73,7 +69,6 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                //await bd.Eliminar(((Actividad)BindingContext).Id);
                 await FirebaseHelper.EliminarActividad(Actividad.Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");

@@ -5,8 +5,12 @@
              Title="Ajustes">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand">
-            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                
+            <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <!--<Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 10" Placeholder="Inserte su contraseña actual"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 10" Placeholder="Repita su contraseña actual"/>-->
+                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 10" Placeholder="Inserte nueva contraseña"/>
+                <!--<Button x:Name="updatebtn" Text="Change Password" Command="{Binding UpdateCommand}" TextColor="Black" BackgroundColor="White" HorizontalOptions="Center"/>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

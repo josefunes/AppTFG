@@ -14,7 +14,7 @@ namespace AppTFG
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new LoginPage();
             //NavigationRef = MainPage.Navigation;
         }
 

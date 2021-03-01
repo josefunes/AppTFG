@@ -54,7 +54,7 @@ namespace AppTFG.Paginas
                 await Navigation.PushAsync(new SubirFoto(dato));
                 lsvFotosPueblo.SelectedItem = null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

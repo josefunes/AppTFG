@@ -1,6 +1,10 @@
 ﻿using AppTFG.Helpers;
+using AppTFG.Modelos;
 using AppTFG.Paginas;
+using System;
 using System.ComponentModel;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
 namespace AppTFG.VistaModelos
@@ -60,21 +64,42 @@ namespace AppTFG.VistaModelos
 
             if (string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Password))
                 await Application.Current.MainPage.DisplayAlert("Campos vacíos", "Por favor, introduzca un nombre de usuario y una contraseña", "OK");
-            else
+            else if (!string.IsNullOrEmpty(Nombre))
             {
-                //call AddUser function which we define in Firebase helper class
-                var user = await FirebaseHelper.InsertarUsuario(Nombre, Password, Constantes.GenerarId());
-                //AddUser return true if data insert successfuly 
-                if (user)
-                {
-                    //await Application.Current.MainPage.DisplayAlert("SignUp Success", "", "Ok");
-                    //Navigate to Wellcom page after successfuly SignUp
-                    //pass user email to welcome page
-                    await App.Current.MainPage.Navigation.PushAsync(new InicioPage(Nombre));
+                var user = await FirebaseHelper.ObtenerUsuario(Nombre);
+                if (user != null)
+                { 
+                    if (Nombre == user.Nombre)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Usuario existente", "Por favor, introduzca un nombre de usuario distinto", "OK");
+                    }
                 }
-                else
-                    await Application.Current.MainPage.DisplayAlert("Error", "Fallo en el Registro", "OK");
-
+                else if (!string.IsNullOrEmpty(Password))
+                {
+                    if ((Password.Length < 8 && Password.Length > 15) || !Password.ToCharArray().Any(Char.IsDigit))
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", "La contraseña debe tener como mínimo 8 caracteres y un máximo de 15, incluyendo una letra minúscula, una mayúscula y un número", "OK");
+                    }
+                    else
+                    {
+                        var pass = Constantes.Cifrar(Password);
+                        //var id = Constantes.GenerarId();
+                        //call AddUser function which we define in Firebase helper class
+                        var usuario = await FirebaseHelper.InsertarUsuario(Nombre, pass, 0, 0);
+                        //AddUser return true if data insert successfuly 
+                        if (usuario)
+                        {
+                            //await Application.Current.MainPage.DisplayAlert("SignUp Success", "", "Ok");
+                            //Navigate to Wellcom page after successfuly SignUp
+                            //pass user email to welcome page
+                            Application.Current.MainPage = new AppShell(Nombre);
+                        }
+                        else
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Error", "Fallo en el Registro", "OK");
+                        }
+                    }
+                } 
             }
         }
     }

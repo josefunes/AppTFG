@@ -10,14 +10,12 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaginaRuta : ContentPage
     {
-        //ServicioBaseDatos<Ruta> bd;
         Ruta Ruta;
         public PaginaRuta(Ruta ruta)
         {
             InitializeComponent();
             Ruta = ruta;
             BindingContext = ruta;
-            //bd = new ServicioBaseDatos<Ruta>();
 
             if (ruta.Id == 0) 
             { 
@@ -53,10 +51,8 @@ namespace AppTFG.Paginas
                 return;
             }
             if (ruta.Id > 0)
-                //await bd.Actualizar(ruta);
                 await FirebaseHelper.ActualizarRuta(Ruta.Id, Ruta.Nombre, Ruta.Descripcion, Ruta.ImagenPrincipal, Ruta.VideoUrl);
             else
-                //await bd.Agregar(ruta);
                 await FirebaseHelper.InsertarRuta(Ruta.Id = Constantes.GenerarId(), Ruta.Nombre, Ruta.Descripcion, Ruta.ImagenPrincipal, Ruta.VideoUrl, Ruta.Pueblo);
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");

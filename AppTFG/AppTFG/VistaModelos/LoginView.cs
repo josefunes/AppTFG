@@ -43,7 +43,7 @@ namespace AppTFG.VistaModelos
         {
             get
             {
-                return new Command(() => { App.Current.MainPage.Navigation.PushAsync(new Registrarse()); });
+                return new Command(() => { Application.Current.MainPage = new Registrarse(); });
             }
         }
 
@@ -57,14 +57,11 @@ namespace AppTFG.VistaModelos
             {
                 //call GetUser function which we define in Firebase helper class
                 var user = await FirebaseHelper.ObtenerUsuario(Nombre);
-                //firebase return null valuse if user data not found in database
+                //firebase return null value if user data not found in database
                 if (user != null)
-                    if (Nombre == user.Nombre && Password == user.Password)
+                    if (Nombre == user.Nombre && Password == Constantes.Descifrar(user.Password))
                     {
-                        //await Application.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
-                        //Navigate to Wellcom page after successfuly login
-                        //pass user email to welcom page
-                        await Application.Current.MainPage.Navigation.PushAsync(new InicioPage(Nombre));
+                        Application.Current.MainPage = new AppShell(Nombre);
                     }
                     else
                         await Application.Current.MainPage.DisplayAlert("Fallo al iniciar sesión", "Por favor, iontroduzca un nombre de usuario y una contraseña correctos", "OK");

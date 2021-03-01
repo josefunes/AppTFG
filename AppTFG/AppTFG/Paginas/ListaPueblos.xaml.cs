@@ -5,22 +5,18 @@ using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using AppTFG.VistaModelos;
+using System.Threading.Tasks;
 
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaPueblos : ContentPage
     {
-        Pueblo Pueblo;
-        Usuario Usuario;
         public ListaPueblos()
         {
-            InitializeComponent();
             Title = "Lista de Pueblos";
-            if (Pueblo.Usuario.UsuarioId == Usuario.UsuarioId)
-            {
-                ToolbarItems.RemoveAt(1);
-            }
+            InitializeComponent();
         }
 
         protected async override void OnAppearing()
@@ -28,8 +24,6 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            //var bd = new ServicioBaseDatos<Pueblo>();
-            //lsvPueblos.ItemsSource = await bd.ObtenerTabla();
             lsvPueblos.ItemsSource = await FirebaseHelper.ObtenerTodosPueblos();
             Loading(false);
         }
@@ -42,20 +36,44 @@ namespace AppTFG.Paginas
 
         private async void LsvPueblos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            Label nombreUsuario = new Label();
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            string nombre = nombreUsuario.Text;
+            var user = await FirebaseHelper.ObtenerUsuario(nombre);
             try
             {
                 var dato = (Pueblo)e.SelectedItem;
-                await Navigation.PushAsync(new PaginaPueblo(dato));
+                if (dato.Id == user.IdPueblo)
+                {
+                    await Navigation.PushAsync(new PaginaPueblo(dato));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new PaginaVistaPueblo(dato));
+                }
                 lsvPueblos.SelectedItem = null;
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
 
         public async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PaginaPueblo(new Pueblo()));
+            Label nombreUsuario = new Label();
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            string nombre = nombreUsuario.Text;
+            var user = await FirebaseHelper.ObtenerUsuario(nombre);
+            if (user.UsuarioId == 0)
+            {
+                await Navigation.PushAsync(new PaginaPueblo(new Pueblo()));
+            }
+            else
+            {
+                Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
+                await Navigation.PushAsync(new PaginaPueblo(puebloUser));
+            }
         }
     }
 }

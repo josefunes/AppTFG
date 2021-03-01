@@ -49,7 +49,7 @@ namespace AppTFG.Paginas
                 await Navigation.PushAsync(new PaginaActividad(dato));
                 lsvActividades.SelectedItem = null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

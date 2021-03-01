@@ -42,7 +42,7 @@ namespace AppTFG.Paginas
                 await Navigation.PushAsync(new PaginaRuta(dato));
                 lsvRutas.SelectedItem = null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

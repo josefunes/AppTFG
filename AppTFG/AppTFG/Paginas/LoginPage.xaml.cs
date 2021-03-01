@@ -9,18 +9,16 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        LoginView loginView;
         public LoginPage()
         {
             InitializeComponent();
             Task.Run(AnimateBackground);
-            loginView = new LoginView();
-            BindingContext = loginView;
+            BindingContext = new LoginView();
         }
         private async void AnimateBackground()
         {
-            Action<double> forward = input => bdGradient.AnchorY = input;
-            Action<double> backward = input => bdGradient.AnchorY = input;
+            void forward(double input) => bdGradient.AnchorY = input;
+            void backward(double input) => bdGradient.AnchorY = input;
 
             while (true)
             {

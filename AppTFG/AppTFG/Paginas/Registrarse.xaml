@@ -17,7 +17,7 @@
                 </BoxView.Background>
             </BoxView>
             <StackLayout VerticalOptions="Center">
-                <Entry x:Name="Email" Placeholder="Usuario" Text="{Binding Email}" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+                <Entry x:Name="Email" Placeholder="Usuario" Text="{Binding Nombre}" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Entry x:Name="password" Placeholder="Contraseña" Text="{Binding Password}" IsPassword="True" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Entry x:Name="password2" Placeholder="Verificar Contraseña" Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Button x:Name="signup" Text="Registrarse" Command="{Binding SignUpCommand}" HorizontalOptions="Center" FontFamily="BSDRegular" BackgroundColor="White" TextColor="Black"/>
