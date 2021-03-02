@@ -12,6 +12,7 @@ namespace AppTFG.Modelos
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Imagen { get; set; }
+        public Stream Stream { get; set; }
 
         [ForeignKey("FK_NombrePueblo")]
         public int IdPueblo { get; set; }

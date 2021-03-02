@@ -11,15 +11,12 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SubirFoto : ContentPage
     {
-        //ServicioBaseDatos<Foto> bd;
-        Stream Stream;
         Foto Foto;
         public SubirFoto(Foto foto)
         {
             InitializeComponent();
             Foto = foto;
             BindingContext = foto;
-            //bd = new ServicioBaseDatos<Foto>();
 
             if (foto.Id == 0)
             {
@@ -42,7 +39,7 @@ namespace AppTFG.Paginas
         {
             var imagen = await ServicioMultimedia.SeleccionarImagen();
             Foto.Imagen = imagen.Path;
-            Stream = imagen.GetStream();
+            Foto.Stream = imagen.GetStream();
             imgFoto.Source = ImageSource.FromFile(imagen.Path);
         }
 
@@ -57,14 +54,11 @@ namespace AppTFG.Paginas
             }
             if (foto.Id > 0)
             {
-                //await bd.Actualizar(foto);
                 await FirebaseHelper.ActualizarFoto(foto.Id, foto.Nombre, foto.Imagen);
             } 
             else
             {
-                //await bd.Agregar(foto);
-                await FirebaseHelper.SubirFoto(Stream, foto.Nombre);
-                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.CargarFoto(foto.Nombre).ConfigureAwait(false), foto.Pueblo);
+                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), foto.Pueblo);
             }
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
@@ -76,7 +70,6 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                //await bd.Eliminar(((Foto)BindingContext).Id);
                 await FirebaseHelper.EliminarFoto(Foto.Id);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");

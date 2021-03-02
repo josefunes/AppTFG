@@ -540,7 +540,7 @@ namespace AppTFG.Helpers
             {
                 await firebase
                 .Child("Fotos")
-                .PostAsync(new Foto() { Id = id, Nombre = nombre, Imagen = await CargarFoto(imagen), Pueblo = pueblo });
+                .PostAsync(new Foto() { Id = id, Nombre = nombre, Imagen = imagen, Pueblo = pueblo });
                 return true;
             }
             catch (Exception e)
