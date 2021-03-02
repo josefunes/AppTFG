@@ -43,7 +43,7 @@ namespace AppTFG.Paginas
             try
             {
                 var dato = (Pueblo)e.SelectedItem;
-                if (dato.Id == user.IdPueblo)
+                if (dato.Id == user.UsuarioId)
                 {
                     await Navigation.PushAsync(new PaginaPueblo(dato));
                 }
@@ -64,14 +64,14 @@ namespace AppTFG.Paginas
             Label nombreUsuario = new Label();
             nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
             string nombre = nombreUsuario.Text;
-            var user = await FirebaseHelper.ObtenerUsuario(nombre);
-            if (user.UsuarioId == 0)
+            Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
+            Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
+            if (user.UsuarioId == 0 || puebloUser == null)
             {
                 await Navigation.PushAsync(new PaginaPueblo(new Pueblo()));
             }
             else
             {
-                Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
                 await Navigation.PushAsync(new PaginaPueblo(puebloUser));
             }
         }

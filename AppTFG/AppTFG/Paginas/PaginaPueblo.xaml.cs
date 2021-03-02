@@ -72,7 +72,7 @@ namespace AppTFG.Paginas
             else
             {
                 await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal); /*, Pueblo.IdUsuario = usuario.Result.UsuarioId*/
-                await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id, pueblo.Id);
+                await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id);
             }
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");

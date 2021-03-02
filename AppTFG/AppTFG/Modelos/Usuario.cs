@@ -11,8 +11,8 @@ namespace AppTFG.Modelos
         public int UsuarioId { get; set; }
         public string Nombre { get; set; }
         public string Password { get; set; }
-        [ForeignKey("FK_NombrePueblo")]
-        public int IdPueblo { get; set; }
+        //[ForeignKey("FK_NombrePueblo")]
+        //public int IdPueblo { get; set; }
         //public Pueblo Pueblo { get; set; }
     }
 }

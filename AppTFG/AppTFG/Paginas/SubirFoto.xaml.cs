@@ -64,7 +64,7 @@ namespace AppTFG.Paginas
             {
                 //await bd.Agregar(foto);
                 await FirebaseHelper.SubirFoto(Stream, foto.Nombre);
-                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.CargarFoto(foto.Nombre), foto.Pueblo);
+                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.CargarFoto(foto.Nombre).ConfigureAwait(false), foto.Pueblo);
             }
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");

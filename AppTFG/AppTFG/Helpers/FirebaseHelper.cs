@@ -18,6 +18,7 @@ namespace AppTFG.Helpers
         public static FirebaseClient firebase = new FirebaseClient("https://pruebaauth-c50d4-default-rtdb.europe-west1.firebasedatabase.app/");
         //Conexión Almacenaimento contenido multimedia
         public static FirebaseStorage firebaseStorage = new FirebaseStorage("pruebaauth-c50d4.appspot.com");
+
         //MÉTODOS CRUD USUARIO
         public static async Task<List<Usuario>> ObtenerTodosUsuarios()
         {
@@ -30,8 +31,7 @@ namespace AppTFG.Helpers
                 {
                     Nombre = item.Object.Nombre,
                     Password = item.Object.Password,
-                    UsuarioId = item.Object.UsuarioId,
-                    IdPueblo = item.Object.IdPueblo
+                    UsuarioId = item.Object.UsuarioId
                 }).ToList();
                 return listaUsuarios;
             }
@@ -61,13 +61,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarUsuario(string nombre, string password, int id, int idPueblo)
+        public static async Task<bool> InsertarUsuario(string nombre, string password, int id)
         {
             try
             {
                 await firebase
                 .Child("Usuarios")
-                .PostAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id, IdPueblo = idPueblo});
+                .PostAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id});
                 return true;
             }
             catch (Exception e)
@@ -78,7 +78,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarUsuario(string nombre, string password, int id, int idPueblo)
+        public static async Task<bool> ActualizarUsuario(string nombre, string password, int id)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Usuarios")
                 .Child(actualizarUsuario.Key)
-                .PutAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id, IdPueblo = idPueblo });
+                .PutAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id });
                 return true;
             }
             catch (Exception e)

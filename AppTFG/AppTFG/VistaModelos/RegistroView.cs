@@ -85,7 +85,7 @@ namespace AppTFG.VistaModelos
                         var pass = Constantes.Cifrar(Password);
                         //var id = Constantes.GenerarId();
                         //call AddUser function which we define in Firebase helper class
-                        var usuario = await FirebaseHelper.InsertarUsuario(Nombre, pass, 0, 0);
+                        var usuario = await FirebaseHelper.InsertarUsuario(Nombre, pass, 0);
                         //AddUser return true if data insert successfuly 
                         if (usuario)
                         {
