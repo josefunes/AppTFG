@@ -16,6 +16,5 @@ namespace AppTFG.Modelos
 
         [ForeignKey("FK_NombrePueblo")]
         public int IdPueblo { get; set; }
-        public Pueblo Pueblo { get; set; }
     }
 }

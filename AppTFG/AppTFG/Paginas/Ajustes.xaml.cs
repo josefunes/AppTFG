@@ -1,5 +1,6 @@
-﻿using AppTFG.VistaModelos;
-
+﻿using AppTFG.Helpers;
+using AppTFG.Modelos;
+using AppTFG.VistaModelos;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,13 +9,12 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Ajustes : ContentPage
     {
-        public static InicioView InicioView { get; set; }
-        public Ajustes() 
+        AjustesView ajustesView;
+        public Ajustes()
         {
             InitializeComponent();
-            Label nombreUsuario = new Label() { };
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: InicioView));
-            Title = "Ajustes";
+            ajustesView = new AjustesView();
+            BindingContext = ajustesView;
         }
     }
 }

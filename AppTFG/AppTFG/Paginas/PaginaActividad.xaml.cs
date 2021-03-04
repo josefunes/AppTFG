@@ -56,9 +56,9 @@ namespace AppTFG.Paginas
                 return;
             }
             if (actividad.Id > 0)
-                await FirebaseHelper.ActualizarActividad(Actividad.Id, Actividad.Nombre, Actividad.Descripcion, Actividad.ImagenPrincipal, Actividad.VideoUrl);
+                await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl);
             else
-                await FirebaseHelper.InsertarActividad(Actividad.Id = Constantes.GenerarId(), Actividad.Nombre, Actividad.Descripcion, Actividad.ImagenPrincipal, Actividad.VideoUrl, Actividad.Pueblo);
+                await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();

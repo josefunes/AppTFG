@@ -51,9 +51,9 @@ namespace AppTFG.Paginas
                 return;
             }
             if (ruta.Id > 0)
-                await FirebaseHelper.ActualizarRuta(Ruta.Id, Ruta.Nombre, Ruta.Descripcion, Ruta.ImagenPrincipal, Ruta.VideoUrl);
+                await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, Ruta.VideoUrl);
             else
-                await FirebaseHelper.InsertarRuta(Ruta.Id = Constantes.GenerarId(), Ruta.Nombre, Ruta.Descripcion, Ruta.ImagenPrincipal, Ruta.VideoUrl, Ruta.Pueblo);
+                await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo);
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();

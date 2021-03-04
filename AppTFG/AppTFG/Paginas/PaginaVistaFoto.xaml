@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.SubirFoto">
+             x:Class="AppTFG.Paginas.PaginaVistaFoto">
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout BackgroundColor="White">
@@ -10,27 +10,16 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="300"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="100"/>
                         </Grid.RowDefinitions>
                         <Image x:Name="imgFoto" Source="{Binding Imagen}"
                             Aspect="AspectFill"  HorizontalOptions="Fill" 
                             VerticalOptions="Fill" Grid.Row="0"/>
-                        <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
-                           Placeholder="Título de la foto" FontFamily="BSDRegular"  Grid.Row="1"
-                           PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large"/>
-                        <Button x:Name="btnImagen" Text="Abrir galería" 
-                            BackgroundColor="White" Margin="10" FontSize="Large"
-                            TextColor="Black" WidthRequest="150"  FontFamily="BSDRegular"
-                            HorizontalOptions="Center" Clicked="BtnImagen_Clicked" Grid.Row="2"/>
+                        <Label x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                           FontFamily="BSDRegular"  Grid.Row="1" BackgroundColor="White" FontSize="Large"/>
                     </Grid>
                 </StackLayout>
-
                 <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
-        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
-    </ContentPage.ToolbarItems>
 </ContentPage>

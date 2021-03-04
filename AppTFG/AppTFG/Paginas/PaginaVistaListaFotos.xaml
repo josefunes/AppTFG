@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTFG.Paginas.PaginaVistaListaFotos">
+    <TabbedPage.Children>
+        <ContentPage IconImageSource="icon.png">
+            <ContentPage.Content>
+                <ScrollView VerticalScrollBarVisibility="Never">
+                        <StackLayout BackgroundColor="White">
+                            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                            <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="1" ColumnSpacing="0" RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="150" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="200" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Imagen}" 
+                                           Aspect="AspectFill" 
+                                           HorizontalOptions="Fill" 
+                                           VerticalOptions="Fill"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+            </ContentPage.Content>
+        </ContentPage>
+        <ContentPage IconImageSource="icon.png">
+            <ContentPage.Content>
+                <ScrollView VerticalScrollBarVisibility="Never">
+                    <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="0" >
+                        <ActivityIndicator x:Name="indicador" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                        <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="5">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="200"/>
+                                                    <RowDefinition Height="40"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Imagen}" Aspect="AspectFill" 
+                                                           HorizontalOptions="Fill" VerticalOptions="Fill" 
+                                                           Grid.Column="0" Grid.Row="0"/>
+                                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" 
+                                                           VerticalOptions="Center" FontSize="Title" TextColor="Black" 
+                                                           HorizontalOptions="Start" Margin="5, 0, 0, 5"
+                                                           HorizontalTextAlignment="Start" FontFamily="BSDRegular" 
+                                                           Grid.Column="0" Grid.Row="1"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </ContentPage.Content>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

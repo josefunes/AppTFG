@@ -45,6 +45,15 @@ namespace AppTFG.VistaModelos
                 PropertyChanged(this, new PropertyChangedEventArgs("ConfirmPassword"));
             }
         }
+
+        public Command Login
+        {
+            get
+            {
+                return new Command(() => { Application.Current.MainPage = new LoginPage(); });
+            }
+        }
+
         public Command SignUpCommand
         {
             get

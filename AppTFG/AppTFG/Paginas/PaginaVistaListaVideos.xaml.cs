@@ -1,8 +1,10 @@
-﻿using AppTFG.FormsVideoLibrary;
-using AppTFG.Helpers;
+﻿using AppTFG.Helpers;
 using AppTFG.Modelos;
-using AppTFG.Servicios;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,10 +12,10 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaVideosPueblo : ContentPage
+    public partial class PaginaVistaListaVideos : ContentPage
     {
         public Video Video;
-        public ListaVideosPueblo(Pueblo pueblo)
+        public PaginaVistaListaVideos(Pueblo pueblo)
         {
             InitializeComponent();
             Title = "Videos de " + pueblo.Nombre;
@@ -52,17 +54,6 @@ namespace AppTFG.Paginas
             {
 
             }
-        }
-
-        public async void BtnAgregar_Clicked(object sender, EventArgs e)
-        {
-            Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
-            string nombre = nombreUsuario.Text;
-            Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
-            Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
-            //var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new SubirVideo(new Video() { IdPueblo = puebloUser.Id }));
         }
     }
 }

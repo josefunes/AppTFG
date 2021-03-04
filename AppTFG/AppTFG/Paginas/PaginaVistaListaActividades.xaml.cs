@@ -1,7 +1,10 @@
-﻿using AppTFG.Modelos;
-using AppTFG.Helpers;
-using AppTFG.Servicios;
+﻿using AppTFG.Helpers;
+using AppTFG.Modelos;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaActividadesPueblo : ContentPage
+    public partial class PaginaVistaListaActividades : ContentPage
     {
-        public ListaActividadesPueblo(Pueblo pueblo)
+        public PaginaVistaListaActividades(Pueblo pueblo)
         {
             InitializeComponent();
             Title = "Actividades de " + pueblo.Nombre;
@@ -43,23 +46,12 @@ namespace AppTFG.Paginas
             try
             {
                 var dato = (Actividad)e.SelectedItem;
-                await Navigation.PushAsync(new PaginaActividad(dato));
+                await Navigation.PushAsync(new PaginaVistaActividad(dato));
                 lsvActividadesPueblo.SelectedItem = null;
             }
             catch (Exception)
             {
             }
-        }
-
-        public async void BtnAgregar_Clicked(object sender, EventArgs e)
-        {
-            Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
-            string nombre = nombreUsuario.Text;
-            Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
-            Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
-            //var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new PaginaActividad(new Actividad() { IdPueblo = puebloUser.Id }));
         }
     }
 }

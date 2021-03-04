@@ -95,25 +95,53 @@ namespace AppTFG.Paginas
         async void BtnRutas_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaRutasPueblo(pueblo));
+            if (pueblo == null)
+            {
+                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new ListaRutasPueblo(pueblo));
+            }
         }
 
         async void BtnActividades_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaActividadesPueblo(pueblo));
+            if (pueblo == null)
+            {
+                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new ListaActividadesPueblo(pueblo));
+            }
         }
 
         async void BtnFotos_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaFotosPueblo(pueblo));
+            if (pueblo == null)
+            {
+                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new ListaFotosPueblo(pueblo));
+            }
         }
 
         async void BtnVideo_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaVideosPueblo(pueblo));
+            if (pueblo == null)
+            {
+                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new ListaVideosPueblo(pueblo));
+            }
         }
 
         void BtnMapa_Clicked(object sender, EventArgs e)

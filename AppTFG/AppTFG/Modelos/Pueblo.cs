@@ -19,9 +19,6 @@ namespace AppTFG.Modelos
         public List<Video> Videos { get; set; }
         public List<Ruta> Rutas { get; set; }
         public List<Actividad> Actividades { get; set; }
-        //[ForeignKey("FK_NombreUsuario")]
-        //public int IdUsuario { get; set; }
-        //public Usuario Usuario { get; set; }
     }
 }
 

@@ -8,13 +8,13 @@
         <ResourceDictionary>
             <Color x:Key="Primary">White</Color>
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="#263238"></Setter>
+                <Setter Property="TextColor" Value="Black"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value= "#263238" />
+                                    <Setter Property="BackgroundColor" Value= "Black" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">

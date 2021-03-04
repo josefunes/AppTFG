@@ -1,7 +1,10 @@
 ﻿using AppTFG.Helpers;
 using AppTFG.Modelos;
-using AppTFG.Servicios;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaRutasPueblo : ContentPage
+    public partial class PaginaVistaListaRutas : ContentPage
     {
-        public ListaRutasPueblo(Pueblo pueblo)
+        public PaginaVistaListaRutas(Pueblo pueblo)
         {
             InitializeComponent();
             Title = "Rutas de " + pueblo.Nombre;
@@ -44,23 +47,12 @@ namespace AppTFG.Paginas
             try
             {
                 var dato = (Ruta)e.SelectedItem;
-                await Navigation.PushAsync(new PaginaRuta(dato));
+                await Navigation.PushAsync(new PaginaVistaRuta(dato));
                 lsvRutasPueblo.SelectedItem = null;
             }
             catch (Exception)
             {
             }
-        }
-
-        public async void BtnAgregar_Clicked(object sender, EventArgs e)
-        {
-            Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
-            string nombre = nombreUsuario.Text;
-            Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
-            Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
-            //var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new PaginaRuta(new Ruta() { IdPueblo = puebloUser.Id }));
         }
     }
 }

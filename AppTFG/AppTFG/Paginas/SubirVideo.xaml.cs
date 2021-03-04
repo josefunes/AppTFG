@@ -11,14 +11,12 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SubirVideo : ContentPage
     {
-        //ServicioBaseDatos<Video> bd;
         Video Video;
         public SubirVideo(Video video)
         {
             InitializeComponent();
             Video = video;
             BindingContext = video;
-            //bd = new ServicioBaseDatos<Video>();
             //Con esto le envío al reproductor el vídeo que he seleccionado en la pantalla anterior
             videoPlayer.Source = new FileVideoSource
             {
@@ -41,20 +39,14 @@ namespace AppTFG.Paginas
             indicator.IsRunning = mostrar;
         }
 
-        //private async void BtnVideo_Clicked(object sender, EventArgs e)
-        //{
-        //    var video = await ServicioMultimedia.SeleccionarVideo();
-        //    Video.Video = video.Path;
-        //    vdoVideo.VideoPlayer = VideoSource.FromFile(video.Path);
-        //}
-
         async void BtnVideo_Clicked(object sender, EventArgs args)
         {
             Button btn = (Button)sender;
             btn.IsEnabled = false;
 
-            string videoPath = await DependencyService.Get<IVideoPicker>().GetVideoFileAsync();
-
+            //string videoPath = await DependencyService.Get<IVideoPicker>().GetVideoFileAsync();
+            var video = await ServicioMultimedia.SeleccionarVideo();
+            string videoPath = video.Path;
             if (!string.IsNullOrWhiteSpace(videoPath))
             {
 
@@ -63,6 +55,7 @@ namespace AppTFG.Paginas
                     File = videoPath
                 };
                 Video.Videoclip = videoPath;
+                Video.Stream = video.GetStream();
             }
             btn.IsEnabled = true;
         }
@@ -94,12 +87,15 @@ namespace AppTFG.Paginas
                 return;
             }
             if (video.Id > 0)
-                //await bd.Actualizar(video);
+            {
                 await FirebaseHelper.ActualizarVideo(video.Id, video.Nombre, video.Videoclip);
+            }
             else
-                //await bd.Agregar(video);
-                await FirebaseHelper.InsertarVideo(video.Id = Constantes.GenerarId(), video.Nombre, video.Videoclip, video.Pueblo);
-                Loading(false);
+            {
+                //var videoclip = await FirebaseHelper.SubirVideo(video.Stream, video.Nombre);
+                await FirebaseHelper.InsertarVideo(video.Id = Constantes.GenerarId(), video.Nombre, video.Videoclip = await FirebaseHelper.SubirVideo(video.Stream, video.Nombre), video.IdPueblo);
+            }
+            Loading(false);
             await DisplayAlert("Correcto", "Registro del vídeo realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
@@ -109,8 +105,8 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este vídeo?", "Si", "No"))
             {
                 Loading(true);
-                //await bd.Eliminar(((Video)BindingContext).Id);
                 await FirebaseHelper.EliminarVideo(Video.Id);
+                await FirebaseHelper.BorrarVideo(Video.Nombre);
                 Loading(false);
                 await DisplayAlert("Correcto", "Vídeo eliminado correctamente", "OK");
                 await Navigation.PopAsync();

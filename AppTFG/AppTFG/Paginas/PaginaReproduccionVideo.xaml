@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary" 
              xmlns:p="clr-namespace:AppTFG.Paginas"
-             x:Class="AppTFG.Paginas.SubirVideo">
+             x:Class="AppTFG.Paginas.PaginaReproduccionVideo">
     <!--<ContentPage.BindingContext>
         <p:ListaVideosPueblo/>
     </ContentPage.BindingContext>-->
@@ -100,13 +100,9 @@
                                 </video:PositionSlider.Triggers>
                             </video:PositionSlider>
                         </Grid>
-                        <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
-                            Placeholder="Título del vídeo" FontFamily="BSDRegular" Grid.Row="1" VerticalOptions="End"
-                            PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large"/>
-                        <Button x:Name="btnImagen" Text="Abrir galería" VerticalOptions="Start"
-                            BackgroundColor="Transparent" FontSize="Large"
-                            TextColor="DimGray" WidthRequest="150"  FontFamily="BSDRegular"
-                            HorizontalOptions="Center" Clicked="BtnVideo_Clicked" Grid.Row="2"/>
+                        <Label x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                            FontFamily="BSDRegular" Grid.Row="1" VerticalOptions="End"
+                            BackgroundColor="White" FontSize="Large"/>
                     </Grid>
                 </StackLayout>
 
@@ -114,8 +110,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
-        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
-    </ContentPage.ToolbarItems>
 </ContentPage>

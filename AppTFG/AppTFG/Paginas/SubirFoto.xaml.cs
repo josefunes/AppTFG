@@ -58,7 +58,7 @@ namespace AppTFG.Paginas
             } 
             else
             {
-                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), foto.Pueblo);
+                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), foto.IdPueblo);
             }
             Loading(false);
             await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
@@ -71,6 +71,7 @@ namespace AppTFG.Paginas
             {
                 Loading(true);
                 await FirebaseHelper.EliminarFoto(Foto.Id);
+                await FirebaseHelper.BorrarFoto(Foto.Nombre);
                 Loading(false);
                 await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();

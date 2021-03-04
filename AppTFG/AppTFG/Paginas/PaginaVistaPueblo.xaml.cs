@@ -41,35 +41,28 @@ namespace AppTFG.Paginas
             }
         }
 
-        private async void BtnImagen_Clicked(object sender, EventArgs e)
-        {
-            var imagen = await ServicioMultimedia.SeleccionarImagen();
-            Pueblo.ImagenPrincipal = imagen.Path;
-            imgPueblo.Source = ImageSource.FromFile(imagen.Path);
-        }
-
         async void BtnRutas_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaRutasPueblo(pueblo));
+            await Navigation.PushAsync(new PaginaVistaListaRutas(pueblo));
         }
 
         async void BtnActividades_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaActividadesPueblo(pueblo));
+            await Navigation.PushAsync(new PaginaVistaListaActividades(pueblo));
         }
 
         async void BtnFotos_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaFotosPueblo(pueblo));
+            await Navigation.PushAsync(new PaginaVistaListaFotos(pueblo));
         }
 
         async void BtnVideo_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
-            await Navigation.PushAsync(new ListaVideosPueblo(pueblo));
+            await Navigation.PushAsync(new PaginaVistaListaVideos(pueblo));
         }
 
         void BtnMapa_Clicked(object sender, EventArgs e)

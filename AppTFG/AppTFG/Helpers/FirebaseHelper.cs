@@ -134,8 +134,7 @@ namespace AppTFG.Helpers
                     Fotos = item.Object.Fotos,
                     Videos = item.Object.Videos,
                     Rutas = item.Object.Rutas,
-                    Actividades = item.Object.Actividades,
-                    //IdUsuario = item.Object.IdUsuario
+                    Actividades = item.Object.Actividades
                 }).ToList();
                 return listaPueblos;
             }
@@ -204,14 +203,6 @@ namespace AppTFG.Helpers
                 var actualizarPueblo = (await firebase
                 .Child("Pueblos")
                 .OnceAsync<Pueblo>()).Where(a => a.Object.Id == id).FirstOrDefault();
-                //List<Foto> fotos = actualizarPueblo.Object.Fotos;
-                //List<Video> videos = actualizarPueblo.Object.Videos;
-                //List<Ruta> rutas = actualizarPueblo.Object.Rutas;
-                //List<Actividad> actividades = actualizarPueblo.Object.Actividades;
-                //fotos.Add(foto);
-                //videos.Add(video);
-                //rutas.Add(ruta);
-                //actividades.Add(actividad);
                 await firebase
                 .Child("Pueblos")
                 .Child(actualizarPueblo.Key)
@@ -259,7 +250,7 @@ namespace AppTFG.Helpers
                     Descripcion = item.Object.Descripcion,
                     ImagenPrincipal = item.Object.ImagenPrincipal,
                     VideoUrl = item.Object.VideoUrl,
-                    Pueblo = item.Object.Pueblo
+                    IdPueblo = item.Object.IdPueblo
                 }).ToList();
                 return listaRutas;
             }
@@ -270,13 +261,13 @@ namespace AppTFG.Helpers
             }
         }
 
-        public static async Task<List<Ruta>> ObtenerTodasRutasPueblo(string nombrePueblo)
+        public static async Task<List<Ruta>> ObtenerTodasRutasPueblo(int idPueblo)
         {
             try
             {
                 var todasRutas = await ObtenerTodasRutas();
                 await firebase.Child("Rutas").OnceAsync<Ruta>();
-                return todasRutas.Where(a => a.Pueblo.Nombre.Equals(nombrePueblo)).ToList();
+                return todasRutas.Where(a => a.IdPueblo.Equals(idPueblo)).ToList();
             }
             catch (Exception e)
             {
@@ -303,14 +294,14 @@ namespace AppTFG.Helpers
             }
         }
 
-        //Inser a user
-        public static async Task<bool> InsertarRuta(int id, string nombre, string descrpcion, string imagen, Video video, Pueblo pueblo)
+        //Insert a user
+        public static async Task<bool> InsertarRuta(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Rutas")
-                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, Pueblo = pueblo });
+                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -375,7 +366,7 @@ namespace AppTFG.Helpers
                     Descripcion = item.Object.Descripcion,
                     ImagenPrincipal = item.Object.ImagenPrincipal,
                     VideoUrl = item.Object.VideoUrl,
-                    Pueblo = item.Object.Pueblo
+                    IdPueblo = item.Object.IdPueblo
                 }).ToList();
                 return listaActividades;
             }
@@ -386,13 +377,13 @@ namespace AppTFG.Helpers
             }
         }
 
-        public static async Task<List<Actividad>> ObtenerTodasActividadesPueblo(string nombrePueblo)
+        public static async Task<List<Actividad>> ObtenerTodasActividadesPueblo(int idPueblo)
         {
             try
             {
                 var todasActividades = await ObtenerTodasActividades();
                 await firebase.Child("Actividades").OnceAsync<Actividad>();
-                return todasActividades.Where(a => a.Pueblo.Nombre.Equals(nombrePueblo)).ToList();
+                return todasActividades.Where(a => a.IdPueblo.Equals(idPueblo)).ToList();
             }
             catch (Exception e)
             {
@@ -420,13 +411,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarActividad(int id, string nombre, string descrpcion, string imagen, Video video, Pueblo pueblo)
+        public static async Task<bool> InsertarActividad(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Actividades")
-                .PostAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, Pueblo = pueblo });
+                .PostAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -489,7 +480,7 @@ namespace AppTFG.Helpers
                     Id = item.Object.Id,
                     Nombre = item.Object.Nombre,
                     Imagen = item.Object.Imagen,
-                    Pueblo = item.Object.Pueblo
+                    IdPueblo = item.Object.IdPueblo
                 }).ToList();
                 return listaFotos;
             }
@@ -500,13 +491,13 @@ namespace AppTFG.Helpers
             }
         }
 
-        public static async Task<List<Foto>> ObtenerTodasFotosPueblo(string nombrePueblo)
+        public static async Task<List<Foto>> ObtenerTodasFotosPueblo(int idPueblo)
         {
             try
             {
                 var todasFotos = await ObtenerTodasFotos();
                 await firebase.Child("Fotos").OnceAsync<Foto>();
-                return todasFotos.Where(a => a.Pueblo.Nombre.Equals(nombrePueblo)).ToList();
+                return todasFotos.Where(a => a.IdPueblo.Equals(idPueblo)).ToList();
             }
             catch (Exception e)
             {
@@ -534,13 +525,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar foto
-        public static async Task<bool> InsertarFoto(int id, string nombre, string imagen, Pueblo pueblo)
+        public static async Task<bool> InsertarFoto(int id, string nombre, string imagen, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Fotos")
-                .PostAsync(new Foto() { Id = id, Nombre = nombre, Imagen = imagen, Pueblo = pueblo });
+                .PostAsync(new Foto() { Id = id, Nombre = nombre, Imagen = imagen, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -628,7 +619,7 @@ namespace AppTFG.Helpers
                     Id = item.Object.Id,
                     Nombre = item.Object.Nombre,
                     Videoclip = item.Object.Videoclip,
-                    Pueblo = item.Object.Pueblo
+                    IdPueblo = item.Object.IdPueblo
                 }).ToList();
                 return listaVideos;
             }
@@ -639,13 +630,13 @@ namespace AppTFG.Helpers
             }
         }
 
-        public static async Task<List<Video>> ObtenerTodosVideosPueblo(string nombrePueblo)
+        public static async Task<List<Video>> ObtenerTodosVideosPueblo(int idPueblo)
         {
             try
             {
                 var todasVideos = await ObtenerTodosVideos();
                 await firebase.Child("Videos").OnceAsync<Video>();
-                return todasVideos.Where(a => a.Pueblo.Nombre.Equals(nombrePueblo)).ToList();
+                return todasVideos.Where(a => a.IdPueblo.Equals(idPueblo)).ToList();
             }
             catch (Exception e)
             {
@@ -673,13 +664,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar video
-        public static async Task<bool> InsertarVideo(int id, string nombre, string videoclip, Pueblo pueblo)
+        public static async Task<bool> InsertarVideo(int id, string nombre, string videoclip, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Videos")
-                .PostAsync(new Video() { Id = id, Nombre = nombre, Videoclip = await CargarVideo(videoclip), Pueblo = pueblo });
+                .PostAsync(new Video() { Id = id, Nombre = nombre, Videoclip = videoclip, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -728,14 +719,14 @@ namespace AppTFG.Helpers
             }
         }
 
-        //public static async Task<string> SubirVideo(Stream fileStream, string fileName)
-        //{
-        //    var imageUrl = await firebaseStorage
-        //        .Child("Videos")
-        //        .Child(fileName)
-        //        .PutAsync(fileStream);
-        //    return imageUrl;
-        //}
+        public static async Task<string> SubirVideo(Stream fileStream, string fileName)
+        {
+            var imageUrl = await firebaseStorage
+                .Child("Videos")
+                .Child(fileName)
+                .PutAsync(fileStream);
+            return imageUrl;
+        }
 
         public static async Task<string> CargarVideo(string fileName)
         {
@@ -745,12 +736,12 @@ namespace AppTFG.Helpers
                 .GetDownloadUrlAsync();
         }
 
-        //public static async Task BorrarVideo(string fileName)
-        //{
-        //    await firebaseStorage
-        //         .Child("Videos")
-        //         .Child(fileName)
-        //         .DeleteAsync();
-        //}
+        public static async Task BorrarVideo(string fileName)
+        {
+            await firebaseStorage
+                 .Child("Videos")
+                 .Child(fileName)
+                 .DeleteAsync();
+        }
     }
 }

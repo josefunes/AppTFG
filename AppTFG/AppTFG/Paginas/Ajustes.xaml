@@ -6,11 +6,11 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand">
             <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <!--<Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:"/>
-                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 10" Placeholder="Inserte su contraseña actual"/>
-                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 10" Placeholder="Repita su contraseña actual"/>-->
-                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 10" Placeholder="Inserte nueva contraseña"/>
-                <!--<Button x:Name="updatebtn" Text="Change Password" Command="{Binding UpdateCommand}" TextColor="Black" BackgroundColor="White" HorizontalOptions="Center"/>-->
+                <Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:" Margin="10, 0, 0, 0" FontFamily="BSDRegular" FontSize="Medium"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 0" Placeholder="Inserte su contraseña actual" FontFamily="BSDRegular"/>
+                <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10, 0" Placeholder="Repita su contraseña actual" FontFamily="BSDRegular"/>
+                <Entry Text="{Binding NewPassword}" IsPassword="True" Margin="10, 0" Placeholder="Inserte nueva contraseña" FontFamily="BSDRegular"/>
+                <Button x:Name="updatebtn" Text="Actualizar contraseña" Command="{Binding UpdateCommand}" TextColor="Black" BackgroundColor="White" HorizontalOptions="Center" FontFamily="BSDRegular"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
