@@ -1,23 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.PaginaVistaRuta">
+             x:Class="AppTFG.Paginas.PaginaVistaRuta"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
-        <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
+        <StackLayout Spacing="0" Padding="0" Margin="0">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2.5*"/>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
                            VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
                            Aspect="AspectFill" HeightRequest="-1" 
                            WidthRequest="-1"/>
                 <Frame Grid.Row="1" CornerRadius="15" Padding="0">
-                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10"/>
+                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
+                        <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                                BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
+                    </StackLayout>
                 </Frame>
-                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="Black" FontFamily="BSDRegular"/>
+                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
             </Grid>
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
         </StackLayout>

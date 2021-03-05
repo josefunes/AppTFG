@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local1="clr-namespace:AppTFG.Helpers"
+             xmlns:local="clr-namespace:AppTFG"
              x:Class="AppTFG.Paginas.Ajustes"
-             Title="Ajustes">
+             Title="Ajustes"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand">
-            <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:" Margin="10, 0, 0, 0" FontFamily="BSDRegular" FontSize="Medium"/>
-                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 0" Placeholder="Inserte su contraseña actual" FontFamily="BSDRegular"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 0" Placeholder="Inserte su contraseña actual" FontFamily="BSDRegular" Style="{StaticResource ButtonStyle}"/>
                 <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10, 0" Placeholder="Repita su contraseña actual" FontFamily="BSDRegular"/>
                 <Entry Text="{Binding NewPassword}" IsPassword="True" Margin="10, 0" Placeholder="Inserte nueva contraseña" FontFamily="BSDRegular"/>
                 <Button x:Name="updatebtn" Text="Actualizar contraseña" Command="{Binding UpdateCommand}" TextColor="Black" BackgroundColor="White" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+                <local1:EnumPicker EnumType="{x:Type local:Tema}"  Title="Select Theme" SelectedIndexChanged="OnPickerSelectionChanged" />
+                <Label x:Name="statusLabel" HorizontalOptions="Center" />
             </StackLayout>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

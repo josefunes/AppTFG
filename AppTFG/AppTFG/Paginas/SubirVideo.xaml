@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary" 
              xmlns:p="clr-namespace:AppTFG.Paginas"
-             x:Class="AppTFG.Paginas.SubirVideo">
-    <!--<ContentPage.BindingContext>
-        <p:ListaVideosPueblo/>
-    </ContentPage.BindingContext>-->
+             x:Class="AppTFG.Paginas.SubirVideo"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout BackgroundColor="White">
+            <StackLayout>
                 <StackLayout Padding="15">
                     <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
@@ -44,15 +42,15 @@
 
                             <StackLayout Grid.Row="1"
                                          Orientation="Horizontal"
-                                         Margin="10, 0" BackgroundColor="White"
+                                         Margin="10, 0" BackgroundColor="{DynamicResource PageBackgroundColor}"
                                          BindingContext="{x:Reference videoPlayer}">
 
                                 <Label Text="{Binding Path=Position,
                                        StringFormat='{0:mm\\:ss}'}"
-                                       VerticalOptions="Center" TextColor="Black"/>
+                                       VerticalOptions="Center" TextColor="{DynamicResource PrimaryTextColor}"/>
 
                                 <Button Text="▶️" 
-                                        HorizontalOptions="CenterAndExpand" TextColor="Black"
+                                        HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource PrimaryTextColor}"
                                         Clicked="OnPlayPauseButtonClicked" FontSize="Medium">
                                     <Button.Triggers>
                                         <DataTrigger TargetType="Button"
@@ -83,11 +81,11 @@
 
                                 <Label Text="{Binding Path=TimeToEnd,
                                         StringFormat='{0:mm\\:ss}'}"
-                                        VerticalOptions="Center" TextColor="Black"/>
+                                        VerticalOptions="Center" TextColor="{DynamicResource PrimaryTextColor}"/>
                             </StackLayout>
 
-                            <video:PositionSlider Grid.Row="2" ThumbColor="Black" MaximumTrackColor="DarkSlateGray"
-                                                  Margin="10, 0, 10, 10" MinimumTrackColor="Black"
+                            <video:PositionSlider Grid.Row="2" ThumbColor="{DynamicResource PrimaryTextColor}" MaximumTrackColor="DarkSlateGray"
+                                                  Margin="10, 0, 10, 10" MinimumTrackColor="{DynamicResource PrimaryTextColor}"
                                                   BindingContext="{x:Reference videoPlayer}"
                                                   Duration="{Binding Duration}"           
                                                   Position="{Binding Position}">
@@ -100,9 +98,9 @@
                                 </video:PositionSlider.Triggers>
                             </video:PositionSlider>
                         </Grid>
-                        <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                        <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                             Placeholder="Título del vídeo" FontFamily="BSDRegular" Grid.Row="1" VerticalOptions="End"
-                            PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large"/>
+                            PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large"/>
                         <Button x:Name="btnImagen" Text="Abrir galería" VerticalOptions="Start"
                             BackgroundColor="Transparent" FontSize="Large"
                             TextColor="DimGray" WidthRequest="150"  FontFamily="BSDRegular"

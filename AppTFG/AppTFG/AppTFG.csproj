@@ -103,6 +103,12 @@
     <Compile Update="Paginas\ListaFotosPueblo.xaml.cs">
       <DependentUpon>ListaFotosPueblo.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Temas\TemaClaro.xaml.cs">
+      <DependentUpon>TemaClaro.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Temas\TemaOscuro.xaml.cs">
+      <DependentUpon>TemaOscuro.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

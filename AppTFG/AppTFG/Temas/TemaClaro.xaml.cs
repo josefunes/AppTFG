@@ -2,9 +2,9 @@
 
 namespace AppTFG.Temas
 {
-    public partial class DarkTheme : ResourceDictionary
+    public partial class TemaClaro : ResourceDictionary
     {
-        public DarkTheme()
+        public TemaClaro()
         {
             InitializeComponent();
         }

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.PaginaVistaFoto">
+             x:Class="AppTFG.Paginas.PaginaVistaFoto"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout BackgroundColor="White">
+            <StackLayout>
                 <StackLayout Padding="15">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -14,8 +15,8 @@
                         <Image x:Name="imgFoto" Source="{Binding Imagen}"
                             Aspect="AspectFill"  HorizontalOptions="Fill" 
                             VerticalOptions="Fill" Grid.Row="0"/>
-                        <Label x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
-                           FontFamily="BSDRegular"  Grid.Row="1" BackgroundColor="White" FontSize="Large"/>
+                        <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                           FontFamily="BSDRegular"  Grid.Row="1" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large"/>
                     </Grid>
                 </StackLayout>
                 <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>

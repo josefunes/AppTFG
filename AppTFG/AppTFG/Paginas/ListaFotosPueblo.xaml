@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.ListaFotosPueblo">
+             x:Class="AppTFG.Paginas.ListaFotosPueblo"
+            BackgroundColor="{DynamicResource PageBackgroundColor}">
     <TabbedPage.Children>
         <ContentPage IconImageSource="icon.png">
             <ContentPage.Content>
@@ -10,7 +11,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
-                        <StackLayout BackgroundColor="White">
+                        <StackLayout>
                             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
                             <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3">
                                 <CollectionView.ItemTemplate>
@@ -35,8 +36,8 @@
                         </StackLayout>
                     </ScrollView>
                     <Button Grid.Row="0" Text="Añadir foto" FontFamily="BSDRegular" FontSize="Medium"
-                            BackgroundColor="White" BorderRadius="30" TextColor="Black" BorderWidth="1"
-                            BorderColor="Black" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
+                            BackgroundColor="{DynamicResource PrimaryColor}" BorderRadius="30" TextColor="{DynamicResource PrimaryTextColor}" BorderWidth="1"
+                            BorderColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
                             Margin="0,0,20,22" VerticalOptions="End" Clicked="BtnAgregar_Clicked"/>
                 </Grid>
             </ContentPage.Content>
@@ -48,13 +49,13 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
-                        <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="0" >
+                        <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
                             <ActivityIndicator x:Name="indicador" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
                             <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <StackLayout BackgroundColor="White" Spacing="0" Orientation="Vertical" Padding="5">
+                                            <StackLayout Spacing="0" Orientation="Vertical" Padding="5">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="200"/>
@@ -67,7 +68,7 @@
                                                            HorizontalOptions="Fill" VerticalOptions="Fill" 
                                                            Grid.Column="0" Grid.Row="0"/>
                                                     <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" 
-                                                           VerticalOptions="Center" FontSize="Title" TextColor="Black" 
+                                                           VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" 
                                                            HorizontalOptions="Start" Margin="5, 0, 0, 5"
                                                            HorizontalTextAlignment="Start" FontFamily="BSDRegular" 
                                                            Grid.Column="0" Grid.Row="1"/>
@@ -80,8 +81,8 @@
                         </StackLayout>
                     </ScrollView>
                     <Button Grid.Row="0" Text="Añadir foto" FontFamily="BSDRegular" FontSize="Medium"
-                            BackgroundColor="White" BorderRadius="30" TextColor="Black" BorderWidth="1"
-                            BorderColor="Black" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
+                            BackgroundColor="{DynamicResource PrimaryColor}" BorderRadius="30" TextColor="{DynamicResource PrimaryTextColor}" BorderWidth="1"
+                            BorderColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
                             Margin="0,0,20,22" VerticalOptions="End" Clicked="BtnAgregar_Clicked"/>
                 </Grid>
             </ContentPage.Content>

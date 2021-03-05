@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.SubirFoto">
+             x:Class="AppTFG.Paginas.SubirFoto"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout BackgroundColor="White">
+            <StackLayout>
                 <StackLayout Padding="15">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -15,12 +16,12 @@
                         <Image x:Name="imgFoto" Source="{Binding Imagen}"
                             Aspect="AspectFill"  HorizontalOptions="Fill" 
                             VerticalOptions="Fill" Grid.Row="0"/>
-                        <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                        <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                            Placeholder="Título de la foto" FontFamily="BSDRegular"  Grid.Row="1"
-                           PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Large"/>
+                           PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large"/>
                         <Button x:Name="btnImagen" Text="Abrir galería" 
-                            BackgroundColor="White" Margin="10" FontSize="Large"
-                            TextColor="Black" WidthRequest="150"  FontFamily="BSDRegular"
+                            BackgroundColor="{DynamicResource PageBackgroundColor}" Margin="10" FontSize="Large"
+                            TextColor="{DynamicResource PrimaryTextColor}" WidthRequest="150"  FontFamily="BSDRegular"
                             HorizontalOptions="Center" Clicked="BtnImagen_Clicked" Grid.Row="2"/>
                     </Grid>
                 </StackLayout>

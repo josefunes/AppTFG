@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.InicioPage"
              Title="{Binding Nombre, StringFormat='Bienvenido, {0}'}"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="LightGray">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
+        <StackLayout HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
             <!--Frame del Pueblo donde se ve la información más general-->
-            <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0">
+            <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                 <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -25,17 +26,17 @@
                     <Label Grid.Row="0" Text="Almócita" Grid.ColumnSpan="4" BackgroundColor="#FACFCF" HorizontalTextAlignment="Center" TextColor="Black"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDSemiBold"/>
 
-                    <Label Grid.Row="1" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
-                    <Label Grid.Row="2" Grid.Column="0" Text="678" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="678" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                    <Label Grid.Row="1" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="340" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="340" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                    <Label Grid.Row="1" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
-                    <Label Grid.Row="2" Grid.Column="2" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label Grid.Row="2" Grid.Column="2" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
 
-                    <Label Grid.Row="1" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
-                    <Label Grid.Row="2" Grid.Column="3" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                    <Label Grid.Row="1" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label Grid.Row="2" Grid.Column="3" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                 </Grid>
             </Frame>
             <!--Frames de las rutas-->
@@ -47,26 +48,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Rutas en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                        <Label Grid.Row="0" Text="Rutas en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center"  FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center"  FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Ruta más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                        <Label Grid.Row="0" Text="Ruta más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
             </Grid>
@@ -79,26 +80,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Actividades en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                        <Label Grid.Row="0" Text="Actividades en activo" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
-                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Actividad más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                        <Label Grid.Row="0" Text="Actividad más realizada" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
-                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Actividades" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
             </Grid>
@@ -111,26 +112,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Fotos subidas" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                        <Label Grid.Row="0" Text="Fotos subidas" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
-                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Foto más vista" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                        <Label Grid.Row="0" Text="Foto más vista" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
-                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Fotos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
             </Grid>
@@ -143,26 +144,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="0" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Vídeos subidos" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="Black"
+                        <Label Grid.Row="0" Text="Vídeos subidos" BackgroundColor="Salmon" HorizontalTextAlignment="Center" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large" FontFamily="BSDSemiBold"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Frame Grid.Column="1" Grid.Row="0" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Text="Vídeo más visto" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="Black"
+                        <Label Grid.Row="0" Text="Vídeo más visto" BackgroundColor="Salmon" HorizontalTextAlignment="Center" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Large"/>
-                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="Black"/>
+                        <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
             </Grid>

@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="AppTFG.Paginas.PaginaVistaListaVideos">
+             x:Class="AppTFG.Paginas.PaginaVistaListaVideos"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
+        <StackLayout>
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <ScrollView VerticalScrollBarVisibility="Never">
                 <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor="White" Spacing="5" Orientation="Horizontal" Padding="5">
+                                <StackLayout Spacing="5" Orientation="Horizontal" Padding="5">
                                     <Label Text="{Binding Nombre}" FontSize="Title" 
-                                            LineBreakMode="WordWrap" TextColor="Black" Margin="10" FontFamily="BSDRegular"/>
+                                            LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" Margin="10" FontFamily="BSDRegular"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

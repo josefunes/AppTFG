@@ -2,16 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.ListaRutas"
-             Title="Lista de Rutas">
+             Title="Lista de Rutas"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
+        <StackLayout>
             <ListView x:Name="lsvRutas" ItemsSource="{Binding Rutas}" ItemSelected="LsvRutas_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="White" Spacing="0" Orientation="Horizontal" Padding="5">
+                            <StackLayout Spacing="0" Orientation="Horizontal" Padding="5">
                                 <Image Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
-                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="Black" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

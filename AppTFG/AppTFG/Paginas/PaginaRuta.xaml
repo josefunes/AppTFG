@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.PaginaRuta">
+             x:Class="AppTFG.Paginas.PaginaRuta"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
     </ContentPage.ToolbarItems>
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
-        <StackLayout BackgroundColor="White" Spacing="0" Padding="0" Margin="0">
+        <StackLayout Spacing="0" Padding="0" Margin="0">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2.5*"/>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
                            VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
@@ -25,17 +26,17 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Entry x:Name="txtNombre" TextColor="Black" Text="{Binding Nombre}" 
+                            <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                                 Placeholder="Ingresa el nombre de la ruta" FontFamily="BSDRegular"
-                                PlaceholderColor="LightGray" BackgroundColor="White" FontSize="Medium"/>
+                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium"/>
                             <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta" 
                                 BackgroundColor="Transparent" Margin="0" FontSize="Small"
-                                TextColor="Black" WidthRequest="90"  FontFamily="BSDRegular"
+                                TextColor="{DynamicResource PrimaryTextColor}" WidthRequest="90"  FontFamily="BSDRegular"
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
                         </Grid>
                     </StackLayout>
                 </Frame>
-                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="Black" FontFamily="BSDRegular"/>
+                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
             </Grid>
             <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
         </StackLayout>
