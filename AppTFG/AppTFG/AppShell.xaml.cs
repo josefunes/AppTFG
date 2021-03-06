@@ -27,6 +27,7 @@ namespace AppTFG
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
+            stack.SetDynamicResource(StackLayout.BackgroundColorProperty, key: "PageBackgroundColor");
             Grid grid = new Grid
             {
                 RowDefinitions =
@@ -44,13 +45,13 @@ namespace AppTFG
             Label titulo = new Label()
             {
                 Text = "TRAPP",
-                TextColor = Color.Black,
                 FontSize = 40,
                 FontAttributes = FontAttributes.Bold,
                 FontFamily = "BSDSemiBold",
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
+            titulo.SetDynamicResource(Label.TextColorProperty, key: "PrimaryTextColor");
 
             CircleImage imagen = new CircleImage()
             {
@@ -64,16 +65,17 @@ namespace AppTFG
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 Margin = new Thickness(-10, 10, -10, -10)
             };
+            imagen.SetDynamicResource(CircleImage.BorderColorProperty, key: "PrimaryTextColor");
 
             Label nombreUsuario = new Label()
             {
-                TextColor = Color.Black,
                 FontSize = Device.GetNamedSize(NamedSize.Title, typeof(Label)),
                 FontAttributes = FontAttributes.Bold,
                 FontFamily = "BSDLight",
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
+            nombreUsuario.SetDynamicResource(Label.TextColorProperty, key: "PrimaryTextColor");
             nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: inicio));
 
             grid.Children.Add(titulo, 0, 0);

@@ -9,7 +9,9 @@
     <Color x:Key="SecondaryColor">White</Color>
     <Color x:Key="PrimaryTextColor">White</Color>
     <Color x:Key="SecondaryTextColor">White</Color>
-    <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
+    <Color x:Key="TertiaryTextColor">Teal</Color>
+    <Color x:Key="BotonesBarraAbajo">Black</Color>
+    <Color x:Key="BotonSeleccionadoBarraAbajo">White</Color>
     <Color x:Key="TransparentColor">Transparent</Color>
 
 </ResourceDictionary>

@@ -42,7 +42,7 @@ namespace AppTFG.Paginas
                         mergedDictionaries.Add(new TemaClaro());
                         break;
                 }
-                statusLabel.Text = $"{theme} tema cargado. Cierra esta página.";
+                statusLabel.Text = $"Tema {theme} cargado.";
             }
         }
 

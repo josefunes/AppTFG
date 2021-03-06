@@ -26,7 +26,7 @@
                     </Grid>
                 </StackLayout>
 
-                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

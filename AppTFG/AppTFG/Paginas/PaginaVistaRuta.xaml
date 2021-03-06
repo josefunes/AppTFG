@@ -23,7 +23,7 @@
                 </Frame>
                 <Button Grid.Row="2" Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
             </Grid>
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

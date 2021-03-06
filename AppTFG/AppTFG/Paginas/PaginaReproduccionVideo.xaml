@@ -106,7 +106,7 @@
                     </Grid>
                 </StackLayout>
 
-                <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>
+                <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

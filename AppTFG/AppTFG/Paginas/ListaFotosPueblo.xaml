@@ -12,7 +12,7 @@
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout>
-                            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
                             <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -50,7 +50,7 @@
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
-                            <ActivityIndicator x:Name="indicador" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                            <ActivityIndicator x:Name="indicador" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
                             <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

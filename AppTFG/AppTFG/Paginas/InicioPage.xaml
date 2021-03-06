@@ -8,6 +8,7 @@
 
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
+            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <!--Frame del Pueblo donde se ve la información más general-->
             <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                 <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -19,27 +20,77 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Text="Almócita" Grid.ColumnSpan="4" BackgroundColor="#FACFCF" HorizontalTextAlignment="Center" TextColor="Black"
+                    <Label x:Name="nombrePueblo" Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="#FACFCF" HorizontalTextAlignment="Center" TextColor="Black"
                            VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDSemiBold"/>
 
                     <Label Grid.Row="1" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label Grid.Row="2" Grid.Column="0" Text="678" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label x:Name="numRutas" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
 
                     <Label Grid.Row="1" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="340" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label x:Name="numActividades" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
 
                     <Label Grid.Row="1" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label Grid.Row="2" Grid.Column="2" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label x:Name="numFotos" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
 
                     <Label Grid.Row="1" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label Grid.Row="2" Grid.Column="3" Text="67k" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                    <Label x:Name="numVideos" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                 </Grid>
             </Frame>
-            <!--Frames de las rutas-->
+            <StackLayout Orientation="Vertical">
+                <Label Text="Rutas añadidas" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                <CollectionView x:Name="clvRutas" ItemsSource="{Binding Rutas}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="1" ColumnSpacing="0" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImagenPrincipal}" 
+                                           Aspect="AspectFill" 
+                                           HorizontalOptions="Fill" 
+                                           VerticalOptions="Fill"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Label Text="Actividades añadidas" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                <CollectionView x:Name="clvActividades" ItemsSource="{Binding Actividades}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="1" ColumnSpacing="40" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImagenPrincipal}" 
+                                           Aspect="AspectFill" 
+                                           HorizontalOptions="Fill" 
+                                           VerticalOptions="Fill"/>
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontFamily="BSDRegular"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <!--Frames de las rutas--><!--
             <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -71,7 +122,7 @@
                     </Grid>
                 </Frame>
             </Grid>
-            <!--Frames de las actividades-->
+            --><!--Frames de las actividades--><!--
             <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -103,7 +154,7 @@
                     </Grid>
                 </Frame>
             </Grid>
-            <!--Frames de las fotos-->
+            --><!--Frames de las fotos--><!--
             <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -135,7 +186,7 @@
                     </Grid>
                 </Frame>
             </Grid>
-            <!--Frames de los vídeos-->
+            --><!--Frames de los vídeos--><!--
             <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -166,7 +217,7 @@
                         <Label Grid.Row="1" Text="Vídeos" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                     </Grid>
                 </Frame>
-            </Grid>
+            </Grid>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppTFG.VistaModelos;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace AppTFG.Paginas
 {

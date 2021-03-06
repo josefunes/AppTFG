@@ -8,13 +8,13 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:" Margin="10, 0, 0, 0" FontFamily="BSDRegular" FontSize="Medium"/>
-                <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 0" Placeholder="Inserte su contraseña actual" FontFamily="BSDRegular" Style="{StaticResource ButtonStyle}"/>
-                <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10, 0" Placeholder="Repita su contraseña actual" FontFamily="BSDRegular"/>
-                <Entry Text="{Binding NewPassword}" IsPassword="True" Margin="10, 0" Placeholder="Inserte nueva contraseña" FontFamily="BSDRegular"/>
-                <Button x:Name="updatebtn" Text="Actualizar contraseña" Command="{Binding UpdateCommand}" TextColor="Black" BackgroundColor="White" HorizontalOptions="Center" FontFamily="BSDRegular"/>
-                <local1:EnumPicker EnumType="{x:Type local:Tema}"  Title="Select Theme" SelectedIndexChanged="OnPickerSelectionChanged" />
-                <Label x:Name="statusLabel" HorizontalOptions="Center" />
+            <Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:" Margin="10, 0, 0, 0" FontFamily="BSDRegular" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
+            <Entry Text="{Binding Password}" IsPassword="True" Margin="10, 0" Placeholder="Inserte su contraseña actual" PlaceholderColor="{DynamicResource TertiaryTextColor}" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+            <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10, 0" Placeholder="Repita su contraseña actual" PlaceholderColor="{DynamicResource TertiaryTextColor}" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+            <Entry Text="{Binding NewPassword}" IsPassword="True" Margin="10, 0" Placeholder="Inserte nueva contraseña" PlaceholderColor="{DynamicResource TertiaryTextColor}" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+            <Button x:Name="updatebtn" Text="Actualizar contraseña" Command="{Binding UpdateCommand}" TextColor="{DynamicResource PrimaryTextColor}" BackgroundColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+            <local1:EnumPicker EnumType="{x:Type local:Tema}"  Title="Selecciona el tema de la app" SelectedIndexChanged="OnPickerSelectionChanged" TextColor="{DynamicResource PrimaryTextColor}"/>
+            <Label x:Name="statusLabel" HorizontalOptions="Center" TextColor="{DynamicResource PrimaryTextColor}"/>
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>

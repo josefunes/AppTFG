@@ -4,7 +4,8 @@
        xmlns:local="clr-namespace:AppTFG.Paginas"
        Title="App"
        x:Class="AppTFG.AppShell"
-       NavigationPage.HasBackButton="False">
+       NavigationPage.HasBackButton="False"
+       BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -21,9 +22,9 @@
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource PrimaryColor}" />
                 <!--<Setter Property="Shell.TabBarForegroundColor" Value="Black"/>-->                
                 <!--Color de los iconos del menú inferior que no están seleccionados-->
-                <Setter Property="Shell.TabBarUnselectedColor" Value="LightGray"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource BotonesBarraAbajo}"/>
                 <!--Color de los iconos del menú inferior que están seleccionados-->
-                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource SecondaryColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource BotonSeleccionadoBarraAbajo}"/>
             </Style>
             <!--<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />-->
             <!--Así le doy el mismo diseño que he definido arriba al FlyoutItem y al ShellContent-->
@@ -46,15 +47,15 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <!--Color del fondo de las propiedades del menú desplegable-->
-                                    <Setter Property="BackgroundColor" Value="LightGray" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
                                     <!--Color de las letras de las propiedades del menú desplegable-->
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource PrimaryColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource SecondaryColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
                                     <!--Color del fondo de la propiedad del menú desplegable seleccionada-->
-                                    <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource TertiaryTextColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

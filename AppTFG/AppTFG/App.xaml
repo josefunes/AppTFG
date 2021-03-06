@@ -5,8 +5,7 @@
         <!--Define global resources and styles here, that apply to all pages in your app.-->
     
     <Application.Resources>
-        <ResourceDictionary Source="Temas/TemaOscuro.xaml">
-            <Color x:Key="Primary">White</Color>
+        <ResourceDictionary Source="Temas/TemaClaro.xaml">
             
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor"

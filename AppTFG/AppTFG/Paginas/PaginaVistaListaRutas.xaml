@@ -5,7 +5,7 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator x:Name="indicator" Color="#263238" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <ListView x:Name="lsvRutasPueblo" ItemsSource="{Binding Rutas}" ItemSelected="LsvRutasPueblo_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
