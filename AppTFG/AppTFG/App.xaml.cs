@@ -7,27 +7,42 @@ namespace AppTFG
 {
     public partial class App : Application
     {
+        Label nombreUsuario = new Label();
 
-        //public static INavigation NavigationRef;
         public App()
         {
+            Comprobar();
             InitializeComponent();
+            
+        }
 
-            //MainPage = new AppShell();
-            MainPage = new LoginPage();
-            //NavigationRef = MainPage.Navigation;
+        public void Comprobar()
+        {
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            string nombre = nombreUsuario.Text;
+            if (nombre != null)
+            {
+                MainPage = new AppShell(nombre);
+            }
+            else
+            {
+                MainPage = new LoginPage();
+            }
         }
 
         protected override void OnStart()
         {
+            Comprobar();
         }
 
         protected override void OnSleep()
         {
+            Comprobar();
         }
 
         protected override void OnResume()
         {
+            Comprobar();
         }
     }
 }

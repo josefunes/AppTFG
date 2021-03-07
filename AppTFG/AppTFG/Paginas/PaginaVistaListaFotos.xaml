@@ -9,8 +9,10 @@
                 <ScrollView VerticalScrollBarVisibility="Never">
                         <StackLayout>
                             <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-                            <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3">
-                                <CollectionView.ItemTemplate>
+                        <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3" 
+                                            VerticalScrollBarVisibility="Never" SelectedItem="{Binding FotoOtraSeleccionada}"
+                                            SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
+                            <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Padding="1" ColumnSpacing="0" RowSpacing="0">
                                             <Grid.RowDefinitions>

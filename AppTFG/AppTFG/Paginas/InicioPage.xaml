@@ -10,7 +10,23 @@
     <ContentPage.BindingContext>
         <vm:InicioPageView/>
     </ContentPage.BindingContext>
-
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
             <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -47,7 +63,7 @@
             </Frame>
             <StackLayout Orientation="Vertical">
                 
-                <Label Text="Rutas añadidas" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
+                <Label Text="Rutas añadidas" Margin="10, 0, 0, 0" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
                 <CollectionView x:Name="clvRutas" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
                                 HorizontalScrollBarVisibility="Never"
                         ItemsSource="{Binding Rutas}" SelectedItem="{Binding RutaSeleccionada}"
@@ -72,7 +88,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Label Text="Actividades añadidas" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
+                <Label Text="Actividades añadidas" Margin="10, 0, 0, 0" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
                 <CollectionView x:Name="clvActividades" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
                                 HorizontalScrollBarVisibility="Never"
                         ItemsSource="{Binding Actividades}" SelectedItem="{Binding ActividadSeleccionada}"

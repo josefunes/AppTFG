@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.ListaFotosPueblo"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:vm="clr-namespace:AppTFG.VistaModelos"
+            x:Class="AppTFG.Paginas.ListaFotosPueblo"
             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
+    
     <TabbedPage.Children>
         <ContentPage IconImageSource="icon.png">
+            <ContentPage.BindingContext>
+                <vm:InicioPageView/>
+            </ContentPage.BindingContext>
             <ContentPage.Content>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -13,7 +19,9 @@
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout>
                             <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3">
+                            <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3" 
+                                            VerticalScrollBarVisibility="Never" SelectedItem="{Binding FotoSeleccionada}"
+                                            SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Padding="1" ColumnSpacing="0" RowSpacing="0">

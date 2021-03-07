@@ -32,6 +32,27 @@ namespace AppTFG.VistaModelos
             }
         }
 
+        private Foto fotoSeleccionada;
+        public Foto FotoSeleccionada
+        {
+            get { return fotoSeleccionada; }
+            set
+            {
+                fotoSeleccionada = value;
+                OnPropertyChanged();
+            }
+        }
+        private Foto fotoOtraSeleccionada;
+        public Foto FotoOtraSeleccionada
+        {
+            get { return fotoOtraSeleccionada; }
+            set
+            {
+                fotoOtraSeleccionada = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand SelectionCommand => new Command(() =>
         {
             if (rutaSeleccionada != null)
@@ -41,7 +62,18 @@ namespace AppTFG.VistaModelos
             }
             if (actividadSeleccionada != null)
             {
-                Application.Current.MainPage.Navigation.PushAsync(new PaginaActividad(ActividadSeleccionada = actividadSeleccionada));
+                ActividadSeleccionada = actividadSeleccionada;
+                Application.Current.MainPage.Navigation.PushAsync(new PaginaActividad(ActividadSeleccionada));
+            }
+            if (fotoSeleccionada != null)
+            {
+                FotoSeleccionada = fotoSeleccionada;
+                Application.Current.MainPage.Navigation.PushAsync(new SubirFoto(FotoSeleccionada));
+            }
+            if (fotoOtraSeleccionada != null)
+            {
+                FotoOtraSeleccionada = fotoOtraSeleccionada;
+                Application.Current.MainPage.Navigation.PushAsync(new PaginaVistaFoto(FotoOtraSeleccionada));
             }
         });
 

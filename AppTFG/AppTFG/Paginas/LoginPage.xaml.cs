@@ -1,6 +1,7 @@
 ﻿using AppTFG.VistaModelos;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,6 +12,10 @@ namespace AppTFG.Paginas
     {
         public LoginPage()
         {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                Application.Current.MainPage.DisplayAlert("", "Sin conexión a internet no es posible usar la app. Conéctate a una red y vuelve a intentarlo.", "OK");
+            }
             InitializeComponent();
             Task.Run(AnimateBackground);
             BindingContext = new LoginView();

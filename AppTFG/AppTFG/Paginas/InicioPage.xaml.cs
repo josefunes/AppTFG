@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +19,14 @@ namespace AppTFG.Paginas
 
         public InicioPage()
         {
-            InitializeComponent();
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                InitializeComponent();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("", "Se ha perdido la conexión a Internet. Cuando vuelva a tener conexión vuelva a intentar entrar a la app.", "OK");
+            }          
         }
 
         void Loading(bool mostrar)
@@ -61,19 +68,54 @@ namespace AppTFG.Paginas
             }
             else
             {
-                nombrePueblo.Text = puebloUser.Nombre;
+                if (nombrePueblo.Text == null)
+                {
+                    nombrePueblo.Text = puebloUser.Nombre;
+                }
+                else
+                {
+                    nombrePueblo.Text = nombrePueblo.Text;
+                }
 
-                var contRutas = await FirebaseHelper.ObtenerTodasRutasPueblo(puebloUser.Id);
-                numRutas.Text = contRutas.Count + "";
+                if (numRutas.Text == null)
+                {
+                    var contRutas = await FirebaseHelper.ObtenerTodasRutasPueblo(puebloUser.Id);
+                    numRutas.Text = contRutas.Count + "";
+                }
+                else
+                {
+                    numRutas.Text = numRutas.Text;
+                }
 
-                var contActividades = await FirebaseHelper.ObtenerTodasActividadesPueblo(puebloUser.Id);
-                numActividades.Text = contActividades.Count.ToString();
+                if (numActividades.Text == null)
+                {
+                    var contActividades = await FirebaseHelper.ObtenerTodasActividadesPueblo(puebloUser.Id);
+                    numActividades.Text = contActividades.Count.ToString();
+                }
+                else
+                {
+                    numActividades.Text = numActividades.Text;
+                }
 
-                var contFotos = await FirebaseHelper.ObtenerTodasFotosPueblo(puebloUser.Id);
-                numFotos.Text = contFotos.Count.ToString();
+                if (numFotos.Text == null)
+                {
+                    var contFotos = await FirebaseHelper.ObtenerTodasFotosPueblo(puebloUser.Id);
+                    numFotos.Text = contFotos.Count.ToString();
+                }
+                else
+                {
+                    numFotos.Text = numFotos.Text;
+                }
 
-                var contVideos = await FirebaseHelper.ObtenerTodosVideosPueblo(puebloUser.Id);
-                numVideos.Text = contVideos.Count.ToString();
+                if (numVideos.Text == null)
+                {
+                    var contVideos = await FirebaseHelper.ObtenerTodosVideosPueblo(puebloUser.Id);
+                    numVideos.Text = contVideos.Count.ToString();
+                }
+                else
+                {
+                    numVideos.Text = numVideos.Text;
+                }
 
                 clvRutas.ItemsSource = null;
                 clvRutas.ItemsSource = await FirebaseHelper.ObtenerTodasRutasPueblo(puebloUser.Id);
