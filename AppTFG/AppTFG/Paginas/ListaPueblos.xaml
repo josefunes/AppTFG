@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              x:Class="AppTFG.Paginas.ListaPueblos"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
@@ -8,14 +8,22 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
-            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
             <ListView x:Name="lsvPueblos" ItemSelected="LsvPueblos_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Spacing="0" Orientation="Horizontal" Padding="5">
-                                <Image Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
                                 <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <cv:CarouselViewControl Orientation="Horizontal" InterPageSpacing="10" Position="{Binding myPosition}" ItemsSource="{Binding myItemsSource}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <cv:CarouselViewControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
+                                        </DataTemplate>
+                                    </cv:CarouselViewControl.ItemTemplate>
+                                </cv:CarouselViewControl>
+                                <!--<Image Source="{Binding ImagenPrincipal}" WidthRequest="70" HeightRequest="70" Aspect="AspectFill" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

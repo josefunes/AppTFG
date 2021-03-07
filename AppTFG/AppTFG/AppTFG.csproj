@@ -74,6 +74,7 @@
 
   <ItemGroup>
 	<GoogleServicesJson Include="google-services.json" />
+	<PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
@@ -86,7 +87,7 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.1931" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.1.5" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Xamarin.Plugin.SharedTransitions" Version="2.4.0" />
   </ItemGroup>
 

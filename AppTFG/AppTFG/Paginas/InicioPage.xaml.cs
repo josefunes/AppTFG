@@ -24,6 +24,14 @@ namespace AppTFG.Paginas
 
         void Loading(bool mostrar)
         {
+            if (mostrar)
+            {
+                indicator.HeightRequest = 30;
+            }
+            else
+            {
+                indicator.HeightRequest = 0;
+            }
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }
@@ -38,6 +46,8 @@ namespace AppTFG.Paginas
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
+
+            Title = "Bienvenido, " + nombre;
 
             if (puebloUser == null)
             {
@@ -71,7 +81,8 @@ namespace AppTFG.Paginas
                 clvActividades.ItemsSource = null;
                 clvActividades.ItemsSource = await FirebaseHelper.ObtenerTodasActividadesPueblo(puebloUser.Id);
             }
-            
+            clvRutas.SelectedItem = null;
+            clvActividades.SelectedItem = null;
             Loading(false);
         }
 

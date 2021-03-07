@@ -10,6 +10,7 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
+                <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
                 <StackLayout Padding="15">
                     <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
@@ -106,7 +107,6 @@
                     </Grid>
                 </StackLayout>
 
-                <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

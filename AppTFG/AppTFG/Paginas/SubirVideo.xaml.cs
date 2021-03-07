@@ -35,6 +35,14 @@ namespace AppTFG.Paginas
 
         void Loading(bool mostrar)
         {
+            if (mostrar)
+            {
+                indicator.HeightRequest = 30;
+            }
+            else
+            {
+                indicator.HeightRequest = 0;
+            }
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }

@@ -16,6 +16,8 @@ namespace AppTFG.Helpers
     {
         //Conexión Base de datos en tiempo real
         public static FirebaseClient firebase = new FirebaseClient("https://pruebaauth-c50d4-default-rtdb.europe-west1.firebasedatabase.app/");
+        
+        //public 
 
         //Conexión Almacenaimento contenido multimedia
         public static FirebaseStorage firebaseStorage = new FirebaseStorage("pruebaauth-c50d4.appspot.com");
