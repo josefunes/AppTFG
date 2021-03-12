@@ -1,4 +1,4 @@
-﻿using AppTFG.FormsVideoLibrary;
+﻿using Acr.UserDialogs;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
@@ -6,7 +6,6 @@ using AppTFG.VistaModelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -17,6 +16,7 @@ namespace AppTFG.Paginas
     public partial class PaginaPueblo : ContentPage
     {
         Pueblo Pueblo;
+        Map map;
         public static InicioView InicioView { get; set; }
         //Position position;
         //MapSpan mapSpan;
@@ -25,19 +25,21 @@ namespace AppTFG.Paginas
         public PaginaPueblo(Pueblo pueblo)
         {
             InitializeComponent();
-            Title = pueblo.Nombre;
+            Title = Pueblo.Nombre;
             Pueblo = pueblo;
             BindingContext = pueblo;
             if (pueblo.Id == 0)
             {
                 Title = "Nuevo Pueblo";
                 ToolbarItems.RemoveAt(1);
-                //Corrdenadas de la ciudad de Almería
-                //Pueblo.CoordenadaX = 36.8345130509077;
-                //Pueblo.CoordenadaY = -2.463471054337188;
-                //position = new Position(Pueblo.CoordenadaX, Pueblo.CoordenadaY);
-                //mapSpan = new MapSpan(position, 0.01, 0.01);
-                //map = new Map(mapSpan);
+                stackMapa.IsVisible = false;
+                stackMapa.IsEnabled = false;
+            }
+            else
+            {
+                CrearMapa();
+                stackMapa.IsVisible = true;
+                stackMapa.IsEnabled = true;
             }
         }
 
@@ -45,14 +47,12 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace AppTFG.Paginas
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired, "OK");
                 return;
             }
             if (pueblo.Id > 0)
@@ -83,7 +83,7 @@ namespace AppTFG.Paginas
                 await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id);
             }
             Loading(false);
-            await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
 
@@ -92,10 +92,9 @@ namespace AppTFG.Paginas
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
                 Loading(true);
-                //await bd.Eliminar(((Pueblo)BindingContext).Id);
                 await FirebaseHelper.EliminarPueblo(Pueblo.Id);
                 Loading(false);
-                await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
+                UserDialogs.Instance.Alert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();
             }
         }
@@ -105,7 +104,7 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
             }
             else
             {
@@ -118,7 +117,7 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
             }
             else
             {
@@ -131,7 +130,7 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
             }
             else
             {
@@ -144,7 +143,7 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
             }
             else
             {
@@ -169,25 +168,33 @@ namespace AppTFG.Paginas
             }
         }
 
-        //private async void BtnCrearMapa_Clicked(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(Pueblo.Nombre))
-        //    {
-        //        await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
-        //        return;
-        //    }
-        //    Pueblo.CoordenadaX = double.Parse(txtCoordenadaX.Text);
-        //    Pueblo.CoordenadaY = double.Parse(txtCoordenadaY.Text);
-        //    Position position = new Position(Pueblo.CoordenadaX, Pueblo.CoordenadaY);
-        //    MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
-        //    map = new Map(mapSpan);
-        //    Pin pin = new Pin
-        //    {
-        //        Label = Pueblo.Nombre,
-        //        Type = PinType.Place,
-        //        Position = position
-        //    };
-        //    map.Pins.Add(pin);
-        //}
+        async void CrearMapa()
+        {
+            var nombrePueblo = txtNombre.Text;
+            if (string.IsNullOrEmpty(nombrePueblo))
+            {
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
+                return;
+            }
+            Geocoder geoCoder = new Geocoder();
+            string address = nombrePueblo + ", Andalucía, Spain";
+            IEnumerable <Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
+            Position position = approximateLocations.FirstOrDefault();
+            MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
+            map = new Map(mapSpan) 
+            {
+                WidthRequest = -1,
+                HeightRequest = 300,
+                HasScrollEnabled = true
+            };
+            Pin pin = new Pin
+            {
+                Label = nombrePueblo,
+                Type = PinType.Place,
+                Position = position
+            };
+            map.Pins.Add(pin);
+            stackMapa.Children.Add(map);
+        }
     }
 }

@@ -18,7 +18,7 @@
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout>
-                            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <ActivityIndicator x:Name="indicator" Color="HotPink" VerticalOptions="Center" HorizontalOptions="Center"/>
                             <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3" 
                                             VerticalScrollBarVisibility="Never" SelectedItem="{Binding FotoSeleccionada}"
                                             SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">

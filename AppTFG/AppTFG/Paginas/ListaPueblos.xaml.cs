@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using AppTFG.VistaModelos;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 
 namespace AppTFG.Paginas
 {
@@ -33,14 +34,12 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
-            {
-                indicator.HeightRequest = 0;
+            {;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         private async void LsvPueblos_ItemSelected(object sender, SelectedItemChangedEventArgs e)

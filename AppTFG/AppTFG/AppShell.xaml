@@ -91,7 +91,7 @@
         <ShellContent Title="Rutas" Icon="compass.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
         <ShellContent Title="Actividades" Icon="location.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
     </FlyoutItem>
-    <ShellContent Title="Comentarios" Icon="comments.png" Route="Comentarios" ContentTemplate="{DataTemplate local:Comentarios}"/>
+    <ShellContent Title="Comercios" Icon="comments.png" Route="Comercios" ContentTemplate="{DataTemplate local:Comercios}"/>
     <ShellContent Title="Ajustes" Icon="settings.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
     <ShellContent Title="Cerrar sesión" Icon="logout1.png" ContentTemplate="{DataTemplate local:LoginPage}" />
 </Shell>

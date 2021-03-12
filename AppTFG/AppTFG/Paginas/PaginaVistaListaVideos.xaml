@@ -5,7 +5,7 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>-->
             <ScrollView VerticalScrollBarVisibility="Never">
                 <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True">
                     <ListView.ItemTemplate>

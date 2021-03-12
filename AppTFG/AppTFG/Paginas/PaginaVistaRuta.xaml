@@ -5,6 +5,7 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
+            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.3*"/>
@@ -23,7 +24,6 @@
                 </Frame>
                 <Button Grid.Row="2" Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
             </Grid>
-            <ActivityIndicator x:Name="indicator" Color="Transparent" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

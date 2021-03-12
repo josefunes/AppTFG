@@ -74,6 +74,7 @@
 
   <ItemGroup>
 	<GoogleServicesJson Include="google-services.json" />
+	<PackageReference Include="Acr.UserDialogs" Version="7.1.0.481" />
 	<PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
@@ -101,6 +102,9 @@
     <Compile Update="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Paginas\Comercios.xaml.cs">
+      <DependentUpon>Comercios.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Paginas\ListaFotosPueblo.xaml.cs">
       <DependentUpon>ListaFotosPueblo.xaml</DependentUpon>
     </Compile>
@@ -116,7 +120,7 @@
     <EmbeddedResource Update="Paginas\Ajustes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Paginas\Comentarios.xaml">
+    <EmbeddedResource Update="Paginas\Comercios.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Paginas\InicioPage.xaml">

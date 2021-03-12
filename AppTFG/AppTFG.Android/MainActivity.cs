@@ -7,6 +7,7 @@ using Android;
 using System;
 using Android.Content.PM;
 using ImageCircle.Forms.Plugin.Droid;
+using Acr.UserDialogs;
 
 namespace AppTFG.Droid
 {
@@ -34,6 +35,7 @@ namespace AppTFG.Droid
             Xamarin.FormsMaps.Init(this, savedInstanceState);
 
             ImageCircleRenderer.Init();
+            UserDialogs.Init(this);
             LoadApplication(new App());
         }
 

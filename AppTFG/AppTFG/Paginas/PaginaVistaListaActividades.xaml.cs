@@ -1,4 +1,5 @@
-﻿using AppTFG.Helpers;
+﻿using Acr.UserDialogs;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using System;
 using System.Collections.Generic;
@@ -39,14 +40,12 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         private async void LsvActividadesPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)

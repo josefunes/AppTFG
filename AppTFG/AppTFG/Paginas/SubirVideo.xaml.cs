@@ -1,8 +1,10 @@
-﻿using AppTFG.FormsVideoLibrary;
+﻿using Acr.UserDialogs;
+using AppTFG.FormsVideoLibrary;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,14 +39,12 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         async void BtnVideo_Clicked(object sender, EventArgs args)
@@ -91,7 +91,7 @@ namespace AppTFG.Paginas
             var video = (Video)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                await DisplayAlert("Advertencia", Constantes.TitleVideoRequired, "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleVideoRequired, "OK");
                 return;
             }
             if (video.Id > 0)
@@ -104,7 +104,7 @@ namespace AppTFG.Paginas
                 await FirebaseHelper.InsertarVideo(video.Id = Constantes.GenerarId(), video.Nombre, video.Videoclip = await FirebaseHelper.SubirVideo(video.Stream, video.Nombre), video.IdPueblo);
             }
             Loading(false);
-            await DisplayAlert("Correcto", "Registro del vídeo realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Correcto", "Registro del vídeo realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
 
@@ -116,7 +116,7 @@ namespace AppTFG.Paginas
                 await FirebaseHelper.EliminarVideo(Video.Id);
                 await FirebaseHelper.BorrarVideo(Video.Nombre);
                 Loading(false);
-                await DisplayAlert("Correcto", "Vídeo eliminado correctamente", "OK");
+                UserDialogs.Instance.Alert("Correcto", "Vídeo eliminado correctamente", "OK");
                 await Navigation.PopAsync();
             }
         }

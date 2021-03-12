@@ -1,7 +1,9 @@
-﻿using AppTFG.Helpers;
+﻿using Acr.UserDialogs;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -32,14 +34,12 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace AppTFG.Paginas
             var ruta = (Ruta)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                await DisplayAlert("Advertencia", Constantes.TitleRutaRequired, "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleRutaRequired, "OK");
                 return;
             }
             if (ruta.Id > 0)
@@ -63,7 +63,7 @@ namespace AppTFG.Paginas
             else
                 await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo);
             Loading(false);
-            await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
 
@@ -75,7 +75,7 @@ namespace AppTFG.Paginas
                 //await bd.Eliminar(((Ruta)BindingContext).Id);
                 await FirebaseHelper.EliminarRuta(Ruta.Id);
                 Loading(false);
-                await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
+                UserDialogs.Instance.Alert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();
             }
         }

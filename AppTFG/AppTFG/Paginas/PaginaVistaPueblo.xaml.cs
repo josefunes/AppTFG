@@ -1,12 +1,10 @@
-﻿using AppTFG.FormsVideoLibrary;
+﻿using Acr.UserDialogs;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
-using AppTFG.Servicios;
 using AppTFG.VistaModelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -17,10 +15,8 @@ namespace AppTFG.Paginas
     public partial class PaginaVistaPueblo : ContentPage
     {
         Pueblo Pueblo;
+        Map map;
         public static InicioView InicioView { get; set; }
-        //Position position;
-        //MapSpan mapSpan;
-        //Map map;
 
         public PaginaVistaPueblo(Pueblo pueblo)
         {
@@ -28,17 +24,9 @@ namespace AppTFG.Paginas
             Title = pueblo.Nombre;
             Pueblo = pueblo;
             BindingContext = pueblo;
-            if (pueblo.Id == 0)
-            {
-                Title = "Nuevo Pueblo";
-                ToolbarItems.RemoveAt(1);
-                //Corrdenadas de la ciudad de Almería
-                //Pueblo.CoordenadaX = 36.8345130509077;
-                //Pueblo.CoordenadaY = -2.463471054337188;
-                //position = new Position(Pueblo.CoordenadaX, Pueblo.CoordenadaY);
-                //mapSpan = new MapSpan(position, 0.01, 0.01);
-                //map = new Map(mapSpan);
-            }
+            CrearMapa();
+            stackMapa.IsVisible = true;
+            stackMapa.IsEnabled = true;
         }
 
         async void BtnRutas_Clicked(object sender, EventArgs e)
@@ -82,25 +70,28 @@ namespace AppTFG.Paginas
             }
         }
 
-        //private async void BtnCrearMapa_Clicked(object sender, EventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(Pueblo.Nombre))
-        //    {
-        //        await DisplayAlert("Advertencia", Constantes.TitlePuebloRequired, "OK");
-        //        return;
-        //    }
-        //    Pueblo.CoordenadaX = double.Parse(txtCoordenadaX.Text);
-        //    Pueblo.CoordenadaY = double.Parse(txtCoordenadaY.Text);
-        //    Position position = new Position(Pueblo.CoordenadaX, Pueblo.CoordenadaY);
-        //    MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
-        //    map = new Map(mapSpan);
-        //    Pin pin = new Pin
-        //    {
-        //        Label = Pueblo.Nombre,
-        //        Type = PinType.Place,
-        //        Position = position
-        //    };
-        //    map.Pins.Add(pin);
-        //}
+        async void CrearMapa()
+        {
+            var nombrePueblo = txtNombre.Text;
+            Geocoder geoCoder = new Geocoder();
+            string address = nombrePueblo + ", Andalucía, Spain";
+            IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
+            Position position = approximateLocations.FirstOrDefault();
+            MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
+            map = new Map(mapSpan)
+            {
+                WidthRequest = -1,
+                HeightRequest = 300,
+                HasScrollEnabled = true
+            };
+            Pin pin = new Pin
+            {
+                Label = nombrePueblo,
+                Type = PinType.Place,
+                Position = position
+            };
+            map.Pins.Add(pin);
+            stackMapa.Children.Add(map);
+        }
     }
 }

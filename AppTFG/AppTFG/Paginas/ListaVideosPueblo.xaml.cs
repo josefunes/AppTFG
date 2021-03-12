@@ -1,9 +1,10 @@
-﻿using AppTFG.FormsVideoLibrary;
+﻿using Acr.UserDialogs;
+using AppTFG.FormsVideoLibrary;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,14 +39,12 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         public async void LsvVideosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)

@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Comentarios : ContentPage
+    public partial class Comercios : ContentPage
     {
-        public Comentarios()
+        public Comercios()
         {
             InitializeComponent();
         }

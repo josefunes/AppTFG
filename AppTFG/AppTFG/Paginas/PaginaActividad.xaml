@@ -9,6 +9,7 @@
     </ContentPage.ToolbarItems>
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
+            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.3*"/>
@@ -38,7 +39,6 @@
                 </Frame>
                 <Button Grid.Row="2" Text="Iniciar actividad" TextColor="{DynamicResource PrimaryTextColor}" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
             </Grid>
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

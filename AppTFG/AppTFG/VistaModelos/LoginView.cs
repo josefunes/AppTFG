@@ -1,4 +1,5 @@
-﻿using AppTFG.Helpers;
+﻿using Acr.UserDialogs;
+using AppTFG.Helpers;
 using AppTFG.Paginas;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -52,7 +53,7 @@ namespace AppTFG.VistaModelos
             //null or empty field validation, check weather email and password is null or empty
 
             if (string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Password))
-                await Application.Current.MainPage.DisplayAlert("Campos vacíos", "Por favor introduce un Usuario y una Contraseña", "OK");
+                UserDialogs.Instance.Alert("Campos vacíos", "Por favor introduce un Usuario y una Contraseña", "OK");
             else
             {
                 //call GetUser function which we define in Firebase helper class
@@ -64,9 +65,9 @@ namespace AppTFG.VistaModelos
                         Application.Current.MainPage = new AppShell(Nombre);
                     }
                     else
-                        await Application.Current.MainPage.DisplayAlert("Fallo al iniciar sesión", "Por favor, iontroduzca un nombre de usuario y una contraseña correctos", "OK");
+                        UserDialogs.Instance.Alert("Fallo al iniciar sesión", "Por favor, iontroduzca un nombre de usuario y una contraseña correctos", "OK");
                 else
-                    await Application.Current.MainPage.DisplayAlert("Fallo al iniciar sesión", "El Usuario introducido no existe", "OK");
+                    UserDialogs.Instance.Alert("Fallo al iniciar sesión", "El Usuario introducido no existe", "OK");
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using AppTFG.Helpers;
+﻿using Acr.UserDialogs;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
@@ -37,14 +38,13 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Cargando...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -60,7 +60,8 @@ namespace AppTFG.Paginas
             var actividad = (Actividad)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                await DisplayAlert("Advertencia", Constantes.TitleActividadRequired, "OK");
+                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleActividadRequired, "OK");
+                //await DisplayAlert("Advertencia", Constantes.TitleActividadRequired, "OK");
                 return;
             }
             if (actividad.Id > 0)
@@ -68,7 +69,8 @@ namespace AppTFG.Paginas
             else
                 await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
             Loading(false);
-            await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Correcto", "Registro realizado correctamente", "OK");
+            //await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
 
@@ -79,7 +81,8 @@ namespace AppTFG.Paginas
                 Loading(true);
                 await FirebaseHelper.EliminarActividad(Actividad.Id);
                 Loading(false);
-                await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
+                //await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
+                UserDialogs.Instance.Alert("Correcto", "Registro eliminado correctamente", "OK");
                 await Navigation.PopAsync();
             }
         }
