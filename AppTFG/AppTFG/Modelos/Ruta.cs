@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Xamarin.Forms.Maps;
+using System.IO;
+using Xamarin.Forms;
 
 namespace AppTFG.Modelos
 {
@@ -14,9 +15,11 @@ namespace AppTFG.Modelos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
-        public Map Mapa { get; set; }
+        public Stream Stream { get; set; }
+        public List<Posicion> Camino { get; set; }
+        public List<Ubicacion> Ubicaciones { get; set; }
         public Video VideoUrl { get; set; }
-        [ForeignKey("FK_NombrePueblo")]
+        [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }
     }
 }

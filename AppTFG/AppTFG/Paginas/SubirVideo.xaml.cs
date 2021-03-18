@@ -54,18 +54,22 @@ namespace AppTFG.Paginas
 
             //string videoPath = await DependencyService.Get<IVideoPicker>().GetVideoFileAsync();
             var video = await ServicioMultimedia.SeleccionarVideo();
-            string videoPath = video.Path;
-            if (!string.IsNullOrWhiteSpace(videoPath))
+            if (video != null) 
             {
-
-                videoPlayer.Source = new FileVideoSource
+                string videoPath = video.Path;
+                if (!string.IsNullOrWhiteSpace(videoPath))
                 {
-                    File = videoPath
-                };
-                Video.Videoclip = videoPath;
-                Video.Stream = video.GetStream();
+
+                    videoPlayer.Source = new FileVideoSource
+                    {
+                        File = videoPath
+                    };
+                    Video.Videoclip = videoPath;
+                    Video.Stream = video.GetStream();
+                }
+                btn.IsEnabled = true;
             }
-            btn.IsEnabled = true;
+            else { }
         }
 
         void OnPlayPauseButtonClicked(object sender, EventArgs args)

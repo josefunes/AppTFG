@@ -22,7 +22,11 @@
                                 BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
                     </StackLayout>
                 </Frame>
-                <Button Grid.Row="2" Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
+                <StackLayout Grid.Row="2" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">
+                    <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1"/>
+                    <Button Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" FontSize="Large" BackgroundColor="{DynamicResource PrimaryColor}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150" HeightRequest="50" Margin="10"/> <!--Clicked="BtnEditar_Clicked"-->
+                </StackLayout>
+                
             </Grid>
         </StackLayout>
     </ScrollView>

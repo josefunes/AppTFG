@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace AppTFG.Helpers
 {
@@ -16,13 +18,13 @@ namespace AppTFG.Helpers
     {
 
         //Conexión Base de datos en tiempo real
-        //public static FirebaseClient firebase = new FirebaseClient("https://pruebaauth-c50d4-default-rtdb.europe-west1.firebasedatabase.app/");
+        //public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/");
 
-        public static FirebaseClient firebase = new FirebaseClient("https://pruebaauth-c50d4-default-rtdb.europe-west1.firebasedatabase.app/",
+        public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/",
                 new FirebaseOptions { OfflineDatabaseFactory = (t, s) => new OfflineDatabase(t, s) });
 
         //Conexión Almacenaimento contenido multimedia
-        public static FirebaseStorage firebaseStorage = new FirebaseStorage("pruebaauth-c50d4.appspot.com");
+        public static FirebaseStorage firebaseStorage = new FirebaseStorage("apptfg-2e2e6.appspot.com");
 
 
         //MÉTODOS CRUD USUARIO
@@ -256,7 +258,9 @@ namespace AppTFG.Helpers
                     Descripcion = item.Object.Descripcion,
                     ImagenPrincipal = item.Object.ImagenPrincipal,
                     VideoUrl = item.Object.VideoUrl,
-                    IdPueblo = item.Object.IdPueblo
+                    IdPueblo = item.Object.IdPueblo,
+                    Camino = item.Object.Camino,
+                    Ubicaciones = item.Object.Ubicaciones
                 }).ToList();
                 return listaRutas;
             }
@@ -300,14 +304,14 @@ namespace AppTFG.Helpers
             }
         }
 
-        //Insert a user
-        public static async Task<bool> InsertarRuta(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo)
+        //Insertar ruta
+        public static async Task<bool> InsertarRuta(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones)
         {
             try
             {
                 await firebase
                 .Child("Rutas")
-                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo });
+                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones });
                 return true;
             }
             catch (Exception e)
@@ -317,8 +321,8 @@ namespace AppTFG.Helpers
             }
         }
 
-        //Update 
-        public static async Task<bool> ActualizarRuta(int id, string nombre, string descrpcion, string imagen, Video video)
+        //Actualizar ruta
+        public static async Task<bool> ActualizarRuta(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones)
         {
             try
             {
@@ -328,7 +332,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Rutas")
                 .Child(actualizarRuta.Key)
-                .PutAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video });
+                .PutAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones });
                 return true;
             }
             catch (Exception e)
@@ -338,7 +342,7 @@ namespace AppTFG.Helpers
             }
         }
 
-        //Delete User
+        //Borrar ruta
         public static async Task<bool> EliminarRuta(int id)
         {
             try
@@ -347,6 +351,233 @@ namespace AppTFG.Helpers
                 .Child("Rutas")
                 .OnceAsync<Ruta>()).Where(a => a.Object.Id == id).FirstOrDefault();
                 await firebase.Child("Rutas").Child(eliminarRuta.Key).DeleteAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //MÉTODOS CRUD UBICACION
+
+        public static async Task<List<Ubicacion>> ObtenerTodasUbicaciones()
+        {
+            try
+            {
+                var listaUbicaciones = (await firebase
+                .Child("Ubicaciones")
+                .OnceAsync<Ubicacion>()).Select(item =>
+                new Ubicacion
+                {
+                    Id = item.Object.Id,
+                    Nombre = item.Object.Nombre,
+                    Latitud = item.Object.Latitud,
+                    Longitud = item.Object.Longitud
+                }).ToList();
+                return listaUbicaciones;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async Task<List<Ubicacion>> ObtenerTodasUbicacionesRuta(int idRuta)
+        {
+            try
+            {
+                var todasUbicaciones = await ObtenerTodasUbicaciones();
+                await firebase.Child("Ubicaciones").OnceAsync<Ubicacion>();
+                return todasUbicaciones.Where(a => a.Id.Equals(idRuta)).ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read ubicacion
+        public static async Task<Ubicacion> ObtenerUbicacion(int id)
+        {
+            try
+            {
+                var todasUbicaciones = await ObtenerTodasUbicaciones();
+                await firebase
+                .Child("Ubicaciones")
+                .OnceAsync<Ubicacion>();
+                return todasUbicaciones.Where(a => a.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Insertar ubicacion
+        public static async Task<bool> InsertarUbicacion(int id, string nombre, double latitud, double longitud)
+        {
+            try
+            {
+                await firebase
+                .Child("Ubicaciones")
+                .PostAsync(new Ubicacion() { Id = id, Nombre = nombre, Latitud = latitud, Longitud = longitud });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Actualizar ubicacion
+        public static async Task<bool> ActualizarUbicacion(int id, string nombre, double latitud, double longitud)
+        {
+            try
+            {
+                var actualizarUbicacion = (await firebase
+                .Child("Ubicaciones")
+                .OnceAsync<Ubicacion>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase
+                .Child("Ubicaciones")
+                .Child(actualizarUbicacion.Key)
+                .PutAsync(new Ubicacion() { Id = id, Nombre = nombre, Latitud = latitud, Longitud = longitud });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Borrar ubicacion
+        public static async Task<bool> EliminarUbicacion(int id)
+        {
+            try
+            {
+                var eliminarUbicacion = (await firebase
+                .Child("Ubicaciones")
+                .OnceAsync<Ubicacion>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase.Child("Ubicaciones").Child(eliminarUbicacion.Key).DeleteAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //MÉTODOS CRUD CAMINO
+
+        public static async Task<List<Posicion>> ObtenerTodasPosiciones()
+        {
+            try
+            {
+                var listaPosiciones = (await firebase
+                .Child("Posiciones")
+                .OnceAsync<Posicion>()).Select(item =>
+                new Posicion
+                {
+                    Id = item.Object.Id,
+                    X = item.Object.X,
+                    Y = item.Object.Y
+                }).ToList();
+                return listaPosiciones;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async Task<List<Posicion>> ObtenerTodasPosicionesRuta(int idRuta)
+        {
+            try
+            {
+                var todasPosiciones = await ObtenerTodasPosiciones();
+                await firebase.Child("Posiciones").OnceAsync<Posicion>();
+                return todasPosiciones.Where(a => a.Id.Equals(idRuta)).ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read ubicacion
+        public static async Task<Posicion> ObtenerPosicion(int id)
+        {
+            try
+            {
+                var todasPosiciones = await ObtenerTodasPosiciones();
+                await firebase
+                .Child("Posiciones")
+                .OnceAsync<Posicion>();
+                return todasPosiciones.Where(a => a.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Insertar ubicacion
+        public static async Task<bool> InsertarPosicion(int id, double x, double y)
+        {
+            try
+            {
+                await firebase
+                .Child("Posiciones")
+                .PostAsync(new Posicion() { Id = id, X = x, Y = y });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Actualizar ubicacion
+        public static async Task<bool> ActualizarPosicion(int id, double x, double y)
+        {
+            try
+            {
+                var actualizarPosicion = (await firebase
+                .Child("Posiciones")
+                .OnceAsync<Posicion>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase
+                .Child("Posiciones")
+                .Child(actualizarPosicion.Key)
+                .PutAsync(new Posicion() { Id = id, X = x, Y = y });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Borrar ubicacion
+        public static async Task<bool> EliminarPosicion(int id)
+        {
+            try
+            {
+                var eliminarPosicion = (await firebase
+                .Child("Posiciones")
+                .OnceAsync<Posicion>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase.Child("Posiciones").Child(eliminarPosicion.Key).DeleteAsync();
                 return true;
             }
             catch (Exception e)

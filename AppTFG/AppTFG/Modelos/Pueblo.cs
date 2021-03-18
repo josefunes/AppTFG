@@ -1,7 +1,9 @@
 ﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 
 namespace AppTFG.Modelos
 {
@@ -13,8 +15,7 @@ namespace AppTFG.Modelos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
-        public double CoordenadaX { get; set; }
-        public double CoordenadaY { get; set; }
+        public Stream Stream { get; set; }
         public List<Foto> Fotos { get; set; }
         public List<Video> Videos { get; set; }
         public List<Ruta> Rutas { get; set; }

@@ -46,9 +46,13 @@ namespace AppTFG.Paginas
         private async void BtnImagen_Clicked(object sender, EventArgs e)
         {
             var imagen = await ServicioMultimedia.SeleccionarImagen();
-            Foto.Imagen = imagen.Path;
-            Foto.Stream = imagen.GetStream();
-            imgFoto.Source = ImageSource.FromFile(imagen.Path);
+            if (imagen != null)
+            {
+                Foto.Imagen = imagen.Path;
+                Foto.Stream = imagen.GetStream();
+                imgFoto.Source = ImageSource.FromFile(imagen.Path);
+            }
+            else { }
         }
 
         async void BtnRegistrar_Clicked(object sender, EventArgs e)

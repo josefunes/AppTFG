@@ -65,11 +65,11 @@ namespace AppTFG.Paginas
                 return;
             }
             if (actividad.Id > 0)
-                await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl);
+                await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl);
             else
-                await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
+                await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl, actividad.IdPueblo);
             Loading(false);
-            UserDialogs.Instance.Alert("Correcto", "Registro realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
             //await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
         }
@@ -82,7 +82,7 @@ namespace AppTFG.Paginas
                 await FirebaseHelper.EliminarActividad(Actividad.Id);
                 Loading(false);
                 //await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
-                UserDialogs.Instance.Alert("Correcto", "Registro eliminado correctamente", "OK");
+                UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }
         }

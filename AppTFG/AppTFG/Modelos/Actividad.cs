@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 
 namespace AppTFG.Modelos
 {
@@ -12,8 +13,9 @@ namespace AppTFG.Modelos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
+        public Stream Stream { get; set; }
         public Video VideoUrl { get; set; }
-        [ForeignKey("FK_NombrePueblo")]
+        [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }
         public Pueblo Pueblo { get; set; }
     }

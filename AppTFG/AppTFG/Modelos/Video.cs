@@ -13,7 +13,7 @@ namespace AppTFG.Modelos
         public string Nombre { get; set; }
         public string Videoclip { get; set; }
         public Stream Stream { get; set; }
-        [ForeignKey("FK_NombrePueblo")]
+        [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }
     }
 }
