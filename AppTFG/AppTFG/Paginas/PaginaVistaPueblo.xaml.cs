@@ -70,7 +70,7 @@ namespace AppTFG.Paginas
             }
         }
 
-        async void CrearMapa()
+        public async void CrearMapa()
         {
             var nombrePueblo = txtNombre.Text;
             Geocoder geoCoder = new Geocoder();
@@ -82,7 +82,8 @@ namespace AppTFG.Paginas
             {
                 WidthRequest = -1,
                 HeightRequest = 300,
-                HasScrollEnabled = true
+                HasScrollEnabled = true,
+                HasZoomEnabled = true
             };
             Pin pin = new Pin
             {

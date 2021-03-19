@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:vm="clr-namespace:AppTFG.VistaModelos"
              x:Class="AppTFG.Paginas.InicioPage"
-             Title="{Binding Nombre, StringFormat='Bienvenido, {0}'}"
              NavigationPage.HasBackButton="False"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
@@ -29,7 +28,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
-            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
             <!--Frame del Pueblo donde se ve la información más general-->
             <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                 <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -65,9 +64,8 @@
                 
                 <Label Text="Rutas añadidas" Margin="10, 0, 0, 0" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
                 <CollectionView x:Name="clvRutas" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                HorizontalScrollBarVisibility="Never"
-                        ItemsSource="{Binding Rutas}" SelectedItem="{Binding RutaSeleccionada}"
-                        SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
+                                HorizontalScrollBarVisibility="Never" SelectedItem="{Binding RutaSeleccionada}"
+                                SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
@@ -90,9 +88,8 @@
 
                 <Label Text="Actividades añadidas" Margin="10, 0, 0, 0" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
                 <CollectionView x:Name="clvActividades" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                HorizontalScrollBarVisibility="Never"
-                        ItemsSource="{Binding Actividades}" SelectedItem="{Binding ActividadSeleccionada}"
-                        SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
+                                HorizontalScrollBarVisibility="Never" SelectedItem="{Binding ActividadSeleccionada}"
+                                SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>

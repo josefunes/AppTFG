@@ -18,9 +18,8 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaginaPueblo : ContentPage
     {
-        Pueblo Pueblo;
-        Map Mapa;
-        MapSpan MapSpan;
+        private Pueblo Pueblo;
+        private Map Mapa;
         public static InicioView InicioView { get; set; }
 
         public PaginaPueblo(Pueblo pueblo)
@@ -38,7 +37,7 @@ namespace AppTFG.Paginas
             else
             {
                 Title = Pueblo.Nombre;
-                CrearMapa();
+                CrearMapa().ConfigureAwait(true);
                 stackMapa.IsVisible = true;
                 stackMapa.IsEnabled = true;
             }
@@ -177,7 +176,7 @@ namespace AppTFG.Paginas
             }
         }
 
-        async void CrearMapa()
+        async Task CrearMapa()
         {
             var nombrePueblo = txtNombre.Text;
             if (string.IsNullOrEmpty(nombrePueblo))
@@ -190,7 +189,8 @@ namespace AppTFG.Paginas
             {
                 WidthRequest = -1,
                 HeightRequest = 350,
-                HasScrollEnabled = true
+                HasScrollEnabled = true,
+                HasZoomEnabled = true
             };
             Pin pin = new Pin
             {
@@ -219,16 +219,16 @@ namespace AppTFG.Paginas
                     stackMapa.IsVisible = false;
                     stackMapa.IsEnabled = false;
                     //Como hay que devolver un MapSpan, devuelvo la posición de Almería
-                    return MapSpan = new MapSpan(new Position(36.834047, -2.4637136), 0.01, 0.01);
+                    return new MapSpan(new Position(36.834047, -2.4637136), 0.01, 0.01);
                 }
                 else
                 {
-                    return MapSpan = new MapSpan(posicion, 0.01, 0.01);
+                    return new MapSpan(posicion, 0.01, 0.01);
                 }
             }
             else
             {
-                return MapSpan = new MapSpan(position, 0.01, 0.01);
+                return new MapSpan(position, 0.01, 0.01);
             }
             
         }

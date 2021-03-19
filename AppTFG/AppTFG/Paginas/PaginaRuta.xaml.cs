@@ -82,6 +82,7 @@ namespace AppTFG.Paginas
                 WidthRequest = -1,
                 HeightRequest = 300,
                 HasScrollEnabled = true,
+                HasZoomEnabled = true,
                 IsShowingUser = true
             };
             if(PonerRuta() != null)

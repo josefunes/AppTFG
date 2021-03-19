@@ -31,24 +31,36 @@ namespace AppTFG.Paginas
             }          
         }
 
-        async void Loading(bool mostrar)
+        void Loading(bool mostrar)
         {
-            //if (mostrar)
-            //{
-            //    UserDialogs.Instance.ShowLoading("Cargando...");
-            //}
-            //else
-            //{
-            //    await Task.Delay(2000);
-            //    UserDialogs.Instance.HideLoading();
-            //}
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Cargando...");
+                indicator.IsEnabled = mostrar;
+                indicator.IsRunning = mostrar;
+            }
+            else
+            {
+                //await Task.Delay(2000);
+                UserDialogs.Instance.HideLoading();
+                indicator.IsEnabled = mostrar;
+                indicator.IsRunning = mostrar;
+                indicator.HeightRequest = 0;
+            }
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
         }
 
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-
             Loading(true);
+            await CargarDatos();
+            Loading(false);
+        }
+
+        async Task CargarDatos()
+        {
             Label nombreUsuario = new Label();
             nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
             string nombre = nombreUsuario.Text;
@@ -116,7 +128,6 @@ namespace AppTFG.Paginas
             }
             clvRutas.SelectedItem = null;
             clvActividades.SelectedItem = null;
-            Loading(false);
         }
     }
 }

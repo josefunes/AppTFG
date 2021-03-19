@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
-            <ListView x:Name="lsvActividades" ItemsSource="{Binding Actividades}" ItemSelected="LsvActividades_ItemSelected" HasUnevenRows="True">
+            <ListView x:Name="lsvActividades" ItemSelected="LsvActividades_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

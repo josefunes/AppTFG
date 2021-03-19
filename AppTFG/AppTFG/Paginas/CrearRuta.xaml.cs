@@ -72,6 +72,7 @@ namespace AppTFG.Paginas
                 WidthRequest = -1,
                 HeightRequest = 300,
                 HasScrollEnabled = true,
+                HasZoomEnabled = true,
                 IsShowingUser = true
             };
             Map.MapClicked += OnTapCrearRuta;
@@ -90,8 +91,9 @@ namespace AppTFG.Paginas
                 nuevaPosicion = args.Position;
                 var x = nuevaPosicion.Latitude;
                 var y = nuevaPosicion.Longitude;
-                var posicion = new Posicion(Ruta.Id, x, y);
-                camino.Add(posicion);
+                Posicion posicion = new Posicion(Ruta.Id, x, y);
+                //camino.Add(posicion);
+                Ruta.Camino.Add(posicion);
             }
             else
             {
@@ -110,9 +112,11 @@ namespace AppTFG.Paginas
                 var x = nuevoPin.Position.Latitude;
                 var y = nuevoPin.Position.Longitude;
                 var posicion = new Posicion(Ruta.Id, x, y);
-                camino.Add(posicion);
+                Ruta.Camino.Add(posicion);
+                //camino.Add(posicion);
                 var ubicacion = new Ubicacion(Ruta.Id, nombre, x, y);
-                ubicaciones.Add(ubicacion);
+                //ubicaciones.Add(ubicacion);
+                Ruta.Ubicaciones.Add(ubicacion);
             }
             for (int i = 0; i < 1; i++)
             {
@@ -155,8 +159,8 @@ namespace AppTFG.Paginas
                         actualPosition = nuevoPin.Position;
                     }
                     Map.MapElements.Add(Union);
-                    Ruta.Camino = camino;
-                    Ruta.Ubicaciones = ubicaciones;
+                    //Ruta.Camino = camino;
+                    //Ruta.Ubicaciones = ubicaciones;
                 }
                 else if (actualPosition == new Position())
                 {

@@ -16,7 +16,7 @@
                            VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
                            Aspect="AspectFill" HeightRequest="-1" 
                            WidthRequest="-1"/>
-                <Frame Grid.Row="1" CornerRadius="15" Padding="0">
+                <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
                         <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                                 BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>

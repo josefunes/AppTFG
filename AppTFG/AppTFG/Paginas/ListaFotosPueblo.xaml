@@ -19,7 +19,7 @@
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout>
                             <ActivityIndicator x:Name="indicator" Color="HotPink" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            <CollectionView x:Name="clvFotosPueblo" ItemsSource="{Binding Fotos}" ItemsLayout="VerticalGrid, 3" 
+                            <CollectionView x:Name="clvFotosPueblo" ItemsLayout="VerticalGrid, 3" 
                                             VerticalScrollBarVisibility="Never" SelectedItem="{Binding FotoSeleccionada}"
                                             SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
                                 <CollectionView.ItemTemplate>
@@ -59,7 +59,7 @@
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
                             <ActivityIndicator x:Name="indicador" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            <ListView x:Name="lsvFotosPueblo" ItemsSource="{Binding Fotos}" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
+                            <ListView x:Name="lsvFotosPueblo" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
