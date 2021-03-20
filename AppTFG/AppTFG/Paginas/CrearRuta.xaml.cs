@@ -92,7 +92,6 @@ namespace AppTFG.Paginas
                 var x = nuevaPosicion.Latitude;
                 var y = nuevaPosicion.Longitude;
                 Posicion posicion = new Posicion(Ruta.Id, x, y);
-                //camino.Add(posicion);
                 Ruta.Camino.Add(posicion);
             }
             else
@@ -113,9 +112,7 @@ namespace AppTFG.Paginas
                 var y = nuevoPin.Position.Longitude;
                 var posicion = new Posicion(Ruta.Id, x, y);
                 Ruta.Camino.Add(posicion);
-                //camino.Add(posicion);
                 var ubicacion = new Ubicacion(Ruta.Id, nombre, x, y);
-                //ubicaciones.Add(ubicacion);
                 Ruta.Ubicaciones.Add(ubicacion);
             }
             for (int i = 0; i < 1; i++)
@@ -159,8 +156,6 @@ namespace AppTFG.Paginas
                         actualPosition = nuevoPin.Position;
                     }
                     Map.MapElements.Add(Union);
-                    //Ruta.Camino = camino;
-                    //Ruta.Ubicaciones = ubicaciones;
                 }
                 else if (actualPosition == new Position())
                 {
