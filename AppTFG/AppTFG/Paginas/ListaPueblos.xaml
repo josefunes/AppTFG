@@ -8,12 +8,12 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
-            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
             <ListView x:Name="lsvPueblos" ItemSelected="LsvPueblos_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Spacing="0" Orientation="Horizontal" Padding="5">
+                            <StackLayout Spacing="0" Orientation="Horizontal" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
                                 <!--<Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
                                 <cv:CarouselViewControl Orientation="Horizontal" InterPageSpacing="10" Position="{Binding myPosition}" ItemsSource="{Binding Fotos}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                     <cv:CarouselViewControl.ItemTemplate>

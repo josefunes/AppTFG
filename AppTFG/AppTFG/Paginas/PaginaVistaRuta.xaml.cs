@@ -55,57 +55,10 @@ namespace AppTFG.Paginas
                 HasZoomEnabled = true,
                 IsShowingUser = true
             };
-            //if (PonerRuta() != null)
-            //{
-            //    Map.MapElements.Add(PonerRuta());
-            //}
-            //else { }
             PonerRuta();
             PonerPins();
             stackMapa.Children.Add(Map);
         }
-
-        //Polyline PonerRuta()
-        //{
-        //    Position position1;
-        //    Position position2;
-        //    Position position3;
-        //    Position position4;
-        //    for (int i = 0; i < Ruta.Camino.Count; i++)
-        //    {
-        //        if (i + 3 < Ruta.Camino.Count)
-        //        {
-        //            Posicion posicion1 = Ruta.Camino[i];
-        //            Posicion posicion2 = Ruta.Camino[i + 1];
-        //            Posicion posicion3 = Ruta.Camino[i + 2];
-        //            Posicion posicion4 = Ruta.Camino[i + 3];
-        //            if (i + 3 < Ruta.Camino.Count)
-        //            {
-        //                position1 = new Position(posicion1.X, posicion1.Y);
-        //                position2 = new Position(posicion2.X, posicion2.Y);
-        //                position3 = new Position(posicion3.X, posicion3.Y);
-        //                position4 = new Position(posicion4.X, posicion4.Y);
-        //                Polyline = new Polyline
-        //                {
-        //                    StrokeColor = Color.Black,
-        //                    StrokeWidth = 15,
-        //                    Geopath =
-        //                    {
-        //                        position1,
-        //                        position2,
-        //                        position3,
-        //                        position4
-        //                    }
-        //                };
-        //            }
-        //            else
-        //            {
-        //                continue;
-        //            }
-        //        } 
-        //    }
-        //    return Polyline;
-        //}
 
         void PonerRuta()
         {
@@ -150,7 +103,7 @@ namespace AppTFG.Paginas
                 pin1.InfoWindowClicked += async (s, arg) =>
                 {
                     string pinName = ((Pin)s).Label;
-                    await DisplayAlert("Info Window Clicked", $"El audio que toca es {pinName}.", "Ok");
+                    await DisplayAlert(Ruta.Nombre, $"El audio que toca es {pinName}.", "Ok");
                 };
                 Map.Pins.Add(pin1);
             }

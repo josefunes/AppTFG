@@ -29,28 +29,54 @@ namespace AppTFG.Paginas
             Loading(false);
         }
 
+        //void Loading(bool mostrar)
+        //{
+        //    if (mostrar)
+        //    {
+        //        UserDialogs.Instance.ShowLoading("Cargando...");
+        //    }
+        //    else
+        //    {
+        //        UserDialogs.Instance.HideLoading();
+        //    }
+        //}
+
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                UserDialogs.Instance.ShowLoading("Cargando...");
+                indicator.HeightRequest = 30;
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                indicator.HeightRequest = 0;
             }
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
         }
 
         private async void LsvRutas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            Label nombreUsuario = new Label();
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            string nombre = nombreUsuario.Text;
+            var user = await FirebaseHelper.ObtenerUsuario(nombre);
             try
             {
                 var dato = (Ruta)e.SelectedItem;
-                await Navigation.PushAsync(new PaginaRuta(dato));
+                if (dato.IdPueblo == user.UsuarioId)
+                {
+                    await Navigation.PushAsync(new PaginaRuta(dato));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new PaginaVistaRuta(dato));
+                }
                 lsvRutas.SelectedItem = null;
             }
             catch (Exception)
             {
+                //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
             }
         }
     }

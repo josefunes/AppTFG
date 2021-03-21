@@ -16,12 +16,14 @@ namespace AppTFG.Paginas
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 //Application.Current.MainPage.DisplayAlert("", "Sin conexión a internet no es posible usar la app. Conéctate a una red y vuelve a intentarlo.", "OK");
-                UserDialogs.Instance.Alert("", "Sin conexión a internet no es posible usar la app. Conéctate a una red y vuelve a intentarlo.", "OK");
+                UserDialogs.Instance.Alert("Sin conexión a internet no es posible usar la app. Conéctate a una red y vuelve a intentarlo.", "Fallo al iniciar sesión", "OK");
             }
             InitializeComponent();
             Task.Run(AnimateBackground);
             BindingContext = new LoginView();
         }
+
+
         private async void AnimateBackground()
         {
             void forward(double input) => bdGradient.AnchorY = input;

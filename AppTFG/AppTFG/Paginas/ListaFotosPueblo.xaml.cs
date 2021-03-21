@@ -5,6 +5,7 @@ using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Acr.UserDialogs;
 
 namespace AppTFG.Paginas
 {
@@ -66,6 +67,7 @@ namespace AppTFG.Paginas
             }
             catch (Exception)
             {
+                //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
             }
         }
 

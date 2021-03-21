@@ -9,7 +9,7 @@
     </ContentPage.ToolbarItems>
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
-            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>-->
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>

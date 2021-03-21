@@ -163,11 +163,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\ViewGroupExtensions.cs" />
     <Compile Include="FormsVideoLibrary\VideoPicker.cs" />
     <Compile Include="FormsVideoLibrary\VideoPlayerRenderer.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\CustomNavigationPageRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />

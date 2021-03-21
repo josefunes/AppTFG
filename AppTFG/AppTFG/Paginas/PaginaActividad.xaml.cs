@@ -34,17 +34,31 @@ namespace AppTFG.Paginas
             }
         }
 
+        //void Loading(bool mostrar)
+        //{
+        //    if (mostrar)
+        //    {
+        //        UserDialogs.Instance.ShowLoading("Cargando...");
+        //    }
+        //    else
+        //    {
+
+        //        UserDialogs.Instance.HideLoading();
+        //    }
+        //}
+
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                UserDialogs.Instance.ShowLoading("Cargando...");
+                indicator.HeightRequest = 30;
             }
             else
             {
-                
-                UserDialogs.Instance.HideLoading();
+                indicator.HeightRequest = 0;
             }
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)

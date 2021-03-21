@@ -1,4 +1,5 @@
-﻿using AppTFG.Helpers;
+﻿using Acr.UserDialogs;
+using AppTFG.Helpers;
 using AppTFG.Modelos;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,7 @@ namespace AppTFG.Paginas
             }
             catch (Exception)
             {
+                //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
             }
         }
     }

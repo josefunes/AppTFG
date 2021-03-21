@@ -9,14 +9,14 @@
     </ContentPage.ToolbarItems>
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
-            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.3*"/>
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" x:Name="imgActividad" Source="{Binding ImagenPrincipal}" 
+                <Image Grid.Row="0" x:Name="imgActividad" 
                            VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
                            Aspect="AspectFill" HeightRequest="-1" 
                            WidthRequest="-1"/>

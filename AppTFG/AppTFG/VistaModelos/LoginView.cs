@@ -2,6 +2,8 @@
 using AppTFG.Helpers;
 using AppTFG.Paginas;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppTFG.VistaModelos
@@ -50,24 +52,47 @@ namespace AppTFG.VistaModelos
 
         private async void Login()
         {
+            UserDialogs.Instance.ShowLoading("Comprobando credenciales...");
             //null or empty field validation, check weather email and password is null or empty
 
             if (string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Password))
-                UserDialogs.Instance.Alert("Campos vacíos", "Por favor introduce un Usuario y una Contraseña", "OK");
+            {
+                await Task.Delay(2000);
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Por favor introduce un Usuario y una Contraseña", "Campos vacíos", "OK");
+            }   
             else
             {
                 //call GetUser function which we define in Firebase helper class
                 var user = await FirebaseHelper.ObtenerUsuario(Nombre);
                 //firebase return null value if user data not found in database
                 if (user != null)
+                {
                     if (Nombre == user.Nombre && Password == Constantes.Descifrar(user.Password))
                     {
+                        await Task.Delay(2000);
+                        UserDialogs.Instance.HideLoading();
                         Application.Current.MainPage = new AppShell(Nombre);
                     }
+                    else if(Connectivity.NetworkAccess != NetworkAccess.Internet)
+                    {
+                        await Task.Delay(2000);
+                        UserDialogs.Instance.HideLoading();
+                        UserDialogs.Instance.Alert("Sin conexión a internet no es posible usar la app. Conéctate a una red y vuelve a intentarlo.", "Fallo al iniciar sesión", "OK");
+                    }
                     else
-                        UserDialogs.Instance.Alert("Fallo al iniciar sesión", "Por favor, iontroduzca un nombre de usuario y una contraseña correctos", "OK");
+                    {
+                        await Task.Delay(2000);
+                        UserDialogs.Instance.HideLoading();
+                        UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña correctos", "Fallo al iniciar sesión", "OK");
+                    }
+                }
                 else
+                {
+                    await Task.Delay(2000);
+                    UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Alert("Fallo al iniciar sesión", "El Usuario introducido no existe", "OK");
+                }
             }
         }
     }

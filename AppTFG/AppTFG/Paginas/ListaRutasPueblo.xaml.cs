@@ -34,16 +34,30 @@ namespace AppTFG.Paginas
             Loading(false);
         }
 
+        //void Loading(bool mostrar)
+        //{
+        //    if (mostrar)
+        //    {
+        //        UserDialogs.Instance.ShowLoading("Cargando...");
+        //    }
+        //    else
+        //    {
+        //        UserDialogs.Instance.HideLoading();
+        //    }
+        //}
+
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                UserDialogs.Instance.ShowLoading("Cargando...");
+                indicator.HeightRequest = 30;
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                indicator.HeightRequest = 0;
             }
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
         }
 
         private async void LsvRutasPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -56,6 +70,7 @@ namespace AppTFG.Paginas
             }
             catch (Exception)
             {
+                //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
             }
         }
 

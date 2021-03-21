@@ -11,7 +11,7 @@ using Acr.UserDialogs;
 
 namespace AppTFG.Droid
 {
-    [Activity(Label = "AppTFG")]
+    [Activity(Label = "AppTFG", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         const int RequestLocationId = 0;
@@ -97,10 +97,6 @@ namespace AppTFG.Droid
             {
                 base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             }
-
-            //Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            //base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

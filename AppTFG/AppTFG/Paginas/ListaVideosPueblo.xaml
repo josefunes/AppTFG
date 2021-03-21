@@ -9,13 +9,13 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
             <ScrollView VerticalScrollBarVisibility="Never">
-                <ListView x:Name="lsvVideosPueblo" ItemsSource="{Binding Videos}" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True">
+                <ListView x:Name="lsvVideosPueblo" ItemSelected="LsvVideosPueblo_ItemSelected" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Spacing="5" Orientation="Horizontal" Padding="5">
+                                <StackLayout Spacing="5" Orientation="Horizontal" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
                                     <Label Text="{Binding Nombre}" FontSize="Title" 
                                             LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" Margin="10" FontFamily="BSDRegular"/>
                                 </StackLayout>

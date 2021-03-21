@@ -26,6 +26,7 @@
                 <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="LightBlue" TextColor="Black" Margin="60,0,60,0" FontFamily="BSDRegular"/>
                 <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
                 <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding Registro}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
+                <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
                 <!--<Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>

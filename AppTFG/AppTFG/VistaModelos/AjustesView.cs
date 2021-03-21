@@ -67,7 +67,7 @@ namespace AppTFG.VistaModelos
                     if (Password == ConfirmPassword)
                         Update();
                     else
-                        UserDialogs.Instance.Alert("", "La contraseña introducida tiene que coincidir con la anterior", "OK");
+                        UserDialogs.Instance.Alert("La contraseña introducida tiene que coincidir con la anterior", "", "OK");
                 });
             }
         }
@@ -90,11 +90,11 @@ namespace AppTFG.VistaModelos
                 {
                     if (!(Constantes.Descifrar(usuario.Password) == Password) || !(Constantes.Descifrar(usuario.Password) == ConfirmPassword))
                     {
-                        UserDialogs.Instance.Alert("Error", "Contraseña actual errónea. Pruebe de nuevo.", "OK");
+                        UserDialogs.Instance.Alert("Contraseña actual errónea. Pruebe de nuevo.", "Error", "OK");
                     }
                     else if ((NewPassword.Length < 8 && NewPassword.Length > 15) || !NewPassword.ToCharArray().Any(Char.IsDigit))
                     {
-                        UserDialogs.Instance.Alert("Error", "La contraseña debe tener como mínimo 8 caracteres y un máximo de 15, incluyendo una letra minúscula, una mayúscula y un número.", "OK");
+                        UserDialogs.Instance.Alert("La contraseña debe tener como mínimo 8 caracteres y un máximo de 15, incluyendo una letra minúscula, una mayúscula y un número.", "Error", "OK");
                     }
                     else
                     {
@@ -102,17 +102,18 @@ namespace AppTFG.VistaModelos
                         //call AddUser function which we define in Firebase helper class
                         var isupdate = await FirebaseHelper.ActualizarUsuario(nombre, pass, usuario.UsuarioId);
                         if (isupdate)
-                            UserDialogs.Instance.Alert("Contraseña actualizada", "", "Ok");
+                            UserDialogs.Instance.Alert("", "Contraseña actualizada", "Ok");
                         else
-                            UserDialogs.Instance.Alert("Error", "No se ha podido actualizar.", "Ok");
+                            UserDialogs.Instance.Alert("No se ha podido actualizar.", "Error", "Ok");
                     }
                 }
                 else
-                    UserDialogs.Instance.Alert("Inserte una contraseña válida", "Por favor, introduzca una nueva contraseña.", "Ok");
+                    UserDialogs.Instance.Alert("Por favor, introduzca una nueva contraseña.", "Inserte una contraseña válida", "Ok");
             }
             catch (Exception e)
             {
-                Debug.WriteLine($"Error:{e}");
+                //UserDialogs.Instance.Alert("No se ha podido actualizar la contraseña.", "", "Ok");
+                Debug.WriteLine($"Error catch:{e}");
             }
         }
 
@@ -125,10 +126,11 @@ namespace AppTFG.VistaModelos
                 if (isdelete)
                     await App.Current.MainPage.Navigation.PopAsync();
                 else
-                    UserDialogs.Instance.Alert("Error", "No se ha podido eliminar el usuario", "Ok");
+                    UserDialogs.Instance.Alert("No se ha podido eliminar el usuario", "Error", "Ok");
             }
             catch (Exception e)
             {
+                //UserDialogs.Instance.Alert("No se ha podido eliminar el usuario", "", "Ok");
                 Debug.WriteLine($"Error:{e}");
             }
         }
