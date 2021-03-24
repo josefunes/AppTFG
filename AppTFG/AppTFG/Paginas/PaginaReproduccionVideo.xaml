@@ -4,9 +4,6 @@
              xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary" 
              x:Class="AppTFG.Paginas.PaginaReproduccionVideo"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <!--<ContentPage.BindingContext>
-        <p:ListaVideosPueblo/>
-    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
@@ -28,9 +25,10 @@
                             <video:VideoPlayer x:Name="videoPlayer"
                                                Grid.Row="0" 
                                                AutoPlay="False" 
-                                               AreTransportControlsEnabled="False"/>
+                                               AreTransportControlsEnabled="False"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Fill"/>
                             <ActivityIndicator Grid.Row="0"
-                                               Color="Gray"
                                                IsVisible="False">
                                 <ActivityIndicator.Triggers>
                                     <DataTrigger TargetType="ActivityIndicator"

@@ -58,7 +58,7 @@ namespace AppTFG.Paginas
         private async void LsvRutas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
             string nombre = nombreUsuario.Text;
             var user = await FirebaseHelper.ObtenerUsuario(nombre);
             try

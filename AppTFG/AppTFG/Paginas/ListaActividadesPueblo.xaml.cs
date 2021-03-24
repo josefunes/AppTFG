@@ -77,7 +77,7 @@ namespace AppTFG.Paginas
         public async void BtnAgregar_Clicked(object sender, EventArgs e)
         {
             Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);

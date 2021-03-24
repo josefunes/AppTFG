@@ -11,38 +11,38 @@ namespace AppTFG
 
         public App()
         {
-            Comprobar();
+            //Comprobar();
             InitializeComponent();
-            
+            MainPage = new LoginPage();
         }
 
-        public void Comprobar()
-        {
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
-            string nombre = nombreUsuario.Text;
-            if (nombre != null)
-            {
-                MainPage = new AppShell(nombre);
-            }
-            else
-            {
-                MainPage = new LoginPage();
-            }
-        }
+        //public void Comprobar()
+        //{
+        //    nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
+        //    string nombre = nombreUsuario.Text;
+        //    if (nombre != null)
+        //    {
+        //        MainPage = new AppShell(nombre);
+        //    }
+        //    else
+        //    {
+        //        MainPage = new LoginPage();
+        //    }
+        //}
 
         protected override void OnStart()
         {
-            Comprobar();
+            //Comprobar();
         }
 
         protected override void OnSleep()
         {
-            Comprobar();
+            //Comprobar();
         }
 
         protected override void OnResume()
         {
-            Comprobar();
+            //Comprobar();
         }
     }
 }

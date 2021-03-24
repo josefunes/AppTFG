@@ -183,7 +183,7 @@ namespace AppTFG.Paginas
             if (ruta.Id > 0)
                 await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
             else
-                await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
+                await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion/*, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl*/, ruta.IdPueblo/*, ruta.Camino, ruta.Ubicaciones*/);
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
             await Navigation.PopAsync();

@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary" 
-             xmlns:p="clr-namespace:AppTFG.Paginas"
              x:Class="AppTFG.Paginas.SubirVideo"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
@@ -26,9 +25,10 @@
                             <video:VideoPlayer x:Name="videoPlayer"
                                                Grid.Row="0" 
                                                AutoPlay="False" 
-                                               AreTransportControlsEnabled="False"/>
+                                               AreTransportControlsEnabled="False"
+                                               HorizontalOptions="Fill"
+                                               VerticalOptions="Fill"/>
                             <ActivityIndicator Grid.Row="0"
-                                               Color="Gray"
                                                IsVisible="False">
                                 <ActivityIndicator.Triggers>
                                     <DataTrigger TargetType="ActivityIndicator"

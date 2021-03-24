@@ -31,45 +31,45 @@ namespace AppTFG.Paginas
             }          
         }
 
-        void Loading(bool mostrar)
-        {
-            if (mostrar)
-            {
-                indicator.HeightRequest = 30;
-            }
-            else
-            {
-                indicator.HeightRequest = 0;
-            }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
-        }
-
         //void Loading(bool mostrar)
         //{
         //    if (mostrar)
         //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
+        //        indicator.HeightRequest = 30;
         //    }
         //    else
         //    {
-        //        await Task.Delay(2000);
-        //        UserDialogs.Instance.HideLoading();
+        //        indicator.HeightRequest = 0;
         //    }
+        //    indicator.IsEnabled = mostrar;
+        //    indicator.IsRunning = mostrar;
         //}
+
+        async void Loading(bool mostrar)
+        {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Cargando...");
+            }
+            else
+            {
+                await Task.Delay(2000);
+                UserDialogs.Instance.HideLoading();
+            }
+        }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             Loading(true);
-            await CargarDatos();
+            await CargarDatos();           
             Loading(false);
         }
 
-        async Task CargarDatos()
+        public async Task CargarDatos()
         {
             Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);

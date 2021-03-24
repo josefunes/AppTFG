@@ -9,14 +9,14 @@ namespace AppTFG
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
-        public static InicioView inicio { get; set; }
+        public static InicioView Inicio { get; set; }
 
         public AppShell(string nombre)
         {
             InitializeComponent();
             FlyoutHeaderTemplate = menuHeader;
-            inicio = new InicioView(nombre);
-            BindingContext = inicio;
+            Inicio = new InicioView(nombre);
+            BindingContext = Inicio;
         }
 
         DataTemplate menuHeader = new DataTemplate(() =>
@@ -76,7 +76,7 @@ namespace AppTFG
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
             nombreUsuario.SetDynamicResource(Label.TextColorProperty, key: "PrimaryTextColor");
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: inicio));
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: Inicio));
 
             grid.Children.Add(titulo, 0, 0);
             Grid.SetRowSpan(titulo, 2);

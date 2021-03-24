@@ -57,14 +57,14 @@ namespace AppTFG.Paginas
 
         void Loading(bool mostrar)
         {
-            if (mostrar)
-            {
-                indicator.HeightRequest = 30;
-            }
-            else
-            {
-                indicator.HeightRequest = 0;
-            }
+            //if (mostrar)
+            //{
+            //    indicator.HeightRequest = 30;
+            //}
+            //else
+            //{
+            //    indicator.HeightRequest = 0;
+            //}
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }
@@ -86,7 +86,7 @@ namespace AppTFG.Paginas
             Loading(true);
             var pueblo = (Pueblo)BindingContext;
             Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             if (string.IsNullOrEmpty(txtNombre.Text))
@@ -95,10 +95,10 @@ namespace AppTFG.Paginas
                 return;
             }
             if (pueblo.Id > 0)
-                await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
+                await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
             else
             {
-                await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
+                await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion/*, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre)*/);
                 if (user.UsuarioId == 0)
                 {
                     await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id);

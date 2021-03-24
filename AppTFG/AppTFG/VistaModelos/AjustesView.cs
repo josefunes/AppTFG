@@ -83,7 +83,7 @@ namespace AppTFG.VistaModelos
             try
             {
                 Label nombreUsuario = new Label();
-                nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.inicio));
+                nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
                 string nombre = nombreUsuario.Text;
                 var usuario = await FirebaseHelper.ObtenerUsuario(nombre);
                 if (!string.IsNullOrEmpty(NewPassword))

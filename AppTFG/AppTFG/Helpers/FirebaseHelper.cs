@@ -18,10 +18,10 @@ namespace AppTFG.Helpers
     {
 
         //Conexión Base de datos en tiempo real
-        //public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/");
+        public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/");
 
-        public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/",
-                new FirebaseOptions { OfflineDatabaseFactory = (t, s) => new OfflineDatabase(t, s) });
+        //public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/",
+        //        new FirebaseOptions { OfflineDatabaseFactory = (t, s) => new OfflineDatabase(t, s) });
 
         //Conexión Almacenaimento contenido multimedia
         public static FirebaseStorage firebaseStorage = new FirebaseStorage("apptfg-2e2e6.appspot.com");
@@ -187,13 +187,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarPueblo(int id, string nombre, string descrpcion, string imagen) /*, int idUsuario*/
+        public static async Task<bool> InsertarPueblo(int id, string nombre, string descrpcion/*, string imagen*/) /*, int idUsuario*/
         {
             try
             {
                 await firebase
                 .Child("Pueblos")
-                .PostAsync(new Pueblo() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen }); /*, IdUsuario = idUsuario*/
+                .PostAsync(new Pueblo() { Id = id, Nombre = nombre, Descripcion = descrpcion/*, ImagenPrincipal = imagen */}); /*, IdUsuario = idUsuario*/
                 return true;
             }
             catch (Exception e)
@@ -305,13 +305,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar ruta
-        public static async Task<bool> InsertarRuta(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones)
+        public static async Task<bool> InsertarRuta(int id, string nombre, string descrpcion, /*string imagen, Video video,*/ int idPueblo/*, List<Posicion> camino, List<Ubicacion> ubicaciones*/)
         {
             try
             {
                 await firebase
                 .Child("Rutas")
-                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones });
+                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descrpcion, /*ImagenPrincipal = imagen, VideoUrl = video,*/ IdPueblo = idPueblo/*, Camino = camino, Ubicaciones = ubicaciones*/ });
                 return true;
             }
             catch (Exception e)
