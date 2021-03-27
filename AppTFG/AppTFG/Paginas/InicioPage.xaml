@@ -27,8 +27,8 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <StackLayout HorizontalOptions="FillAndExpand">
+            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>-->
             <!--Frame del Pueblo donde se ve la información más general-->
             <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                 <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

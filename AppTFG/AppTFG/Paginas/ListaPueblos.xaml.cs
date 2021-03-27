@@ -9,12 +9,14 @@ using AppTFG.VistaModelos;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Acr.UserDialogs;
+using System.Linq;
 
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaPueblos : ContentPage
     {
+        public static List<Pueblo> Pueblos { get; set; }
         public ListaPueblos()
         {
             Title = "Lista de Pueblos";
@@ -26,7 +28,8 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            lsvPueblos.ItemsSource = await FirebaseHelper.ObtenerTodosPueblos();
+            Pueblos = await FirebaseHelper.ObtenerTodosPueblos();
+            lsvPueblos.ItemsSource = GetSearchResults(searchBar.Text);
             Loading(false);
         }
 
@@ -44,14 +47,14 @@ namespace AppTFG.Paginas
 
         void Loading(bool mostrar)
         {
-            if (mostrar)
-            {
-                indicator.HeightRequest = 30;
-            }
-            else
-            {
-                indicator.HeightRequest = 0;
-            }
+            //if (mostrar)
+            //{
+            //    indicator.HeightRequest = 30;
+            //}
+            //else
+            //{
+            //    indicator.HeightRequest = 0;
+            //}
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }
@@ -97,6 +100,17 @@ namespace AppTFG.Paginas
             {
                 await Navigation.PushAsync(new PaginaPueblo(puebloUser));
             }
+        }
+
+        void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvPueblos.ItemsSource = GetSearchResults(e.NewTextValue);
+        }
+
+        public static List<Pueblo> GetSearchResults(string queryString)
+        {
+            var normalizedQuery = queryString?.ToLower() ?? "";
+            return Pueblos.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
     }
 }

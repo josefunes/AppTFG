@@ -5,6 +5,7 @@ using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,45 +21,45 @@ namespace AppTFG.Paginas
             Video = video;
             BindingContext = video;
             //Con esto le envío al reproductor el vídeo que he seleccionado en la pantalla anterior
-            videoPlayer.Source = new FileVideoSource
-            {
-                File = video.Videoclip
-            };
             if (video.Id == 0)
             {
                 this.ToolbarItems.RemoveAt(1);
-                Title = "Nuevo video";
+                Title = "Nuevo vídeo";
+                videoPlayer.IsVisible = false;
+                videoPlayer.IsEnabled = false;
             }
             else
             {
                 Title = Video.Nombre;
+                videoPlayer.Source = new FileVideoSource
+                {
+                    File = video.Videoclip
+                };
             }
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         void Loading(bool mostrar)
         {
-            //if (mostrar)
-            //{
-            //    indicator.HeightRequest = 30;
-            //}
-            //else
-            //{
-            //    indicator.HeightRequest = 0;
-            //}
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Guardando vídeo...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        void Loading1(bool mostrar)
+        {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Eliminando vídeo...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         async void BtnVideo_Clicked(object sender, EventArgs args)
@@ -73,7 +74,10 @@ namespace AppTFG.Paginas
                 string videoPath = video.Path;
                 if (!string.IsNullOrWhiteSpace(videoPath))
                 {
-
+                    if(videoPlayer.IsVisible == false)
+                    {
+                        videoPlayer.IsVisible = true;
+                    }
                     videoPlayer.Source = new FileVideoSource
                     {
                         File = videoPath
@@ -103,26 +107,38 @@ namespace AppTFG.Paginas
             videoPlayer.Stop();
         }
 
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Page1(Video));
+        }
+
         async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {
             Loading(true);
             var video = (Video)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleVideoRequired, "OK");
+                UserDialogs.Instance.Alert(Constantes.TitleVideoRequired, "Advertencia", "OK");
+                Loading(false);
                 return;
             }
             if (video.Id > 0)
             {
-                await FirebaseHelper.ActualizarVideo(video.Id, video.Nombre, video.Videoclip);
+                if (video.Stream == null)
+                {
+                    await FirebaseHelper.ActualizarVideo(video.Id, video.Nombre, video.Videoclip, video.IdPueblo);
+                }
+                else
+                {
+                    await FirebaseHelper.ActualizarVideo(video.Id, video.Nombre, video.Videoclip = await FirebaseHelper.SubirVideo(video.Stream, video.Nombre), video.IdPueblo);
+                }
             }
             else
             {
-                //var videoclip = await FirebaseHelper.SubirVideo(video.Stream, video.Nombre);
                 await FirebaseHelper.InsertarVideo(video.Id = Constantes.GenerarId(), video.Nombre, video.Videoclip = await FirebaseHelper.SubirVideo(video.Stream, video.Nombre), video.IdPueblo);
             }
             Loading(false);
-            UserDialogs.Instance.Alert("Correcto", "Registro del vídeo realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Registro del vídeo realizado correctamente", "Correcto", "OK");
             await Navigation.PopAsync();
         }
 
@@ -130,11 +146,11 @@ namespace AppTFG.Paginas
         {
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este vídeo?", "Si", "No"))
             {
-                Loading(true);
+                Loading1(true);
                 await FirebaseHelper.EliminarVideo(Video.Id);
                 await FirebaseHelper.BorrarVideo(Video.Nombre);
-                Loading(false);
-                UserDialogs.Instance.Alert("Correcto", "Vídeo eliminado correctamente", "OK");
+                Loading1(false);
+                UserDialogs.Instance.Alert("Vídeo eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }
         }

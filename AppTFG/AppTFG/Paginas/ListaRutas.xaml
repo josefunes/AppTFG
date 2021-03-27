@@ -5,8 +5,11 @@
              Title="Lista de Rutas"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout>
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <StackLayout Spacing="0" Orientation="Vertical" Padding="0">
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource PrimaryTextColor}"
+                   Placeholder="Buscar ruta" CancelButtonColor="{DynamicResource PrimaryTextColor}" PlaceholderColor="{DynamicResource PrimaryTextColor}"
+                   TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
             <ListView x:Name="lsvRutas" ItemSelected="LsvRutas_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

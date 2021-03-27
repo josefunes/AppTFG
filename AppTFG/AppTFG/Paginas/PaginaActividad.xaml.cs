@@ -34,31 +34,30 @@ namespace AppTFG.Paginas
             }
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Guardando actividad...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
+        }
+
+        void Loading1(bool mostrar)
+        {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Eliminando actividad...");
+            }
+            else
+            {
+
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -74,28 +73,44 @@ namespace AppTFG.Paginas
             var actividad = (Actividad)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleActividadRequired, "OK");
-                //await DisplayAlert("Advertencia", Constantes.TitleActividadRequired, "OK");
+                UserDialogs.Instance.Alert(Constantes.TitleActividadRequired, "Advertencia", "OK");
+                Loading(false);
                 return;
             }
             if (actividad.Id > 0)
-                await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl);
+            {
+                if (actividad.Stream == null)
+                {
+                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
+                }
+                else
+                {
+                    await FirebaseHelper.BorrarFoto("Imagen principal de " + actividad.Nombre);
+                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl, actividad.IdPueblo);
+                }
+            }
             else
-                await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl, actividad.IdPueblo);
+            {
+                if(actividad.Stream == null)
+                {
+                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
+                }
+                else
+                {
+                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl, actividad.IdPueblo);
+                }
+            }
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
-            //await DisplayAlert("Correcto", "Registro realizado correctamente", "OK");
-            await Navigation.PopAsync();
         }
 
         async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
-                Loading(true);
+                Loading1(true);
                 await FirebaseHelper.EliminarActividad(Actividad.Id);
-                Loading(false);
-                //await DisplayAlert("Correcto", "Registro eliminado correctamente", "OK");
+                Loading1(false);
                 UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }

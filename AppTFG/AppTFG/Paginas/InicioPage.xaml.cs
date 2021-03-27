@@ -1,16 +1,9 @@
 ﻿using Acr.UserDialogs;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
-using AppTFG.VistaModelos;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace AppTFG.Paginas
 {
@@ -26,7 +19,7 @@ namespace AppTFG.Paginas
             }
             else
             {
-                //Application.Current.MainPage.DisplayAlert("", "Se ha perdido la conexión a Internet. Cuando vuelva a tener conexión vuelva a intentar entrar a la app.", "OK");
+                Application.Current.MainPage.DisplayAlert("", "Se ha perdido la conexión a Internet. Cuando vuelva a tener conexión vuelva a intentar entrar a la app.", "OK");
                 UserDialogs.Instance.Alert("Error", "Se ha perdido la conexión a Internet. Cuando vuelva a tener conexión vuelva a intentar entrar a la app.", "OK");
             }          
         }

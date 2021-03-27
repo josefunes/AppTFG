@@ -7,13 +7,13 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
-                <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>
+                <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="0"/>-->
                 <StackLayout Padding="15">
                     <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="50"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
                             <video:VideoPlayer x:Name="videoPlayer"
                                                Grid.Row="0" 
                                                AutoPlay="False" 
-                                               AreTransportControlsEnabled="False"
+                                               AreTransportControlsEnabled="True"
                                                HorizontalOptions="Fill"
                                                VerticalOptions="Fill"/>
                             <ActivityIndicator Grid.Row="0"
@@ -68,17 +68,17 @@
                                     </Button.Triggers>
                                 </Button>
 
-                                <Button Text="⏹️" FontSize="Medium" BackgroundColor="Transparent"
-                                        HorizontalOptions="CenterAndExpand"
-                                        Clicked="OnStopButtonClicked">
-                                    <Button.Triggers>
+                                <!--<Button Text="⏹️" FontSize="Medium" BackgroundColor="Transparent"
+                                        HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked">
+                                    --><!--Clicked="OnStopButtonClicked">-->
+                                    <!--<Button.Triggers>
                                         <DataTrigger TargetType="Button"
                                                      Binding="{Binding Status}"
                                                      Value="{x:Static video:VideoStatus.NotReady}">
                                             <Setter Property="IsEnabled" Value="False" />
                                         </DataTrigger>
-                                    </Button.Triggers>
-                                </Button>
+                                    </Button.Triggers>--><!--
+                                </Button>-->
 
                                 <Label Text="{Binding Path=TimeToEnd,
                                         StringFormat='{0:mm\\:ss}'}"
@@ -103,8 +103,8 @@
                             Placeholder="Título del vídeo" FontFamily="BSDRegular" Grid.Row="1" VerticalOptions="End"
                             PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large"/>
                         <Button x:Name="btnImagen" Text="Abrir galería" VerticalOptions="Start"
-                            BackgroundColor="Transparent" FontSize="Large"
-                            TextColor="DimGray" WidthRequest="150"  FontFamily="BSDRegular"
+                            BackgroundColor="{DynamicResource TertiaryTextColor}" FontSize="Large"
+                            TextColor="{DynamicResource PrimaryTextColor}" WidthRequest="150"  FontFamily="BSDRegular"
                             HorizontalOptions="Center" Clicked="BtnVideo_Clicked" Grid.Row="2"/>
                     </Grid>
                 </StackLayout>

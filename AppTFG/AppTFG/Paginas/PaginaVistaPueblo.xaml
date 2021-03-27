@@ -18,16 +18,16 @@
                                Aspect="AspectFill" HeightRequest="150"/>
                     <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                         <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
-                            <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
+                            <!--<Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                                --><!--<Label Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                                 HorizontalOptions="StartAndExpand" FontSize="Large"
-                                BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
-                            </Grid>
-                            <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="0">
+                                BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />--><!--
+                            </Grid>-->
+                            <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="0" Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>

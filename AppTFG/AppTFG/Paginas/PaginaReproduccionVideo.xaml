@@ -68,17 +68,17 @@
                                     </Button.Triggers>
                                 </Button>
 
-                                <Button Text="⏹️" FontSize="Medium" BackgroundColor="Transparent"
-                                        HorizontalOptions="CenterAndExpand"
-                                        Clicked="OnStopButtonClicked">
-                                    <Button.Triggers>
+                                <!--<Button Text="⏹️" FontSize="Medium" BackgroundColor="Transparent"
+                                        HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked">
+                                    --><!--Clicked="OnStopButtonClicked">-->
+                                    <!--<Button.Triggers>
                                         <DataTrigger TargetType="Button"
                                                      Binding="{Binding Status}"
                                                      Value="{x:Static video:VideoStatus.NotReady}">
                                             <Setter Property="IsEnabled" Value="False" />
                                         </DataTrigger>
-                                    </Button.Triggers>
-                                </Button>
+                                    </Button.Triggers>--><!--
+                                </Button>-->
 
                                 <Label Text="{Binding Path=TimeToEnd,
                                         StringFormat='{0:mm\\:ss}'}"

@@ -91,7 +91,7 @@ namespace AppTFG.VistaModelos
                 {
                     await Task.Delay(2000);
                     UserDialogs.Instance.HideLoading();
-                    UserDialogs.Instance.Alert("Fallo al iniciar sesión", "El Usuario introducido no existe", "OK");
+                    UserDialogs.Instance.Alert("El Usuario introducido no existe", "Fallo al iniciar sesión", "OK");
                 }
             }
         }

@@ -5,6 +5,7 @@ using AppTFG.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -46,11 +47,10 @@ namespace AppTFG.Paginas
         //{
         //    if (mostrar)
         //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
+        //        UserDialogs.Instance.ShowLoading("Guardando ...");
         //    }
         //    else
         //    {
-        //        await Task.Delay(2000);
         //        UserDialogs.Instance.HideLoading();
         //    }
         //}
@@ -99,8 +99,14 @@ namespace AppTFG.Paginas
             string nombre = await DisplayPromptAsync("Título", "Introduce número y título", "Añadir", "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
             Pin nuevoPin = new Pin();
             Position nuevaPosicion = new Position();
-            List<Posicion> camino = new List<Posicion>();
-            List<Ubicacion> ubicaciones = new List<Ubicacion>();
+            if (Ruta.Camino == null)
+            {
+                Ruta.Camino = new List<Posicion>();
+            }
+            if (Ruta.Ubicaciones == null)
+            {
+                Ruta.Ubicaciones = new List<Ubicacion>();
+            }
             if (nombre.Length == 0 || nombre == null)
             {
                 nuevaPosicion = args.Position;
@@ -123,11 +129,11 @@ namespace AppTFG.Paginas
                     string pinName = ((Pin)s).Label;
                     await DisplayAlert("Info Window Clicked", $"El audio que toca es {pinName}.", "Ok");
                 };
-                var x = nuevoPin.Position.Latitude;
-                var y = nuevoPin.Position.Longitude;
-                var posicion = new Posicion(Ruta.Id, x, y);
+                double x = nuevoPin.Position.Latitude;
+                double y = nuevoPin.Position.Longitude;
+                Ubicacion ubicacion = new Ubicacion(Ruta.Id, nombre, x, y);
+                Posicion posicion = new Posicion(Ruta.Id, x, y);
                 Ruta.Camino.Add(posicion);
-                var ubicacion = new Ubicacion(Ruta.Id, nombre, x, y);
                 Ruta.Ubicaciones.Add(ubicacion);
             }
             for (int i = 0; i < 1; i++)

@@ -43,30 +43,28 @@ namespace AppTFG.Paginas
             }
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         void Loading(bool mostrar)
         {
-            //if (mostrar)
-            //{
-            //    indicator.HeightRequest = 30;
-            //}
-            //else
-            //{
-            //    indicator.HeightRequest = 0;
-            //}
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Guardando pueblo...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        void Loading1(bool mostrar)
+        {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Eliminando pueblo...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -92,13 +90,31 @@ namespace AppTFG.Paginas
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired, "Advertencia", "OK");
+                Loading(false);
                 return;
             }
             if (pueblo.Id > 0)
-                await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
+            {
+                if (pueblo.Stream == null)
+                {
+                    await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
+                }
+                else
+                {
+                    await FirebaseHelper.BorrarFoto("Imagen principal de " + pueblo.Nombre);
+                    await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
+                }
+            }    
             else
             {
-                await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion/*, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre)*/);
+                if(pueblo.Stream == null)
+                {
+                    await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
+                }
+                else
+                {
+                    await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
+                }
                 if (user.UsuarioId == 0)
                 {
                     await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id);
@@ -106,16 +122,20 @@ namespace AppTFG.Paginas
             }
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
-            await Navigation.PopAsync();
+            //await Navigation.PopAsync();
         }
 
         async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
-                Loading(true);
+                Loading1(true);
                 await FirebaseHelper.EliminarPueblo(Pueblo.Id);
-                Loading(false);
+                FirebaseHelper.EliminarTodasActividadesPueblo(Pueblo.Id);
+                FirebaseHelper.EliminarTodasFotosPueblo(Pueblo.Id);
+                FirebaseHelper.EliminarTodasRutasPueblo(Pueblo.Id);
+                FirebaseHelper.EliminarTodosVideosPueblo(Pueblo.Id);
+                Loading1(false);
                 UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }

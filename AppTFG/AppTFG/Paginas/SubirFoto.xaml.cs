@@ -31,30 +31,28 @@ namespace AppTFG.Paginas
             }
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Guardando foto...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
+        }
+
+        void Loading1(bool mostrar)
+        {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Eliminando foto...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -75,19 +73,28 @@ namespace AppTFG.Paginas
             var foto = (Foto)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleImagenRequired, "OK");
+                UserDialogs.Instance.Alert(Constantes.TitleImagenRequired, "Advertencia", "OK");
+                Loading(false);
                 return;
             }
             if (foto.Id > 0)
             {
-                await FirebaseHelper.ActualizarFoto(foto.Id, foto.Nombre, foto.Imagen);
+                if (foto.Stream == null)
+                {
+                    await FirebaseHelper.ActualizarFoto(foto.Id, foto.Nombre, foto.Imagen, foto.IdPueblo);
+
+                }
+                else
+                {
+                    await FirebaseHelper.ActualizarFoto(foto.Id, foto.Nombre, foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), foto.IdPueblo);
+                }
             } 
             else
             {
                 await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), foto.IdPueblo);
             }
             Loading(false);
-            UserDialogs.Instance.Alert("Correcto", "Registro realizado correctamente", "OK");
+            UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
             await Navigation.PopAsync();
         }
 
@@ -95,11 +102,11 @@ namespace AppTFG.Paginas
         {
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
-                Loading(true);
+                Loading1(true);
                 await FirebaseHelper.EliminarFoto(Foto.Id);
                 await FirebaseHelper.BorrarFoto(Foto.Nombre);
-                Loading(false);
-                UserDialogs.Instance.Alert("Correcto", "Registro eliminado correctamente", "OK");
+                Loading1(false);
+                UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }
         }

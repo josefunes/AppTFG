@@ -40,30 +40,28 @@ namespace AppTFG.Paginas
             }
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                indicator.HeightRequest = 30;
+                UserDialogs.Instance.ShowLoading("Guardando ruta...");
             }
             else
             {
-                indicator.HeightRequest = 0;
+                UserDialogs.Instance.HideLoading();
             }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
+        }
+
+        void Loading1(bool mostrar)
+        {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Eliminando ruta...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -177,26 +175,44 @@ namespace AppTFG.Paginas
             var ruta = (Ruta)BindingContext;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                UserDialogs.Instance.Alert("Advertencia", Constantes.TitleRutaRequired, "OK");
+                UserDialogs.Instance.Alert(Constantes.TitleRutaRequired, "Advertencia", "OK");
+                Loading(false);
                 return;
             }
             if (ruta.Id > 0)
-                await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
+            { 
+                if (ruta.Stream == null)
+                {
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
+                }
+                else
+                {
+                    await FirebaseHelper.BorrarFoto("Imagen principal de " + ruta.Nombre);
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
+                }
+            }
             else
-                await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion/*, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl*/, ruta.IdPueblo/*, ruta.Camino, ruta.Ubicaciones*/);
+            {
+                if (ruta.Stream == null)
+                {
+                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
+                }
+                else
+                {
+                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
+                }
+            }
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
-            await Navigation.PopAsync();
         }
 
         async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
             if (await DisplayAlert("Advertencia", "¿Deseas eliminar este registro?", "Si", "No"))
             {
-                Loading(true);
-                //await bd.Eliminar(((Ruta)BindingContext).Id);
+                Loading1(true);
                 await FirebaseHelper.EliminarRuta(Ruta.Id);
-                Loading(false);
+                Loading1(false);
                 UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }

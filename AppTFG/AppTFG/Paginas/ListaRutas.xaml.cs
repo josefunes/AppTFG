@@ -3,6 +3,8 @@ using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,6 +14,7 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaRutas : ContentPage
     {
+        public static List<Ruta> Rutas { get; set; }
         public ListaRutas()
         {
             InitializeComponent();
@@ -23,9 +26,8 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            //var bd = new ServicioBaseDatos<Ruta>();
-            //lsvRutas.ItemsSource = await bd.ObtenerTabla();
-            lsvRutas.ItemsSource = await FirebaseHelper.ObtenerTodasRutas();
+            Rutas = await FirebaseHelper.ObtenerTodasRutas();
+            lsvRutas.ItemsSource = GetSearchResults(searchBar.Text);
             Loading(false);
         }
 
@@ -43,14 +45,14 @@ namespace AppTFG.Paginas
 
         void Loading(bool mostrar)
         {
-            if (mostrar)
-            {
-                indicator.HeightRequest = 30;
-            }
-            else
-            {
-                indicator.HeightRequest = 0;
-            }
+            //if (mostrar)
+            //{
+            //    indicator.HeightRequest = 30;
+            //}
+            //else
+            //{
+            //    indicator.HeightRequest = 0;
+            //}
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }
@@ -78,6 +80,17 @@ namespace AppTFG.Paginas
             {
                 //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
             }
+        }
+
+        void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvRutas.ItemsSource = GetSearchResults(e.NewTextValue);
+        }
+
+        public static List<Ruta> GetSearchResults(string queryString)
+        {
+            var normalizedQuery = queryString?.ToLower() ?? "";
+            return Rutas.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
     }
 }

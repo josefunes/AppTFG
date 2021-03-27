@@ -7,12 +7,15 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Acr.UserDialogs;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaActividades : ContentPage
     {
+        public static List<Actividad> Actividades { get; set; }
         public ListaActividades()
         {
             InitializeComponent();
@@ -31,32 +34,33 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            //var bd = new ServicioBaseDatos<Actividad>();
-            //lsvActividades.ItemsSource = await bd.ObtenerTabla();
-            lsvActividades.ItemsSource = await FirebaseHelper.ObtenerTodasActividades();
+            Actividades = await FirebaseHelper.ObtenerTodasActividades();
+            lsvActividades.ItemsSource = GetSearchResults(searchBar.Text);
             Loading(false);
         }
+
         //void Loading(bool mostrar)
         //{
         //    if (mostrar)
         //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
+        //        UserDialogs.Instance.ShowLoading("Cargando actividades...");
         //    }
         //    else
         //    {
         //        UserDialogs.Instance.HideLoading();
         //    }
         //}
+
         void Loading(bool mostrar)
         {
-            if (mostrar)
-            {
-                indicator.HeightRequest = 30;
-            }
-            else
-            {
-                indicator.HeightRequest = 0;
-            }
+            //if (mostrar)
+            //{
+            //    indicator.HeightRequest = 30;
+            //}
+            //else
+            //{
+            //    indicator.HeightRequest = 0;
+            //}
             indicator.IsEnabled = mostrar;
             indicator.IsRunning = mostrar;
         }
@@ -84,6 +88,17 @@ namespace AppTFG.Paginas
             {
                 //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
             }
+        }
+
+        void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            lsvActividades.ItemsSource = GetSearchResults(e.NewTextValue);
+        }
+
+        public static List<Actividad> GetSearchResults(string queryString)
+        {
+            var normalizedQuery = queryString?.ToLower() ?? "";
+            return Actividades.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
     }
 }

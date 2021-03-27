@@ -17,6 +17,5 @@ namespace AppTFG.Modelos
         public Video VideoUrl { get; set; }
         [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }
-        public Pueblo Pueblo { get; set; }
     }
 }

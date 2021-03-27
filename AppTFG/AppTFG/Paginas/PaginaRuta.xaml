@@ -17,9 +17,8 @@
                     <RowDefinition Height="300"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
-                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           Aspect="AspectFill" HeightRequest="-1" 
-                           WidthRequest="-1"/>
+                            
+                           Aspect="AspectFill" HeightRequest="150"/>
                 <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <StackLayout>
                         <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">

@@ -8,7 +8,10 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource PrimaryTextColor}"
+                   Placeholder="Buscar pueblo" CancelButtonColor="{DynamicResource PrimaryTextColor}" PlaceholderColor="{DynamicResource PrimaryTextColor}"
+                   TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
             <ListView x:Name="lsvPueblos" ItemSelected="LsvPueblos_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
