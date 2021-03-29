@@ -187,7 +187,7 @@ namespace AppTFG.Paginas
                 }
                 else
                 {
-                    await FirebaseHelper.BorrarFoto("Imagen principal de " + ruta.Nombre);
+                    //await FirebaseHelper.BorrarFoto("Imagen principal de " + ruta.Nombre);
                     await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones);
                 }
             }

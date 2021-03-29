@@ -72,7 +72,7 @@ namespace AppTFG.Paginas
 
         public async void CrearMapa()
         {
-            var nombrePueblo = txtNombre.Text;
+            var nombrePueblo = Pueblo.Nombre;
             Geocoder geoCoder = new Geocoder();
             string address = nombrePueblo + ", Andalucía, Spain";
             IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);

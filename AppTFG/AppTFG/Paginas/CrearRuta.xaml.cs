@@ -17,8 +17,6 @@ namespace AppTFG.Paginas
     {
         private Ruta Ruta;
         private Map Map;
-        //private List<Posicion> Camino;
-        //private List<Ubicacion> Ubicaciones;
         Position actualPosition;
         private Polyline Union;
         public CrearRuta(Ruta ruta)
@@ -97,6 +95,9 @@ namespace AppTFG.Paginas
         async void OnTapCrearRuta(object sender, MapClickedEventArgs args)
         {
             string nombre = await DisplayPromptAsync("Título", "Introduce número y título", "Añadir", "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
+            //El nombre es null cuando el usuario pulsa el botón de Cancelar.
+            if (nombre == null)
+            { return; }
             Pin nuevoPin = new Pin();
             Position nuevaPosicion = new Position();
             if (Ruta.Camino == null)
@@ -107,7 +108,7 @@ namespace AppTFG.Paginas
             {
                 Ruta.Ubicaciones = new List<Ubicacion>();
             }
-            if (nombre.Length == 0 || nombre == null)
+            if (nombre.Length == 0)
             {
                 nuevaPosicion = args.Position;
                 var x = nuevaPosicion.Latitude;
@@ -203,6 +204,66 @@ namespace AppTFG.Paginas
             Loading(false);
             UserDialogs.Instance.Alert("Correcto", "Registro realizado correctamente", "OK");
             await Navigation.PopAsync();
+        }
+
+        private void BtnBorrarUltPin_Clicked(object sender, EventArgs e)
+        {
+            if (Map.Pins.Any())
+            {
+                if (Map.Pins.Last().Label.Equals(Ruta.Ubicaciones.Last().Nombre))
+                {
+                    Map.Pins.Remove(Map.Pins.Last());
+                    Ruta.Ubicaciones.Remove(Ruta.Ubicaciones.Last());
+                }
+            }
+        }
+
+        private void BtnBorrarUltCamino_Clicked(object sender, EventArgs e)
+        {
+            if((Ruta.Camino.Last().X.Equals(Union.Geopath.Last().Latitude)) && (Ruta.Camino.Last().Y.Equals(Union.Geopath.Last().Longitude)))
+            {
+                //Se elimina el último camino creado y almacenado
+                Ruta.Camino.Remove(Ruta.Camino.Last());
+                //Al borrar hago que la posición vuelva a ser la misma que antes de hacer el camino
+                actualPosition = Union.Geopath.First();
+                int x = Ruta.Camino.Count - 1;
+                var posicion1 = new Position(Ruta.Camino.ElementAt(x).X, Ruta.Camino.ElementAt(x).Y);
+                Union = new Polyline()
+                {
+                    StrokeColor = Color.Black,
+                    StrokeWidth = 12,
+                    Geopath =
+                            {
+                                posicion1,
+                                actualPosition
+                            }
+                };
+                Ruta.Camino.Remove(Ruta.Camino.Last());
+                Map.MapElements.Remove(Union);
+            }
+        }
+
+        private void BtnBorrarPin_Clicked(object sender, EventArgs e)
+        {
+            if (Map.Pins.Any())
+            {
+                Ruta.Ubicaciones.Clear();
+                Map.Pins.Clear();
+            }
+        }
+
+        private void BtnBorrarCamino_Clicked(object sender, EventArgs e)
+        {
+            Ruta.Camino.Clear();
+            Map.MapElements.Clear();
+        }
+
+        private void BtnBorrarTodo_Clicked(object sender, EventArgs e)
+        {
+            Ruta.Ubicaciones.Clear();
+            Ruta.Camino.Clear();
+            Map.MapElements.Clear();
+            Map.Pins.Clear();
         }
     }
 }

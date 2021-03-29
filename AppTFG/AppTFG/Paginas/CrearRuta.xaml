@@ -9,6 +9,11 @@
     <StackLayout Margin="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
         <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
         <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="10" HeightRequest="-1" WidthRequest="-1"/>
+        <Button Text="Borrar última ubicación" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltPin_Clicked"/>
+        <Button Text="Borrar ubicaciones" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarPin_Clicked"/>
+        <Button Text="Borrar último camino" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltCamino_Clicked"/>
+        <Button Text="Borrar todo" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarTodo_Clicked"/>
+        <Button Text="Borrar camino entero" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarCamino_Clicked"/>
         <Button Text="Añadir audio explicativo" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}"/>
         <!--<ListView x:Name="lsvActividades" ItemSelected="LsvActividades_ItemSelected" HasUnevenRows="True">
             <ListView.ItemTemplate>
