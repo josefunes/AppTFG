@@ -71,8 +71,8 @@ namespace AppTFG.VistaModelos
                     if (Nombre == user.Nombre && Password == Constantes.Descifrar(user.Password))
                     {
                         await Task.Delay(2000);
-                        UserDialogs.Instance.HideLoading();
                         Application.Current.MainPage = new AppShell(Nombre);
+                        UserDialogs.Instance.HideLoading();
                     }
                     else if(Connectivity.NetworkAccess != NetworkAccess.Internet)
                     {

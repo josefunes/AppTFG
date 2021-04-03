@@ -12,10 +12,10 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class PantallaCompleta : ContentPage
     {
         Video Video;
-        public Page1(Video video)
+        public PantallaCompleta(Video video)
         {
             InitializeComponent();
             Video = video;

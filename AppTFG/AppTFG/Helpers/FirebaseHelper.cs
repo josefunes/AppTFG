@@ -264,7 +264,8 @@ namespace AppTFG.Helpers
                     VideoUrl = item.Object.VideoUrl,
                     IdPueblo = item.Object.IdPueblo,
                     Camino = item.Object.Camino,
-                    Ubicaciones = item.Object.Ubicaciones
+                    Ubicaciones = item.Object.Ubicaciones,
+                    Audios = item.Object.Audios
                 }).ToList();
                 return listaRutas;
             }
@@ -323,13 +324,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar ruta
-        public static async Task<bool> InsertarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones)
+        public static async Task<bool> InsertarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones, List<Audio> audios)
         {
             try
             {
                 await firebase
                 .Child("Rutas")
-                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones });
+                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones, Audios = audios });
                 return true;
             }
             catch (Exception e)
@@ -340,7 +341,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar ruta
-        public static async Task<bool> ActualizarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones)
+        public static async Task<bool> ActualizarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones, List<Audio> audios)
         {
             try
             {
@@ -350,7 +351,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Rutas")
                 .Child(actualizarRuta.Key)
-                .PutAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones });
+                .PutAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones, Audios = audios });
                 return true;
             }
             catch (Exception e)
@@ -1021,11 +1022,11 @@ namespace AppTFG.Helpers
 
         public static async Task<string> SubirVideo(Stream fileStream, string fileName)
         {
-            var imageUrl = await firebaseStorage
+            var videoUrl = await firebaseStorage
                 .Child("Videos")
                 .Child(fileName)
                 .PutAsync(fileStream);
-            return imageUrl;
+            return videoUrl;
         }
 
         public static async Task<string> CargarVideo(string fileName)
@@ -1040,6 +1041,161 @@ namespace AppTFG.Helpers
         {
             await firebaseStorage
                  .Child("Videos")
+                 .Child(fileName)
+                 .DeleteAsync();
+        }
+
+        //MÉTODOS CRUD AUDIOS
+
+        public static async Task<List<Audio>> ObtenerTodosAudios()
+        {
+            try
+            {
+                var listaAudios = (await firebase
+                .Child("Audios")
+                .OnceAsync<Audio>()).Select(item =>
+                new Audio
+                {
+                    Id = item.Object.Id,
+                    Nombre = item.Object.Nombre,
+                    Descripcion = item.Object.Descripcion,
+                    Sonido = item.Object.Sonido,
+                    Stream = item.Object.Stream,
+                    IdRuta = item.Object.IdRuta
+                }).ToList();
+                return listaAudios;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async Task<List<Audio>> ObtenerTodosAudiosRuta(int idRuta)
+        {
+            try
+            {
+                var todasAudios = await ObtenerTodosAudios();
+                await firebase.Child("Audios").OnceAsync<Audio>();
+                return todasAudios.Where(a => a.IdRuta.Equals(idRuta)).ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async void EliminarTodosAudiosRuta(int idRuta)
+        {
+            try
+            {
+                var todasAudios = await ObtenerTodosAudios();
+                await firebase.Child("Audios").OnceAsync<Audio>();
+                todasAudios.Where(a => a.IdRuta.Equals(idRuta)).ToList().Clear();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+            }
+        }
+
+        //Leer 
+        public static async Task<Audio> ObtenerAudio(int id)
+        {
+            try
+            {
+                var todosAudios = await ObtenerTodosAudios();
+                await firebase
+                .Child("Audios")
+                .OnceAsync<Audio>();
+                return todosAudios.Where(a => a.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Insertar video
+        public static async Task<bool> InsertarAudio(int id, string nombre, string descripcion, string sonido, int idRuta)
+        {
+            try
+            {
+                await firebase
+                .Child("Audios")
+                .PostAsync(new Audio() { Id = id, Nombre = nombre, Descripcion = descripcion, Sonido = sonido, IdRuta = idRuta });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Actualizar
+        public static async Task<bool> ActualizarAudio(int id, string nombre, string descripcion, string sonido, int idRuta)
+        {
+            try
+            {
+                var actualizarAudio = (await firebase
+                .Child("Audios")
+                .OnceAsync<Audio>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase
+                .Child("Audios")
+                .Child(actualizarAudio.Key)
+                .PutAsync(new Audio() { Id = id, Nombre = nombre, Descripcion = descripcion, Sonido = sonido, IdRuta = idRuta });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Eliminar
+        public static async Task<bool> EliminarAudio(int id)
+        {
+            try
+            {
+                var eliminarAudio = (await firebase
+                .Child("Audios")
+                .OnceAsync<Audio>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase.Child("Audios").Child(eliminarAudio.Key).DeleteAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        public static async Task<string> SubirAudio(Stream fileStream, string fileName)
+        {
+            var audioUrl = await firebaseStorage
+                .Child("Audios")
+                .Child(fileName)
+                .PutAsync(fileStream);
+            return audioUrl;
+        }
+
+        public static async Task<string> CargarAudio(string fileName)
+        {
+            return await firebaseStorage
+                .Child("Audios")
+                .Child(fileName)
+                .GetDownloadUrlAsync();
+        }
+
+        public static async Task BorrarAudio(string fileName)
+        {
+            await firebaseStorage
+                 .Child("Audios")
                  .Child(fileName)
                  .DeleteAsync();
         }
