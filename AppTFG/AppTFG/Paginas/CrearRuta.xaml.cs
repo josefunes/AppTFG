@@ -1,11 +1,10 @@
 ﻿using Acr.UserDialogs;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
-using AppTFG.Servicios;
+using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -18,13 +17,18 @@ namespace AppTFG.Paginas
         private Ruta Ruta;
         private Map Map;
         Position actualPosition;
+        private Polyline Polyline;
         private Polyline Union;
+        AudioRecorderService recorder;
+        AudioPlayer player;
+        Audio UltimoAudioPulsado;
+
         public CrearRuta(Ruta ruta)
         {
             InitializeComponent();
             Ruta = ruta;
             BindingContext = ruta;
-
+            player = new AudioPlayer();
             if (ruta.Id == 0)
             {
                 ToolbarItems.RemoveAt(1);
@@ -41,13 +45,22 @@ namespace AppTFG.Paginas
             }
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
             Loading(true);
-            lsvAudios.ItemsSource = Ruta.Audios;
-            lsvDescripciones.ItemsSource = Ruta.Audios;
+            var ruta = await FirebaseHelper.ObtenerRuta(Ruta.Id);
+            if(ruta.Audios == null)
+            {
+                lsvAudios.IsVisible = false;
+                lsvDescripciones.IsVisible = false;
+            }
+            else
+            {
+                lsvAudios.ItemsSource = ruta.Audios.OrderBy(o => o.Numero);
+                lsvDescripciones.ItemsSource = ruta.Audios.OrderBy(o => o.Numero);
+            }
             Loading(false);
         }
 
@@ -69,7 +82,7 @@ namespace AppTFG.Paginas
             string address = pueblo.Nombre + ", Andalucía, Spain";
             IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
             Position position = approximateLocations.FirstOrDefault();
-            MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(0.75));
+            MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(0.5));
             Map = new Map(mapSpan)
             {
                 WidthRequest = -1,
@@ -79,7 +92,61 @@ namespace AppTFG.Paginas
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
+            PonerRuta();
+            PonerPins();
             stackMapa.Children.Add(Map);
+        }
+
+        void PonerRuta()
+        {
+            if (Ruta.Camino == null)
+            {
+                return;
+            }
+            Position position1;
+            Position position2;
+            for (int i = 0; i < Ruta.Camino.Count; i++)
+            {
+                if (i + 1 < Ruta.Camino.Count)
+                {
+                    Posicion posicion1 = Ruta.Camino[i];
+                    Posicion posicion2 = Ruta.Camino[i + 1];
+                    position1 = new Position(posicion1.X, posicion1.Y);
+                    position2 = new Position(posicion2.X, posicion2.Y);
+                    Polyline = new Polyline
+                    {
+                        StrokeColor = Color.Black,
+                        StrokeWidth = 15,
+                        Geopath =
+                        {
+                            position1,
+                            position2
+                        }
+                    };
+                    Map.MapElements.Add(Polyline);
+                }
+            }
+        }
+
+        void PonerPins()
+        {
+            if (Ruta.Ubicaciones == null)
+            {
+                return;
+            }
+            Pin pin1;
+            for (int i = 0; i < Ruta.Ubicaciones.Count; i++)
+            {
+                var ubicacion1 = Ruta.Ubicaciones[i];
+                Position position = new Position(ubicacion1.Latitud, ubicacion1.Longitud);
+                pin1 = new Pin()
+                {
+                    Position = position,
+                    Label = ubicacion1.Nombre,
+                    Type = PinType.Place
+                };
+                Map.Pins.Add(pin1);
+            }
         }
 
         async void OnTapCrearRuta(object sender, MapClickedEventArgs args)
@@ -219,13 +286,20 @@ namespace AppTFG.Paginas
         {
             Loading(true);
             var ruta = (Ruta)BindingContext;
+            var rutaActualizada = await FirebaseHelper.ObtenerRuta(Ruta.Id);
+            var audios = rutaActualizada.Audios;
             if (ruta.Id > 0)
-                await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+            {
+                //Actualiza los audios que se hayan guardado en la otra pantalla, pero no hayan tenido efecto en esta
+                await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
+            }
             else
-                await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+            {
+                await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
+            }
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
-            await Navigation.PopAsync();
+            //await Navigation.PopAsync();
         }
 
         private void BtnBorrarUltPin_Clicked(object sender, EventArgs e)
@@ -242,31 +316,17 @@ namespace AppTFG.Paginas
 
         private void BtnBorrarUltCamino_Clicked(object sender, EventArgs e)
         {
-            if((Ruta.Camino.Last().X.Equals(Union.Geopath.Last().Latitude)) && (Ruta.Camino.Last().Y.Equals(Union.Geopath.Last().Longitude)))
+            if(Ruta.Camino == null || Union == null)
+            {
+                return;
+            }
+            else if((Ruta.Camino.Last().X.Equals(Union.Geopath.Last().Latitude)) && (Ruta.Camino.Last().Y.Equals(Union.Geopath.Last().Longitude)))
             {
                 //Se elimina el último camino creado y almacenado
                 Ruta.Camino.Remove(Ruta.Camino.Last());
                 Map.MapElements.Remove(Union);
                 //Al borrar hago que la posición vuelva a ser la misma que antes de hacer el camino
                 actualPosition = Union.Geopath.First();
-                //int x = Ruta.Camino.Count - 2;
-                //Position posicion1;
-                //if (x <= 0)
-                //{
-                //    posicion1 = new Position();
-                //}
-                //posicion1 = new Position(Ruta.Camino.ElementAt(x).X, Ruta.Camino.ElementAt(x).Y);
-                //Union = new Polyline()
-                //{
-                //    StrokeColor = Color.Blue,
-                //    StrokeWidth = 12,
-                //    Geopath =
-                //            {
-                //                posicion1,
-                //                actualPosition
-                //            }
-                //};
-                //Map.MapElements.Add(Union);
             }
             else
             {
@@ -278,22 +338,35 @@ namespace AppTFG.Paginas
         {
             if (Map.Pins.Any())
             {
-                Ruta.Ubicaciones.Clear();
+                if (Ruta.Ubicaciones == null) { }
+                else
+                {
+                    Ruta.Ubicaciones.Clear();
+
+                }
                 Map.Pins.Clear();
             }
         }
 
         private void BtnBorrarCamino_Clicked(object sender, EventArgs e)
         {
-            Ruta.Camino.Clear();
+            if (Ruta.Camino == null) { }
+            else
+            {
+                Ruta.Camino.Clear();
+            }
             Map.MapElements.Clear();
         }
 
         private void BtnBorrarTodo_Clicked(object sender, EventArgs e)
         {
+            if (Ruta.Ubicaciones == null || Ruta.Camino == null) { }
+            else
+            {
+                Ruta.Ubicaciones.Clear();
+                Ruta.Camino.Clear();
+            }
             actualPosition = new Position();
-            Ruta.Ubicaciones.Clear();
-            Ruta.Camino.Clear();
             Map.MapElements.Clear();
             Map.Pins.Clear();
         }
@@ -328,18 +401,18 @@ namespace AppTFG.Paginas
                 "Si se ha eliminado el último camino creado, este botón no tendrá efecto hasta que se agregue otro camino.\n" +
                 "\n• Al pulsar sobre Borrar Ruta, se eliminarán todos los caminos creados.\n" +
                 "\n• Al pulsar Borrar Todo se borrará todo lo creado en el mapa, NO se eliminará la Ruta." +
-                "Para eliminar la Ruta, hay que pulsar el botón Eliminar, que se encuentra en la página anterior.", "Info Botones", "OK");
+                "Para eliminar la Ruta, hay que pulsar el botón Eliminar, que se encuentra en la página anterior.\n" +
+                "\n• Al pulsar en Añadir Info, pasarás a la pantalla en la que se pueden introducir tanto explicaciones escritas como " +
+                "mediante grabaciones de audio de los puntos de interés que aparecen en la Ruta.", "Info Botones", "OK");
         }
 
-        private void LsvDescripciones_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void LsvDescripciones_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
                 var dato = (Audio)e.SelectedItem;
-                txtNombre.Text = dato.Nombre;
-                txtDescripcion.Text = dato.Descripcion;
-                RutasTab.SelectedTabIndex = 2;
-                lsvDescripciones.SelectedItem = null;
+                await Navigation.PushAsync(new SubirAudio(dato));
+                //lsvDescripciones.SelectedItem = null;
             }
             catch (Exception)
             {
@@ -347,25 +420,78 @@ namespace AppTFG.Paginas
             }
         }
 
-        private async void BtnGuardarExp_Clicked(object sender, EventArgs e)
+        private void LsvAudios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Loading(true);
-            var ruta = (Ruta)BindingContext;
-            var audioNuevo = new Audio
+            try
             {
-                Id = Constantes.GenerarId(),
-                IdRuta = ruta.Id,
-                Nombre = txtNombre.Text,
-                Descripcion = txtDescripcion.Text
-            };
-            if(ruta.Audios == null)
-            {
-                ruta.Audios = new List<Audio>();
+                UltimoAudioPulsado = new Audio();
+                var seleccionado = (Audio)e.SelectedItem;
+                if (UltimoAudioPulsado.Id.Equals(seleccionado.Id))
+                {
+                    player.Pause();
+                }
+                if (seleccionado.Sonido == null)
+                {
+                    UserDialogs.Instance.Alert("", "", "OK");
+                }
+                var filePath = seleccionado.Sonido;
+                player.Pause();
+                if (filePath != null)
+                {
+                    player.Play(filePath);
+                }
+                UltimoAudioPulsado = seleccionado;
+                lsvAudios.SelectedItem = null;
             }
-            ruta.Audios.Add(audioNuevo);
-            await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
-            Loading(false);
-            UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
+            catch (Exception)
+            {
+                //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
+            }
+        }
+
+        void BtnMapa_Clicked(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            switch (button.Text)
+            {
+                case "Street":
+                    Map.MapType = MapType.Street;
+                    break;
+                case "Satélite":
+                    Map.MapType = MapType.Satellite;
+                    break;
+                case "Híbrido":
+                    Map.MapType = MapType.Hybrid;
+                    break;
+            }
+        }
+
+        private async void BtnNuevaExp_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SubirAudio(new Audio() { IdRuta = Ruta.Id }));
+        }
+
+        void Play_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                Audio seleccionado = (Audio)lsvAudios.SelectedItem;
+                if(seleccionado.Sonido == null)
+                {
+                    UserDialogs.Instance.Alert("", "", "OK");
+                }
+                var filePath = seleccionado.Sonido;
+
+                if (filePath != null)
+                {
+                    //StopRecording();
+                    player.Play(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

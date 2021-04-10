@@ -8,107 +8,119 @@
         <ToolbarItem x:Name="btnInfo" Text="Info." Order="Primary" Priority="0" Clicked="BtnInfo_Clicked"/>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
     </ContentPage.ToolbarItems>
-    <ScrollView>
-        <StackLayout Margin="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="6.5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Text="Poner pin" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnPoner1Pin_Clicked" Grid.Row="0" Grid.Column="0" Margin="11, 0, 0, 0"/>
-                <Button Text="Poner ruta" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnPonerRuta_Clicked" Grid.Row="0" Grid.Column="1" Margin="0, 0, 11, 0"/>
-                <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0" HeightRequest="-1" WidthRequest="-1" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Padding="0">
-                    <StackLayout>
-                        <Grid Margin="11, 0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Text="Borrar últ. pin" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltPin_Clicked" Grid.Row="0" Grid.Column="0"/>
-                            <Button Text="Borrar pins" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarPin_Clicked" Grid.Row="0" Grid.Column="1"/>
-                            <Button Text="Borrar últ. camino" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltCamino_Clicked" Grid.Row="1" Grid.Column="0"/>
-                            <Button Text="Borrar ruta" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarCamino_Clicked" Grid.Row="1" Grid.Column="1"/>
-                            <Button Text="Borrar todo" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarTodo_Clicked" Grid.Row="2" Grid.ColumnSpan="2"/>
-                        </Grid>
+    <Grid Margin="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+        <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0" HeightRequest="-1" WidthRequest="-1" Grid.Row="0"/>
+        <ScrollView Grid.Row="1" Padding="0">
+            <StackLayout>
+                <Grid Margin="11, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="5" Grid.Row="0" Grid.ColumnSpan="2">
+                        <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
+                        <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
+                        <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
-                </StackLayout>
-            </Grid>
-            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
+                    <Button Text="Poner pin" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PrimaryTextColor}" Clicked="BtnPoner1Pin_Clicked" Grid.Row="1" Grid.Column="0"/>
+                    <Button Text="Poner ruta" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PrimaryTextColor}" Clicked="BtnPonerRuta_Clicked" Grid.Row="1" Grid.Column="1"/>
+                    <Button Text="Borrar últ. pin" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PrimaryTextColor}" Clicked="BtnBorrarUltPin_Clicked" Grid.Row="2" Grid.Column="0"/>
+                    <Button Text="Borrar pins" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PrimaryTextColor}" Clicked="BtnBorrarPin_Clicked" Grid.Row="2" Grid.Column="1"/>
+                    <Button Text="Borrar últ. camino" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PrimaryTextColor}" Clicked="BtnBorrarUltCamino_Clicked" Grid.Row="3" Grid.Column="0"/>
+                    <Button Text="Borrar ruta" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PrimaryTextColor}" Clicked="BtnBorrarCamino_Clicked" Grid.Row="3" Grid.Column="1"/>
+                    <Button Text="Borrar todo" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="Red" Clicked="BtnBorrarTodo_Clicked" Grid.Row="4" Grid.ColumnSpan="2"/>
+                </Grid>
+                
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
                          HorizontalOptions="FillAndExpand">
-                <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
+                    <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
                     SelectedColor="Lime" UnselectedColor="Teal"
-                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                    <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
-                        <TabCtrls:CustomTabButton x:Name="DescripcionesTabButton" Text="Descripción"  
+                    VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
+                        <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
+                            <TabCtrls:CustomTabButton x:Name="DescripcionesTabButton" Text="Descripción"  
                             BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="StartAndExpand"  
-                            WidthRequest="100" FontSize="Medium" FontFamily="BSDRegular" 
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
                             TextColor="{DynamicResource PageBackgroundColor}"/>
-                        <TabCtrls:CustomTabButton x:Name="AudiosTabButton" Text="Audios"  
+                            <TabCtrls:CustomTabButton x:Name="AudiosTabButton" Text="Audios"  
                             BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"
-                            WidthRequest="100" FontSize="Medium" FontFamily="BSDRegular" 
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
                             TextColor="{DynamicResource PageBackgroundColor}"/>
-                        <TabCtrls:CustomTabButton x:Name="InfoTabButton" Text="Añadir info"  
+                            <TabCtrls:CustomTabButton x:Name="InfoTabButton" Text="Añadir info"  
                             BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="EndAndExpand" 
-                            WidthRequest="100" FontSize="Medium" FontFamily="BSDRegular" 
-                            TextColor="{DynamicResource PageBackgroundColor}"/>
-                    </TabCtrls:CustomTabButtons>
-                    <TabCtrls:CustomTab x:Name="DescripcionesTab" IsVisible="True" 
-                              VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
+                            TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnNuevaExp_Clicked"/>
+                        </TabCtrls:CustomTabButtons>
+                        <TabCtrls:CustomTab x:Name="DescripcionesTab" IsVisible="True" 
+                              VerticalOptions="Fill" HorizontalOptions="FillAndExpand"  
                               BackgroundColor="{DynamicResource PageBackgroundColor}">
-                        <ListView x:Name="lsvDescripciones" HasUnevenRows="True" ItemSelected="LsvDescripciones_ItemSelected">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Spacing="0" Orientation="Vertical" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
-                                            <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,5,5" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
-                                            <Label Text="{Binding Descripcion}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Large" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </TabCtrls:CustomTab>
-                    <TabCtrls:CustomTab x:Name="AudiosTab" IsVisible="False" 
-                              VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                            <ListView x:Name="lsvDescripciones" HasUnevenRows="True" ItemSelected="LsvDescripciones_ItemSelected">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Spacing="0" Orientation="Vertical" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="20"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
+                                                    <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,5,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="1"/>
+                                                    <Label Text="{Binding Descripcion}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Large" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" FontFamily="BSDRegular" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabCtrls:CustomTab>
+                        <TabCtrls:CustomTab x:Name="AudiosTab" IsVisible="False" 
+                              VerticalOptions="Fill" HorizontalOptions="FillAndExpand" 
                               BackgroundColor="{DynamicResource PageBackgroundColor}">
-                        <ListView x:Name="lsvAudios" SelectionMode="None" HasUnevenRows="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Spacing="0" Orientation="Vertical" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
-                                            <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Medium" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,5,5" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
-                                            <Label Text="{Binding Descripcion}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </TabCtrls:CustomTab>
-                    <TabCtrls:CustomTab x:Name="InfoTab" IsVisible="True" 
-                              VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  
-                              BackgroundColor="{DynamicResource PageBackgroundColor}">
-                        <Entry Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Margin="10, 0, 10, 25"
-                                Placeholder="Ingresa el nombre de la ubicación" HorizontalOptions="StartAndExpand" FontSize="Large"
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
-                        <Editor x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" 
-                                Placeholder="Ingresa una descripción para el usuario"  Margin="10, 0, 10, 25" AutoSize="TextChanges"
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
-                        <Button Text="Guardar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnGuardarExp_Clicked"/>
-                    </TabCtrls:CustomTab>
-                </TabCtrls:CustomTabs>
+                            <ListView x:Name="lsvAudios" HasUnevenRows="True" ItemSelected="LsvAudios_ItemSelected">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Spacing="0" Orientation="Vertical" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="20"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
+                                                    <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,5,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="1"/>
+                                                    <!--<Button x:Name="bntPlay" Text = "Play" BackgroundColor="Silver"  WidthRequest="120" Image="Start" Clicked="Play_Clicked" IsEnabled= "true" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>-->
+                                                    <!--<Label Text="{Binding Descripcion}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Large" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" FontFamily="BSDRegular" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>-->
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </TabCtrls:CustomTab>
+                        <TabCtrls:CustomTab x:Name="InfoTab" IsVisible="False"/>
+                    </TabCtrls:CustomTabs>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
-    </ScrollView>
+        </ScrollView>
+    </Grid>
 </ContentPage>

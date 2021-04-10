@@ -8,7 +8,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>
             <ListView x:Name="lsvActividadesPueblo" ItemSelected="LsvActividadesPueblo_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

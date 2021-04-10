@@ -9,7 +9,7 @@
     </ContentPage.ToolbarItems>
     <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
-            <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.3*"/>
@@ -23,14 +23,18 @@
                 <Frame Grid.Row="1" CornerRadius="15" Padding="0">
                     <StackLayout>
                         <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                            <Entry Grid.Column="0" Grid.Row="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                                 Placeholder="Ingresa el nombre de la actividad" 
                                 PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
-                            <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta" 
+                            <Button Grid.Column="1" Grid.Row="0" x:Name="btnImagen" Text="Foto ruta" 
                                 BackgroundColor="Transparent" Margin="0" FontSize="Small"
                                 TextColor="{DynamicResource PrimaryTextColor}" WidthRequest="90"  
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked" FontFamily="BSDRegular"/>

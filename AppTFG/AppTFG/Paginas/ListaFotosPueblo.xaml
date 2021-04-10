@@ -58,7 +58,7 @@
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
                         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
-                            <ActivityIndicator x:Name="indicador" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <ActivityIndicator x:Name="indicador" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>
                             <ListView x:Name="lsvFotosPueblo" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

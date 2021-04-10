@@ -8,7 +8,7 @@
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
-        <ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
+        <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
         <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
             <StackLayout Spacing="0" Padding="0" Margin="0">
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-20">

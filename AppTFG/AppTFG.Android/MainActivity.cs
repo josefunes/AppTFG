@@ -8,6 +8,8 @@ using System;
 using Android.Content.PM;
 using ImageCircle.Forms.Plugin.Droid;
 using Acr.UserDialogs;
+using AndroidX.Core.Content;
+using AndroidX.Core.App;
 
 namespace AppTFG.Droid
 {
@@ -33,6 +35,11 @@ namespace AppTFG.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.RecordAudio) != Permission.Granted)
+            {
+                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.RecordAudio }, 1);
+            }
 
             ImageCircleRenderer.Init();
             UserDialogs.Init(this);

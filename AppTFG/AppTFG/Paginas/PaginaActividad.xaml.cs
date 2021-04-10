@@ -81,23 +81,23 @@ namespace AppTFG.Paginas
             {
                 if (actividad.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
                 }
                 else
                 {
                     //await FirebaseHelper.BorrarFoto("Imagen principal de " + actividad.Nombre);
-                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
                 }
             }
             else
             {
                 if(actividad.Stream == null)
                 {
-                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
                 }
             }
             Loading(false);

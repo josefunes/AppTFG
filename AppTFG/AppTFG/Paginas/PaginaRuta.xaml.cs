@@ -23,20 +23,15 @@ namespace AppTFG.Paginas
             InitializeComponent();
             Ruta = ruta;
             BindingContext = ruta;
-            
+            CrearMapa();
             if (ruta.Id == 0) 
             { 
                 ToolbarItems.RemoveAt(1);
                 Title = "Nueva ruta";
-                stackMapa.IsVisible = false;
-                stackMapa.IsEnabled = false;
             }
             else if (ruta.Id != 0)
             {
                 Title = Ruta.Nombre;
-                //CrearMapa();
-                //stackMapa.IsVisible = true;
-                //stackMapa.IsEnabled = true;
             }
         }
 
@@ -64,6 +59,20 @@ namespace AppTFG.Paginas
             }
         }
 
+        void Loading2(bool mostrar)
+        {
+            if (mostrar)
+            {
+                indicator.HeightRequest = 30;
+            }
+            else
+            {
+                indicator.HeightRequest = -10;
+            }
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
+        }
+
         private async void BtnImagen_Clicked(object sender, EventArgs e)
         {
             var imagen = await ServicioMultimedia.SeleccionarImagen();
@@ -78,6 +87,7 @@ namespace AppTFG.Paginas
 
         async void CrearMapa()
         {
+            Loading2(true);
             var pueblo = await FirebaseHelper.ObtenerPueblo(Ruta.IdPueblo);
             if (string.IsNullOrEmpty(pueblo.Nombre))
             {
@@ -88,7 +98,7 @@ namespace AppTFG.Paginas
             string address = pueblo.Nombre + ", Andalucía, Spain";
             IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
             Position position = approximateLocations.FirstOrDefault();
-            MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(1.5));
+            MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(0.5));
             Map = new Map(mapSpan)
             {
                 WidthRequest = -1,
@@ -97,25 +107,26 @@ namespace AppTFG.Paginas
                 HasZoomEnabled = true,
                 IsShowingUser = true
             };
-            if(PonerRuta() != null)
-            {
-                Map.MapElements.Add(PonerRuta());
-            }
-            else { }
+            PonerRuta();
             PonerPins();
             stackMapa.Children.Add(Map);
+            Loading2(false);
         }
 
-        Polyline PonerRuta()
+        void PonerRuta()
         {
+            if (Ruta.Camino == null)
+            {
+                return;
+            }
             Position position1;
             Position position2;
-            for (int i=0; i<Ruta.Camino.Count; i++)
+            for (int i = 0; i < Ruta.Camino.Count; i++)
             {
-                var posicion1 = Ruta.Camino[i];
-                var posicion2 = Ruta.Camino[i + 1];
-                if (posicion2 != null)
+                if (i + 1 < Ruta.Camino.Count)
                 {
+                    Posicion posicion1 = Ruta.Camino[i];
+                    Posicion posicion2 = Ruta.Camino[i + 1];
                     position1 = new Position(posicion1.X, posicion1.Y);
                     position2 = new Position(posicion2.X, posicion2.Y);
                     Polyline = new Polyline
@@ -128,32 +139,31 @@ namespace AppTFG.Paginas
                             position2
                         }
                     };
-                }
-                else
-                {
-                    continue;
+                    Map.MapElements.Add(Polyline);
                 }
             }
-            return Polyline;
         }
 
-       async void PonerPins()
-       {
-            Pin pin1;
-            var ubicaciones = await FirebaseHelper.ObtenerTodasUbicacionesRuta(Ruta.Id);
-            for (int i = 0; i < ubicaciones.Count; i++)
+        void PonerPins()
+        {
+            if (Ruta.Ubicaciones == null)
             {
-                var ubicacion1 = ubicaciones[i];
+                return;
+            }
+            Pin pin1;
+            for (int i = 0; i < Ruta.Ubicaciones.Count; i++)
+            {
+                var ubicacion1 = Ruta.Ubicaciones[i];
                 Position position = new Position(ubicacion1.Latitud, ubicacion1.Longitud);
                 pin1 = new Pin()
                 {
                     Position = position,
                     Label = ubicacion1.Nombre,
-                    Type = PinType.SearchResult
+                    Type = PinType.Place
                 };
                 Map.Pins.Add(pin1);
             }
-       }
+        }
 
         async void BtnEditar_Clicked(object sender, EventArgs e)
         {
@@ -173,33 +183,35 @@ namespace AppTFG.Paginas
         {
             Loading(true);
             var ruta = (Ruta)BindingContext;
+            var rutaActualizada = await FirebaseHelper.ObtenerRuta(Ruta.Id);
+            var audios = rutaActualizada.Audios;
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                UserDialogs.Instance.Alert(Constantes.TitleRutaRequired, "Advertencia", "OK");
                 Loading(false);
+                UserDialogs.Instance.Alert(Constantes.TitleRutaRequired, "Advertencia", "OK");
                 return;
             }
             if (ruta.Id > 0)
             { 
                 if (ruta.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
                 }
                 else
                 {
                     //await FirebaseHelper.BorrarFoto("Imagen principal de " + ruta.Nombre);
-                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
                 }
             }
             else
             {
                 if (ruta.Stream == null)
                 {
-                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
                 }
             }
             Loading(false);
@@ -215,6 +227,23 @@ namespace AppTFG.Paginas
                 Loading1(false);
                 UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
+            }
+        }
+
+        void BtnMapa_Clicked(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            switch (button.Text)
+            {
+                case "Street":
+                    Map.MapType = MapType.Street;
+                    break;
+                case "Satélite":
+                    Map.MapType = MapType.Satellite;
+                    break;
+                case "Híbrido":
+                    Map.MapType = MapType.Hybrid;
+                    break;
             }
         }
     }

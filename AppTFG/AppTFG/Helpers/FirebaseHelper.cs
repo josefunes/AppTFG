@@ -621,6 +621,8 @@ namespace AppTFG.Helpers
                     Nombre = item.Object.Nombre,
                     Descripcion = item.Object.Descripcion,
                     ImagenPrincipal = item.Object.ImagenPrincipal,
+                    Fecha = item.Object.Fecha,
+                    Hora = item.Object.Hora,
                     Stream = item.Object.Stream,
                     VideoUrl = item.Object.VideoUrl,
                     IdPueblo = item.Object.IdPueblo
@@ -682,13 +684,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarActividad(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo)
+        public static async Task<bool> InsertarActividad(int id, string nombre, string descrpcion, string imagen, string fecha, string hora, Video video, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Actividades")
-                .PostAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo });
+                .PostAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Fecha = fecha, Hora = hora, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -699,7 +701,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarActividad(int id, string nombre, string descrpcion, string imagen, Video video, int idPueblo)
+        public static async Task<bool> ActualizarActividad(int id, string nombre, string descrpcion, string imagen, string fecha, string hora, Video video, int idPueblo)
         {
             try
             {
@@ -709,7 +711,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Actividades")
                 .Child(actualizarActividad.Key)
-                .PutAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo });
+                .PutAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Fecha = fecha, Hora = hora, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -1057,6 +1059,7 @@ namespace AppTFG.Helpers
                 new Audio
                 {
                     Id = item.Object.Id,
+                    Numero = item.Object.Numero,
                     Nombre = item.Object.Nombre,
                     Descripcion = item.Object.Descripcion,
                     Sonido = item.Object.Sonido,
@@ -1120,13 +1123,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar video
-        public static async Task<bool> InsertarAudio(int id, string nombre, string descripcion, string sonido, int idRuta)
+        public static async Task<bool> InsertarAudio(int id, int numero, string nombre, string descripcion, string sonido, int idRuta)
         {
             try
             {
                 await firebase
                 .Child("Audios")
-                .PostAsync(new Audio() { Id = id, Nombre = nombre, Descripcion = descripcion, Sonido = sonido, IdRuta = idRuta });
+                .PostAsync(new Audio() { Id = id, Numero = numero, Nombre = nombre, Descripcion = descripcion, Sonido = sonido, IdRuta = idRuta });
                 return true;
             }
             catch (Exception e)
@@ -1137,7 +1140,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarAudio(int id, string nombre, string descripcion, string sonido, int idRuta)
+        public static async Task<bool> ActualizarAudio(int id, int numero, string nombre, string descripcion, string sonido, int idRuta)
         {
             try
             {
@@ -1147,7 +1150,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Audios")
                 .Child(actualizarAudio.Key)
-                .PutAsync(new Audio() { Id = id, Nombre = nombre, Descripcion = descripcion, Sonido = sonido, IdRuta = idRuta });
+                .PutAsync(new Audio() { Id = id, Numero = numero, Nombre = nombre, Descripcion = descripcion, Sonido = sonido, IdRuta = idRuta });
                 return true;
             }
             catch (Exception e)

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTFG.Paginas.SubirAudio"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+            <Entry x:Name="txtNumero" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Numero}"
+                   Margin="10, 0, 10, 25" Placeholder="Ingrese solo el número correspondiente a la ubicación" 
+                   HorizontalOptions="StartAndExpand" FontSize="Medium" PlaceholderColor="LightGray" 
+                   BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
+            <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}"
+                   Margin="10, 0, 10, 25" Placeholder="Ingrese el nombre de la ubicación" 
+                   HorizontalOptions="StartAndExpand" FontSize="Large" PlaceholderColor="LightGray" 
+                   BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
+            <Editor x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" 
+                    Placeholder="Ingrese una descripción para el usuario" Text="{Binding Descripcion}"
+                    Margin="10, 0, 10, 25" AutoSize="TextChanges" PlaceholderColor="LightGray" 
+                    BackgroundColor="{DynamicResource PageBackgroundColor}" 
+                    FontSize="Large" FontFamily="BSDRegular"/>
+            <Button Text="Guardar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" 
+                    TextColor="{DynamicResource PageBackgroundColor}" 
+                    Clicked="BtnGuardarExp_Clicked" HorizontalOptions="Center"/>
+            <Button Text="Borrar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" 
+                    TextColor="{DynamicResource PageBackgroundColor}" 
+                    Clicked="BtnBorrarExp_Clicked" HorizontalOptions="Center"/>
+            <StackLayout BackgroundColor = "#e8fbe1">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Recording..." FontSize = "21"/>
+                    <StackLayout Orientation = "Horizontal">
+                        <Label x:Name="lblMinutes" Text="00" FontSize = "Large"/>
+                        <Label Text=":" FontSize = "Large"/>
+                        <Label x:Name="lblSeconds" Text="00" FontSize = "Large"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0,0,0,20">
+                        <Label Text="Detect silence:" FontSize = "21"/>
+                        <Switch x:Name="IsSilence" IsToggled = "true" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <FlexLayout JustifyContent="SpaceAround">
+                <Button x:Name="bntRecord" Text = "Record" BackgroundColor="#7cbb45" WidthRequest="120" Image="Small_Microphone" Clicked="Record_Clicked"/>
+                <Button x:Name="bntStop" Text = "Stop" BackgroundColor="Silver"  WidthRequest="120" Image="Stop" Clicked="Stop_Clicked" IsEnabled= "true"/>
+                <Button x:Name="bntPlay" Text = "Play" BackgroundColor="Silver"  WidthRequest="120" Image="Start" Clicked="Play_Clicked" IsEnabled= "true"/>
+            </FlexLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

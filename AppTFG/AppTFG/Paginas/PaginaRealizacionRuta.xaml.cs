@@ -1,12 +1,10 @@
 ﻿using Acr.UserDialogs;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
+using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -14,46 +12,72 @@ using Xamarin.Forms.Xaml;
 namespace AppTFG.Paginas
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PaginaVistaRuta : ContentPage
+    public partial class PaginaRealizacionRuta : ContentPage
     {
         private Ruta Ruta;
         private Map Map;
         private Polyline Polyline;
-        public PaginaVistaRuta(Ruta ruta)
+        AudioPlayer player;
+        Audio UltimoAudioPulsado;
+
+        public PaginaRealizacionRuta(Ruta ruta)
         {
             InitializeComponent();
             Ruta = ruta;
             BindingContext = ruta;
             Title = Ruta.Nombre;
+            player = new AudioPlayer();
             CrearMapa();
+            stackMapa.IsVisible = true;
+            stackMapa.IsEnabled = true;
         }
 
-        public async Task<string> ObtenerDireccionMapa()
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Loading(true);
+            var ruta = await FirebaseHelper.ObtenerRuta(Ruta.Id);
+            if (ruta.Audios == null)
+            {
+                lsvAudios.IsVisible = false;
+                lsvDescripciones.IsVisible = false;
+            }
+            else
+            {
+                lsvAudios.ItemsSource = ruta.Audios.OrderBy(o => o.Numero);
+                lsvDescripciones.ItemsSource = ruta.Audios.OrderBy(o => o.Numero);
+            }
+            Loading(false);
+        }
+
+        void Loading(bool mostrar)
+        {
+            indicator.IsEnabled = mostrar;
+            indicator.IsRunning = mostrar;
+        }
+
+        async void CrearMapa()
         {
             var pueblo = await FirebaseHelper.ObtenerPueblo(Ruta.IdPueblo);
             if (string.IsNullOrEmpty(pueblo.Nombre))
             {
                 UserDialogs.Instance.Alert("Advertencia", Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "OK");
-                return "Almería, Andalucía, Spain";
+                return;
             }
-            string address = pueblo.Nombre + ", Andalucía, Spain";
-            return address;
-        }
-
-        async void CrearMapa()
-        {
-            string direccion = await ObtenerDireccionMapa();
             Geocoder geoCoder = new Geocoder();
-            IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(direccion);
+            string address = pueblo.Nombre + ", Andalucía, Spain";
+            IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
             Position position = approximateLocations.FirstOrDefault();
             MapSpan mapSpan = MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(0.5));
             Map = new Map(mapSpan)
             {
                 WidthRequest = -1,
-                HeightRequest = 300,
                 HasScrollEnabled = true,
                 HasZoomEnabled = true,
-                IsShowingUser = true
+                IsShowingUser = true,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand
             };
             PonerRuta();
             PonerPins();
@@ -73,7 +97,7 @@ namespace AppTFG.Paginas
                     position1 = new Position(posicion1.X, posicion1.Y);
                     position2 = new Position(posicion2.X, posicion2.Y);
                     Polyline = new Polyline
-                    { 
+                    {
                         StrokeColor = Color.Black,
                         StrokeWidth = 15,
                         Geopath =
@@ -83,7 +107,7 @@ namespace AppTFG.Paginas
                         }
                     };
                     Map.MapElements.Add(Polyline);
-                } 
+                }
             }
         }
 
@@ -99,11 +123,6 @@ namespace AppTFG.Paginas
                     Position = position,
                     Label = ubicacion1.Nombre,
                     Type = PinType.Place
-                };
-                pin1.InfoWindowClicked += async (s, arg) =>
-                {
-                    string pinName = ((Pin)s).Label;
-                    await DisplayAlert(Ruta.Nombre, $"El audio que toca es {pinName}.", "Ok");
                 };
                 Map.Pins.Add(pin1);
             }
@@ -126,9 +145,33 @@ namespace AppTFG.Paginas
             }
         }
 
-        private async void BtnIniciar_Clicked(object sender, EventArgs e) 
+        private void LsvAudios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushAsync(new PaginaRealizacionRuta(Ruta));
+            try
+            {
+                UltimoAudioPulsado = new Audio();
+                var seleccionado = (Audio)e.SelectedItem;
+                if (UltimoAudioPulsado.Id.Equals(seleccionado.Id))
+                {
+                    player.Pause();
+                }
+                if (seleccionado.Sonido == null)
+                {
+                    UserDialogs.Instance.Alert("", "", "OK");
+                }
+                var filePath = seleccionado.Sonido;
+                player.Pause();
+                if (filePath != null)
+                {
+                    player.Play(filePath);
+                }
+                UltimoAudioPulsado = seleccionado;
+                lsvAudios.SelectedItem = null;
+            }
+            catch (Exception)
+            {
+                //UserDialogs.Instance.Alert("Se ha producido un error", "", "Ok");
+            }
         }
     }
 }
