@@ -19,7 +19,6 @@ namespace AppTFG.Paginas
         Position actualPosition;
         private Polyline Polyline;
         private Polyline Union;
-        AudioRecorderService recorder;
         AudioPlayer player;
         Audio UltimoAudioPulsado;
 

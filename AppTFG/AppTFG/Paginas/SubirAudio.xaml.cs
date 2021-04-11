@@ -87,8 +87,6 @@ namespace AppTFG.Paginas
                     return isTimerRunning;
                 });
 
-                //
-                recorder.StopRecordingOnSilence = IsSilence.IsToggled;
                 var audioRecordTask = await recorder.StartRecording();
 
                 bntRecord.IsEnabled = false;

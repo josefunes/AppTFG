@@ -25,19 +25,10 @@
             <Button Text="Borrar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" 
                     TextColor="{DynamicResource PageBackgroundColor}" 
                     Clicked="BtnBorrarExp_Clicked" HorizontalOptions="Center"/>
-            <StackLayout BackgroundColor = "#e8fbe1">
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Recording..." FontSize = "21"/>
-                    <StackLayout Orientation = "Horizontal">
-                        <Label x:Name="lblMinutes" Text="00" FontSize = "Large"/>
-                        <Label Text=":" FontSize = "Large"/>
-                        <Label x:Name="lblSeconds" Text="00" FontSize = "Large"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" Padding="0,0,0,20">
-                        <Label Text="Detect silence:" FontSize = "21"/>
-                        <Switch x:Name="IsSilence" IsToggled = "true" />
-                    </StackLayout>
-                </StackLayout>
+            <StackLayout Orientation = "Horizontal">
+                <Label x:Name="lblMinutes" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}"/>
+                <Label Text=":" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}"/>
+                <Label x:Name="lblSeconds" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}"/>
             </StackLayout>
             <FlexLayout JustifyContent="SpaceAround">
                 <Button x:Name="bntRecord" Text = "Record" BackgroundColor="#7cbb45" WidthRequest="120" Image="Small_Microphone" Clicked="Record_Clicked"/>

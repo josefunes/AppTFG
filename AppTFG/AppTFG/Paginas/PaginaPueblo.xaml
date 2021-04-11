@@ -18,7 +18,7 @@
                         <RowDefinition Height="400"/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" x:Name="imgPueblo" Source="{Binding ImagenPrincipal}"
-                               Aspect="AspectFill" HeightRequest="150"/>
+                               Aspect="AspectFill" HeightRequest="200"/>
                     <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
                         <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
                             <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">

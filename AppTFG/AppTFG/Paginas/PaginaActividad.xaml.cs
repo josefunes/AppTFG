@@ -77,6 +77,14 @@ namespace AppTFG.Paginas
                 Loading(false);
                 return;
             }
+            if (datePicker.Date.ToShortDateString() != "01/01/2021")
+            {
+                actividad.Fecha = datePicker.Date.ToLongDateString();
+            }
+            if (timePicker.Time.ToString() != "00:00:01")
+            {
+                actividad.Hora = timePicker.Time.ToString();
+            }
             if (actividad.Id > 0)
             {
                 if (actividad.Stream == null)
