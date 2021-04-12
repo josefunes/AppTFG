@@ -4,6 +4,7 @@ using AppTFG.Modelos;
 using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,7 +87,7 @@ namespace AppTFG.Paginas
                     }
                     return isTimerRunning;
                 });
-
+                recorder.FilePath = Path.GetTempPath() + "/" + Guid.NewGuid().ToString() + ".wav";
                 var audioRecordTask = await recorder.StartRecording();
 
                 bntRecord.IsEnabled = false;
@@ -95,7 +96,7 @@ namespace AppTFG.Paginas
                 bntPlay.BackgroundColor = Color.Silver;
                 bntStop.IsEnabled = true;
                 bntStop.BackgroundColor = Color.FromHex("#7cbb45");
-
+                
                 await audioRecordTask;
             }
         }
@@ -124,7 +125,7 @@ namespace AppTFG.Paginas
             {
                 //Esta instrucción sirve para dejar de reproducir un audio cuando se quiere reproducir otro
                 player.Pause();
-                var filePath = recorder.GetAudioFilePath();
+                var filePath = recorder.FilePath;
 
                 if (filePath != null)
                 {
@@ -160,6 +161,11 @@ namespace AppTFG.Paginas
                     UserDialogs.Instance.Alert("Es necesario introducir el número del audio/descripción correspondiente con la ubicación.", "Error", "OK");
                     return;
                 }
+                if (txtNumero.Text.ToCharArray().All(char.IsDigit) == false)
+                {
+                    UserDialogs.Instance.Alert("Es necesario introducir un número para identificar al Audio.", "Error", "OK");
+                    return;
+                }
                 else
                 {
                     foreach(var audio1 in ruta.Audios)
@@ -169,21 +175,17 @@ namespace AppTFG.Paginas
                             audio1.Numero = int.Parse(txtNumero.Text);
                             audio1.Nombre = txtNombre.Text;
                             audio1.Descripcion = txtDescripcion.Text;
-                            if (!string.IsNullOrEmpty(recorder.GetAudioFilePath()))
+                            if (!string.IsNullOrEmpty(recorder.FilePath))
                             {
-                                var seed = Environment.TickCount;
-                                var random = new Random(seed);
-
-                                var value = random.Next(0, 5);
                                 bool answer = await UserDialogs.Instance.ConfirmAsync("Hay información grabada con el micrófono. ¿Desea guardarla?", "Atención", "Sí", "No");
                                 if (answer == true)
                                 {
-                                    audio1.Sonido = recorder.GetAudioFilePath() + value.ToString();
+                                    audio1.Sonido = recorder.FilePath;
                                 }
                             }
                             await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
-                            break;
                         }
+                        break;
                     }
                 }
             }
@@ -198,9 +200,23 @@ namespace AppTFG.Paginas
                     UserDialogs.Instance.Alert("Es necesario introducir el nombre del audio/descripción correspondiente con la ubicación.", "Error", "OK");
                     return;
                 }
-                else if (txtNumero.Text.Equals("") || txtNumero.Text == null || string.IsNullOrWhiteSpace(txtNumero.Text))
+                if (txtNumero.Text.Equals("") || txtNumero.Text == null || string.IsNullOrWhiteSpace(txtNumero.Text))
                 {
                     UserDialogs.Instance.Alert("Es necesario introducir el número del audio/descripción correspondiente con la ubicación.", "Error", "OK");
+                    return;
+                }
+                foreach (var audio1 in ruta.Audios)
+                {
+                    if (audio1.Numero.ToString().Equals(txtNumero.Text.ToString()))
+                    {
+                        UserDialogs.Instance.Alert("El número del audio/descripción pertenece a un registro ya guardado. Comprueba qué número deseas introducir.", "Error", "OK");
+                        return;
+                    }
+                    break;
+                }
+                if (txtNumero.Text.ToCharArray().All(char.IsDigit) == false)
+                {
+                    UserDialogs.Instance.Alert("Es necesario introducir un número para identificar al audio/descripción.", "Error", "OK");
                     return;
                 }
                 else
@@ -213,7 +229,7 @@ namespace AppTFG.Paginas
                         Nombre = txtNombre.Text,
                         Descripcion = txtDescripcion.Text
                     };
-                    if (!string.IsNullOrEmpty(recorder.GetAudioFilePath()))
+                    if (!string.IsNullOrEmpty(recorder.FilePath))
                     {
                         bool answer = await UserDialogs.Instance.ConfirmAsync("Hay información grabada con el micrófono. ¿Desea guardarla?", "Atención", "Sí", "No");
                         if (answer == true)
@@ -222,7 +238,7 @@ namespace AppTFG.Paginas
                             var random = new Random(seed);
 
                             var value = random.Next(0, 5);
-                            audioNuevo.Sonido = recorder.GetAudioFilePath() + value.ToString();
+                            audioNuevo.Sonido = recorder.FilePath;
                         }
                     }
                     if (audioNuevo.Numero.Equals(""))

@@ -102,8 +102,8 @@
     <Compile Update="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Paginas\Comercios.xaml.cs">
-      <DependentUpon>Comercios.xaml</DependentUpon>
+    <Compile Update="Paginas\PaginaComercio.xaml.cs">
+      <DependentUpon>PaginaComercio.xaml</DependentUpon>
     </Compile>
     <Compile Update="Paginas\ListaFotosPueblo.xaml.cs">
       <DependentUpon>ListaFotosPueblo.xaml</DependentUpon>
@@ -123,7 +123,16 @@
     <EmbeddedResource Update="Paginas\Ajustes.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Paginas\Comercios.xaml">
+    <EmbeddedResource Update="Paginas\ListaAlojamientosPueblo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Paginas\ListaComerciosPueblo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Paginas\PaginaAlojamiento.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Paginas\PaginaComercio.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Paginas\CrearRuta.xaml">

@@ -134,6 +134,8 @@ namespace AppTFG.Paginas
                 FirebaseHelper.EliminarTodasActividadesPueblo(Pueblo.Id);
                 FirebaseHelper.EliminarTodasFotosPueblo(Pueblo.Id);
                 FirebaseHelper.EliminarTodasRutasPueblo(Pueblo.Id);
+                FirebaseHelper.EliminarTodosAlojamientosPueblo(Pueblo.Id);
+                FirebaseHelper.EliminarTodosComerciosPueblo(Pueblo.Id);
                 FirebaseHelper.EliminarTodosVideosPueblo(Pueblo.Id);
                 Loading1(false);
                 UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
@@ -164,6 +166,32 @@ namespace AppTFG.Paginas
             else
             {
                 await Navigation.PushAsync(new ListaActividadesPueblo(pueblo));
+            }
+        }
+
+        async void BtnComercios_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            if (pueblo == null)
+            {
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new ListaComerciosPueblo(pueblo));
+            }
+        }
+
+        async void BtnAlojamientos_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            if (pueblo == null)
+            {
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new ListaAlojamientosPueblo(pueblo));
             }
         }
 

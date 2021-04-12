@@ -255,12 +255,11 @@ namespace AppTFG.Paginas
             //El nombre es null cuando el usuario pulsa el botón de Cancelar.
             if (nombre == null)
             { return; }
-            Pin nuevoPin = new Pin();
             if (Ruta.Ubicaciones == null)
             {
                 Ruta.Ubicaciones = new List<Ubicacion>();
             }
-            nuevoPin = new Pin
+            Pin nuevoPin = new Pin
             {
                 Position = args.Position,
                 Label = nombre,

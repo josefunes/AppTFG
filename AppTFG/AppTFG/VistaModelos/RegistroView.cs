@@ -86,7 +86,7 @@ namespace AppTFG.VistaModelos
                 }
                 else if (!string.IsNullOrEmpty(Password))
                 {
-                    if ((Password.Length < 8 && Password.Length > 15) || !Password.ToCharArray().Any(Char.IsDigit))
+                    if ((Password.Length < 8 && Password.Length > 15) || !Password.ToCharArray().Any(char.IsDigit))
                     {
                         UserDialogs.Instance.Alert("Error", "La contraseña debe tener como mínimo 8 caracteres y un máximo de 15, incluyendo una letra minúscula, una mayúscula y un número", "OK");
                     }

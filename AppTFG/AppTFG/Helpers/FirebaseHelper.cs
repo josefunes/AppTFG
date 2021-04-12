@@ -1202,5 +1202,274 @@ namespace AppTFG.Helpers
                  .Child(fileName)
                  .DeleteAsync();
         }
+
+
+        //MÉTODOS CRUD COMERCIO
+
+        public static async Task<List<Comercio>> ObtenerTodosComercios()
+        {
+            try
+            {
+                var listaComercios = (await firebase
+                .Child("Comercios")
+                .OnceAsync<Comercio>()).Select(item =>
+                new Comercio
+                {
+                    Id = item.Object.Id,
+                    Nombre = item.Object.Nombre,
+                    Descripcion = item.Object.Descripcion,
+                    ImagenPrincipal = item.Object.ImagenPrincipal,
+                    Contacto = item.Object.Contacto,
+                    Horario = item.Object.Horario,
+                    Ubicacion = item.Object.Ubicacion,
+                    Stream = item.Object.Stream,
+                    VideoUrl = item.Object.VideoUrl,
+                    IdPueblo = item.Object.IdPueblo
+                }).ToList();
+                return listaComercios;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async Task<List<Comercio>> ObtenerTodosComerciosPueblo(int idPueblo)
+        {
+            try
+            {
+                var todosComercios = await ObtenerTodosComercios();
+                await firebase.Child("Comercios").OnceAsync<Comercio>();
+                return todosComercios.Where(a => a.IdPueblo.Equals(idPueblo)).ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async void EliminarTodosComerciosPueblo(int idPueblo)
+        {
+            try
+            {
+                var todosComercios = await ObtenerTodosComercios();
+                await firebase.Child("Comercios").OnceAsync<Comercio>();
+                todosComercios.Where(a => a.IdPueblo.Equals(idPueblo)).ToList().Clear();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+            }
+        }
+
+        //Leer 
+        public static async Task<Comercio> ObtenerComercio(int id)
+        {
+            try
+            {
+                var todosComercios = await ObtenerTodosComercios();
+                await firebase
+                .Child("Comercios")
+                .OnceAsync<Comercio>();
+                return todosComercios.Where(a => a.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Insertar
+        public static async Task<bool> InsertarComercio(int id, string nombre, string descrpcion, string imagen, string contacto, string horario,Ubicacion ubicacion, Video video, int idPueblo)
+        {
+            try
+            {
+                await firebase
+                .Child("Comercios")
+                .PostAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Actualizar
+        public static async Task<bool> ActualizarComercio(int id, string nombre, string descrpcion, string imagen, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
+        {
+            try
+            {
+                var actualizarComercio = (await firebase
+                .Child("Comercios")
+                .OnceAsync<Comercio>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase
+                .Child("Comercios")
+                .Child(actualizarComercio.Key)
+                .PutAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Eliminar
+        public static async Task<bool> EliminarComercio(int id)
+        {
+            try
+            {
+                var eliminarComercio = (await firebase
+                .Child("Comercios")
+                .OnceAsync<Comercio>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase.Child("Comercios").Child(eliminarComercio.Key).DeleteAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //MÉTODOS CRUD ALOJAMIENTO
+
+        public static async Task<List<Comercio>> ObtenerTodosAlojamientos()
+        {
+            try
+            {
+                var listaAlojamientos = (await firebase
+                .Child("Alojamientos")
+                .OnceAsync<Comercio>()).Select(item =>
+                new Comercio
+                {
+                    Id = item.Object.Id,
+                    Nombre = item.Object.Nombre,
+                    Descripcion = item.Object.Descripcion,
+                    ImagenPrincipal = item.Object.ImagenPrincipal,
+                    Contacto = item.Object.Contacto,
+                    Horario = item.Object.Horario,
+                    Ubicacion = item.Object.Ubicacion,
+                    Stream = item.Object.Stream,
+                    VideoUrl = item.Object.VideoUrl,
+                    IdPueblo = item.Object.IdPueblo
+                }).ToList();
+                return listaAlojamientos;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async Task<List<Comercio>> ObtenerTodosAlojamientosPueblo(int idPueblo)
+        {
+            try
+            {
+                var todosAlojamientos = await ObtenerTodosAlojamientos();
+                await firebase.Child("Alojamientos").OnceAsync<Comercio>();
+                return todosAlojamientos.Where(a => a.IdPueblo.Equals(idPueblo)).ToList();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        public static async void EliminarTodosAlojamientosPueblo(int idPueblo)
+        {
+            try
+            {
+                var todosAlojamientos = await ObtenerTodosAlojamientos();
+                await firebase.Child("Alojamientos").OnceAsync<Comercio>();
+                todosAlojamientos.Where(a => a.IdPueblo.Equals(idPueblo)).ToList().Clear();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+            }
+        }
+
+        //Leer 
+        public static async Task<Comercio> ObtenerAlojamiento(int id)
+        {
+            try
+            {
+                var todosAlojamientos = await ObtenerTodosAlojamientos();
+                await firebase
+                .Child("Alojamientos")
+                .OnceAsync<Comercio>();
+                return todosAlojamientos.Where(a => a.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Insertar
+        public static async Task<bool> InsertarAlojamiento(int id, string nombre, string descrpcion, string imagen, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
+        {
+            try
+            {
+                await firebase
+                .Child("Alojamientos")
+                .PostAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Actualizar
+        public static async Task<bool> ActualizarAlojamiento(int id, string nombre, string descrpcion, string imagen, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
+        {
+            try
+            {
+                var actualizarAlojamiento = (await firebase
+                .Child("Alojamientos")
+                .OnceAsync<Comercio>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase
+                .Child("Alojamientos")
+                .Child(actualizarAlojamiento.Key)
+                .PutAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
+
+        //Eliminar
+        public static async Task<bool> EliminarAlojamiento(int id)
+        {
+            try
+            {
+                var eliminarAlojamiento = (await firebase
+                .Child("Alojamientos")
+                .OnceAsync<Comercio>()).Where(a => a.Object.Id == id).FirstOrDefault();
+                await firebase.Child("Alojamientos").Child(eliminarAlojamiento.Key).DeleteAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return false;
+            }
+        }
     }
 }

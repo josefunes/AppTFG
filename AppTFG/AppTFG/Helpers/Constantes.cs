@@ -14,6 +14,8 @@ namespace AppTFG.Helpers
         public const string TitlePuebloRequired = "Por favor, introduce un nombre para el pueblo.";
         public const string TitleRutaRequired = "Por favor, introduce un título para la ruta.";
         public const string TitleActividadRequired = "Por favor, introduce un título para la actividad.";
+        public const string TitleComercioRequired = "Por favor, introduce un título para el comercio.";
+        public const string TitleAlojamientoRequired = "Por favor, introduce un título para el alojamiento.";
         public const string Codigo = "";
         //public const string InsertImageRequired = "Por favor, añade una imagen.";
         public static int GenerarId()
