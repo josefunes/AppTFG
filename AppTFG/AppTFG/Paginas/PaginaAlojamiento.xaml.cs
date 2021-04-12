@@ -29,23 +29,19 @@ namespace AppTFG.Paginas
             {
                 Title = "Nuevo Comercio";
                 ToolbarItems.RemoveAt(1);
-                stackMapa.IsVisible = false;
-                stackMapa.IsEnabled = false;
             }
             else
             {
                 Title = Alojamiento.Nombre;
-                CrearMapa().ConfigureAwait(true);
-                stackMapa.IsVisible = true;
-                stackMapa.IsEnabled = true;
             }
+            CrearMapa().ConfigureAwait(true);
         }
 
         void Loading(bool mostrar)
         {
             if (mostrar)
             {
-                UserDialogs.Instance.ShowLoading("Guardando actividad...");
+                UserDialogs.Instance.ShowLoading("Guardando alojamiento...");
             }
             else
             {
@@ -58,7 +54,7 @@ namespace AppTFG.Paginas
         {
             if (mostrar)
             {
-                UserDialogs.Instance.ShowLoading("Eliminando actividad...");
+                UserDialogs.Instance.ShowLoading("Eliminando alojamiento...");
             }
             else
             {
@@ -117,14 +113,14 @@ namespace AppTFG.Paginas
 
         async Task<MapSpan> GeocoderPueblo()
         {
-            var nombrePueblo = txtNombre.Text;
+            var Pueblo = await FirebaseHelper.ObtenerPueblo(Alojamiento.IdPueblo);
             Geocoder geoCoder = new Geocoder();
-            string address = nombrePueblo + ", Andalucía, Spain";
+            string address = Pueblo.Nombre + ", Andalucía, Spain";
             IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
             Position position = approximateLocations.FirstOrDefault();
             if (position == new Position(0, 0))
             {
-                string direccion = nombrePueblo + ", Andalucía";
+                string direccion = Pueblo + ", Andalucía";
                 IEnumerable<Position> direccionesAproximadas = await geoCoder.GetPositionsForAddressAsync(direccion);
                 Position posicion = direccionesAproximadas.FirstOrDefault();
                 if (posicion == new Position(0, 0) || Connectivity.NetworkAccess != NetworkAccess.Internet)
