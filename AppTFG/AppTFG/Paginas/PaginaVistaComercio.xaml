@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="AppTFG.Paginas.PaginaVistaComercio"
+             Title="Comercios"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+        <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
+        <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="0" Padding="0" Margin="0">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="400"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" x:Name="imgComercio" Source="{Binding ImagenPrincipal}"
+                               Aspect="AspectFill" HeightRequest="200"/>
+                    <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                        <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
+                            <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}"  
+                                       HorizontalOptions="StartAndExpand" FontSize="Large" Text="{Binding Nombre}"
+                                       BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
+                            <Label x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
+                                    Margin="10, 0, 10, 25" BackgroundColor="{DynamicResource PageBackgroundColor}" 
+                                    FontSize="Large" FontFamily="BSDRegular"/>
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Grid.Row="2" Margin="0,0,0,0" HeightRequest="-1" WidthRequest="-1" Spacing="2.5">
+                        <StackLayout x:Name="stackMapa" HeightRequest="-1" WidthRequest="-1" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
+                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

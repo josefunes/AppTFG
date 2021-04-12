@@ -41,6 +41,18 @@ namespace AppTFG.Paginas
             await Navigation.PushAsync(new PaginaVistaListaActividades(pueblo));
         }
 
+        async void BtnComercios_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            await Navigation.PushAsync(new PaginaVistaListaComercios(pueblo));
+        }
+
+        async void BtnAlojamientos_Clicked(object sender, EventArgs e)
+        {
+            var pueblo = (Pueblo)BindingContext;
+            await Navigation.PushAsync(new PaginaVistaListaAlojamientos(pueblo));
+        }
+
         async void BtnFotos_Clicked(object sender, EventArgs e)
         {
             var pueblo = (Pueblo)BindingContext;
