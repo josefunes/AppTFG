@@ -16,7 +16,7 @@ namespace AppTFG.Helpers
         public const string TitleActividadRequired = "Por favor, introduce un título para la actividad.";
         public const string TitleComercioRequired = "Por favor, introduce un título para el comercio.";
         public const string TitleAlojamientoRequired = "Por favor, introduce un título para el alojamiento.";
-        public const string Codigo = "";
+        public const string WebAPIkey = "AIzaSyDdd6sKXoEVq1Qij5qQqYrMlcEzo8y2j3g";
         //public const string InsertImageRequired = "Por favor, añade una imagen.";
         public static int GenerarId()
         {
@@ -32,7 +32,7 @@ namespace AppTFG.Helpers
         }
 
         /// Esta función descifra la cadena que le envíamos en el parámentro de entrada.
-        public static string Descifrar(this string cadena)
+        public static string Descifrar(string cadena)
         {
             byte[] decryted = Convert.FromBase64String(cadena);
             string result = System.Text.Encoding.Unicode.GetString(decryted);

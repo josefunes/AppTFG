@@ -6,7 +6,7 @@
              BackgroundColor="Transparent">
     <ContentPage.Content>
         <Grid>
-            <BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0">
+            <!--<BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0">
                 <BoxView.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="AliceBlue" Offset="0.3"/>
@@ -15,12 +15,12 @@
                         <GradientStop Color="LightSkyBlue" Offset="1.0" />
                     </LinearGradientBrush>
                 </BoxView.Background>
-            </BoxView>
+            </BoxView>-->
             <StackLayout>
                 <Button x:Name="volver" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="Transparent" TextColor="Black" Text="Volver a Inicio sesión" FontFamily="BSDRegular" Margin="10,10,10,10" Command="{Binding Login}"/>
             </StackLayout>
             <StackLayout VerticalOptions="Center">
-                <Entry x:Name="usuario" Placeholder="Usuario" TextColor="Black" PlaceholderColor="Black" Text="{Binding Nombre}" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+                <Entry x:Name="usuario" Placeholder="Correo" TextColor="Black" PlaceholderColor="Black" Text="{Binding Nombre}" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Entry x:Name="password" Placeholder="Contraseña" TextColor="Black" PlaceholderColor="Black" Text="{Binding Password}" IsPassword="True" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Entry x:Name="password2" Placeholder="Verificar Contraseña" TextColor="Black" PlaceholderColor="Black" Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10,0,10,10" FontFamily="BSDRegular"/>
                 <Button x:Name="signup" Text="Registrarse" Command="{Binding SignUpCommand}" HorizontalOptions="Center" FontFamily="BSDRegular" BackgroundColor="LightBlue" TextColor="Black"/>

@@ -38,8 +38,8 @@ namespace AppTFG.Helpers
                 new Usuario
                 {
                     Nombre = item.Object.Nombre,
-                    Password = item.Object.Password,
-                    UsuarioId = item.Object.UsuarioId
+                    UsuarioId = item.Object.UsuarioId,
+                    FirebaseToken = item.Object.FirebaseToken
                 }).ToList();
                 return listaUsuarios;
             }
@@ -69,13 +69,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarUsuario(string nombre, string password, int id)
+        public static async Task<bool> InsertarUsuario(string nombre, string token, int id)
         {
             try
             {
                 await firebase
                 .Child("Usuarios")
-                .PostAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id});
+                .PostAsync(new Usuario() { Nombre = nombre, FirebaseToken = token, UsuarioId = id});
                 return true;
             }
             catch (Exception e)
@@ -86,7 +86,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarUsuario(string nombre, string password, int id)
+        public static async Task<bool> ActualizarUsuario(string nombre, int id)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Usuarios")
                 .Child(actualizarUsuario.Key)
-                .PutAsync(new Usuario() { Nombre = nombre, Password = password, UsuarioId = id });
+                .PutAsync(new Usuario() { Nombre = nombre, UsuarioId = id });
                 return true;
             }
             catch (Exception e)

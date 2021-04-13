@@ -7,38 +7,14 @@
              x:Class="AppTFG.Paginas.LoginPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">
-
     <ContentPage.Content>
-        <!--<Grid>-->
-            <!--<BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0">
-                <BoxView.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="AliceBlue" Offset="0.3"/>
-                        <GradientStop Color="LightSteelBlue" Offset="0.5" />
-                        <GradientStop Color="CadetBlue" Offset="0.7" />
-                        <GradientStop Color="LightSkyBlue" Offset="1.0" />
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>-->
-            <StackLayout VerticalOptions="Center">
-                <Entry Text="{Binding Nombre}" Placeholder="Usuario" MaxLength="10" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Entry Text="{Binding Password}" Placeholder="Contraseña" MaxLength="10" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="LightBlue" TextColor="Black" Margin="60,0,60,0" FontFamily="BSDRegular"/>
-                <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
-                <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding Registro}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
-                <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <!--<Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="40"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" BackgroundColor="Transparent" ImageSource="facebook.png" HorizontalOptions="Center"/>
-                    <Button Grid.Column="1" BackgroundColor="Transparent" ImageSource="twitter.png" HorizontalOptions="Center"/>
-                    <Button Grid.Column="2" BackgroundColor="Transparent" ImageSource="google.png" HorizontalOptions="Center"/>
-                </Grid>-->
-            </StackLayout>
-        <!--</Grid>-->
+        <StackLayout VerticalOptions="Center">
+            <Entry Text="{Binding Nombre}" Placeholder="Correo" MaxLength="50" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+            <Entry Text="{Binding Password}" Placeholder="Contraseña" MaxLength="20" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
+            <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="LightBlue" TextColor="Black" Margin="60,0,60,0" FontFamily="BSDRegular"/>
+            <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
+            <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding Registro}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
+            <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </StackLayout>
     </ContentPage.Content>
-
 </ContentPage>

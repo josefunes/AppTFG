@@ -69,7 +69,7 @@ namespace AppTFG
 
             Label nombreUsuario = new Label()
             {
-                FontSize = Device.GetNamedSize(NamedSize.Title, typeof(Label)),
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 FontAttributes = FontAttributes.Bold,
                 FontFamily = "BSDLight",
                 HorizontalOptions = LayoutOptions.CenterAndExpand,

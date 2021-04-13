@@ -117,7 +117,7 @@ namespace AppTFG.Paginas
                 }
                 if (user.UsuarioId == 0)
                 {
-                    await FirebaseHelper.ActualizarUsuario(nombre, user.Password, pueblo.Id);
+                    await FirebaseHelper.ActualizarUsuario(nombre, pueblo.Id);
                 }
             }
             Loading(false);

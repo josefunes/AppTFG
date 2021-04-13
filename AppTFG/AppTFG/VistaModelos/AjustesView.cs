@@ -5,6 +5,10 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Linq;
 using Acr.UserDialogs;
+using Firebase.Auth;
+using AppTFG.Paginas;
+using Xamarin.Essentials;
+using Newtonsoft.Json;
 
 namespace AppTFG.VistaModelos
 {
@@ -64,10 +68,13 @@ namespace AppTFG.VistaModelos
             {
                 return new Command(() =>
                 {
-                    if (Password == ConfirmPassword)
+                    if (Password == ConfirmPassword) 
+                    {
                         Update();
+                        UserDialogs.Instance.Alert("La contraseña ha sido actualizada.", "", "OK");
+                    }
                     else
-                        UserDialogs.Instance.Alert("La contraseña introducida tiene que coincidir con la anterior", "", "OK");
+                        UserDialogs.Instance.Alert("La contraseña introducida tiene que coincidir con la anterior.", "", "OK");
                 });
             }
         }
@@ -80,6 +87,7 @@ namespace AppTFG.VistaModelos
         //Update user data
         private async void Update()
         {
+            
             try
             {
                 Label nombreUsuario = new Label();
@@ -98,13 +106,28 @@ namespace AppTFG.VistaModelos
                     }
                     else
                     {
-                        var pass = Constantes.Cifrar(NewPassword);
-                        //call AddUser function which we define in Firebase helper class
-                        var isupdate = await FirebaseHelper.ActualizarUsuario(nombre, pass, usuario.UsuarioId);
-                        if (isupdate)
-                            UserDialogs.Instance.Alert("", "Contraseña actualizada", "Ok");
-                        else
-                            UserDialogs.Instance.Alert("No se ha podido actualizar.", "Error", "Ok");
+                        var authProvider = new FirebaseAuthProvider(new FirebaseConfig(Constantes.WebAPIkey));
+                        try
+                        {
+                            //This is the saved firebaseauthentication that was saved during the time of login
+                            var savedfirebaseauth = JsonConvert.DeserializeObject<Firebase.Auth.FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken",""));
+                            //Here we are Refreshing the token
+                            var RefreshedContent = await authProvider.RefreshAuthAsync(savedfirebaseauth);
+                            Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
+                            //Now lets grab user information
+                            string token = savedfirebaseauth.FirebaseToken;
+                            var nuevo = await authProvider.ChangeUserPassword(token, Password);
+                            var auth = await authProvider.SignInWithEmailAndPasswordAsync(Nombre, Password);
+                            var isupdate = await FirebaseHelper.ActualizarUsuario(nombre, usuario.UsuarioId);
+                            if (isupdate)
+                                UserDialogs.Instance.Alert("", "Contraseña actualizada", "Ok");
+                            else
+                                UserDialogs.Instance.Alert("No se ha podido actualizar.", "Error", "Ok");
+                        }
+                        catch (Exception)
+                        {
+                            UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña correctos", "Fallo al iniciar sesión", "OK");
+                        }
                     }
                 }
                 else
@@ -112,7 +135,6 @@ namespace AppTFG.VistaModelos
             }
             catch (Exception e)
             {
-                //UserDialogs.Instance.Alert("No se ha podido actualizar la contraseña.", "", "Ok");
                 Debug.WriteLine($"Error catch:{e}");
             }
         }
@@ -120,13 +142,24 @@ namespace AppTFG.VistaModelos
         //Delete user data
         private async void Delete()
         {
+            Label nombreUsuario = new Label();
+            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
+            string nombre = nombreUsuario.Text;
+            var usuario = await FirebaseHelper.ObtenerUsuario(nombre);
+            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(Constantes.WebAPIkey));
             try
             {
-                var isdelete = await FirebaseHelper.EliminarUsuario(Nombre);
-                if (isdelete)
-                    await App.Current.MainPage.Navigation.PopAsync();
-                else
-                    UserDialogs.Instance.Alert("No se ha podido eliminar el usuario", "Error", "Ok");
+                var eliminar = await UserDialogs.Instance.ConfirmAsync("Si desea que se eliminen todos los datos asociados" +
+                    "al pueblo, tendrá que eliminarlo en la pantalla 'Mi pueblo'.", "Advertencia", "Eliminar usuario", "Cancelar" );
+                if (eliminar)
+                {
+                    await authProvider.DeleteUserAsync(usuario.FirebaseToken);
+                    var isdelete = await FirebaseHelper.EliminarUsuario(nombre);
+                    if (isdelete)
+                        await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
+                    else
+                        UserDialogs.Instance.Alert("No se ha podido eliminar el usuario", "Error", "Ok");
+                }
             }
             catch (Exception e)
             {

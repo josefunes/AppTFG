@@ -67,7 +67,7 @@ namespace AppTFG.Paginas
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
 
-            Title = "Bienvenido, " + nombre;
+            //Title = "Bienvenido, " + nombre;
 
             if (puebloUser == null)
             {
