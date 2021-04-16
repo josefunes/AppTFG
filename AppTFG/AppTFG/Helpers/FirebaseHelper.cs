@@ -86,7 +86,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarUsuario(string nombre, int id)
+        public static async Task<bool> ActualizarUsuario(string nombre, string token, int id)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Usuarios")
                 .Child(actualizarUsuario.Key)
-                .PutAsync(new Usuario() { Nombre = nombre, UsuarioId = id });
+                .PutAsync(new Usuario() { Nombre = nombre, FirebaseToken = token, UsuarioId = id });
                 return true;
             }
             catch (Exception e)

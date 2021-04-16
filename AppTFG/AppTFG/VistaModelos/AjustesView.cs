@@ -9,6 +9,7 @@ using Firebase.Auth;
 using AppTFG.Paginas;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace AppTFG.VistaModelos
 {
@@ -71,7 +72,6 @@ namespace AppTFG.VistaModelos
                     if (Password == ConfirmPassword) 
                     {
                         Update();
-                        UserDialogs.Instance.Alert("La contraseña ha sido actualizada.", "", "OK");
                     }
                     else
                         UserDialogs.Instance.Alert("La contraseña introducida tiene que coincidir con la anterior.", "", "OK");
@@ -94,13 +94,10 @@ namespace AppTFG.VistaModelos
                 nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
                 string nombre = nombreUsuario.Text;
                 var usuario = await FirebaseHelper.ObtenerUsuario(nombre);
-                if (!string.IsNullOrEmpty(NewPassword))
+                string passSinEspacios = Regex.Replace(NewPassword, @"\s", "");
+                if (!string.IsNullOrEmpty(passSinEspacios))
                 {
-                    if (!(Constantes.Descifrar(usuario.Password) == Password) || !(Constantes.Descifrar(usuario.Password) == ConfirmPassword))
-                    {
-                        UserDialogs.Instance.Alert("Contraseña actual errónea. Pruebe de nuevo.", "Error", "OK");
-                    }
-                    else if ((NewPassword.Length < 8 && NewPassword.Length > 15) || !NewPassword.ToCharArray().Any(Char.IsDigit))
+                    if ((passSinEspacios.Length < 8 && passSinEspacios.Length > 15) || !passSinEspacios.ToCharArray().Any(Char.IsDigit))
                     {
                         UserDialogs.Instance.Alert("La contraseña debe tener como mínimo 8 caracteres y un máximo de 15, incluyendo una letra minúscula, una mayúscula y un número.", "Error", "OK");
                     }
@@ -116,9 +113,8 @@ namespace AppTFG.VistaModelos
                             Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
                             //Now lets grab user information
                             string token = savedfirebaseauth.FirebaseToken;
-                            var nuevo = await authProvider.ChangeUserPassword(token, Password);
-                            var auth = await authProvider.SignInWithEmailAndPasswordAsync(Nombre, Password);
-                            var isupdate = await FirebaseHelper.ActualizarUsuario(nombre, usuario.UsuarioId);
+                            await authProvider.ChangeUserPassword(token, passSinEspacios);
+                            var isupdate = await FirebaseHelper.ActualizarUsuario(nombre, usuario.FirebaseToken, usuario.UsuarioId);
                             if (isupdate)
                                 UserDialogs.Instance.Alert("", "Contraseña actualizada", "Ok");
                             else
@@ -126,7 +122,7 @@ namespace AppTFG.VistaModelos
                         }
                         catch (Exception)
                         {
-                            UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña correctos", "Fallo al iniciar sesión", "OK");
+                            UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña correctos", "Fallo cambio contraseña", "OK");
                         }
                     }
                 }

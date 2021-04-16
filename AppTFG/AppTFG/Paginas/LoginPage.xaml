@@ -1,20 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             mc:Ignorable="d"
-             x:Class="AppTFG.Paginas.LoginPage"
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="White">
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="Center">
-            <Entry Text="{Binding Nombre}" Placeholder="Correo" MaxLength="50" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-            <Entry Text="{Binding Password}" Placeholder="Contraseña" MaxLength="20" IsPassword="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" TextColor="Black" PlaceholderColor="Black" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-            <Button HorizontalOptions="Center"  Text="Iniciar sesión" Command="{Binding LoginCommand}" BackgroundColor="LightBlue" TextColor="Black" Margin="60,0,60,0" FontFamily="BSDRegular"/>
-            <Label Text="¿No tiene cuenta aún?" HorizontalOptions="Start" Margin="20,10,0,0" FontFamily="BSDRegular"/>
-            <Button HorizontalOptions="Start" BackgroundColor="Transparent" Text="Registrarse" Command="{Binding Registro}" Margin="20,0,0,0" FontFamily="BSDRegular"/>
-            <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>
+<ContentPage
+    x:Class="AppTFG.Paginas.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:renderers="clr-namespace:AppTFG.Renderers"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="#791AE5"
+    Padding="0,40,0,0">
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout >
+            <StackLayout  Margin="0,0,0,0"  Orientation="Horizontal">
+                <StackLayout Margin="20,10,20,0" Spacing="20">
+                    <Label FontAttributes="Bold" FontSize="30" Text="Inicio de sesión" TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <Image Source="bgImage1" WidthRequest="200" />
+            </StackLayout>
+            <pv:PancakeView Margin="0,20,0,0" Padding="30,50,30,30" BackgroundColor="White" CornerRadius="40,40,0,0"
+            VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="15">
+                    <StackLayout Spacing="10">
+                        <Label Margin="12,0,0,0" FontSize="20" Text="Email" TextColor="#791AE5" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        CornerRadius="15" Elevation="3" HeightRequest="50">
+                            <renderers:BorderlessEntry FontSize="20" Placeholder="Email" PlaceholderColor="#99A1B3" 
+                            Text="{Binding Nombre}" ClearButtonVisibility="WhileEditing" Keyboard="Email"
+                            TextColor="#484848" />
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <StackLayout Spacing="10">
+                        <Label Margin="12,0,0,0" FontSize="20" Text="Contraseña" TextColor="#791AE5" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        CornerRadius="15" Elevation="3" HeightRequest="50">
+                            <renderers:BorderlessEntry FontSize="20" Placeholder="Contraseña" PlaceholderColor="#99A1B3" 
+                            Text="{Binding Password}" ClearButtonVisibility="WhileEditing" IsPassword="True" 
+                            TextColor="#484848" />
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <pv:PancakeView BackgroundColor="#791AE5" BorderThickness="1" CornerRadius="25"
+                    Elevation="3" HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="150">
+                        <Button FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                        Text="Inicio" TextColor="White" VerticalOptions="CenterAndExpand" 
+                        Command="{Binding LoginCommand}" BackgroundColor="Transparent"/>
+                    </pv:PancakeView>
+                    <Label FontAttributes="None" FontSize="18" HorizontalOptions="CenterAndExpand" 
+                           TextColor="#99A1B3" VerticalOptions="CenterAndExpand" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="¿No tienes cuenta aún? " ></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button TextColor="#791AE5" Text="Regístrate aquí" Command="{Binding Registro}" BackgroundColor="Transparent" Margin="0,-10,0,0"></Button>
+                </StackLayout>
+            </pv:PancakeView>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

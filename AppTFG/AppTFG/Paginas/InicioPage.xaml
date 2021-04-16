@@ -1,115 +1,129 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:vm="clr-namespace:AppTFG.VistaModelos"
-             x:Class="AppTFG.Paginas.InicioPage"
-             NavigationPage.HasBackButton="False"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
-
-    <ContentPage.BindingContext>
-        <vm:InicioPageView/>
-    </ContentPage.BindingContext>
-    <ContentPage.Resources>
-        <Style TargetType="Grid">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="Transparent" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand">
-            <!--Frame del Pueblo donde se ve la información más general-->
-            <Frame CornerRadius="20" HorizontalOptions="StartAndExpand" Padding="0,0,0,0" BackgroundColor="{DynamicResource PageBackgroundColor}">
-                <Grid RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
-                    </Grid.RowDefinitions>
-
-                    <Label x:Name="nombrePueblo" Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="#FACFCF" HorizontalTextAlignment="Center" TextColor="Black"
-                           VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="Title" FontFamily="BSDSemiBold"/>
-
-                    <Label Grid.Row="1" Grid.Column="0" Text="Rutas" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label x:Name="numRutas" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-
-                    <Label Grid.Row="1" Grid.Column="1" Text="Actividades" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label x:Name="numActividades" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-
-                    <Label Grid.Row="1" Grid.Column="2" Text="Fotos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label x:Name="numFotos" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-
-                    <Label Grid.Row="1" Grid.Column="3" Text="Vídeos" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                    <Label x:Name="numVideos" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" FontSize="Large" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                </Grid>
-            </Frame>
-            <StackLayout Orientation="Vertical">
-                
-                <Label Text="Rutas añadidas" Margin="10, 0, 0, 0" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
-                <CollectionView x:Name="clvRutas" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                HorizontalScrollBarVisibility="Never" SelectedItem="{Binding RutaSeleccionada}"
-                                SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid WidthRequest="135" HeightRequest="195" Padding="0,10">
-                                <pv:PancakeView HasShadow="True" BorderThickness="1" BorderColor="#825060" CornerRadius="23" 
-                                                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                        <Image Source="{Binding ImagenPrincipal}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                                        <pv:PancakeView BackgroundColor="{DynamicResource PageBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                                            <Label Text="{Binding Nombre}" LineBreakMode="NoWrap" VerticalOptions="Center" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                        </pv:PancakeView>
-                                    </Grid>
-                                </pv:PancakeView>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-                <Label Text="Actividades añadidas" Margin="10, 0, 0, 0" FontSize="Large" FontFamily="BSDSemiBold" TextColor="{DynamicResource PrimaryTextColor}"/>
-                <CollectionView x:Name="clvActividades" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                HorizontalScrollBarVisibility="Never" SelectedItem="{Binding ActividadSeleccionada}"
-                                SelectionMode="Single" SelectionChangedCommand="{Binding SelectionCommand}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid WidthRequest="135" HeightRequest="195" Padding="0,10">
-                                <pv:PancakeView HasShadow="True" BorderThickness="1" BorderColor="#825060" CornerRadius="23" 
-                                                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                        <Image Source="{Binding ImagenPrincipal}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                                        <pv:PancakeView BackgroundColor="{DynamicResource PageBackgroundColor}" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                                            <Label Text="{Binding Nombre}" LineBreakMode="NoWrap" VerticalOptions="Center" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                        </pv:PancakeView>
-                                    </Grid>
-                                </pv:PancakeView>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                
-            </StackLayout>
+﻿<ContentPage
+    x:Class="AppTFG.Paginas.InicioPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="0,0,0,0"
+    BackgroundColor="#791AE5">
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <Grid Margin="0,0,0,0">
+                <StackLayout Margin="20,0,20,0" Spacing="20">
+                    <Label FontAttributes="Bold" FontSize="28" HorizontalOptions="StartAndExpand"
+                        Text="Start Your Workday Comfortably" TextColor="White" VerticalOptions="StartAndExpand"
+                        WidthRequest="200" />
+                </StackLayout>
+                <pv:PancakeView Padding="10" BackgroundColor="White" Margin="0,0,30,0"
+                            BorderThickness="1" CornerRadius="15" Elevation="3" HorizontalOptions="EndAndExpand" WidthRequest="120">
+                    <StackLayout>
+                        <ImageButton Source="bgImage1" Clicked="PuebloClick" BackgroundColor="Transparent"/>
+                        <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Mi pueblo" TextColor="#791AE5"
+                                    VerticalOptions="CenterAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PuebloClick"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </pv:PancakeView>
+            </Grid>
+            <pv:PancakeView Margin="0,0,0,0" Padding="30,0,30,30" BackgroundColor="White" CornerRadius="40,40,0,0"
+                VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Margin="20" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center" Text="¿Qué quieres hacer ahora?" TextColor="Black"
+                        VerticalOptions="Center" />
+                    <Grid Margin="5" ColumnSpacing="20" RowSpacing="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="170" />
+                            <RowDefinition Height="170" />
+                            <RowDefinition Height="170" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <pv:PancakeView Grid.Row="0" Grid.Column="0" Padding="10" BackgroundColor="#791AE5"
+                            BorderThickness="1" CornerRadius="15" Elevation="3">
+                            <StackLayout>
+                                <ImageButton Source="bgImage1" VerticalOptions="CenterAndExpand" Clicked="RutaClick" BackgroundColor="Transparent"/>
+                                <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Rutas" TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="RutaClick"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </pv:PancakeView>
+                        <pv:PancakeView Grid.Row="0" Grid.Column="1" Padding="10" BackgroundColor="#791AE5"
+                            BorderThickness="1" CornerRadius="15" Elevation="3">
+                            <StackLayout>
+                                <ImageButton Source="bgImage1" VerticalOptions="CenterAndExpand" Clicked="ActividadClick" BackgroundColor="Transparent"/>
+                                <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Actividades" TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ActividadClick"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </pv:PancakeView>
+                        <pv:PancakeView Grid.Row="1" Grid.Column="0" Padding="8" BackgroundColor="#791AE5"
+                            BorderThickness="1" CornerRadius="15" Elevation="3">
+                            <StackLayout>
+                                <ImageButton Source="bgImage1" VerticalOptions="CenterAndExpand" Clicked="ComercioClick" BackgroundColor="Transparent"/>
+                                <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Comercios" TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ComercioClick"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </pv:PancakeView>
+                        <pv:PancakeView Grid.Row="1" Grid.Column="1" Padding="8" BackgroundColor="#791AE5" 
+                            BorderThickness="1" CornerRadius="15" Elevation="3">
+                            <StackLayout>
+                                <ImageButton Source="bgImage1" VerticalOptions="CenterAndExpand" Clicked="AlojamientoClick" BackgroundColor="Transparent"/>
+                                <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Alojamientos" TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AlojamientoClick"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </pv:PancakeView>
+                        <pv:PancakeView Grid.Row="2" Grid.Column="0" Padding="10" BackgroundColor="#791AE5"
+                            BorderThickness="1" CornerRadius="15" Elevation="3">
+                            <StackLayout>
+                                <ImageButton Source="bgImage1" VerticalOptions="CenterAndExpand" Clicked="FotoClick" BackgroundColor="Transparent"/>
+                                <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Fotos" TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="FotoClick"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </pv:PancakeView>
+                        <pv:PancakeView Grid.Row="2" Grid.Column="1" Padding="10" BackgroundColor="#791AE5"
+                            BorderThickness="1" CornerRadius="15" Elevation="3">
+                            <StackLayout>
+                                <ImageButton Source="bgImage1" VerticalOptions="CenterAndExpand" Clicked="VideoClick" BackgroundColor="Transparent"/>
+                                <Label FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" Text="Vídeos" TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="VideoClick"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </pv:PancakeView>
+                    </Grid>
+                </StackLayout>
+            </pv:PancakeView>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

@@ -78,7 +78,11 @@ namespace AppTFG.Paginas
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
-            //var pueblo = (Pueblo)BindingContext;
+            if(puebloUser == null)
+            {
+                UserDialogs.Instance.Alert("Es necesario registrar, al menos, el nombre del pueblo para comenzar a introducir fotos u otros datos.","Advertencia","Ok");
+                return;
+            }
             await Navigation.PushAsync(new SubirFoto(new Foto() { IdPueblo = puebloUser.Id }));
         }
 

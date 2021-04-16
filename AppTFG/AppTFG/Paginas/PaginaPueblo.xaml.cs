@@ -109,15 +109,11 @@ namespace AppTFG.Paginas
             {
                 if(pueblo.Stream == null)
                 {
-                    await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
+                    await FirebaseHelper.InsertarPueblo(pueblo.Id = user.UsuarioId, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarPueblo(pueblo.Id = Constantes.GenerarId(), pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
-                }
-                if (user.UsuarioId == 0)
-                {
-                    await FirebaseHelper.ActualizarUsuario(nombre, pueblo.Id);
+                    await FirebaseHelper.InsertarPueblo(pueblo.Id = user.UsuarioId, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
                 }
             }
             Loading(false);

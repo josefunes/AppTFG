@@ -73,22 +73,23 @@ namespace AppTFG.VistaModelos
         private async void SignUp()
         {
             //null or empty field validation, check weather email and password is null or empty
-
-            if (string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Password))
+            string nombreSinEspacios = Regex.Replace(Nombre, @"\s", "");
+            string passSinEspacios = Regex.Replace(Password, @"\s", "");
+            if (string.IsNullOrEmpty(nombreSinEspacios) || string.IsNullOrEmpty(passSinEspacios))
                 UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña.", "Campos vacíos", "OK");
-            else if (!string.IsNullOrEmpty(Nombre))
+            else if (!string.IsNullOrEmpty(nombreSinEspacios))
             {
-                var user = await FirebaseHelper.ObtenerUsuario(Nombre);
+                var user = await FirebaseHelper.ObtenerUsuario(nombreSinEspacios);
                 if (user != null)
                 { 
-                    if (Nombre == user.Nombre)
+                    if (nombreSinEspacios == user.Nombre)
                     {
                         UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario distinto.", "Usuario existente", "OK");
                     }
                 }
                 else if (!string.IsNullOrEmpty(Password))
                 {
-                    if ((Password.Length < 8 && Password.Length > 15) || !Password.ToCharArray().Any(char.IsDigit))
+                    if ((passSinEspacios.Length < 8 && passSinEspacios.Length > 15) || !passSinEspacios.ToCharArray().Any(char.IsDigit))
                     {
                         UserDialogs.Instance.Alert("La contraseña debe tener como mínimo 8 caracteres y un máximo de 15, incluyendo una letra minúscula, una mayúscula y un número.", "Error", "OK");
                     }
@@ -97,13 +98,13 @@ namespace AppTFG.VistaModelos
                         try
                         {
                             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(Constantes.WebAPIkey));
-                            var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Nombre, Password,  sendVerificationEmail: true);
+                            var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(nombreSinEspacios, passSinEspacios,  sendVerificationEmail: true);
                             string gettoken = auth.FirebaseToken;
-                            var usuario = await FirebaseHelper.InsertarUsuario(Nombre, gettoken, 0);
+                            var usuario = await FirebaseHelper.InsertarUsuario(nombreSinEspacios, gettoken,  Constantes.GenerarId());
                             if (usuario)
                             {
                                 UserDialogs.Instance.Alert("Se ha enviado un mensaje de confirmación a su correo electrónico.", "Antes de empezar", "OK");
-                                Application.Current.MainPage = new AppShell(Nombre);
+                                Application.Current.MainPage = new AppShell(nombreSinEspacios);
                             }
                             
                         }

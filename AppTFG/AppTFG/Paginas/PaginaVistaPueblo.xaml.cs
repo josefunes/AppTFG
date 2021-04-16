@@ -16,7 +16,6 @@ namespace AppTFG.Paginas
     {
         Pueblo Pueblo;
         Map map;
-        public static InicioView InicioView { get; set; }
 
         public PaginaVistaPueblo(Pueblo pueblo)
         {

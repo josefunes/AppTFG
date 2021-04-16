@@ -135,9 +135,6 @@
     <PackageReference Include="FirebaseStorage.net">
       <Version>1.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Authorization">
-      <Version>5.0.5</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.Data.Sqlite">
       <Version>6.0.0-preview.1.21102.2</Version>
     </PackageReference>

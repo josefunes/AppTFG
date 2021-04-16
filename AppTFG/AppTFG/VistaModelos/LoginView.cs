@@ -5,6 +5,7 @@ using Firebase.Auth;
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -56,24 +57,27 @@ namespace AppTFG.VistaModelos
         private async void Login()
         {
             UserDialogs.Instance.ShowLoading("Comprobando credenciales...");
-            //null or empty field validation, check weather email and password is null or empty
-
+            //null or empty field validation, check weather email and password is null or empty 
             if (string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Password))
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Por favor introduce un Usuario y una Contraseña", "Campos vacíos", "OK");
-            }   
-            else if (!string.IsNullOrEmpty(Nombre))
+                UserDialogs.Instance.Alert("Por favor introduce un Usuario y una Contraseña.", "Campos vacíos", "OK");
+                return;
+            }
+            string nombreSinEspacios = Regex.Replace(Nombre, @"\s", "");
+            string passSinEspacios = Regex.Replace(Password, @"\s", "");
+            
+            if (!string.IsNullOrEmpty(nombreSinEspacios))
             {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(Constantes.WebAPIkey));
                 try
                 {
-                    var auth = await authProvider.SignInWithEmailAndPasswordAsync(Nombre, Password);
+                    var auth = await authProvider.SignInWithEmailAndPasswordAsync(nombreSinEspacios, passSinEspacios);
                     //var content = await auth.GetFreshAuthAsync();
                     //var serializedcontnet = JsonConvert.SerializeObject(content);
 
                     //Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
-                    Application.Current.MainPage = new AppShell(Nombre);
+                    Application.Current.MainPage = new AppShell(nombreSinEspacios);
                     UserDialogs.Instance.HideLoading();
                 }
                 catch (Exception)
@@ -90,7 +94,7 @@ namespace AppTFG.VistaModelos
             else
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("El Usuario introducido no existe", "Fallo al iniciar sesión", "OK");
+                UserDialogs.Instance.Alert("El Usuario introducido no existe.", "Fallo al iniciar sesión", "OK");
             }
         }
     }

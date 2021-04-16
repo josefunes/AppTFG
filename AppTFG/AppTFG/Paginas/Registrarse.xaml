@@ -1,30 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppTFG.Paginas.Registrarse"
-             NavigationPage.HasBackButton="False"
-             BackgroundColor="Transparent">
-    <ContentPage.Content>
-        <Grid>
-            <!--<BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0">
-                <BoxView.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="AliceBlue" Offset="0.3"/>
-                        <GradientStop Color="LightSteelBlue" Offset="0.5" />
-                        <GradientStop Color="CadetBlue" Offset="0.7" />
-                        <GradientStop Color="LightSkyBlue" Offset="1.0" />
-                    </LinearGradientBrush>
-                </BoxView.Background>
-            </BoxView>-->
-            <StackLayout>
-                <Button x:Name="volver" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="Transparent" TextColor="Black" Text="Volver a Inicio sesión" FontFamily="BSDRegular" Margin="10,10,10,10" Command="{Binding Login}"/>
+<ContentPage
+    x:Class="AppTFG.Paginas.Registrarse"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:renderers="clr-namespace:AppTFG.Renderers"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="#791AE5"
+    Padding="0,40,0,0">
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout >
+            <StackLayout  Margin="0,0,0,0"  Orientation="Horizontal">
+                <StackLayout Margin="20,10,20,0" Spacing="20">
+                    <ImageButton HeightRequest="30" HorizontalOptions="Start" Source="close" VerticalOptions="Start"
+                    WidthRequest="30" Command="{Binding Login}" BackgroundColor="Transparent"/>
+                    <Label FontAttributes="Bold" FontSize="30" Text="Crea tu cuenta" TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <Image Source="bgImage1" WidthRequest="200" />
             </StackLayout>
-            <StackLayout VerticalOptions="Center">
-                <Entry x:Name="usuario" Placeholder="Correo" TextColor="Black" PlaceholderColor="Black" Text="{Binding Nombre}" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Entry x:Name="password" Placeholder="Contraseña" TextColor="Black" PlaceholderColor="Black" Text="{Binding Password}" IsPassword="True" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Entry x:Name="password2" Placeholder="Verificar Contraseña" TextColor="Black" PlaceholderColor="Black" Text="{Binding ConfirmPassword}" IsPassword="True" Margin="10,0,10,10" FontFamily="BSDRegular"/>
-                <Button x:Name="signup" Text="Registrarse" Command="{Binding SignUpCommand}" HorizontalOptions="Center" FontFamily="BSDRegular" BackgroundColor="LightBlue" TextColor="Black"/>
-            </StackLayout>
-        </Grid>
-    </ContentPage.Content>
+            <pv:PancakeView Margin="0,20,0,0" Padding="30,50,30,30" BackgroundColor="White" CornerRadius="40,40,0,0"
+            VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="15">
+                    <StackLayout Spacing="10">
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Email" TextColor="#791AE5" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        CornerRadius="15" Elevation="3" HeightRequest="50">
+                            <renderers:BorderlessEntry FontSize="20" Placeholder="Email" PlaceholderColor="#99A1B3" 
+                            Text="{Binding Nombre}" ClearButtonVisibility="WhileEditing" Keyboard="Email"
+                            TextColor="#484848" />
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <StackLayout Spacing="10">
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Contraseña" TextColor="#791AE5" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        CornerRadius="15" Elevation="3" HeightRequest="50">
+                            <renderers:BorderlessEntry FontSize="20" Placeholder="Contraseña" PlaceholderColor="#99A1B3" 
+                            Text="{Binding Password}" ClearButtonVisibility="WhileEditing" IsPassword="True" 
+                            TextColor="#484848" />
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <StackLayout Spacing="10">
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Confirmar Contraseña" TextColor="#791AE5" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        CornerRadius="15" Elevation="3" HeightRequest="50">
+                            <renderers:BorderlessEntry FontSize="20" Placeholder="Introduce contraseña anterior" 
+                            PlaceholderColor="#99A1B3" Text="{Binding ConfirmPassword}" 
+                            ClearButtonVisibility="WhileEditing" IsPassword="True" TextColor="#484848" />
+                        </pv:PancakeView>
+                    </StackLayout>
+                    <pv:PancakeView BackgroundColor="#791AE5" BorderThickness="1" CornerRadius="25"
+                    Elevation="3" HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="175">
+                        <Button FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand"
+                        Text="Crear usuario" TextColor="White" VerticalOptions="CenterAndExpand" 
+                        Command="{Binding SignUpCommand}" BackgroundColor="Transparent"/>
+                    </pv:PancakeView>
+                </StackLayout>
+            </pv:PancakeView>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
