@@ -13,25 +13,24 @@
             <RowDefinition Height="0.65*"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
-               VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-               Aspect="AspectFill" HeightRequest="-1" WidthRequest="-1"/>
+               Aspect="AspectFill" HeightRequest="200"/>
         <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
-                <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
                        BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
             </StackLayout>
         </Frame>
         <StackLayout Grid.Row="2" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">
             <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1"/>
-            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
-                <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,5,0,0">
+                <Button FontSize="Medium" Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                <Button FontSize="Medium" Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                <Button FontSize="Medium" Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="40"/>
             </StackLayout>
-            <Button Text="Iniciar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" 
-                    FontSize="Large" BackgroundColor="{DynamicResource PrimaryColor}" 
-                    HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150" 
-                    HeightRequest="50" Margin="10" Clicked="BtnIniciar_Clicked"/>
+            <Button Text="Iniciar ruta" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" 
+                    FontSize="Medium" BackgroundColor="{DynamicResource PrimaryColor}" 
+                    HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" 
+                    HeightRequest="40" Margin="5" Clicked="BtnIniciar_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>

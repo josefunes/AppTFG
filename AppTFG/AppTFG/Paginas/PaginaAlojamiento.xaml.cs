@@ -19,6 +19,8 @@ namespace AppTFG.Paginas
     {
         private Comercio Alojamiento;
         private Map Mapa;
+        private double lastScroll;
+
         public PaginaAlojamiento(Comercio alojamiento)
         {
             InitializeComponent();
@@ -61,6 +63,38 @@ namespace AppTFG.Paginas
 
                 UserDialogs.Instance.HideLoading();
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            parallaxScroll.Scrolled += OnParallaxScrollScrolled;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            parallaxScroll.Scrolled -= OnParallaxScrollScrolled;
+        }
+
+        private void OnParallaxScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            double translation;
+            if (lastScroll < e.ScrollY)
+            {
+                translation = 0 - ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+            else
+            {
+                translation = 0 + ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+
+            imgAlojamiento.TranslateTo(imgAlojamiento.TranslationX, translation / 3);
+            lastScroll = e.ScrollY;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -182,22 +216,22 @@ namespace AppTFG.Paginas
             {
                 if (alojamiento.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarAlojamiento(alojamiento.Id, alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal, alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
+                    await FirebaseHelper.ActualizarAlojamiento(alojamiento.Id, alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal, alojamiento.Direccion, alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
                 }
                 else
                 {
-                    await FirebaseHelper.ActualizarAlojamiento(alojamiento.Id, alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal = await FirebaseHelper.SubirFoto(alojamiento.Stream, "Imagen principal de " + alojamiento.Nombre), alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
+                    await FirebaseHelper.ActualizarAlojamiento(alojamiento.Id, alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal = await FirebaseHelper.SubirFoto(alojamiento.Stream, "Imagen principal de " + alojamiento.Nombre), alojamiento.Direccion, alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
                 }
             }
             else
             {
                 if (alojamiento.Stream == null)
                 {
-                    await FirebaseHelper.InsertarAlojamiento(alojamiento.Id = Constantes.GenerarId(), alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal, alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
+                    await FirebaseHelper.InsertarAlojamiento(alojamiento.Id = Constantes.GenerarId(), alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal, alojamiento.Direccion, alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarAlojamiento(alojamiento.Id = Constantes.GenerarId(), alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal = await FirebaseHelper.SubirFoto(alojamiento.Stream, "Imagen principal de " + alojamiento.Nombre), alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
+                    await FirebaseHelper.InsertarAlojamiento(alojamiento.Id = Constantes.GenerarId(), alojamiento.Nombre, alojamiento.Descripcion, alojamiento.ImagenPrincipal = await FirebaseHelper.SubirFoto(alojamiento.Stream, "Imagen principal de " + alojamiento.Nombre), alojamiento.Direccion, alojamiento.Contacto, alojamiento.Horario, alojamiento.Ubicacion, alojamiento.VideoUrl, alojamiento.IdPueblo);
                 }
             }
             Loading(false);

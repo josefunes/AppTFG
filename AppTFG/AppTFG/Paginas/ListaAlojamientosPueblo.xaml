@@ -4,7 +4,7 @@
              x:Class="AppTFG.Paginas.ListaAlojamientosPueblo"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
+        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -23,7 +23,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
                                 <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Source="{Binding ImagenPrincipal}" HeightRequest="250" Aspect="AspectFill" HorizontalOptions="Fill"/>
                                 <Label Grid.Row="2" Grid.Column="0" Text="Dirección:" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
                                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding Direccion}" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>

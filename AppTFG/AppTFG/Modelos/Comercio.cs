@@ -13,6 +13,7 @@ namespace AppTFG.Modelos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string ImagenPrincipal { get; set; }
+        public string Direccion { get; set; }
         public string Horario { get; set; }
         public string Contacto { get; set; }
         public Ubicacion Ubicacion { get; set; }

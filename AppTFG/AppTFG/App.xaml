@@ -5,13 +5,13 @@
     <!--Define global resources and styles here, that apply to all pages in your app.-->
 
     <Application.Resources>
-        <ResourceDictionary Source="Temas/TemaOscuro.xaml">
+        <ResourceDictionary Source="Temas/TemaClaro.xaml">
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor"
                     Value="{DynamicResource NavigationBarColor}" />
                 <Setter Property="BarTextColor"
-                    Value="{DynamicResource SecondaryColor}" />
+                    Value="{DynamicResource PageBackgroundColor}" />
                 <Setter Property="BackgroundColor"
                     Value="{DynamicResource PageBackgroundColor}" />
             </Style>

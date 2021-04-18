@@ -16,6 +16,7 @@ namespace AppTFG.Paginas
     {
         Pueblo Pueblo;
         Map map;
+        private double lastScroll;
 
         public PaginaVistaPueblo(Pueblo pueblo)
         {
@@ -26,6 +27,38 @@ namespace AppTFG.Paginas
             CrearMapa();
             stackMapa.IsVisible = true;
             stackMapa.IsEnabled = true;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            parallaxScroll.Scrolled += OnParallaxScrollScrolled;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            parallaxScroll.Scrolled -= OnParallaxScrollScrolled;
+        }
+
+        private void OnParallaxScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            double translation;
+            if (lastScroll < e.ScrollY)
+            {
+                translation = 0 - ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+            else
+            {
+                translation = 0 + ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+
+            imgPueblo.TranslateTo(imgPueblo.TranslationX, translation / 3);
+            lastScroll = e.ScrollY;
         }
 
         async void BtnRutas_Clicked(object sender, EventArgs e)

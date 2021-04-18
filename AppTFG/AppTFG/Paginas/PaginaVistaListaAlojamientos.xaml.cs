@@ -54,7 +54,7 @@ namespace AppTFG.Paginas
             try
             {
                 var dato = (Comercio)e.SelectedItem;
-                await Navigation.PushAsync(new PaginaAlojamiento(dato));
+                await Navigation.PushAsync(new PaginaVistaAlojamiento(dato));
                 lsvAlojamientosPueblo.SelectedItem = null;
             }
             catch (Exception)

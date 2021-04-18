@@ -3,26 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaVistaActividad"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+    <ScrollView x:Name="parallaxScroll" VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.3*"/>
-                    <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.8*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" x:Name="imgActividad" Source="{Binding ImagenPrincipal}" 
-                           VerticalOptions="StartAndExpand" HorizontalOptions="Center" 
-                           Aspect="AspectFill" HeightRequest="-1" 
-                           WidthRequest="-1"/>
-                <Frame Grid.Row="1" CornerRadius="15" Padding="0">
-                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
-                        <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
-                                BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
+                <Image Grid.Row="0" x:Name="imgActividad" Source="{Binding ImagenPrincipal}"
+                           Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
+                <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                    <StackLayout>
+                        <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="0" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.9*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
+                                BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular" Margin="10, 10, 0, 0"/>
+                            <Label Text="Fecha:" Grid.Row="1" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Medium" Margin="10, 0, 0, 0"/>
+                            <Label Text="{Binding Fecha}" Grid.Row="1" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
+                            <Label  Text="Hora:" Grid.Row="2" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Medium" Margin="10, 0, 0, 0"/>
+                            <Label Text="{Binding Hora}" Grid.Row="2" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
+                        </Grid>
                     </StackLayout>
                 </Frame>
-                <Button Grid.Row="2" Text="Iniciar actividad" TextColor="{DynamicResource PrimaryTextColor}" BackgroundColor="{DynamicResource PageBackgroundColor}"/>
             </Grid>
         </StackLayout>
     </ScrollView>

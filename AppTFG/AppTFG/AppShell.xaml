@@ -13,9 +13,9 @@
                 <!--El color Primary se establece en la clase App.xaml y es el blanco-->
                 <Setter Property="Shell.BackgroundColor" Value="#791AE5" />
                 <!--Color de lo que está en los toolbars y del menú-->
-                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource PageBackgroundColor}" />
                 <!--Color de los títulos que aparecen en los toolbars-->
-                <Setter Property="Shell.TitleColor" Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource PageBackgroundColor}" />
                 <!--<Setter Property="Shell.DisabledColor" Value="Black" />
                 <Setter Property="Shell.UnselectedColor" Value="Blue" />-->
                 <!--Color de la barra del menú inferior-->
@@ -37,10 +37,9 @@
             -->
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <!--Color de la propiedad seleccionada en el menú lateral-->
-                <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}"></Setter>
+                <Setter Property="TextColor" Value="{DynamicResource TertiaryTextColor}"></Setter> 
             </Style>
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
-                <!--<Setter Property="BackgroundColor" Value="Red"></Setter>-->
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -49,13 +48,13 @@
                                     <!--Color del fondo de las propiedades del menú desplegable-->
                                     <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
                                     <!--Color de las letras de las propiedades del menú desplegable-->
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource SecondaryColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource PageBackgroundColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
                                     <!--Color del fondo de la propiedad del menú desplegable seleccionada-->
-                                    <Setter Property="BackgroundColor" Value="{DynamicResource TertiaryTextColor}" />
+                                    <Setter Property="BackgroundColor" Value="CornflowerBlue" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -86,11 +85,11 @@
     se creará un elemento de control flotante para cada objeto Tab dentro de un objeto 
     FlyoutItem-->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Inicio" Icon="home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:InicioPage}" />
-        <ShellContent Title="Pueblos" Icon="marker.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}" />
-        <ShellContent Title="Rutas" Icon="compass.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
-        <ShellContent Title="Actividades" Icon="location.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
+        <ShellContent Title="Inicio" Icon="baseline_home_white_24.png" Route="AboutPage" ContentTemplate="{DataTemplate local:InicioPage}" />
+        <ShellContent Title="Pueblos" Icon="baseline_place_white_24.png" Route="Pueblos" ContentTemplate="{DataTemplate local:ListaPueblos}"/>
+        <ShellContent Title="Rutas" Icon="baseline_directions_walk_white_24.png" Route="RutasTuristicas" ContentTemplate="{DataTemplate local:ListaRutas}" />
+        <ShellContent Title="Actividades" Icon="baseline_local_play_white_24.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
     </FlyoutItem>
-    <ShellContent Title="Ajustes" Icon="settings.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
-    <ShellContent Title="Cerrar sesión" Icon="logout1.png" ContentTemplate="{DataTemplate local:LoginPage}" />
+    <ShellContent Title="Ajustes" Icon="baseline_settings_white_24.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
+    <ShellContent Title="Cerrar sesión" Icon="baseline_logout_white_24.png" ContentTemplate="{DataTemplate local:LoginPage}" />
 </Shell>

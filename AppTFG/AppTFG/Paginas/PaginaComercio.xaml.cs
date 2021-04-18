@@ -19,6 +19,7 @@ namespace AppTFG.Paginas
     {
         private Comercio Comercio;
         private Map Mapa;
+        private double lastScroll;
         public PaginaComercio(Comercio comercio)
         {
             InitializeComponent();
@@ -61,6 +62,38 @@ namespace AppTFG.Paginas
 
                 UserDialogs.Instance.HideLoading();
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            parallaxScroll.Scrolled += OnParallaxScrollScrolled;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            parallaxScroll.Scrolled -= OnParallaxScrollScrolled;
+        }
+
+        private void OnParallaxScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            double translation;
+            if (lastScroll < e.ScrollY)
+            {
+                translation = 0 - ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+            else
+            {
+                translation = 0 + ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+
+            imgComercio.TranslateTo(imgComercio.TranslationX, translation / 3);
+            lastScroll = e.ScrollY;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)
@@ -182,22 +215,22 @@ namespace AppTFG.Paginas
             {
                 if (comercio.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarComercio(comercio.Id, comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal, comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
+                    await FirebaseHelper.ActualizarComercio(comercio.Id, comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal, comercio.Direccion, comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
                 }
                 else
                 {
-                    await FirebaseHelper.ActualizarComercio(comercio.Id, comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal = await FirebaseHelper.SubirFoto(comercio.Stream, "Imagen principal de " + comercio.Nombre), comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
+                    await FirebaseHelper.ActualizarComercio(comercio.Id, comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal = await FirebaseHelper.SubirFoto(comercio.Stream, "Imagen principal de " + comercio.Nombre), comercio.Direccion, comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
                 }
             }
             else
             {
                 if (comercio.Stream == null)
                 {
-                    await FirebaseHelper.InsertarComercio(comercio.Id = Constantes.GenerarId(), comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal, comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
+                    await FirebaseHelper.InsertarComercio(comercio.Id = Constantes.GenerarId(), comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal, comercio.Direccion, comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarComercio(comercio.Id = Constantes.GenerarId(), comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal = await FirebaseHelper.SubirFoto(comercio.Stream, "Imagen principal de " + comercio.Nombre), comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
+                    await FirebaseHelper.InsertarComercio(comercio.Id = Constantes.GenerarId(), comercio.Nombre, comercio.Descripcion, comercio.ImagenPrincipal = await FirebaseHelper.SubirFoto(comercio.Stream, "Imagen principal de " + comercio.Nombre), comercio.Direccion, comercio.Contacto, comercio.Horario, comercio.Ubicacion, comercio.VideoUrl, comercio.IdPueblo);
                 }
             }
             Loading(false);

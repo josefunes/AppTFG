@@ -17,7 +17,8 @@ namespace AppTFG.Paginas
         private Ruta Ruta;
         private Map Map;
         private Polyline Polyline;
-        
+        List<Audio> Audios = new List<Audio>();
+
         public PaginaRuta(Ruta ruta)
         {
             InitializeComponent();
@@ -183,8 +184,11 @@ namespace AppTFG.Paginas
         {
             Loading(true);
             var ruta = (Ruta)BindingContext;
-            var rutaActualizada = await FirebaseHelper.ObtenerRuta(Ruta.Id);
-            var audios = rutaActualizada.Audios;
+            if (Ruta.Id > 0)
+            {
+                Ruta rutaActualizada = await FirebaseHelper.ObtenerRuta(Ruta.Id);
+                Audios = rutaActualizada.Audios;
+            }
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 Loading(false);
@@ -195,23 +199,23 @@ namespace AppTFG.Paginas
             { 
                 if (ruta.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, Audios);
                 }
                 else
                 {
                     //await FirebaseHelper.BorrarFoto("Imagen principal de " + ruta.Nombre);
-                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, Audios);
                 }
             }
             else
             {
                 if (ruta.Stream == null)
                 {
-                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
+                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, Audios);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, audios);
+                    await FirebaseHelper.InsertarRuta(ruta.Id = Constantes.GenerarId(), ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal = await FirebaseHelper.SubirFoto(ruta.Stream, "Imagen principal de " + ruta.Nombre), ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, Audios);
                 }
             }
             Loading(false);

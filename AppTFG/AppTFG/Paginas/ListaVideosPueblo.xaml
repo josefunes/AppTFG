@@ -5,7 +5,7 @@
              x:Class="AppTFG.Paginas.ListaVideosPueblo"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
+        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -17,7 +17,7 @@
                             <ViewCell>
                                 <StackLayout Spacing="5" Orientation="Horizontal" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
                                     <Label Text="{Binding Nombre}" FontSize="Title" 
-                                            LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" Margin="10" FontFamily="BSDRegular"/>
+                                            LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" Margin="10" FontFamily="BSDSemiBold"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

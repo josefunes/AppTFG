@@ -17,6 +17,7 @@ namespace AppTFG.Paginas
     public partial class PaginaActividad : ContentPage
     {
         readonly Actividad Actividad;
+        private double lastScroll;
         public PaginaActividad(Actividad actividad)
         {
             InitializeComponent();
@@ -58,6 +59,38 @@ namespace AppTFG.Paginas
 
                 UserDialogs.Instance.HideLoading();
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            parallaxScroll.Scrolled += OnParallaxScrollScrolled;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            parallaxScroll.Scrolled -= OnParallaxScrollScrolled;
+        }
+
+        private void OnParallaxScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            double translation;
+            if (lastScroll < e.ScrollY)
+            {
+                translation = 0 - ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+            else
+            {
+                translation = 0 + ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+
+            imgActividad.TranslateTo(imgActividad.TranslationX, translation / 3);
+            lastScroll = e.ScrollY;
         }
 
         private async void BtnImagen_Clicked(object sender, EventArgs e)

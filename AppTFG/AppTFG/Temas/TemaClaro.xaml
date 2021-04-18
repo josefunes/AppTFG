@@ -5,11 +5,11 @@
 
     <Color x:Key="PageBackgroundColor">White</Color>
     <Color x:Key="NavigationBarColor">WhiteSmoke</Color>
-    <Color x:Key="PrimaryColor">WhiteSmoke</Color>
+    <Color x:Key="PrimaryColor">#791AE5</Color>
     <Color x:Key="SecondaryColor">Black</Color>
     <Color x:Key="PrimaryTextColor">Black</Color>
     <Color x:Key="SecondaryTextColor">White</Color>
-    <Color x:Key="TertiaryTextColor">LightGray</Color>
+    <Color x:Key="TertiaryTextColor">#791AE5</Color>
     <Color x:Key="BotonesBarraAbajo">Gray</Color>
     <Color x:Key="BotonSeleccionadoBarraAbajo">Black</Color>
     <Color x:Key="TransparentColor">Transparent</Color>

@@ -6,7 +6,8 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <StackLayout>
         <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>-->
-        <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+        <ScrollView x:Name="parallaxScroll" VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
             <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                     <Grid.RowDefinitions>
@@ -34,51 +35,51 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
                                     <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="60"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Button x:Name="btnRutas" Text="Rutas" Margin="5"
+                                <Button x:Name="btnRutas" Margin="5" ImageSource="baseline_directions_walk_white_48.png"
                                     BackgroundColor="{DynamicResource PrimaryColor}" FontFamily="BSDRegular"
                                     TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="FillAndExpand" 
                                     Clicked="BtnRutas_Clicked" Grid.Column="0" Grid.Row="0" BorderColor="Gray"/>
-                                <Label Text="Rutas" FontSize="Large" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                                <Button x:Name="btnActividades" Text="Acts" Margin="5"
+                                <Label Text="Rutas" FontSize="Medium" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                <Button x:Name="btnActividades" Margin="5" ImageSource="baseline_local_play_white_48.png"
                                     BackgroundColor="{DynamicResource PrimaryColor}" FontFamily="BSDRegular"
                                     TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="FillAndExpand" 
                                     Clicked="BtnActividades_Clicked" Grid.Column="1" Grid.Row="0" BorderColor="Gray"/>
-                                <Label Text="Actividades" FontSize="Large" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                                <Button x:Name="btnComercios" Text="Comercios" Margin="5"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" 
+                                <Label Text="Actividades" FontSize="Medium" Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                <Button x:Name="btnComercios" Margin="5"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" ImageSource="baseline_storefront_white_48.png"
                                     TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="FillAndExpand" FontFamily="BSDRegular"
                                     Clicked="BtnComercios_Clicked" Grid.Column="2" Grid.Row="0" BorderColor="Gray"/>
-                                <Label Text="Comercios" FontSize="Large" Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                                <Button x:Name="btnAlojamientos" Text="Alojamientos" Margin="5"
-                                    BackgroundColor="{DynamicResource PrimaryColor}" 
+                                <Label Text="Comercios" FontSize="Medium" Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                <Button x:Name="btnAlojamientos" Margin="5"
+                                    BackgroundColor="{DynamicResource PrimaryColor}" ImageSource="baseline_night_shelter_white_48.png"
                                     TextColor="{DynamicResource PrimaryTextColor}"  HorizontalOptions="FillAndExpand" 
                                     Clicked="BtnAlojamientos_Clicked" Grid.Column="0" Grid.Row="2" BorderColor="Gray" FontFamily="BSDRegular"/>
-                                <Label Text="Alojamientos" FontSize="Large"  Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                                <Button x:Name="btnFotos" Text="Fotos" Margin="5"
+                                <Label Text="Alojamientos" FontSize="Medium"  Grid.Column="0" Grid.Row="3" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                <Button x:Name="btnFotos" Margin="5" ImageSource="baseline_local_see_white_48.png"
                                     BackgroundColor="{DynamicResource PrimaryColor}" 
                                     TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="FillAndExpand" FontFamily="BSDRegular"
                                     Clicked="BtnFotos_Clicked" Grid.Column="1" Grid.Row="2" BorderColor="Gray"/>
-                                <Label Text="Fotos" FontSize="Large" Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
-                                <Button x:Name="btnVideo" Text="Vídeos" Margin="5"
+                                <Label Text="Fotos" FontSize="Medium" Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                <Button x:Name="btnVideo" Margin="5" ImageSource="baseline_smart_display_white_48.png"
                                     BackgroundColor="{DynamicResource PrimaryColor}" 
                                     TextColor="{DynamicResource PrimaryTextColor}"  HorizontalOptions="FillAndExpand" 
                                     Clicked="BtnVideo_Clicked" Grid.Column="2" Grid.Row="2" BorderColor="Gray" FontFamily="BSDRegular"/>
-                                <Label Text="Vídeos" FontSize="Large"  Grid.Column="2" Grid.Row="3" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
+                                <Label Text="Vídeos" FontSize="Medium"  Grid.Column="2" Grid.Row="3" HorizontalOptions="Center" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
                             </Grid>
                             <Label x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
-                                Margin="10, 0, 10, 25" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
+                                Margin="10, -5, 10, 10" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
                         </StackLayout>
                     </Frame>
                     <StackLayout Grid.Row="2" x:Name="stackMapa">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
-                            <Button Text="Street" FontSize="Large" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PageBackgroundColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
-                            <Button Text="Satélite" FontSize="Large" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PageBackgroundColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
-                            <Button Text="Híbrido" FontSize="Large" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PageBackgroundColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
+                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular"/>
+                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular"/>
+                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular"/>
                         </StackLayout>
                     </StackLayout>
                 </Grid>

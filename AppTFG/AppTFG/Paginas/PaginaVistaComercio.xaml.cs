@@ -18,6 +18,7 @@ namespace AppTFG.Paginas
     {
         private Comercio Comercio;
         private Map Mapa;
+        private double lastScroll;
         public PaginaVistaComercio(Comercio comercio)
         {
             InitializeComponent();
@@ -25,6 +26,38 @@ namespace AppTFG.Paginas
             BindingContext = comercio;
             Title = Comercio.Nombre;
             CrearMapa().ConfigureAwait(true);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            parallaxScroll.Scrolled += OnParallaxScrollScrolled;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            parallaxScroll.Scrolled -= OnParallaxScrollScrolled;
+        }
+
+        private void OnParallaxScrollScrolled(object sender, ScrolledEventArgs e)
+        {
+            double translation;
+            if (lastScroll < e.ScrollY)
+            {
+                translation = 0 - ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+            else
+            {
+                translation = 0 + ((e.ScrollY / 2));
+
+                if (translation > 0) translation = 0;
+            }
+
+            imgComercio.TranslateTo(imgComercio.TranslationX, translation / 3);
+            lastScroll = e.ScrollY;
         }
 
         void BtnMapa_Clicked(object sender, EventArgs e)

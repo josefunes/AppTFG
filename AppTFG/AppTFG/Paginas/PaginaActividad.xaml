@@ -4,10 +4,11 @@
              x:Class="AppTFG.Paginas.PaginaActividad"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
-        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
+        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24.png"/>
     </ContentPage.ToolbarItems>
-    <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+    <ScrollView x:Name="parallaxScroll" VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
                 <Grid.RowDefinitions>
@@ -15,7 +16,7 @@
                     <RowDefinition Height="0.8*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" x:Name="imgActividad" Source="{Binding ImagenPrincipal}"
-                           Aspect="AspectFill" HeightRequest="200"/>
+                           Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
                 <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <StackLayout>
                         <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
@@ -39,7 +40,7 @@
                                 FontSize="Medium" FontFamily="BSDRegular" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="3"/>
                             <Button Grid.Column="3" Grid.Row="0" x:Name="btnImagen" Text="Foto ruta" 
                                 BackgroundColor="{DynamicResource TertiaryTextColor}" Margin="0" FontSize="Small"
-                                TextColor="{DynamicResource PrimaryTextColor}" WidthRequest="90"  
+                                TextColor="{DynamicResource PageBackgroundColor}" WidthRequest="90"  
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked" FontFamily="BSDRegular"/>
                             <Editor Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
                                 Placeholder="Ingresa una descripción de la activiad" AutoSize="TextChanges"

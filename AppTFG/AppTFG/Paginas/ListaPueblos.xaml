@@ -2,18 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AppTFG.Paginas.ListaPueblos"
-             BackgroundColor="{DynamicResource PageBackgroundColor}"
-             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
-             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding SelectedItemId}"
-             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromRight">
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnAgregar" Text="Mi pueblo" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"
-                   Placeholder="Buscar pueblo" CancelButtonColor="{DynamicResource PrimaryTextColor}" PlaceholderColor="{DynamicResource PrimaryTextColor}"
+            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold"
+                   Placeholder="Buscar pueblo" CancelButtonColor="{DynamicResource PageBackgroundColor}" PlaceholderColor="{DynamicResource PageBackgroundColor}"
                    TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
             <ListView x:Name="lsvPueblos" ItemSelected="LsvPueblos_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>

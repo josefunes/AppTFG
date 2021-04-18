@@ -24,7 +24,6 @@ namespace AppTFG.Paginas
         {
             base.OnAppearing();
 
-            Loading(true);
             var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
@@ -36,25 +35,6 @@ namespace AppTFG.Paginas
                 lsvFotosPueblo.ItemsSource = null;
                 lsvFotosPueblo.ItemsSource = await FirebaseHelper.ObtenerTodasFotosPueblo(pueblo.Id);
             }
-            Loading(false);
-        }
-
-        void Loading(bool mostrar)
-        {
-            if (mostrar)
-            {
-                indicator.HeightRequest = 30;
-                indicador.HeightRequest = 30;
-            }
-            else
-            {
-                indicator.HeightRequest = 0;
-                indicator.HeightRequest = 0;
-            }
-            indicator.IsEnabled = mostrar;
-            indicator.IsRunning = mostrar;
-            indicador.IsEnabled = mostrar;
-            indicador.IsRunning = mostrar;
         }
 
         private async void LsvFotosPueblo_ItemSelected(object sender, SelectedItemChangedEventArgs e)

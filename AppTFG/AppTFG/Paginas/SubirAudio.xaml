@@ -25,15 +25,16 @@
             <Button Text="Borrar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" 
                     TextColor="{DynamicResource PageBackgroundColor}" 
                     Clicked="BtnBorrarExp_Clicked" HorizontalOptions="Center"/>
-            <StackLayout Orientation = "Horizontal">
-                <Label x:Name="lblMinutes" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}"/>
-                <Label Text=":" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}"/>
-                <Label x:Name="lblSeconds" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}"/>
+            <StackLayout Orientation = "Horizontal" Margin="20,0,0,0">
+                <Label x:Name="duracion" Text="Duración: " FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
+                <Label x:Name="lblMinutes" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
+                <Label Text=":" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" Margin="-5,0,-5,0" FontFamily="BSDRegular"/>
+                <Label x:Name="lblSeconds" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
             </StackLayout>
             <FlexLayout JustifyContent="SpaceAround">
-                <Button x:Name="bntRecord" Text = "Record" BackgroundColor="#7cbb45" WidthRequest="120" Image="Small_Microphone" Clicked="Record_Clicked"/>
-                <Button x:Name="bntStop" Text = "Stop" BackgroundColor="Silver"  WidthRequest="120" Image="Stop" Clicked="Stop_Clicked" IsEnabled= "true"/>
-                <Button x:Name="bntPlay" Text = "Play" BackgroundColor="Silver"  WidthRequest="120" Image="Start" Clicked="Play_Clicked" IsEnabled= "true"/>
+                <Button Margin="10" x:Name="bntRecord" FontSize="Medium" FontFamily="BSDRegular" Text="Grabar" BackgroundColor="Red" WidthRequest="120" Image="baseline_keyboard_voice_white_24.png" Clicked="Record_Clicked" TextColor="{DynamicResource PageBackgroundColor}"/>
+                <Button Margin="10" x:Name="bntStop" FontSize="Medium" FontFamily="BSDRegular" Text="Stop" BackgroundColor="{DynamicResource TertiaryTextColor}"  WidthRequest="120" Image="baseline_stop_white_24.png" Clicked="Stop_Clicked" IsEnabled= "true" TextColor="{DynamicResource PageBackgroundColor}"/>
+                <Button Margin="10" x:Name="bntPlay" FontSize="Medium" FontFamily="BSDRegular" Text="Play" BackgroundColor="{DynamicResource TertiaryTextColor}"  WidthRequest="120" Image="baseline_play_circle_outline_white_24.png" Clicked="Play_Clicked" IsEnabled= "true" TextColor="{DynamicResource PageBackgroundColor}"/>
             </FlexLayout>
         </StackLayout>
     </ContentPage.Content>

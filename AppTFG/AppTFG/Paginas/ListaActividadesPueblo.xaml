@@ -4,7 +4,7 @@
              x:Class="AppTFG.Paginas.ListaActividadesPueblo"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
+        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -25,7 +25,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
                                 <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding ImagenPrincipal}" HeightRequest="250" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                                 <Label Grid.Row="2" Grid.Column="0" Text="Fecha:" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
                                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding Fecha}" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>

@@ -6,24 +6,24 @@
     xmlns:renderers="clr-namespace:AppTFG.Renderers"
     NavigationPage.HasNavigationBar="False"
     xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    BackgroundColor="#791AE5"
+    BackgroundColor="White"
     Padding="0,40,0,0">
     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout >
             <StackLayout  Margin="0,0,0,0"  Orientation="Horizontal">
                 <StackLayout Margin="20,10,20,0" Spacing="20">
-                    <ImageButton HeightRequest="30" HorizontalOptions="Start" Source="close" VerticalOptions="Start"
-                    WidthRequest="30" Command="{Binding Login}" BackgroundColor="Transparent"/>
-                    <Label FontAttributes="Bold" FontSize="30" Text="Crea tu cuenta" TextColor="White"
+                    <Button HeightRequest="50" HorizontalOptions="Start" Text="X" FontSize="Title" TextColor="#791AE5" VerticalOptions="Start"
+                    WidthRequest="50" Command="{Binding Login}" BackgroundColor="Transparent"/>
+                    <Label FontAttributes="Bold" FontSize="30" Text="Crea tu cuenta" TextColor="#791AE5"
                     VerticalOptions="CenterAndExpand" />
                 </StackLayout>
-                <Image Source="bgImage1" WidthRequest="200" />
+                <Image Source="registro" WidthRequest="200" />
             </StackLayout>
-            <pv:PancakeView Margin="0,20,0,0" Padding="30,50,30,30" BackgroundColor="White" CornerRadius="40,40,0,0"
+            <pv:PancakeView Margin="0,20,0,0" Padding="30,50,30,30" BackgroundColor="#791AE5" CornerRadius="40,40,0,0"
             VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="15">
                     <StackLayout Spacing="10">
-                        <Label Margin="20,0,0,0" FontSize="20" Text="Email" TextColor="#791AE5" />
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Email" TextColor="White" />
                         <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
                         CornerRadius="15" Elevation="3" HeightRequest="50">
                             <renderers:BorderlessEntry FontSize="20" Placeholder="Email" PlaceholderColor="#99A1B3" 
@@ -32,7 +32,7 @@
                         </pv:PancakeView>
                     </StackLayout>
                     <StackLayout Spacing="10">
-                        <Label Margin="20,0,0,0" FontSize="20" Text="Contraseña" TextColor="#791AE5" />
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Contraseña" TextColor="White" />
                         <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
                         CornerRadius="15" Elevation="3" HeightRequest="50">
                             <renderers:BorderlessEntry FontSize="20" Placeholder="Contraseña" PlaceholderColor="#99A1B3" 
@@ -41,7 +41,7 @@
                         </pv:PancakeView>
                     </StackLayout>
                     <StackLayout Spacing="10">
-                        <Label Margin="20,0,0,0" FontSize="20" Text="Confirmar Contraseña" TextColor="#791AE5" />
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Confirmar Contraseña" TextColor="White" />
                         <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
                         CornerRadius="15" Elevation="3" HeightRequest="50">
                             <renderers:BorderlessEntry FontSize="20" Placeholder="Introduce contraseña anterior" 
@@ -49,10 +49,10 @@
                             ClearButtonVisibility="WhileEditing" IsPassword="True" TextColor="#484848" />
                         </pv:PancakeView>
                     </StackLayout>
-                    <pv:PancakeView BackgroundColor="#791AE5" BorderThickness="1" CornerRadius="25"
+                    <pv:PancakeView BackgroundColor="White" BorderThickness="1" CornerRadius="25"
                     Elevation="3" HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="175">
                         <Button FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand"
-                        Text="Crear usuario" TextColor="White" VerticalOptions="CenterAndExpand" 
+                        Text="Crear usuario" TextColor="#791AE5" VerticalOptions="CenterAndExpand" 
                         Command="{Binding SignUpCommand}" BackgroundColor="Transparent"/>
                     </pv:PancakeView>
                 </StackLayout>

@@ -8,21 +8,21 @@
             <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0" 
                          HeightRequest="350" WidthRequest="-1" Grid.Row="1" Grid.ColumnSpan="2"/>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
-                <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40"/>
+                <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40"/>
+                <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40"/>
             </StackLayout>
             <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
-                    SelectedColor="Lime" UnselectedColor="Teal"
+                    SelectedColor="Lime" UnselectedColor="#791AE5"
                     VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
                 <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
                     <TabCtrls:CustomTabButton x:Name="DescripcionesTabButton" Text="Descripción"  
                             BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"  
-                            WidthRequest="100" FontSize="Medium" FontFamily="BSDRegular" 
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
                             TextColor="{DynamicResource PageBackgroundColor}"/>
                     <TabCtrls:CustomTabButton x:Name="AudiosTabButton" Text="Audios"  
                             BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"
-                            WidthRequest="100" FontSize="Medium" FontFamily="BSDRegular" 
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
                             TextColor="{DynamicResource PageBackgroundColor}"/>
                 </TabCtrls:CustomTabButtons>
                 <TabCtrls:CustomTab x:Name="DescripcionesTab" IsVisible="True" 
@@ -42,7 +42,7 @@
                                                 <ColumnDefinition Width="20"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
+                                            <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="10,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
                                             <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,5,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="1"/>
                                             <Label Text="{Binding Descripcion}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Large" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" FontFamily="BSDRegular" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
                                         </Grid>
@@ -69,7 +69,7 @@
                                                 <ColumnDefinition Width="20"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
+                                            <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="10,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
                                             <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="0,5,5,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="1"/>
                                             <Label Text="{Binding Descripcion}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Large" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" FontFamily="BSDRegular" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
                                         </Grid>

@@ -4,7 +4,7 @@
              x:Class="AppTFG.Paginas.PaginaVistaListaFotos"
             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <TabbedPage.Children>
-        <ContentPage IconImageSource="icon.png">
+        <ContentPage IconImageSource="baseline_calendar_view_month_black_24.png">
             <ContentPage.Content>
                 <ScrollView VerticalScrollBarVisibility="Never">
                         <StackLayout>
@@ -35,7 +35,7 @@
                     </ScrollView>
             </ContentPage.Content>
         </ContentPage>
-        <ContentPage IconImageSource="icon.png">
+        <ContentPage IconImageSource="baseline_image_black_24.png">
             <ContentPage.Content>
                 <ScrollView VerticalScrollBarVisibility="Never">
                     <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >

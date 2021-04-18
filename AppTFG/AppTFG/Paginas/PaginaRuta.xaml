@@ -4,17 +4,17 @@
              x:Class="AppTFG.Paginas.PaginaRuta"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
-        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked"/>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
+        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24.png"/>
     </ContentPage.ToolbarItems>
     <Grid Padding="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="0.65*"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
-               Aspect="AspectFill" HeightRequest="200"/>
+               Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
         <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
             <StackLayout>
                 <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
@@ -25,9 +25,9 @@
                     <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
                                 Placeholder="Ingresa el nombre de la ruta" FontFamily="BSDRegular"
                                 PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium"/>
-                    <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta" 
-                                BackgroundColor="Transparent" Margin="0" FontSize="Small"
-                                TextColor="{DynamicResource PrimaryTextColor}" WidthRequest="90"  FontFamily="BSDRegular"
+                    <Button Grid.Column="1" x:Name="btnImagen" Text="Foto ruta"
+                                BackgroundColor="{DynamicResource PrimaryColor}" Margin="0" FontSize="Small"
+                                TextColor="{DynamicResource PageBackgroundColor}" WidthRequest="90"  FontFamily="BSDRegular"
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
                 </Grid>
             </StackLayout>
@@ -36,11 +36,13 @@
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0"/>
             <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0, 0, 0, 5" HeightRequest="-1" WidthRequest="-1"/>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" >
-                <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                <Button FontSize="Medium" Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                <Button FontSize="Medium" Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                <Button FontSize="Medium" Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="40"/>
             </StackLayout>
-            <Button Text="Editar ruta" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular" FontSize="Medium" BackgroundColor="{DynamicResource PrimaryColor}" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150" HeightRequest="45" Margin="5" Clicked="BtnEditar_Clicked"/>
+            <Button Text="Editar ruta" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" 
+                    FontSize="Medium" BackgroundColor="{DynamicResource PrimaryColor}" HorizontalOptions="Center" 
+                    VerticalOptions="Center" WidthRequest="100" HeightRequest="40" Margin="5" Clicked="BtnEditar_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>

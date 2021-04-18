@@ -1219,6 +1219,7 @@ namespace AppTFG.Helpers
                     Nombre = item.Object.Nombre,
                     Descripcion = item.Object.Descripcion,
                     ImagenPrincipal = item.Object.ImagenPrincipal,
+                    Direccion = item.Object.Direccion,
                     Contacto = item.Object.Contacto,
                     Horario = item.Object.Horario,
                     Ubicacion = item.Object.Ubicacion,
@@ -1283,13 +1284,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarComercio(int id, string nombre, string descrpcion, string imagen, string contacto, string horario,Ubicacion ubicacion, Video video, int idPueblo)
+        public static async Task<bool> InsertarComercio(int id, string nombre, string descrpcion, string imagen, string direccion, string contacto, string horario,Ubicacion ubicacion, Video video, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Comercios")
-                .PostAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                .PostAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Direccion = direccion, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -1300,7 +1301,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarComercio(int id, string nombre, string descrpcion, string imagen, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
+        public static async Task<bool> ActualizarComercio(int id, string nombre, string descrpcion, string imagen, string direccion, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
         {
             try
             {
@@ -1310,7 +1311,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Comercios")
                 .Child(actualizarComercio.Key)
-                .PutAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                .PutAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Direccion = direccion, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -1353,6 +1354,7 @@ namespace AppTFG.Helpers
                     Nombre = item.Object.Nombre,
                     Descripcion = item.Object.Descripcion,
                     ImagenPrincipal = item.Object.ImagenPrincipal,
+                    Direccion = item.Object.Direccion,
                     Contacto = item.Object.Contacto,
                     Horario = item.Object.Horario,
                     Ubicacion = item.Object.Ubicacion,
@@ -1417,13 +1419,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarAlojamiento(int id, string nombre, string descrpcion, string imagen, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
+        public static async Task<bool> InsertarAlojamiento(int id, string nombre, string descrpcion, string imagen, string direccion, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
         {
             try
             {
                 await firebase
                 .Child("Alojamientos")
-                .PostAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                .PostAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Direccion = direccion, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
@@ -1434,7 +1436,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarAlojamiento(int id, string nombre, string descrpcion, string imagen, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
+        public static async Task<bool> ActualizarAlojamiento(int id, string nombre, string descrpcion, string imagen, string direccion, string contacto, string horario, Ubicacion ubicacion, Video video, int idPueblo)
         {
             try
             {
@@ -1444,7 +1446,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Alojamientos")
                 .Child(actualizarAlojamiento.Key)
-                .PutAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
+                .PutAsync(new Comercio() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Direccion = direccion, Contacto = contacto, Horario = horario, Ubicacion = ubicacion, VideoUrl = video, IdPueblo = idPueblo });
                 return true;
             }
             catch (Exception e)
