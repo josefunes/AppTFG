@@ -18,6 +18,9 @@
             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
                 <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
                        BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
+                <Label x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
+                        Margin="10, -5, 10, 10" BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        FontSize="Medium" FontFamily="BSDRegular"/>
             </StackLayout>
         </Frame>
         <StackLayout Grid.Row="2" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">

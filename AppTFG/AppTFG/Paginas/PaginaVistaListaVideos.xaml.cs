@@ -68,7 +68,7 @@ namespace AppTFG.Paginas
             try
             {
                 var dato = (Video)e.SelectedItem;
-                await Navigation.PushAsync(new SubirVideo(dato));
+                await Navigation.PushAsync(new PaginaReproduccionVideo(dato));
                 lsvVideosPueblo.SelectedItem = null;
             }
             catch (Exception)

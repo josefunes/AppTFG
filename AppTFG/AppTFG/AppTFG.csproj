@@ -110,9 +110,6 @@
     <Compile Update="Paginas\ListaFotosPueblo.xaml.cs">
       <DependentUpon>ListaFotosPueblo.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Paginas\PantallaCompleta.xaml.cs">
-      <DependentUpon>PantallaCompleta.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Temas\TemaClaro.xaml.cs">
       <DependentUpon>TemaClaro.xaml</DependentUpon>
     </Compile>
@@ -180,9 +177,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Paginas\PaginaVistaListaComercios.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Paginas\PantallaCompleta.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Paginas\PaginaActividad.xaml">

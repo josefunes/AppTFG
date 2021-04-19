@@ -27,27 +27,5 @@ namespace AppTFG.Paginas
             };
             Title = Video.Nombre;
         }
-
-        void OnPlayPauseButtonClicked(object sender, EventArgs args)
-        {
-            if (videoPlayer.Status == VideoStatus.Playing)
-            {
-                videoPlayer.Pause();
-            }
-            else if (videoPlayer.Status == VideoStatus.Paused)
-            {
-                videoPlayer.Play();
-            }
-        }
-
-        void OnStopButtonClicked(object sender, EventArgs args)
-        {
-            videoPlayer.Stop();
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PantallaCompleta(Video));
-        }
     }
 }
