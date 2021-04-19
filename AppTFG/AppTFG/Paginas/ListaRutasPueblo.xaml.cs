@@ -66,7 +66,7 @@ namespace AppTFG.Paginas
             {
                 var dato = (Ruta)e.SelectedItem;
                 await Navigation.PushAsync(new PaginaRuta(dato));
-                lsvRutasPueblo.SelectedItem = null;
+                //lsvRutasPueblo.SelectedItem = null;
             }
             catch (Exception)
             {

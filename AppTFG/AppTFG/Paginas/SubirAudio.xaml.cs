@@ -180,7 +180,7 @@ namespace AppTFG.Paginas
                                 bool answer = await UserDialogs.Instance.ConfirmAsync("Hay información grabada con el micrófono. ¿Desea guardarla?", "Atención", "Sí", "No");
                                 if (answer == true)
                                 {
-                                    audio1.Sonido = recorder.FilePath;
+                                    audio1.Sonido = await FirebaseHelper.SubirAudio(recorder.GetAudioFileStream(), audio1.Nombre);
                                 }
                             }
                             await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
@@ -234,11 +234,7 @@ namespace AppTFG.Paginas
                         bool answer = await UserDialogs.Instance.ConfirmAsync("Hay información grabada con el micrófono. ¿Desea guardarla?", "Atención", "Sí", "No");
                         if (answer == true)
                         {
-                            var seed = Environment.TickCount;
-                            var random = new Random(seed);
-
-                            var value = random.Next(0, 5);
-                            audioNuevo.Sonido = recorder.FilePath;
+                            audioNuevo.Sonido = await FirebaseHelper.SubirAudio(recorder.GetAudioFileStream(), audioNuevo.Nombre);
                         }
                     }
                     if (audioNuevo.Numero.Equals(""))
