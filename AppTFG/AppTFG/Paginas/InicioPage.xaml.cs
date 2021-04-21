@@ -18,6 +18,7 @@ namespace AppTFG.Paginas
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 InitializeComponent();
+                ObtenerPuebloUsuarioAsync();
             }
             else
             {
@@ -26,20 +27,34 @@ namespace AppTFG.Paginas
             }          
         }
 
-        public async Task<Pueblo> ObtenerPuebloUsuarioAsync()
+        void Loading(bool mostrar)
         {
+            if (mostrar)
+            {
+                UserDialogs.Instance.ShowLoading("Cargando usuario...");
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+
+        public async void ObtenerPuebloUsuarioAsync()
+        {
+            Loading(true);
             Label nombreUsuario = new Label();
             nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
-            return Pueblo;
+            Loading(false);
         }
 
         async void PuebloClick(object sender, EventArgs e)
         {
 
-            if(await ObtenerPuebloUsuarioAsync() != null)
+            if(Pueblo != null)
             {
                 await Navigation.PushAsync(new PaginaPueblo(Pueblo));
             }
@@ -51,7 +66,7 @@ namespace AppTFG.Paginas
 
         async void RutaClick(object sender, EventArgs e)
         {
-            if (await ObtenerPuebloUsuarioAsync() != null)
+            if (Pueblo != null)
             {
                 await Navigation.PushAsync(new ListaRutasPueblo(Pueblo));
             }
@@ -63,7 +78,7 @@ namespace AppTFG.Paginas
 
         async void ActividadClick(object sender, EventArgs e)
         {
-            if (await ObtenerPuebloUsuarioAsync() != null)
+            if (Pueblo != null)
             {
                 await Navigation.PushAsync(new ListaActividadesPueblo(Pueblo));
             }
@@ -75,7 +90,7 @@ namespace AppTFG.Paginas
 
         async void ComercioClick(object sender, EventArgs e)
         {
-            if (await ObtenerPuebloUsuarioAsync() != null)
+            if (Pueblo != null)
             {
                 await Navigation.PushAsync(new ListaComerciosPueblo(Pueblo));
             }
@@ -87,7 +102,7 @@ namespace AppTFG.Paginas
 
         async void AlojamientoClick(object sender, EventArgs e)
         {
-            if (await ObtenerPuebloUsuarioAsync() != null)
+            if (Pueblo != null)
             {
                 await Navigation.PushAsync(new ListaAlojamientosPueblo(Pueblo));
             }
@@ -99,7 +114,7 @@ namespace AppTFG.Paginas
 
         async void FotoClick(object sender, EventArgs e)
         {
-            if (await ObtenerPuebloUsuarioAsync() != null)
+            if (Pueblo != null)
             {
                 await Navigation.PushAsync(new ListaFotosPueblo(Pueblo));
             }
@@ -111,7 +126,7 @@ namespace AppTFG.Paginas
 
         async void VideoClick(object sender, EventArgs e)
         {
-            if (await ObtenerPuebloUsuarioAsync() != null)
+            if (Pueblo != null)
             {
                 await Navigation.PushAsync(new ListaVideosPueblo(Pueblo));
             }

@@ -13,7 +13,7 @@
                 <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40"/>
             </StackLayout>
             <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
-                    SelectedColor="Lime" UnselectedColor="#791AE5"
+                    SelectedColor="Orange" UnselectedColor="#791AE5"
                     VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
                 <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
                     <TabCtrls:CustomTabButton x:Name="DescripcionesTabButton" Text="Descripción"  

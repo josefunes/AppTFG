@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:TabCtrls="clr-namespace:AppTFG.CustomTabs"
              x:Class="AppTFG.Paginas.PaginaComercio"
              Title="Comercios"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
@@ -8,53 +8,72 @@
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24.png"/>
     </ContentPage.ToolbarItems>
-    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" Spacing="0" Padding="0" Margin="0">
         <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
-        <ScrollView x:Name="parallaxScroll" VerticalOptions="FillAndExpand" 
-                    HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
-            <StackLayout Spacing="0" Padding="0" Margin="0">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1.5*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="400"/>
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" x:Name="imgComercio" Source="{Binding ImagenPrincipal}"
+        <Grid Padding="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.75*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" x:Name="imgComercio" Source="{Binding ImagenPrincipal}"
                                Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
-                    <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
-                        <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
-                            <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="3" Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Entry Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
-                                Placeholder="Ingresa el nombre del comercio" HorizontalOptions="StartAndExpand" FontSize="Large"
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
-                                <Button Grid.Column="1" x:Name="btnImagen" Text="Foto perfil" 
-                                BackgroundColor="{DynamicResource PrimaryColor}" Margin="0" FontSize="Medium"
-                                TextColor="{DynamicResource PageBackgroundColor}" WidthRequest="90"  FontFamily="BSDRegular"
-                                HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
-                            </Grid>
-                            <Editor x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
-                                Placeholder="Ingresa una descripción del comercio"  Margin="10, 0, 10, 0" AutoSize="TextChanges"
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
-                            <Entry x:Name="txtDireccion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Direccion}" 
-                                Placeholder="Ingresa la dirección del comercio"  Margin="10, 0, 10, 5" 
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
-                        </StackLayout>
-                    </Frame>
-                    <StackLayout Grid.Row="2" Margin="0,0,0,0" HeightRequest="-1" WidthRequest="-1" Spacing="2.5">
-                        <StackLayout x:Name="stackMapa" HeightRequest="-1" WidthRequest="-1" VerticalOptions="Fill" HorizontalOptions="Fill"/>
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
-                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+            <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
+                                     HorizontalOptions="FillAndExpand">
+                    <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
+                                    SelectedColor="Orange" UnselectedColor="#791AE5" Padding="5,5,5,5"
+                                    VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
+                        <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
+                            <TabCtrls:CustomTabButton Grid.Column="0" x:Name="InfoRutaTabButton" Text="Info. General"  
+                                        BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"  
+                                        WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
+                                        TextColor="{DynamicResource PageBackgroundColor}"/>
+                            <TabCtrls:CustomTabButton Grid.Column="1" x:Name="MapaTabButton" Text="Mapa"  
+                                        BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
+                                        TextColor="{DynamicResource PageBackgroundColor}"/>
+                        </TabCtrls:CustomTabButtons>
+                        <TabCtrls:CustomTab x:Name="InfoTab" IsVisible="True" 
+                                          VerticalOptions="Fill" HorizontalOptions="FillAndExpand"  
+                                          BackgroundColor="{DynamicResource PageBackgroundColor}">
+                            <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
+                                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="3" Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Entry Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                                                Placeholder="Ingresa el nombre del comercio" HorizontalOptions="StartAndExpand" FontSize="Large"
+                                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
+                                    <Button Grid.Column="1" x:Name="btnImagen" Text="Foto perfil" 
+                                                BackgroundColor="{DynamicResource PrimaryColor}" Margin="0" FontSize="Medium"
+                                                TextColor="{DynamicResource PageBackgroundColor}" WidthRequest="90"  FontFamily="BSDRegular"
+                                                HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
+                                </Grid>
+                                <Editor x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
+                                                Placeholder="Ingresa una descripción del comercio"  Margin="10, 0, 10, 0" AutoSize="TextChanges"
+                                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
+                                <Entry x:Name="txtDireccion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Direccion}" 
+                                               Placeholder="Ingresa la dirección del comercio"  Margin="10, 0, 10, 5" 
+                                               PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
+                            </StackLayout>
+                        </TabCtrls:CustomTab>
+                        <TabCtrls:CustomTab x:Name="MapaTab" IsVisible="False" VerticalOptions="Fill" HorizontalOptions="FillAndExpand" 
+                                        BackgroundColor="{DynamicResource PageBackgroundColor}">
+                            <ActivityIndicator x:Name="indicador" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0"/>
+                            <StackLayout Margin="0,-55,0,0" HeightRequest="-1" WidthRequest="-1" Spacing="2.5">
+                                <StackLayout x:Name="stackMapa" HeightRequest="-1" WidthRequest="-1" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
+                                    <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                                    <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                                    <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </TabCtrls:CustomTab>
+                    </TabCtrls:CustomTabs>
+                </StackLayout>
+            </Frame>
+        </Grid>
     </StackLayout>
 </ContentPage>
  

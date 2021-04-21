@@ -1,6 +1,4 @@
-﻿using AppTFG.Helpers;
-using AppTFG.Paginas;
-using SQLite;
+﻿using AppTFG.Paginas;
 using Xamarin.Forms;
 
 namespace AppTFG

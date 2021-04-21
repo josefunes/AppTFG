@@ -8,45 +8,63 @@
         <ToolbarItem x:Name="btnInfo" Text="Info." Order="Primary" Priority="0" Clicked="BtnInfo_Clicked"/>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
     </ContentPage.ToolbarItems>
-    <Grid Margin="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-        <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0" HeightRequest="-1" WidthRequest="-1" Grid.Row="0"/>
-        <ScrollView Grid.Row="1" Padding="0">
-            <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
-                <Grid Margin="11, 0">
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
+                         HorizontalOptions="FillAndExpand">
+        <TabCtrls:CustomTabs x:Name="CrearRutasTab" Orientation="Vertical" SelectedTabIndex="0"  
+                    SelectedColor="Orange" UnselectedColor="#791AE5"
+                    VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
+            <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
+                <TabCtrls:CustomTabButton x:Name="MapaRutaTabButton" Text="Crear ruta"  
+                            BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"  
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
+                            TextColor="{DynamicResource PageBackgroundColor}"/>
+                <TabCtrls:CustomTabButton x:Name="InfoRutaTabButton" Text="Información"  
+                            BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"
+                            WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
+                            TextColor="{DynamicResource PageBackgroundColor}"/>
+            </TabCtrls:CustomTabButtons>
+            <TabCtrls:CustomTab x:Name="CrearRutaTab" IsVisible="True" 
+                              VerticalOptions="Fill" HorizontalOptions="FillAndExpand"  
+                              BackgroundColor="{DynamicResource PageBackgroundColor}">
+                <Grid Margin="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="5" Grid.Row="0" Grid.ColumnSpan="2">
-                        <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
-                        <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
-                        <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
-                    </StackLayout>
-                    <Button Text="Poner pin" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnPoner1Pin_Clicked" Grid.Row="1" Grid.Column="0"/>
-                    <Button Text="Poner ruta" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnPonerRuta_Clicked" Grid.Row="1" Grid.Column="1"/>
-                    <Button Text="Borrar últ. pin" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltPin_Clicked" Grid.Row="2" Grid.Column="0"/>
-                    <Button Text="Borrar pins" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarPin_Clicked" Grid.Row="2" Grid.Column="1"/>
-                    <Button Text="Borrar últ. camino" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltCamino_Clicked" Grid.Row="3" Grid.Column="0"/>
-                    <Button Text="Borrar ruta" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarCamino_Clicked" Grid.Row="3" Grid.Column="1"/>
-                    <Button Text="Borrar todo" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="Red" Clicked="BtnBorrarTodo_Clicked" Grid.Row="4" Grid.ColumnSpan="2"/>
+                    <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
+                    <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0" HeightRequest="-1" WidthRequest="-1" Grid.Row="0"/>
+                    <Grid BackgroundColor="{DynamicResource PageBackgroundColor}" Margin="11, 0" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="5" Grid.Row="0" Grid.ColumnSpan="2">
+                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
+                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
+                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" HeightRequest="40" HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <Button Text="Poner pin" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnPoner1Pin_Clicked" Grid.Row="1" Grid.Column="0"/>
+                        <Button Text="Poner ruta" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnPonerRuta_Clicked" Grid.Row="1" Grid.Column="1"/>
+                        <Button Text="Borrar últ. pin" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltPin_Clicked" Grid.Row="2" Grid.Column="0"/>
+                        <Button Text="Borrar pins" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarPin_Clicked" Grid.Row="2" Grid.Column="1"/>
+                        <Button Text="Borrar últ. camino" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarUltCamino_Clicked" Grid.Row="3" Grid.Column="0"/>
+                        <Button Text="Borrar ruta" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="{DynamicResource PageBackgroundColor}" Clicked="BtnBorrarCamino_Clicked" Grid.Row="3" Grid.Column="1"/>
+                        <Button Text="Borrar todo" FontFamily="BSDBold" FontSize="Medium" BackgroundColor="{DynamicResource TertiaryTextColor}" TextColor="Red" Clicked="BtnBorrarTodo_Clicked" Grid.Row="4" Grid.ColumnSpan="2"/>
+                    </Grid>
                 </Grid>
-                
+            </TabCtrls:CustomTab>
+            <TabCtrls:CustomTab>
                 <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
                          HorizontalOptions="FillAndExpand">
                     <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
-                    SelectedColor="Lime" UnselectedColor="#791AE5"
+                    SelectedColor="Orange" UnselectedColor="#791AE5"
                     VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
                         <TabCtrls:CustomTabButtons Orientation="Horizontal" Margin="11, 0">
                             <TabCtrls:CustomTabButton x:Name="DescripcionesTabButton" Text="Descripción"  
@@ -76,7 +94,7 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="20"/>
+                                                        <ColumnDefinition Width="30"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="10,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
@@ -103,7 +121,7 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="20"/>
+                                                        <ColumnDefinition Width="30"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <Label Text="{Binding Numero}" LineBreakMode="WordWrap" VerticalOptions="Start" FontSize="Large" TextColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Start" Margin="10,5,0,5" FontFamily="BSDSemiBold" Grid.Row="0" Grid.Column="0"/>
@@ -120,7 +138,7 @@
                         <TabCtrls:CustomTab x:Name="InfoTab" IsVisible="False"/>
                     </TabCtrls:CustomTabs>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+            </TabCtrls:CustomTab>
+        </TabCtrls:CustomTabs>
+    </StackLayout>
 </ContentPage>

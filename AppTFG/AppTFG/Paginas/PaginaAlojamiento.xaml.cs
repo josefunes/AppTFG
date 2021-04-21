@@ -19,7 +19,6 @@ namespace AppTFG.Paginas
     {
         private Comercio Alojamiento;
         private Map Mapa;
-        private double lastScroll;
 
         public PaginaAlojamiento(Comercio alojamiento)
         {
@@ -65,43 +64,16 @@ namespace AppTFG.Paginas
             }
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            parallaxScroll.Scrolled += OnParallaxScrollScrolled;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            parallaxScroll.Scrolled -= OnParallaxScrollScrolled;
-        }
-
-        private void OnParallaxScrollScrolled(object sender, ScrolledEventArgs e)
-        {
-            double translation;
-            if (lastScroll < e.ScrollY)
-            {
-                translation = 0 - ((e.ScrollY / 2));
-
-                if (translation > 0) translation = 0;
-            }
-            else
-            {
-                translation = 0 + ((e.ScrollY / 2));
-
-                if (translation > 0) translation = 0;
-            }
-
-            imgAlojamiento.TranslateTo(imgAlojamiento.TranslationX, translation / 3);
-            lastScroll = e.ScrollY;
-        }
-
         private async void BtnImagen_Clicked(object sender, EventArgs e)
         {
             var imagen = await ServicioMultimedia.SeleccionarImagen();
-            Alojamiento.ImagenPrincipal = imagen.Path;
-            imgAlojamiento.Source = ImageSource.FromFile(imagen.Path);
+            if (imagen != null)
+            {
+                Alojamiento.ImagenPrincipal = imagen.Path;
+                Alojamiento.Stream = imagen.GetStream();
+                imgAlojamiento.Source = ImageSource.FromFile(imagen.Path);
+            }
+            else { }
         }
 
         void BtnMapa_Clicked(object sender, EventArgs e)
@@ -152,7 +124,11 @@ namespace AppTFG.Paginas
             string address = Pueblo.Nombre + ", Andalucía, Spain";
             IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(address);
             Position position = approximateLocations.FirstOrDefault();
-            if (position == new Position(0, 0))
+            if (Alojamiento.Ubicacion != null)
+            {
+                return new MapSpan(new Position(Alojamiento.Ubicacion.Latitud, Alojamiento.Ubicacion.Longitud), 0.001, 0.001);
+            }
+            else if (position == new Position(0, 0))
             {
                 string direccion = Pueblo + ", Andalucía";
                 IEnumerable<Position> direccionesAproximadas = await geoCoder.GetPositionsForAddressAsync(direccion);
@@ -162,16 +138,16 @@ namespace AppTFG.Paginas
                     stackMapa.IsVisible = false;
                     stackMapa.IsEnabled = false;
                     //Como hay que devolver un MapSpan, devuelvo la posición de Almería
-                    return new MapSpan(new Position(36.834047, -2.4637136), 0.01, 0.01);
+                    return new MapSpan(new Position(36.834047, -2.4637136), 0.001, 0.001);
                 }
                 else
                 {
-                    return new MapSpan(posicion, 0.01, 0.01);
+                    return new MapSpan(posicion, 0.001, 0.001);
                 }
             }
             else
             {
-                return new MapSpan(position, 0.01, 0.01);
+                return new MapSpan(position, 0.001, 0.001);
             }
 
         }

@@ -4,6 +4,7 @@ using AppTFG.Modelos;
 using Plugin.AudioRecorder;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -125,7 +126,7 @@ namespace AppTFG.Paginas
             {
                 //Esta instrucción sirve para dejar de reproducir un audio cuando se quiere reproducir otro
                 player.Pause();
-                var filePath = recorder.FilePath;
+                var filePath = recorder.GetAudioFilePath();
 
                 if (filePath != null)
                 {
@@ -135,6 +136,7 @@ namespace AppTFG.Paginas
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 throw ex;
             }
         }
