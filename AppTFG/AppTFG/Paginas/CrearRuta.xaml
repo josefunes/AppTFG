@@ -5,7 +5,7 @@
              x:Class="AppTFG.Paginas.CrearRuta"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnInfo" Text="Info." Order="Primary" Priority="0" Clicked="BtnInfo_Clicked"/>
+        <ToolbarItem x:Name="btnInfo" Text="Info." Order="Primary" Priority="0" Clicked="BtnInfo_Clicked" IconImageSource="outline_info_white_24"/>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
