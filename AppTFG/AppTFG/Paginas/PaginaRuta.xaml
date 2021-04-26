@@ -5,7 +5,7 @@
              x:Class="AppTFG.Paginas.PaginaRuta"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_save_white_24"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24.png"/>
     </ContentPage.ToolbarItems>
     <Grid Padding="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">

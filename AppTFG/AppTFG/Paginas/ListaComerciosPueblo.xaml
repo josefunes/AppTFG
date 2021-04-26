@@ -4,7 +4,7 @@
              x:Class="AppTFG.Paginas.ListaComerciosPueblo"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
+        <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="outline_add_circle_outline_white_24"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>

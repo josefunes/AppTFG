@@ -5,8 +5,8 @@
              Title="Comercios"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_mode_white_24.png"/>
-        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24.png"/>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_save_white_24"/>
+        <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24"/>
     </ContentPage.ToolbarItems>
     <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" Spacing="0" Padding="0" Margin="0">
         <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>

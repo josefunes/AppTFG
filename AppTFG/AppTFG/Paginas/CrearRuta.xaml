@@ -6,7 +6,7 @@
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnInfo" Text="Info." Order="Primary" Priority="0" Clicked="BtnInfo_Clicked" IconImageSource="outline_info_white_24"/>
-        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked"/>
+        <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_save_white_24"/>
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
                          HorizontalOptions="FillAndExpand">
