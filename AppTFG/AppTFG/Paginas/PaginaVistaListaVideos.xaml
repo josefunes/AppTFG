@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AppTFG.Paginas.PaginaVistaListaVideos"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
@@ -13,7 +13,7 @@
                             <ViewCell>
                                 <StackLayout Spacing="5" Orientation="Horizontal" Padding="5">
                                     <Label Text="{Binding Nombre}" FontSize="Title" 
-                                            LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" Margin="10" FontFamily="BSDRegular"/>
+                                            LineBreakMode="WordWrap" TextColor="{DynamicResource SecondaryColor}" Margin="10" FontFamily="BSDRegular"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

@@ -3,18 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.ListaActividades"
              Title="Lista de Actividades"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0">
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource PageBackgroundColor}"
-                   Placeholder="Buscar actividad" CancelButtonColor="{DynamicResource PageBackgroundColor}" PlaceholderColor="{DynamicResource PageBackgroundColor}"
+            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                   Placeholder="Buscar actividad" CancelButtonColor="{DynamicResource OtroPageBackgroundColor}" PlaceholderColor="{DynamicResource OtroPageBackgroundColor}"
                    TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
             <ListView x:Name="lsvActividades" ItemSelected="LsvActividades_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid BackgroundColor="{DynamicResource PageBackgroundColor}" ColumnSpacing="10" RowSpacing="0">
+                            <Grid BackgroundColor="{DynamicResource OtroPageBackgroundColor}" ColumnSpacing="10" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50"/>
                                     <RowDefinition Height="250"/>
@@ -26,12 +26,12 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="Start" Margin="12,5,12,1" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
                                 <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Source="{Binding ImagenPrincipal}" HeightRequest="250" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                                <Label Grid.Row="2" Grid.Column="0" Text="Fecha:" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Fecha}" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                <Label Grid.Row="2" Grid.Column="2" Text="Hora:" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
-                                <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding Hora}" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Grid.Row="2" Grid.Column="0" Text="Fecha:" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="End" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Fecha}" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="Start" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Grid.Row="2" Grid.Column="2" Text="Hora:" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="End" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
+                                <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding Hora}" VerticalOptions="Center" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="Start" Margin="2,0,0,2" HorizontalTextAlignment="Start" FontFamily="BSDRegular"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

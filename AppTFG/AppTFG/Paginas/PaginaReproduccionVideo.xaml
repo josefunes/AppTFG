@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary" 
              x:Class="AppTFG.Paginas.PaginaReproduccionVideo"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
@@ -19,9 +19,9 @@
                                                AreTransportControlsEnabled="True"
                                                HorizontalOptions="Fill"
                                                VerticalOptions="Fill"/>
-                        <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                        <Label x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
                             FontFamily="BSDRegular" Grid.Row="1" VerticalOptions="End"
-                            BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large"/>
+                            BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Large"/>
                     </Grid>
                 </StackLayout>
             </StackLayout>

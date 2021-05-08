@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:AppTFG"
              x:Class="AppTFG.Paginas.Ajustes"
              Title="Ajustes"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!--<Label Text="Para cambiar su contraseña primero introduzca la contraseña actual:" Margin="10, 0, 0, 0" FontFamily="BSDRegular" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
@@ -14,8 +14,8 @@
             <Entry Text="{Binding NewPassword}" IsPassword="True" Margin="10, 0" Placeholder="Inserte nueva contraseña" PlaceholderColor="{DynamicResource TertiaryTextColor}" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}"/>
             <Button x:Name="updatebtn" Text="Actualizar contraseña" Command="{Binding UpdateCommand}" TextColor="{DynamicResource PrimaryTextColor}" BackgroundColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Center" FontFamily="BSDRegular"/>-->
             <local1:EnumPicker EnumType="{x:Type local:Tema}"  Title="Selecciona el tema de la app" SelectedIndexChanged="OnPickerSelectionChanged" TextColor="{DynamicResource PrimaryTextColor}"/>
-            <Label x:Name="statusLabel" HorizontalOptions="Center" TextColor="{DynamicResource PrimaryTextColor}"/>
-            <Button x:Name="deletebtn" Text="Eliminar usuario" Command="{Binding DeleteCommand}" TextColor="{DynamicResource PrimaryTextColor}" BackgroundColor="Red" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+            <Label x:Name="statusLabel" HorizontalOptions="Center" TextColor="{DynamicResource SecondaryColor}"/>
+            <Button x:Name="deletebtn" Text="Eliminar usuario" Command="{Binding DeleteCommand}" TextColor="{DynamicResource SecondaryColor}" BackgroundColor="Red" HorizontalOptions="Center" FontFamily="BSDRegular"/>
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>

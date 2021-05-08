@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:video="clr-namespace:AppTFG.FormsVideoLibrary"
              x:Class="AppTFG.Paginas.ListaVideosPueblo"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="outline_add_circle_outline_white_24"/>
     </ContentPage.ToolbarItems>
@@ -15,9 +14,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Spacing="5" Orientation="Horizontal" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                                <StackLayout Spacing="5" Orientation="Horizontal" Padding="5" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                                     <Label Text="{Binding Nombre}" FontSize="Title" 
-                                            LineBreakMode="WordWrap" TextColor="{DynamicResource PrimaryTextColor}" Margin="10" FontFamily="BSDSemiBold"/>
+                                            LineBreakMode="WordWrap" TextColor="{DynamicResource SecondaryColor}" Margin="10" FontFamily="BSDSemiBold"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AppTFG.Paginas.PaginaVistaComercio"
              Title="Comercios"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
+    <StackLayout BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
         <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
         <ScrollView x:Name="parallaxScroll" VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
@@ -17,27 +17,27 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" x:Name="imgComercio" Source="{Binding ImagenPrincipal}"
                                Aspect="AspectFill" HeightRequest="200"/>
-                    <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
-                        <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
-                            <Label x:Name="descripcion" TextColor="{DynamicResource PrimaryTextColor}"  
+                    <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
+                        <StackLayout BackgroundColor="{DynamicResource OtroPageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
+                            <Label x:Name="descripcion" TextColor="{DynamicResource SecondaryColor}"  
                                        HorizontalOptions="StartAndExpand" FontSize="Medium" Text="Descripción: "
-                                       BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" Margin="5, 0, 10, 0"/>
-                            <Label x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
-                                    Margin="15, 0, 10, 0" BackgroundColor="{DynamicResource PageBackgroundColor}" 
+                                       BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDSemiBold" Margin="5, 0, 10, 0"/>
+                            <Label x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
+                                    Margin="15, 0, 10, 0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" 
                                     FontSize="Large" FontFamily="BSDRegular"/>
-                            <Label x:Name="direccion" TextColor="{DynamicResource PrimaryTextColor}"  
+                            <Label x:Name="direccion" TextColor="{DynamicResource SecondaryColor}"  
                                        HorizontalOptions="StartAndExpand" FontSize="Medium" Text="Dirección: "
-                                       BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold" Margin="5, 0, 10, 0"/>
-                            <Label x:Name="txtDireccion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Direccion}" 
-                                Margin="15, 0, 10, 5" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
+                                       BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDSemiBold" Margin="5, 0, 10, 0"/>
+                            <Label x:Name="txtDireccion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Direccion}" 
+                                Margin="15, 0, 10, 5" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
                         </StackLayout>
                     </Frame>
                     <StackLayout Grid.Row="2" Margin="0,0,0,0" HeightRequest="-1" WidthRequest="-1" Spacing="2.5">
                         <StackLayout x:Name="stackMapa" HeightRequest="-1" WidthRequest="-1" VerticalOptions="Fill" HorizontalOptions="Fill"/>
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
-                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                            <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                            <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                            <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
                         </StackLayout>
                     </StackLayout>
                 </Grid>

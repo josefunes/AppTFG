@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaActividad"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_save_white_24"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24"/>
@@ -17,7 +17,7 @@
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" x:Name="imgActividad" Source="{Binding ImagenPrincipal}"
                            Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
-                <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                     <StackLayout>
                         <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="5" Margin="10">
                             <Grid.RowDefinitions>
@@ -34,25 +34,25 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Entry Grid.Column="0" Grid.Row="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}"  
+                            <Entry Grid.Column="0" Grid.Row="0" x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}"  
                                 Placeholder="Ingresa el nombre de la actividad" Text="{Binding Nombre}"
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" 
+                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" 
                                 FontSize="Medium" FontFamily="BSDRegular" HorizontalOptions="FillAndExpand" Grid.ColumnSpan="3"/>
                             <Button Grid.Column="3" Grid.Row="0" x:Name="btnImagen" Text="Foto ruta" 
                                 BackgroundColor="{DynamicResource TertiaryTextColor}" Margin="0" FontSize="Small"
-                                TextColor="{DynamicResource PageBackgroundColor}" WidthRequest="90"  
+                                TextColor="{DynamicResource OtroPageBackgroundColor}" WidthRequest="90"  
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked" FontFamily="BSDRegular"/>
-                            <Editor Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
+                            <Editor Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
                                 Placeholder="Ingresa una descripción de la activiad" AutoSize="TextChanges"
-                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
-                            <Label Text="Fecha:" Grid.Row="2" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Medium"/>
-                            <Label Text="{Binding Fecha}" Grid.Row="2" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
-                            <Label Text="Para cambiar la fecha pulse en la fecha que se muestra a continuación: " Grid.Row="3" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" Grid.ColumnSpan="2"/>
-                            <DatePicker  x:Name="datePicker" Format="D" Grid.Row="3" Grid.Column="2" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" Grid.ColumnSpan="2" Date="01/01/2021"/>
-                            <Label  Text="Hora:" Grid.Row="4" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Medium"/>
-                            <Label Text="{Binding Hora}" Grid.Row="4" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
-                            <Label Text="Para cambiar la hora pulse en la hora que se muestra a continuación: " Grid.Row="5" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" Grid.ColumnSpan="2"/>
-                            <TimePicker x:Name="timePicker" Format="T" Grid.Row="5" Grid.Column="2" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" Grid.ColumnSpan="2" Time="00:00:01"/>
+                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
+                            <Label Text="Fecha:" Grid.Row="2" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" FontSize="Medium"/>
+                            <Label Text="{Binding Fecha}" Grid.Row="2" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}"/>
+                            <Label Text="Para cambiar la fecha pulse en la fecha que se muestra a continuación: " Grid.Row="3" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" Grid.ColumnSpan="2"/>
+                            <DatePicker  x:Name="datePicker" Format="D" Grid.Row="3" Grid.Column="2" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" Grid.ColumnSpan="2" Date="01/01/2021"/>
+                            <Label  Text="Hora:" Grid.Row="4" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" FontSize="Medium"/>
+                            <Label Text="{Binding Hora}" Grid.Row="4" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}"/>
+                            <Label Text="Para cambiar la hora pulse en la hora que se muestra a continuación: " Grid.Row="5" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" Grid.ColumnSpan="2"/>
+                            <TimePicker x:Name="timePicker" Format="T" Grid.Row="5" Grid.Column="2" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" Grid.ColumnSpan="2" Time="00:00:01"/>
                         </Grid>
                     </StackLayout>
                 </Frame>

@@ -10,21 +10,20 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <!--El color Primary se establece en la clase App.xaml y es el blanco-->
-                <Setter Property="Shell.BackgroundColor" Value="#791AE5" />
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource PageBackgroundColor}" />
                 <!--Color de lo que está en los toolbars y del menú-->
-                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource OtroPageBackgroundColor}" />
                 <!--Color de los títulos que aparecen en los toolbars-->
-                <Setter Property="Shell.TitleColor" Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="Shell.TitleColor" Value="{DynamicResource OtroPageBackgroundColor}" />
                 <!--<Setter Property="Shell.DisabledColor" Value="Black" />
                 <Setter Property="Shell.UnselectedColor" Value="Blue" />-->
                 <!--Color de la barra del menú inferior-->
-                <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource OtroPageBackgroundColor}" />
                 <!--<Setter Property="Shell.TabBarForegroundColor" Value="Black"/>-->                
                 <!--Color de los iconos del menú inferior que no están seleccionados-->
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#791AE5"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource PageBackgroundColor}"/>
                 <!--Color de los iconos del menú inferior que están seleccionados-->
-                <Setter Property="Shell.TabBarTitleColor" Value="Black"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource BotonSeleccionadoBarraAbajo}"/>
             </Style>
             <!--<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />-->
             <!--Así le doy el mismo diseño que he definido arriba al FlyoutItem y al ShellContent-->
@@ -48,7 +47,7 @@
                                     <!--Color del fondo de las propiedades del menú desplegable-->
                                     <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
                                     <!--Color de las letras de las propiedades del menú desplegable-->
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource PageBackgroundColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{DynamicResource SecondaryTextColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">

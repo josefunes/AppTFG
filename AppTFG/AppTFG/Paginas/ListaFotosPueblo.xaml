@@ -3,14 +3,14 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
             xmlns:vm="clr-namespace:AppTFG.VistaModelos"
             x:Class="AppTFG.Paginas.ListaFotosPueblo"
-            BackgroundColor="{DynamicResource PageBackgroundColor}">
+            BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <TabbedPage.Children>
         <ContentPage IconImageSource="baseline_calendar_view_month_black_24.png">
             <ContentPage.BindingContext>
                 <vm:InicioPageView/>
             </ContentPage.BindingContext>
             <ContentPage.Content>
-                <Grid BackgroundColor="{DynamicResource PageBackgroundColor}">
+                <Grid BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
@@ -42,8 +42,8 @@
                         </StackLayout>
                     </ScrollView>
                     <Button Grid.Row="0" Text="Añadir foto" FontFamily="BSDRegular" FontSize="Medium"
-                            BackgroundColor="{DynamicResource PrimaryColor}" BorderRadius="30" TextColor="{DynamicResource PageBackgroundColor}" BorderWidth="1"
-                            BorderColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
+                            BackgroundColor="{DynamicResource PrimaryColor}" BorderRadius="30" TextColor="{DynamicResource SecondaryTextColor}" BorderWidth="1"
+                            BorderColor="{DynamicResource SecondaryColor}" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
                             Margin="0,0,20,22" VerticalOptions="End" Clicked="BtnAgregar_Clicked"/>
                 </Grid>
             </ContentPage.Content>
@@ -55,7 +55,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0">
-                        <StackLayout Spacing="0" Orientation="Vertical" Padding="-5" >
+                        <StackLayout Spacing="0" Orientation="Vertical" Padding="-5" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                             <!--<ActivityIndicator x:Name="indicador" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center"/>-->
                             <ListView x:Name="lsvFotosPueblo" ItemSelected="LsvFotosPueblo_ItemSelected" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
@@ -74,7 +74,7 @@
                                                            HorizontalOptions="Fill" VerticalOptions="Fill" 
                                                            Grid.Column="0" Grid.Row="0"/>
                                                     <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" 
-                                                           VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" 
+                                                           VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource SecondaryColor}" 
                                                            HorizontalOptions="Start" Margin="15, 0, 0, 10"
                                                            HorizontalTextAlignment="Start" FontFamily="BSDRegular" 
                                                            Grid.Column="0" Grid.Row="1"/>
@@ -87,8 +87,8 @@
                         </StackLayout>
                     </ScrollView>
                     <Button Grid.Row="0" Text="Añadir foto" FontFamily="BSDRegular" FontSize="Medium"
-                            BackgroundColor="{DynamicResource PrimaryColor}" BorderRadius="30" TextColor="{DynamicResource PageBackgroundColor}" BorderWidth="1"
-                            BorderColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
+                            BackgroundColor="{DynamicResource PrimaryColor}" BorderRadius="30" TextColor="{DynamicResource SecondaryTextColor}" BorderWidth="1"
+                            BorderColor="{DynamicResource SecondaryColor}" HorizontalOptions="End" WidthRequest="100" HeightRequest="60" 
                             Margin="0,0,20,22" VerticalOptions="End" Clicked="BtnAgregar_Clicked"/>
                 </Grid>
             </ContentPage.Content>

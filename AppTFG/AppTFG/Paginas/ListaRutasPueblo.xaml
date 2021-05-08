@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.ListaRutasPueblo"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnAgregar" Text="Agregar" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked" IconImageSource="outline_add_circle_outline_white_24"/>
     </ContentPage.ToolbarItems>
@@ -13,8 +13,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Spacing="0" Orientation="Vertical" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
-                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" HorizontalOptions="Start" Margin="10,5,10,5" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
+                            <StackLayout Spacing="0" Orientation="Vertical" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
+                                <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource SecondaryColor}" HorizontalOptions="Start" Margin="10,5,10,5" HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
                                 <Image Source="{Binding ImagenPrincipal}" HeightRequest="250" Aspect="AspectFill" HorizontalOptions="Fill"/>
                             </StackLayout>
                         </ViewCell>

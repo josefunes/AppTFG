@@ -4,21 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     Padding="0,0,0,0"
-    BackgroundColor="#791AE5">
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout>
             <Grid Margin="0,0,0,0">
                 <StackLayout Margin="20,0,20,0" Spacing="20">
                     <Label FontFamily="BSDBold" FontSize="28" HorizontalOptions="StartAndExpand"
-                        Text="Ha llegado el momento de empezar a crear contenido" TextColor="White" VerticalOptions="StartAndExpand"
+                        Text="Ha llegado el momento de empezar a crear contenido" TextColor="{DynamicResource SecondaryTextColor}" VerticalOptions="StartAndExpand"
                         WidthRequest="200" />
                 </StackLayout>
-                <pv:PancakeView Padding="10" BackgroundColor="White" Margin="0,0,30,0"
+                <pv:PancakeView Padding="10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" Margin="0,0,30,0"
                             BorderThickness="1" CornerRadius="15" Elevation="3" HorizontalOptions="EndAndExpand" WidthRequest="120">
                     <StackLayout>
-                        <ImageButton Source="mipueblo" Clicked="PuebloClick" BackgroundColor="Transparent"/>
+                        <ImageButton Source="mipueblo" Clicked="PuebloClick" BackgroundColor="{DynamicResource TransparentColor}" />
                         <Label FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Mi pueblo" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Mi pueblo" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand" FontFamily="BSDSemiBold">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="PuebloClick"/>
@@ -27,11 +27,11 @@
                     </StackLayout>
                 </pv:PancakeView>
             </Grid>
-            <pv:PancakeView Margin="0,0,0,0" Padding="30,0,30,30" BackgroundColor="#791AE5" CornerRadius="40,40,0,0"
+            <pv:PancakeView Margin="0,0,0,0" Padding="30,0,30,30" BackgroundColor="{DynamicResource PageBackgroundColor}" CornerRadius="40,40,0,0"
                 VerticalOptions="FillAndExpand">
                 <StackLayout>
                     <Label Margin="20" FontSize="20" HorizontalOptions="CenterAndExpand"
-                        HorizontalTextAlignment="Center" Text="¿A dónde quieres ir ahora?" TextColor="White"
+                        HorizontalTextAlignment="Center" Text="¿A dónde quieres ir ahora?" TextColor="{DynamicResource SecondaryTextColor}"
                         VerticalOptions="Center" FontFamily="BSDSemiBold"/>
                     <Grid Margin="5" ColumnSpacing="20" RowSpacing="30">
                         <Grid.RowDefinitions>
@@ -43,12 +43,12 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <pv:PancakeView Grid.Row="0" Grid.Column="0" Padding="10" BackgroundColor="White"
+                        <pv:PancakeView Grid.Row="0" Grid.Column="0" Padding="10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
                             BorderThickness="1" CornerRadius="15" Elevation="3">
                             <StackLayout>
-                                <ImageButton Source="rutas" VerticalOptions="CenterAndExpand" Clicked="RutaClick" BackgroundColor="Transparent" Margin="0,0,0,15"/>
+                                <ImageButton Source="rutas" VerticalOptions="CenterAndExpand" Clicked="RutaClick" BackgroundColor="{DynamicResource TransparentColor}" Margin="0,0,0,15"/>
                                 <Label FontFamily="BSDSemiBold" FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Rutas" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Rutas" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="RutaClick"/>
@@ -56,12 +56,12 @@
                                 </Label>
                             </StackLayout>
                         </pv:PancakeView>
-                        <pv:PancakeView Grid.Row="0" Grid.Column="1" Padding="10" BackgroundColor="White"
+                        <pv:PancakeView Grid.Row="0" Grid.Column="1" Padding="10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
                             BorderThickness="1" CornerRadius="15" Elevation="3">
                             <StackLayout>
-                                <ImageButton Source="actividades" VerticalOptions="CenterAndExpand" Clicked="ActividadClick" BackgroundColor="Transparent"/>
+                                <ImageButton Source="actividades" VerticalOptions="CenterAndExpand" Clicked="ActividadClick" BackgroundColor="{DynamicResource TransparentColor}"/>
                                 <Label FontFamily="BSDSemiBold" FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Actividades" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Actividades" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="ActividadClick"/>
@@ -69,12 +69,12 @@
                                 </Label>
                             </StackLayout>
                         </pv:PancakeView>
-                        <pv:PancakeView Grid.Row="1" Grid.Column="0" Padding="8" BackgroundColor="White"
+                        <pv:PancakeView Grid.Row="1" Grid.Column="0" Padding="8" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
                             BorderThickness="1" CornerRadius="15" Elevation="3">
                             <StackLayout>
-                                <ImageButton Source="comercios" VerticalOptions="CenterAndExpand" Clicked="ComercioClick" BackgroundColor="Transparent"/>
+                                <ImageButton Source="comercios" VerticalOptions="CenterAndExpand" Clicked="ComercioClick" BackgroundColor="{DynamicResource TransparentColor}"/>
                                 <Label FontFamily="BSDSemiBold" FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Comercios" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Comercios" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="ComercioClick"/>
@@ -82,12 +82,12 @@
                                 </Label>
                             </StackLayout>
                         </pv:PancakeView>
-                        <pv:PancakeView Grid.Row="1" Grid.Column="1" Padding="8" BackgroundColor="White" 
+                        <pv:PancakeView Grid.Row="1" Grid.Column="1" Padding="8" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" 
                             BorderThickness="1" CornerRadius="15" Elevation="3">
                             <StackLayout>
-                                <ImageButton Source="alojamientos" VerticalOptions="CenterAndExpand" Clicked="AlojamientoClick" BackgroundColor="Transparent" Margin="0,0,0,15"/>
+                                <ImageButton Source="alojamientos" VerticalOptions="CenterAndExpand" Clicked="AlojamientoClick" BackgroundColor="{DynamicResource TransparentColor}" Margin="0,0,0,15"/>
                                 <Label FontFamily="BSDSemiBold" FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Alojamientos" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Alojamientos" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="AlojamientoClick"/>
@@ -95,12 +95,12 @@
                                 </Label>
                             </StackLayout>
                         </pv:PancakeView>
-                        <pv:PancakeView Grid.Row="2" Grid.Column="0" Padding="10" BackgroundColor="White"
+                        <pv:PancakeView Grid.Row="2" Grid.Column="0" Padding="10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
                             BorderThickness="1" CornerRadius="15" Elevation="3">
                             <StackLayout>
-                                <ImageButton Source="fotos" VerticalOptions="CenterAndExpand" Clicked="FotoClick" BackgroundColor="Transparent" />
+                                <ImageButton Source="fotos" VerticalOptions="CenterAndExpand" Clicked="FotoClick" BackgroundColor="{DynamicResource TransparentColor}" />
                                 <Label FontFamily="BSDSemiBold" FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Fotos" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Fotos" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="FotoClick"/>
@@ -108,12 +108,12 @@
                                 </Label>
                             </StackLayout>
                         </pv:PancakeView>
-                        <pv:PancakeView Grid.Row="2" Grid.Column="1" Padding="10" BackgroundColor="White"
+                        <pv:PancakeView Grid.Row="2" Grid.Column="1" Padding="10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
                             BorderThickness="1" CornerRadius="15" Elevation="3">
                             <StackLayout>
-                                <ImageButton Source="videos" VerticalOptions="CenterAndExpand" Clicked="VideoClick" BackgroundColor="Transparent" Margin="0,0,0,15"/>
+                                <ImageButton Source="videos" VerticalOptions="CenterAndExpand" Clicked="VideoClick" BackgroundColor="{DynamicResource TransparentColor}" Margin="0,0,0,15"/>
                                 <Label FontFamily="BSDSemiBold" FontSize="20" HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center" Text="Vídeos" TextColor="#791AE5"
+                                    HorizontalTextAlignment="Center" Text="Vídeos" TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="CenterAndExpand">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="VideoClick"/>

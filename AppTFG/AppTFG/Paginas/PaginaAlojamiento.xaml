@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:TabCtrls="clr-namespace:AppTFG.CustomTabs"
              x:Class="AppTFG.Paginas.PaginaAlojamiento"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnRegistrar" Text="Guardar" Order="Primary" Priority="0" Clicked="BtnRegistrar_Clicked" IconImageSource="baseline_save_white_24"/>
         <ToolbarItem x:Name="btnEliminar" Text="Eliminar" Order="Primary" Priority="1" Clicked="BtnEliminar_Clicked" IconImageSource="baseline_delete_forever_white_24.png"/>
     </ContentPage.ToolbarItems>
-    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" Spacing="0" Padding="0" Margin="0">
+    <StackLayout BackgroundColor="{DynamicResource OtroPageBackgroundColor}" Spacing="0" Padding="0" Margin="0">
         <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
         <Grid Padding="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
             <Grid.RowDefinitions>
@@ -16,7 +16,7 @@
             </Grid.RowDefinitions>
             <Image Grid.Row="0" x:Name="imgAlojamiento" Source="{Binding ImagenPrincipal}"
                                Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
-            <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource PageBackgroundColor}">
+            <Frame Grid.Row="1" CornerRadius="20" Padding="5" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                 <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" 
                                      HorizontalOptions="FillAndExpand">
                     <TabCtrls:CustomTabs x:Name="RutasTab" Orientation="Vertical" SelectedTabIndex="0"  
@@ -26,46 +26,46 @@
                             <TabCtrls:CustomTabButton Grid.Column="0" x:Name="InfoRutaTabButton" Text="Info. General"  
                                         BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"  
                                         WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
-                                        TextColor="{DynamicResource PageBackgroundColor}"/>
+                                        TextColor="{DynamicResource OtroPageBackgroundColor}"/>
                             <TabCtrls:CustomTabButton Grid.Column="1" x:Name="MapaTabButton" Text="Mapa"  
                                         BorderRadius="1" BorderWidth="2" HeightRequest="45" HorizontalOptions="CenterAndExpand"
                                         WidthRequest="100" FontSize="Medium" FontFamily="BSDSemiBold" 
-                                        TextColor="{DynamicResource PageBackgroundColor}"/>
+                                        TextColor="{DynamicResource OtroPageBackgroundColor}"/>
                         </TabCtrls:CustomTabButtons>
                         <TabCtrls:CustomTab x:Name="InfoTab" IsVisible="True" 
                                           VerticalOptions="Fill" HorizontalOptions="FillAndExpand"  
-                                          BackgroundColor="{DynamicResource PageBackgroundColor}">
-                            <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
+                                          BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
+                            <StackLayout BackgroundColor="{DynamicResource OtroPageBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5">
                                 <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="3" Margin="10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Entry Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
+                                    <Entry Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
                                                 Placeholder="Ingresa el nombre del alojamiento" HorizontalOptions="StartAndExpand" FontSize="Large"
-                                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
+                                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDRegular" />
                                     <Button Grid.Column="1" x:Name="btnImagen" Text="Foto perfil" 
                                                 BackgroundColor="{DynamicResource PrimaryColor}" Margin="0" FontSize="Medium"
-                                                TextColor="{DynamicResource PageBackgroundColor}" WidthRequest="90"  FontFamily="BSDRegular"
+                                                TextColor="{DynamicResource OtroPageBackgroundColor}" WidthRequest="90"  FontFamily="BSDRegular"
                                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
                                 </Grid>
-                                <Editor x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
+                                <Editor x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
                                                 Placeholder="Ingresa una descripción del alojamiento"  Margin="10, 0, 10, 0" AutoSize="TextChanges"
-                                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
-                                <Entry x:Name="txtDireccion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Direccion}" 
+                                                PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
+                                <Entry x:Name="txtDireccion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Direccion}" 
                                                Placeholder="Ingresa la dirección del alojamiento"  Margin="10, 0, 10, 5" 
-                                               PlaceholderColor="LightGray" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
+                                               PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Large" FontFamily="BSDRegular"/>
                             </StackLayout>
                         </TabCtrls:CustomTab>
                         <TabCtrls:CustomTab x:Name="MapaTab" IsVisible="False" VerticalOptions="Fill" HorizontalOptions="FillAndExpand" 
-                                        BackgroundColor="{DynamicResource PageBackgroundColor}">
+                                        BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                             <ActivityIndicator x:Name="indicador" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0"/>
                             <StackLayout Margin="0,-55,0,0" HeightRequest="-1" WidthRequest="-1" Spacing="2.5">
                                 <StackLayout x:Name="stackMapa" HeightRequest="-1" WidthRequest="-1" VerticalOptions="Fill" HorizontalOptions="Fill"/>
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="5" >
-                                    <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                                    <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
-                                    <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                                    <Button Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                                    <Button Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
+                                    <Button Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="45"/>
                                 </StackLayout>
                             </StackLayout>
                         </TabCtrls:CustomTab>

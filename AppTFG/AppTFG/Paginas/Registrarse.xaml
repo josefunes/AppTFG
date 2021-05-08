@@ -6,25 +6,25 @@
     xmlns:renderers="clr-namespace:AppTFG.Renderers"
     NavigationPage.HasNavigationBar="False"
     xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    BackgroundColor="White"
+    BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
     Padding="0,40,0,0">
     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout >
             <StackLayout  Margin="0,0,0,0"  Orientation="Horizontal">
                 <StackLayout Margin="20,10,20,0" Spacing="20">
-                    <Button HeightRequest="50" HorizontalOptions="Start" Text="X" FontSize="Title" TextColor="#791AE5" VerticalOptions="Start"
-                    WidthRequest="50" Command="{Binding Login}" BackgroundColor="Transparent"/>
-                    <Label FontAttributes="Bold" FontSize="30" Text="Crea tu cuenta" TextColor="#791AE5"
+                    <Button HeightRequest="50" HorizontalOptions="Start" Text="X" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" VerticalOptions="Start"
+                    WidthRequest="50" Command="{Binding Login}" BackgroundColor="{DynamicResource TransparentColor}"/>
+                    <Label FontAttributes="Bold" FontSize="30" Text="Crea tu cuenta" TextColor="{DynamicResource PrimaryColor}"
                     VerticalOptions="CenterAndExpand" />
                 </StackLayout>
                 <Image Source="registro" WidthRequest="200" />
             </StackLayout>
-            <pv:PancakeView Margin="0,20,0,0" Padding="30,50,30,30" BackgroundColor="#791AE5" CornerRadius="40,40,0,0"
+            <pv:PancakeView Margin="0,20,0,0" Padding="30,50,30,30" BackgroundColor="{DynamicResource PageBackgroundColor}" CornerRadius="40,40,0,0"
             VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="15">
                     <StackLayout Spacing="10">
-                        <Label Margin="20,0,0,0" FontSize="20" Text="Email" TextColor="White" />
-                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Email" TextColor="{DynamicResource SecondaryTextColor}" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" BorderThickness="1"
                         CornerRadius="15" Elevation="3" HeightRequest="50">
                             <renderers:BorderlessEntry FontSize="20" Placeholder="Email" PlaceholderColor="#99A1B3" 
                             Text="{Binding Nombre}" ClearButtonVisibility="WhileEditing" Keyboard="Email"
@@ -32,7 +32,7 @@
                         </pv:PancakeView>
                     </StackLayout>
                     <StackLayout Spacing="10">
-                        <Label Margin="20,0,0,0" FontSize="20" Text="Contraseña" TextColor="White" />
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Contraseña" TextColor="{DynamicResource SecondaryTextColor}" />
                         <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
                         CornerRadius="15" Elevation="3" HeightRequest="50">
                             <renderers:BorderlessEntry FontSize="20" Placeholder="Contraseña" PlaceholderColor="#99A1B3" 
@@ -41,19 +41,19 @@
                         </pv:PancakeView>
                     </StackLayout>
                     <StackLayout Spacing="10">
-                        <Label Margin="20,0,0,0" FontSize="20" Text="Confirmar Contraseña" TextColor="White" />
-                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="White" BorderThickness="1"
+                        <Label Margin="20,0,0,0" FontSize="20" Text="Confirmar Contraseña" TextColor="{DynamicResource SecondaryTextColor}" />
+                        <pv:PancakeView Padding="10,0,0,0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" BorderThickness="1"
                         CornerRadius="15" Elevation="3" HeightRequest="50">
                             <renderers:BorderlessEntry FontSize="20" Placeholder="Introduce contraseña anterior" 
                             PlaceholderColor="#99A1B3" Text="{Binding ConfirmPassword}" 
                             ClearButtonVisibility="WhileEditing" IsPassword="True" TextColor="#484848" />
                         </pv:PancakeView>
                     </StackLayout>
-                    <pv:PancakeView BackgroundColor="White" BorderThickness="1" CornerRadius="25"
+                    <pv:PancakeView BackgroundColor="{DynamicResource OtroPageBackgroundColor}" BorderThickness="1" CornerRadius="25"
                     Elevation="3" HeightRequest="50" HorizontalOptions="CenterAndExpand" WidthRequest="175">
                         <Button FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand"
-                        Text="Crear usuario" TextColor="#791AE5" VerticalOptions="CenterAndExpand" 
-                        Command="{Binding SignUpCommand}" BackgroundColor="Transparent"/>
+                        Text="Crear usuario" TextColor="{DynamicResource PrimaryTextColor}" VerticalOptions="CenterAndExpand" 
+                        Command="{Binding SignUpCommand}" BackgroundColor="{DynamicResource TransparentColor}"/>
                     </pv:PancakeView>
                 </StackLayout>
             </pv:PancakeView>

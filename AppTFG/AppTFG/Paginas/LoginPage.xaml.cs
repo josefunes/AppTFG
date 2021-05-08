@@ -21,14 +21,9 @@ namespace AppTFG.Paginas
             BindingContext = new LoginView();
         }
 
-        public void BackButtonBehavior()
+        protected override bool OnBackButtonPressed() 
         {
-            return;
-        }
-
-        public void BackButtonPressedEventArgs()
-        {
-            return;
+            return true;
         }
     }
 }

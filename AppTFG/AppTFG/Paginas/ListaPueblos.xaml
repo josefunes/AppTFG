@@ -2,23 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="AppTFG.Paginas.ListaPueblos"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnAgregar" Text="Mi pueblo" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDSemiBold"
-                   Placeholder="Buscar pueblo" CancelButtonColor="{DynamicResource PageBackgroundColor}" PlaceholderColor="{DynamicResource PageBackgroundColor}"
+            <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDSemiBold"
+                   Placeholder="Buscar pueblo" CancelButtonColor="{DynamicResource OtroPageBackgroundColor}" PlaceholderColor="{DynamicResource OtroPageBackgroundColor}"
                    TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
             <ListView x:Name="lsvPueblos" ItemSelected="LsvPueblos_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Spacing="0" Orientation="Vertical" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                            <StackLayout Spacing="0" Orientation="Vertical" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                                 <Label Text="{Binding Nombre}" LineBreakMode="WordWrap" 
-                                                           VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource PrimaryTextColor}" 
+                                                           VerticalOptions="Center" FontSize="Title" TextColor="{DynamicResource SecondaryColor}" 
                                                            HorizontalOptions="Start" Margin="5, 5, 0, 5"
                                                            HorizontalTextAlignment="Start" FontFamily="BSDSemiBold"/>
                                 <Image Source="{Binding ImagenPrincipal}"  Aspect="AspectFill" HeightRequest="250"

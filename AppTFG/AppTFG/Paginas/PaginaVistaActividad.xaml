@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaVistaActividad"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ScrollView x:Name="parallaxScroll" VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand" Margin="0" VerticalScrollBarVisibility="Never">
         <StackLayout Spacing="0" Padding="0" Margin="0">
@@ -14,7 +14,7 @@
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" x:Name="imgActividad" Source="{Binding ImagenPrincipal}"
                            Aspect="AspectFill" HeightRequest="200" BackgroundColor="AliceBlue"/>
-                <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource PageBackgroundColor}">
+                <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
                     <StackLayout>
                         <Grid HorizontalOptions="StartAndExpand" VerticalOptions="Start" ColumnSpacing="0" Margin="10">
                             <Grid.RowDefinitions>
@@ -26,12 +26,12 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="0.9*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Descripcion}" 
-                                BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular" Margin="10, 10, 0, 0"/>
-                            <Label Text="Fecha:" Grid.Row="1" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Medium" Margin="10, 0, 0, 0"/>
-                            <Label Text="{Binding Fecha}" Grid.Row="1" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
-                            <Label  Text="Hora:" Grid.Row="2" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Medium" Margin="10, 0, 0, 0"/>
-                            <Label Text="{Binding Hora}" Grid.Row="2" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource PrimaryTextColor}"/>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
+                                BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular" Margin="10, 10, 0, 0"/>
+                            <Label Text="Fecha:" Grid.Row="1" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" FontSize="Medium" Margin="10, 0, 0, 0"/>
+                            <Label Text="{Binding Fecha}" Grid.Row="1" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}"/>
+                            <Label  Text="Hora:" Grid.Row="2" Grid.Column="0" FontFamily="BSDRegular" TextColor="{DynamicResource SecondaryColor}" FontSize="Medium" Margin="10, 0, 0, 0"/>
+                            <Label Text="{Binding Hora}" Grid.Row="2" Grid.Column="1" FontFamily="BSDRegular" Grid.ColumnSpan="3" FontSize="Medium" TextColor="{DynamicResource SecondaryColor}"/>
                         </Grid>
                     </StackLayout>
                 </Frame>

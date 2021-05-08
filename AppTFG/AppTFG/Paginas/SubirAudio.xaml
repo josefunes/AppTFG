@@ -2,39 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.SubirAudio"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>
-            <Entry x:Name="txtNumero" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Numero}"
+            <Entry x:Name="txtNumero" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Numero}"
                    Margin="10, 0, 10, 25" Placeholder="Ingrese solo el número correspondiente a la ubicación" 
                    HorizontalOptions="StartAndExpand" FontSize="Medium" PlaceholderColor="LightGray" 
-                   BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
-            <Entry x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}"
+                   BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDRegular" />
+            <Entry x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}"
                    Margin="10, 0, 10, 25" Placeholder="Ingrese el nombre de la ubicación" 
                    HorizontalOptions="StartAndExpand" FontSize="Large" PlaceholderColor="LightGray" 
-                   BackgroundColor="{DynamicResource PageBackgroundColor}" FontFamily="BSDRegular" />
-            <Editor x:Name="txtDescripcion" TextColor="{DynamicResource PrimaryTextColor}" 
+                   BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDRegular" />
+            <Editor x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" 
                     Placeholder="Ingrese una descripción para el usuario" Text="{Binding Descripcion}"
                     Margin="10, 0, 10, 25" AutoSize="TextChanges" PlaceholderColor="LightGray" 
-                    BackgroundColor="{DynamicResource PageBackgroundColor}" 
+                    BackgroundColor="{DynamicResource OtroPageBackgroundColor}" 
                     FontSize="Large" FontFamily="BSDRegular"/>
             <Button Text="Guardar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" 
-                    TextColor="{DynamicResource PageBackgroundColor}" 
+                    TextColor="{DynamicResource OtroPageBackgroundColor}" 
                     Clicked="BtnGuardarExp_Clicked" HorizontalOptions="Center"/>
             <Button Text="Borrar explicación" BackgroundColor="{DynamicResource TertiaryTextColor}" 
-                    TextColor="{DynamicResource PageBackgroundColor}" 
+                    TextColor="{DynamicResource OtroPageBackgroundColor}" 
                     Clicked="BtnBorrarExp_Clicked" HorizontalOptions="Center"/>
             <StackLayout Orientation = "Horizontal" Margin="20,0,0,0">
-                <Label x:Name="duracion" Text="Duración: " FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
-                <Label x:Name="lblMinutes" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
-                <Label Text=":" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" Margin="-5,0,-5,0" FontFamily="BSDRegular"/>
-                <Label x:Name="lblSeconds" Text="00" FontSize = "Large" TextColor="{DynamicResource PrimaryTextColor}" FontFamily="BSDRegular"/>
+                <Label x:Name="duracion" Text="Duración: " FontSize = "Large" TextColor="{DynamicResource SecondaryColor}" FontFamily="BSDRegular"/>
+                <Label x:Name="lblMinutes" Text="00" FontSize = "Large" TextColor="{DynamicResource SecondaryColor}" FontFamily="BSDRegular"/>
+                <Label Text=":" FontSize = "Large" TextColor="{DynamicResource SecondaryColor}" Margin="-5,0,-5,0" FontFamily="BSDRegular"/>
+                <Label x:Name="lblSeconds" Text="00" FontSize = "Large" TextColor="{DynamicResource SecondaryColor}" FontFamily="BSDRegular"/>
             </StackLayout>
             <FlexLayout JustifyContent="SpaceAround">
-                <Button Margin="10" x:Name="bntRecord" FontSize="Medium" FontFamily="BSDRegular" Text="Grabar" BackgroundColor="Red" WidthRequest="120" Image="baseline_keyboard_voice_white_24.png" Clicked="Record_Clicked" TextColor="{DynamicResource PageBackgroundColor}"/>
-                <Button Margin="10" x:Name="bntStop" FontSize="Medium" FontFamily="BSDRegular" Text="Stop" BackgroundColor="{DynamicResource TertiaryTextColor}"  WidthRequest="120" Image="baseline_stop_white_24.png" Clicked="Stop_Clicked" IsEnabled= "true" TextColor="{DynamicResource PageBackgroundColor}"/>
-                <Button Margin="10" x:Name="bntPlay" FontSize="Medium" FontFamily="BSDRegular" Text="Play" BackgroundColor="{DynamicResource TertiaryTextColor}"  WidthRequest="120" Image="baseline_play_circle_outline_white_24.png" Clicked="Play_Clicked" IsEnabled= "true" TextColor="{DynamicResource PageBackgroundColor}"/>
+                <Button Margin="10" x:Name="bntRecord" FontSize="Medium" FontFamily="BSDRegular" Text="Grabar" BackgroundColor="Red" WidthRequest="120" Image="baseline_keyboard_voice_white_24.png" Clicked="Record_Clicked" TextColor="{DynamicResource SecondaryTextColor}"/>
+                <Button Margin="10" x:Name="bntStop" FontSize="Medium" FontFamily="BSDRegular" Text="Stop" BackgroundColor="{DynamicResource TertiaryTextColor}"  WidthRequest="120" Image="baseline_stop_white_24.png" Clicked="Stop_Clicked" IsEnabled= "true" TextColor="{DynamicResource SecondaryTextColor}"/>
+                <Button Margin="10" x:Name="bntPlay" FontSize="Medium" FontFamily="BSDRegular" Text="Play" BackgroundColor="{DynamicResource TertiaryTextColor}"  WidthRequest="120" Image="baseline_play_circle_outline_white_24.png" Clicked="Play_Clicked" IsEnabled= "true" TextColor="{DynamicResource SecondaryTextColor}"/>
             </FlexLayout>
         </StackLayout>
     </ContentPage.Content>

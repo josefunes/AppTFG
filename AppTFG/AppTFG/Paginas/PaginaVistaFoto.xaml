@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaVistaFoto"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
@@ -15,8 +15,8 @@
                         <Image x:Name="imgFoto" Source="{Binding Imagen}"
                             Aspect="AspectFill"  HorizontalOptions="Fill" 
                             VerticalOptions="Fill" Grid.Row="0"/>
-                        <Label x:Name="txtNombre" TextColor="{DynamicResource PrimaryTextColor}" Text="{Binding Nombre}" 
-                           FontFamily="BSDRegular"  Grid.Row="1" BackgroundColor="{DynamicResource PageBackgroundColor}" FontSize="Large"/>
+                        <Label x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
+                           FontFamily="BSDRegular"  Grid.Row="1" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Large"/>
                     </Grid>
                 </StackLayout>
             </StackLayout>
