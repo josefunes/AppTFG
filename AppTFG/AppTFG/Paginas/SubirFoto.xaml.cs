@@ -91,7 +91,10 @@ namespace AppTFG.Paginas
             } 
             else
             {
-                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), foto.Nombre, foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), foto.IdPueblo);
+                await FirebaseHelper.InsertarFoto(foto.Id = Constantes.GenerarId(), 
+                    foto.Nombre, 
+                    foto.Imagen = await FirebaseHelper.SubirFoto(foto.Stream, foto.Nombre), 
+                    foto.IdPueblo);
             }
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");

@@ -20,5 +20,15 @@ namespace AppTFG.Paginas
             InitializeComponent();
             BindingContext = new LoginView();
         }
+
+        public void BackButtonBehavior()
+        {
+            return;
+        }
+
+        public void BackButtonPressedEventArgs()
+        {
+            return;
+        }
     }
 }

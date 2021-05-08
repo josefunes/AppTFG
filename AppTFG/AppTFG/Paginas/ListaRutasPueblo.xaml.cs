@@ -1,9 +1,7 @@
 ﻿using Acr.UserDialogs;
 using AppTFG.Helpers;
 using AppTFG.Modelos;
-using AppTFG.Servicios;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,27 +22,14 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            //var bd = new ServicioBaseDatos<Ruta>();
             var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
-                lsvRutasPueblo.ItemsSource = null;
-                lsvRutasPueblo.ItemsSource = await FirebaseHelper.ObtenerTodasRutasPueblo(pueblo.Id);
+                lsvRutasPueblo.ItemsSource = 
+                    await FirebaseHelper.ObtenerTodasRutasPueblo(pueblo.Id);
             }
             Loading(false);
         }
-
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
 
         void Loading(bool mostrar)
         {
@@ -81,7 +66,6 @@ namespace AppTFG.Paginas
             string nombre = nombreUsuario.Text;
             Usuario user = await FirebaseHelper.ObtenerUsuario(nombre);
             Pueblo puebloUser = await FirebaseHelper.ObtenerPueblo(user.UsuarioId);
-            //var pueblo = (Pueblo)BindingContext;
             await Navigation.PushAsync(new PaginaRuta(new Ruta() { IdPueblo = puebloUser.Id }));
         }
     }

@@ -1,4 +1,6 @@
-﻿using AppTFG.VistaModelos;
+﻿using Acr.UserDialogs;
+using AppTFG.Paginas;
+using AppTFG.VistaModelos;
 using ImageCircle.Forms.Plugin.Abstractions;
 
 using Xamarin.Forms;
@@ -86,5 +88,15 @@ namespace AppTFG
             stack.Children.Add(grid);
             return stack;
         });
+
+        private async void MenuItem_Clicked(object sender, System.EventArgs e)
+        {
+            var salir = await UserDialogs.Instance.ConfirmAsync("Si pulsa sí, se cerrará su sesión actual. ¿Está seguro de que desea cerra su sesión?", "Advertencia", "Sí", "No");
+            FlyoutIsPresented = false;
+            if (salir == true)
+            {
+                await Navigation.PushAsync(new LoginPage());
+            }            
+        }
     }
 }

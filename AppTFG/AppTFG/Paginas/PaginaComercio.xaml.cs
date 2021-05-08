@@ -153,7 +153,9 @@ namespace AppTFG.Paginas
 
         async void OnTapCrearPin(object sender, MapClickedEventArgs args)
         {
-            string nombre = await DisplayPromptAsync("Título", "Introduce nombre del Comercio", "Añadir", "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
+            string nombre = await DisplayPromptAsync("Título", 
+                "Introduce nombre del Comercio", "Añadir", 
+                "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
             //El nombre es null cuando el usuario pulsa el botón de Cancelar.
             if (nombre == null)
             { return; }

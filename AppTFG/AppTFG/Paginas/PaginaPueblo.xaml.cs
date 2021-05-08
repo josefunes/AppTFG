@@ -2,7 +2,6 @@
 using AppTFG.Helpers;
 using AppTFG.Modelos;
 using AppTFG.Servicios;
-using AppTFG.VistaModelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,28 +128,32 @@ namespace AppTFG.Paginas
             {
                 if (pueblo.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
+                    await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, 
+                        pueblo.ImagenPrincipal);
                 }
                 else
                 {
-                    //await FirebaseHelper.BorrarFoto("Imagen principal de " + pueblo.Nombre);
-                    await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
+                    await FirebaseHelper.ActualizarPueblo(pueblo.Id, pueblo.Nombre, pueblo.Descripcion, 
+                        pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, 
+                        "Imagen principal de " + pueblo.Nombre));
                 }
             }    
             else
             {
                 if(pueblo.Stream == null)
                 {
-                    await FirebaseHelper.InsertarPueblo(pueblo.Id = user.UsuarioId, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal);
+                    await FirebaseHelper.InsertarPueblo(pueblo.Id = user.UsuarioId, pueblo.Nombre, 
+                        pueblo.Descripcion, pueblo.ImagenPrincipal);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarPueblo(pueblo.Id = user.UsuarioId, pueblo.Nombre, pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, "Imagen principal de " + pueblo.Nombre));
+                    await FirebaseHelper.InsertarPueblo(pueblo.Id = user.UsuarioId, pueblo.Nombre, 
+                        pueblo.Descripcion, pueblo.ImagenPrincipal = await FirebaseHelper.SubirFoto(pueblo.Stream, 
+                        "Imagen principal de " + pueblo.Nombre));
                 }
             }
             Loading(false);
             UserDialogs.Instance.Alert("Registro realizado correctamente", "Correcto", "OK");
-            //await Navigation.PopAsync();
         }
 
         async void BtnEliminar_Clicked(object sender, EventArgs e)
@@ -176,7 +179,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
             }
             else
             {
@@ -189,7 +193,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
             }
             else
             {
@@ -202,7 +207,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
             }
             else
             {
@@ -215,7 +221,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
             }
             else
             {
@@ -228,7 +235,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
             }
             else
             {
@@ -241,7 +249,8 @@ namespace AppTFG.Paginas
             var pueblo = (Pueblo)BindingContext;
             if (pueblo == null)
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
             }
             else
             {
@@ -271,7 +280,9 @@ namespace AppTFG.Paginas
             var nombrePueblo = txtNombre.Text;
             if (string.IsNullOrEmpty(nombrePueblo))
             {
-                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + " A continuación guarde el nombre antes de empezar a crear contenido.", "Advertencia", "OK");
+                UserDialogs.Instance.Alert(Constantes.TitlePuebloRequired + 
+                    " A continuación guarde el nombre antes de empezar a " +
+                    "crear contenido.", "Advertencia", "OK");
                 return;
             }
             MapSpan mapSpan = await GeocoderPueblo();

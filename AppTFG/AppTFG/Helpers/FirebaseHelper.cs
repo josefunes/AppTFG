@@ -7,25 +7,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 
 namespace AppTFG.Helpers
 {
     public class FirebaseHelper
     {
-
         //Conexión Base de datos en tiempo real
-        public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/");
-
-        //public static FirebaseClient firebase = new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/",
-        //        new FirebaseOptions { OfflineDatabaseFactory = (t, s) => new OfflineDatabase(t, s) });
+        public static FirebaseClient firebase = 
+            new FirebaseClient("https://apptfg-2e2e6-default-rtdb.europe-west1.firebasedatabase.app/");
 
         //Conexión Almacenaimento contenido multimedia
         public static FirebaseStorage firebaseStorage = new FirebaseStorage("apptfg-2e2e6.appspot.com");
-
 
         //MÉTODOS CRUD USUARIO
         public static async Task<List<Usuario>> ObtenerTodosUsuarios()
@@ -153,21 +146,6 @@ namespace AppTFG.Helpers
                 return null;
             }
         }
-
-        //public static async Task<Pueblo> ObtenerTodosPueblosUsuario(string nombreUsuario)
-        //{
-        //    try
-        //    {
-        //        var todosPueblos = await ObtenerTodosPueblos();
-        //        await firebase.Child("Pueblos").OnceAsync<Pueblo>();
-        //        return (Pueblo)todosPueblos.Where(a => a.Usuario.Nombre.Equals(nombreUsuario));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Debug.WriteLine($"Error:{e}");
-        //        return null;
-        //    }
-        //}
 
         //Leer 
         public static async Task<Pueblo> ObtenerPueblo(int id)

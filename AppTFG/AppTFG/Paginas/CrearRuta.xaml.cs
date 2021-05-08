@@ -150,7 +150,8 @@ namespace AppTFG.Paginas
 
         async void OnTapCrearRuta(object sender, MapClickedEventArgs args)
         {
-            string nombre = await DisplayPromptAsync("Título", "Introduce número y título", "Añadir", "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
+            string nombre = await DisplayPromptAsync("Título", "Introduce número y título", 
+                "Añadir", "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
             //El nombre es null cuando el usuario pulsa el botón de Cancelar.
             if (nombre == null)
             { return; }
@@ -251,8 +252,12 @@ namespace AppTFG.Paginas
 
         async void OnTapCrearPin(object sender, MapClickedEventArgs args)
         {
-            string nombre = await DisplayPromptAsync("Título", "Introduce número y título", "Añadir", "Cancelar", placeholder: "Por ejemplo: 1. Alcazaba");
-            //El nombre es null cuando el usuario pulsa el botón de Cancelar.
+            string nombre = await DisplayPromptAsync("Título", 
+                "Introduce número y título",
+                "Añadir", "Cancelar", 
+                placeholder: "Por ejemplo: 1. Alcazaba");
+            //El nombre es null cuando el usuario
+            //pulsa el botón de Cancelar.
             if (nombre == null)
             { return; }
             if (Ruta.Ubicaciones == null)
@@ -268,7 +273,8 @@ namespace AppTFG.Paginas
             nuevoPin.InfoWindowClicked += async (s, arg) =>
             {
                 string pinName = ((Pin)s).Label;
-                await DisplayAlert("Info Window Clicked", $"El audio que toca es {pinName}.", "Ok");
+                await DisplayAlert("Info Window Clicked", 
+                    $"El audio que toca es {pinName}.", "Ok");
             };
             double x = nuevoPin.Position.Latitude;
             double y = nuevoPin.Position.Longitude;
@@ -482,7 +488,6 @@ namespace AppTFG.Paginas
 
                 if (filePath != null)
                 {
-                    //StopRecording();
                     player.Play(filePath);
                 }
             }

@@ -131,7 +131,6 @@ namespace AppTFG.Paginas
                 }
                 else
                 {
-                    //await FirebaseHelper.BorrarFoto("Imagen principal de " + actividad.Nombre);
                     await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
                 }
             }

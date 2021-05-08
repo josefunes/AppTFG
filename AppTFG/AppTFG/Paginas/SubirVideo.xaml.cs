@@ -67,7 +67,6 @@ namespace AppTFG.Paginas
             Button btn = (Button)sender;
             btn.IsEnabled = false;
 
-            //string videoPath = await DependencyService.Get<IVideoPicker>().GetVideoFileAsync();
             var video = await ServicioMultimedia.SeleccionarVideo();
             if (video != null) 
             {
@@ -106,11 +105,6 @@ namespace AppTFG.Paginas
         {
             videoPlayer.Stop();
         }
-
-        //private async void Button_Clicked(object sender, EventArgs e)
-        //{
-        //    await Navigation.PushAsync(new PantallaCompleta(Video));
-        //}
 
         async void BtnRegistrar_Clicked(object sender, EventArgs e)
         {

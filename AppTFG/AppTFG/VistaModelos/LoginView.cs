@@ -83,13 +83,15 @@ namespace AppTFG.VistaModelos
                 catch (Exception)
                 {
                     UserDialogs.Instance.HideLoading();
-                    UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña correctos", "Fallo al iniciar sesión", "OK");
+                    UserDialogs.Instance.Alert("Por favor, introduzca un nombre de usuario y una contraseña correctos", 
+                        "Fallo al iniciar sesión", "OK");
                 }
             }
             else if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Sin conexión a internet no es posible usar la app. Conéctate a una red y vuelve a intentarlo.", "Fallo al iniciar sesión", "OK");
+                UserDialogs.Instance.Alert("Sin conexión a internet no es posible usar la app. Conéctate a una red y " +
+                    "vuelve a intentarlo.", "Fallo al iniciar sesión", "OK");
             }
             else
             {

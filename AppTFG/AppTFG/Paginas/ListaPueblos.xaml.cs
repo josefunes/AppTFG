@@ -1,15 +1,10 @@
 ﻿using AppTFG.Modelos;
 using AppTFG.Helpers;
-using AppTFG.Servicios;
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using AppTFG.VistaModelos;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Acr.UserDialogs;
-using System.Linq;
 
 namespace AppTFG.Paginas
 {
