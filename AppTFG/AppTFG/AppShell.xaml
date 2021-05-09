@@ -90,5 +90,5 @@
         <ShellContent Title="Actividades" Icon="baseline_local_play_white_24.png" Route="Actividades" ContentTemplate="{DataTemplate local:ListaActividades}"/>
     </FlyoutItem>
     <ShellContent Title="Ajustes" Icon="baseline_settings_white_24.png" Route="Ajustes" ContentTemplate="{DataTemplate local:Ajustes}" />
-    <MenuItem Text="Cerrar sesión" Icon="baseline_logout_white_24.png" Clicked="MenuItem_Clicked"/>
+    <!--<MenuItem Text="Cerrar sesión" Icon="baseline_logout_white_24.png" Clicked="MenuItem_Clicked"/>-->
 </Shell>

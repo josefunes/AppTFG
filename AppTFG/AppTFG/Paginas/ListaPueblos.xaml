@@ -4,7 +4,7 @@
              x:Class="AppTFG.Paginas.ListaPueblos"
              BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAgregar" Text="Mi pueblo" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>
+        <!--<ToolbarItem x:Name="btnAgregar" Text="Mi pueblo" Order="Primary" Priority="0" Clicked="BtnAgregar_Clicked"/>-->
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="0" Orientation="Vertical" Padding="0" >

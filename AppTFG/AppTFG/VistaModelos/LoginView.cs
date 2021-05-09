@@ -77,7 +77,7 @@ namespace AppTFG.VistaModelos
                     //var serializedcontnet = JsonConvert.SerializeObject(content);
 
                     //Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
-                    Application.Current.MainPage = new AppShell(nombreSinEspacios);
+                    //Application.Current.MainPage = new AppShell(nombreSinEspacios);
                     UserDialogs.Instance.HideLoading();
                 }
                 catch (Exception)

@@ -47,21 +47,10 @@ namespace AppTFG.Paginas
 
         private async void LsvActividades_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
-            string nombre = nombreUsuario.Text;
-            var user = await FirebaseHelper.ObtenerUsuario(nombre);
             try
             {
                 var dato = (Actividad)e.SelectedItem;
-                if (dato.IdPueblo == user.UsuarioId)
-                {
-                    await Navigation.PushAsync(new PaginaActividad(dato));
-                }
-                else
-                {
-                    await Navigation.PushAsync(new PaginaVistaActividad(dato));
-                }
+                await Navigation.PushAsync(new PaginaVistaActividad(dato));
                 lsvActividades.SelectedItem = null;
             }
             catch (Exception)

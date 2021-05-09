@@ -31,18 +31,6 @@ namespace AppTFG.Paginas
             Loading(false);
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         void Loading(bool mostrar)
         {
             indicator.IsEnabled = mostrar;
@@ -51,21 +39,10 @@ namespace AppTFG.Paginas
 
         private async void LsvRutas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Label nombreUsuario = new Label();
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: AppShell.Inicio));
-            string nombre = nombreUsuario.Text;
-            var user = await FirebaseHelper.ObtenerUsuario(nombre);
             try
             {
                 var dato = (Ruta)e.SelectedItem;
-                if (dato.IdPueblo == user.UsuarioId)
-                {
-                    await Navigation.PushAsync(new PaginaRuta(dato));
-                }
-                else
-                {
-                    await Navigation.PushAsync(new PaginaVistaRuta(dato));
-                }
+                await Navigation.PushAsync(new PaginaVistaRuta(dato));
                 lsvRutas.SelectedItem = null;
             }
             catch (Exception)

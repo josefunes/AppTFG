@@ -27,7 +27,6 @@ namespace AppTFG.Paginas
             base.OnAppearing();
 
             Loading(true);
-            //var bd = new ServicioBaseDatos<Ruta>();
             var pueblo = (Pueblo)BindingContext;
             if (pueblo != null)
             {
@@ -37,17 +36,6 @@ namespace AppTFG.Paginas
             Loading(false);
         }
 
-        //void Loading(bool mostrar)
-        //{
-        //    if (mostrar)
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Cargando...");
-        //    }
-        //    else
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
 
         void Loading(bool mostrar)
         {

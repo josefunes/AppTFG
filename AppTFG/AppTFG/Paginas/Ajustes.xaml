@@ -15,7 +15,7 @@
             <Button x:Name="updatebtn" Text="Actualizar contraseña" Command="{Binding UpdateCommand}" TextColor="{DynamicResource PrimaryTextColor}" BackgroundColor="{DynamicResource TertiaryTextColor}" HorizontalOptions="Center" FontFamily="BSDRegular"/>-->
             <local1:EnumPicker EnumType="{x:Type local:Tema}"  Title="Selecciona el tema de la app" SelectedIndexChanged="OnPickerSelectionChanged" TextColor="{DynamicResource PrimaryTextColor}"/>
             <Label x:Name="statusLabel" HorizontalOptions="Center" TextColor="{DynamicResource SecondaryColor}"/>
-            <Button x:Name="deletebtn" Text="Eliminar usuario" Command="{Binding DeleteCommand}" TextColor="{DynamicResource SecondaryColor}" BackgroundColor="Red" HorizontalOptions="Center" FontFamily="BSDRegular"/>
+            <!--<Button x:Name="deletebtn" Text="Eliminar usuario" Command="{Binding DeleteCommand}" TextColor="{DynamicResource SecondaryColor}" BackgroundColor="Red" HorizontalOptions="Center" FontFamily="BSDRegular"/>-->
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>

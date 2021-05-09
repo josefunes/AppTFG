@@ -11,14 +11,14 @@ namespace AppTFG
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
-        public static InicioView Inicio { get; set; }
+        //public static InicioView Inicio { get; set; }
 
-        public AppShell(string nombre)
+        public AppShell()
         {
             InitializeComponent();
             FlyoutHeaderTemplate = menuHeader;
-            Inicio = new InicioView(nombre);
-            BindingContext = Inicio;
+            //Inicio = new InicioView(nombre);
+            //BindingContext = Inicio;
         }
 
         DataTemplate menuHeader = new DataTemplate(() =>
@@ -69,34 +69,34 @@ namespace AppTFG
             };
             imagen.SetDynamicResource(CircleImage.BorderColorProperty, key: "SecondaryColor");
 
-            Label nombreUsuario = new Label()
-            {
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                FontAttributes = FontAttributes.Bold,
-                FontFamily = "BSDLight",
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            };
-            nombreUsuario.SetDynamicResource(Label.TextColorProperty, key: "SecondaryColor");
-            nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: Inicio));
+            //Label nombreUsuario = new Label()
+            //{
+            //    FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+            //    FontAttributes = FontAttributes.Bold,
+            //    FontFamily = "BSDLight",
+            //    HorizontalOptions = LayoutOptions.CenterAndExpand,
+            //    VerticalOptions = LayoutOptions.CenterAndExpand
+            //};
+            //nombreUsuario.SetDynamicResource(Label.TextColorProperty, key: "SecondaryColor");
+            //nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: Inicio));
 
             grid.Children.Add(titulo, 0, 0);
             Grid.SetRowSpan(titulo, 2);
             grid.Children.Add(imagen, 1, 0);
-            grid.Children.Add(nombreUsuario, 1, 1);
+            //grid.Children.Add(nombreUsuario, 1, 1);
 
             stack.Children.Add(grid);
             return stack;
         });
 
-        private async void MenuItem_Clicked(object sender, System.EventArgs e)
-        {
-            var salir = await UserDialogs.Instance.ConfirmAsync("Si pulsa sí, se cerrará su sesión actual. ¿Está seguro de que desea cerra su sesión?", "Advertencia", "Sí", "No");
-            FlyoutIsPresented = false;
-            if (salir == true)
-            {
-                await Navigation.PushAsync(new LoginPage());
-            }            
-        }
+        //private async void MenuItem_Clicked(object sender, System.EventArgs e)
+        //{
+        //    var salir = await UserDialogs.Instance.ConfirmAsync("Si pulsa sí, se cerrará su sesión actual. ¿Está seguro de que desea cerra su sesión?", "Advertencia", "Sí", "No");
+        //    FlyoutIsPresented = false;
+        //    if (salir == true)
+        //    {
+        //        await Navigation.PushAsync(new LoginPage());
+        //    }            
+        //}
     }
 }

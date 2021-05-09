@@ -109,7 +109,7 @@ namespace AppTFG.VistaModelos
                                 Constantes.GenerarId());
                             if (usuario)
                             {
-                                Application.Current.MainPage = new AppShell(nombreSinEspacios);
+                                //Application.Current.MainPage = new AppShell(nombreSinEspacios);
                             }
                         }
                         catch (Exception)

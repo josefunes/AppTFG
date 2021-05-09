@@ -14,12 +14,12 @@ namespace AppTFG.Paginas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Ajustes : ContentPage, IModalPage
     {
-        AjustesView ajustesView;
+        //AjustesView ajustesView;
         public Ajustes()
         {
             InitializeComponent();
-            ajustesView = new AjustesView();
-            BindingContext = ajustesView;
+            //ajustesView = new AjustesView();
+            //BindingContext = ajustesView;
         }
 
         void OnPickerSelectionChanged(object sender, EventArgs e)

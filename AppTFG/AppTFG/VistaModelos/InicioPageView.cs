@@ -55,21 +55,21 @@ namespace AppTFG.VistaModelos
 
         public ICommand SelectionCommand => new Command(() =>
         {
-            if (rutaSeleccionada != null)
-            {
-                RutaSeleccionada = rutaSeleccionada;
-                Application.Current.MainPage.Navigation.PushAsync(new PaginaRuta(RutaSeleccionada));
-            }
-            if (actividadSeleccionada != null)
-            {
-                ActividadSeleccionada = actividadSeleccionada;
-                Application.Current.MainPage.Navigation.PushAsync(new PaginaActividad(ActividadSeleccionada));
-            }
-            if (fotoSeleccionada != null)
-            {
-                FotoSeleccionada = fotoSeleccionada;
-                Application.Current.MainPage.Navigation.PushAsync(new SubirFoto(FotoSeleccionada));
-            }
+            //if (rutaSeleccionada != null)
+            //{
+            //    RutaSeleccionada = rutaSeleccionada;
+            //    Application.Current.MainPage.Navigation.PushAsync(new PaginaRuta(RutaSeleccionada));
+            //}
+            //if (actividadSeleccionada != null)
+            //{
+            //    ActividadSeleccionada = actividadSeleccionada;
+            //    Application.Current.MainPage.Navigation.PushAsync(new PaginaActividad(ActividadSeleccionada));
+            //}
+            //if (fotoSeleccionada != null)
+            //{
+            //    FotoSeleccionada = fotoSeleccionada;
+            //    Application.Current.MainPage.Navigation.PushAsync(new SubirFoto(FotoSeleccionada));
+            //}
             if (fotoOtraSeleccionada != null)
             {
                 FotoOtraSeleccionada = fotoOtraSeleccionada;

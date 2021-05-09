@@ -5,7 +5,8 @@
              BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
     <StackLayout BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
         <ActivityIndicator x:Name="indicator" Color="Teal" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="-10"/>
-        <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+        <ScrollView Margin="0" VerticalScrollBarVisibility="Never" x:Name="parallaxScroll"
+                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <StackLayout Spacing="0" Padding="0" Margin="0">
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-20">
                     <Grid.RowDefinitions>

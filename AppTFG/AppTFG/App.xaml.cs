@@ -1,4 +1,5 @@
 ﻿using AppTFG.Paginas;
+using AppTFG.Walkthrough;
 using Xamarin.Forms;
 
 namespace AppTFG
@@ -10,7 +11,7 @@ namespace AppTFG
         public App()
         {
             InitializeComponent();
-            MainPage = new LoginPage();
+            MainPage = new WalkthroughView();
         }
 
 
