@@ -13,6 +13,7 @@
                 <Setter Property="Shell.BackgroundColor" Value="{DynamicResource PageBackgroundColor}" />
                 <!--Color de lo que está en los toolbars y del menú-->
                 <Setter Property="Shell.ForegroundColor" Value="{DynamicResource OtroPageBackgroundColor}" />
+                <Setter Property="Shell.FlyoutBackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
                 <!--Color de los títulos que aparecen en los toolbars-->
                 <Setter Property="Shell.TitleColor" Value="{DynamicResource OtroPageBackgroundColor}" />
                 <!--<Setter Property="Shell.DisabledColor" Value="Black" />

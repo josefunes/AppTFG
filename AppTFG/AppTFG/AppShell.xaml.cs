@@ -29,7 +29,7 @@ namespace AppTFG
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
-            stack.SetDynamicResource(StackLayout.BackgroundColorProperty, key: "SecondaryTextColor");
+            stack.SetDynamicResource(StackLayout.BackgroundColorProperty, key: "PageBackgroundColor");
             Grid grid = new Grid
             {
                 RowDefinitions =
@@ -53,7 +53,7 @@ namespace AppTFG
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
-            titulo.SetDynamicResource(Label.TextColorProperty, key: "SecondaryColor");
+            titulo.SetDynamicResource(Label.TextColorProperty, key: "SecondaryTextColor");
 
             CircleImage imagen = new CircleImage()
             {
@@ -67,7 +67,7 @@ namespace AppTFG
                 VerticalOptions = LayoutOptions.EndAndExpand,
                 Margin = new Thickness(-10, 10, -10, -10)
             };
-            imagen.SetDynamicResource(CircleImage.BorderColorProperty, key: "SecondaryColor");
+            imagen.SetDynamicResource(CircleImage.BorderColorProperty, key: "SecondaryTextColor");
 
             Label nombreUsuario = new Label()
             {
@@ -77,7 +77,7 @@ namespace AppTFG
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
-            nombreUsuario.SetDynamicResource(Label.TextColorProperty, key: "SecondaryColor");
+            nombreUsuario.SetDynamicResource(Label.TextColorProperty, key: "SecondaryTextColor");
             nombreUsuario.SetBinding(Label.TextProperty, new Binding("Nombre", source: Inicio));
 
             grid.Children.Add(titulo, 0, 0);
