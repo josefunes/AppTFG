@@ -2,9 +2,9 @@
 
 namespace AppTFG.Walkthrough
 {
-	public partial class AcrobaticsView : IAnimatedView
+	public partial class PaseoView : IAnimatedView
 	{
-		public AcrobaticsView()
+		public PaseoView()
 		{
 			InitializeComponent();
 		}

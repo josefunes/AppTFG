@@ -27,7 +27,7 @@ namespace AppTFG.Paginas
 
             Loading(true);
             Rutas = await FirebaseHelper.ObtenerTodasRutas();
-            lsvRutas.ItemsSource = GetSearchResults(searchBar.Text);
+            lsvRutas.ItemsSource = Rutas;
             Loading(false);
         }
 
@@ -53,13 +53,93 @@ namespace AppTFG.Paginas
 
         void OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            lsvRutas.ItemsSource = GetSearchResults(e.NewTextValue);
+            if (e.NewTextValue == "")
+                lsvRutas.ItemsSource = Rutas;
+            else
+                lsvRutas.ItemsSource = GetSearchResults(e.NewTextValue);
         }
 
-        public static List<Ruta> GetSearchResults(string queryString)
+        public List<Ruta> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
-            return Rutas.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+            var listaRutas = (List<Ruta>)lsvRutas.ItemsSource;
+            return listaRutas.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+        }
+
+        void OrdenAlfabeticoAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                if (searchBar.Text == null)
+                    searchBar.Text = "";
+                lsvRutas.ItemsSource = GetSearchResults(searchBar.Text).OrderBy(varName => varName.Nombre).ToList();
+            }
+            else
+            {
+                lsvRutas.ItemsSource = Rutas;
+            }
+        }
+
+        void OrdenAlfabeticoDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                if (searchBar.Text == null)
+                    searchBar.Text = "";
+                lsvRutas.ItemsSource = GetSearchResults(searchBar.Text).OrderByDescending(varName => varName.Nombre).ToList();
+            }
+            else
+            {
+                lsvRutas.ItemsSource = Rutas;
+            }
+        }
+
+        void DistanciaAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvRutas.ItemsSource = Rutas;
+            }
+        }
+
+        void DistanciaDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvRutas.ItemsSource = Rutas;
+            }
+        }
+        
+        void ValoracionAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvRutas.ItemsSource = Rutas;
+            }
+        }
+
+        void ValoracionDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvRutas.ItemsSource = Rutas;
+            }
         }
     }
 }

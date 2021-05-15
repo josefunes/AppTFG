@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace AppTFG.Paginas
 {
@@ -24,7 +25,7 @@ namespace AppTFG.Paginas
 
             Loading(true);
             Pueblos = await FirebaseHelper.ObtenerTodosPueblos();
-            lsvPueblos.ItemsSource = GetSearchResults(searchBar.Text);
+            lsvPueblos.ItemsSource = Pueblos;
             Loading(false);
         }
 
@@ -50,13 +51,45 @@ namespace AppTFG.Paginas
 
         void OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            lsvPueblos.ItemsSource = GetSearchResults(e.NewTextValue);
+            if (e.NewTextValue == "")
+                lsvPueblos.ItemsSource = Pueblos;
+            else
+                lsvPueblos.ItemsSource = GetSearchResults(e.NewTextValue);
         }
 
-        public static List<Pueblo> GetSearchResults(string queryString)
+        public List<Pueblo> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
-            return Pueblos.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+            var listaPueblos = (List<Pueblo>)lsvPueblos.ItemsSource;
+            return listaPueblos.Where(pueblo => pueblo.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+        }
+
+        void OrdenAlfabeticoAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                if (searchBar.Text == null)
+                    searchBar.Text = "";
+                lsvPueblos.ItemsSource = GetSearchResults(searchBar.Text).OrderBy(pueblo => pueblo.Nombre).ToList();
+            }
+            else
+            {
+                lsvPueblos.ItemsSource = Pueblos;
+            }
+        }
+
+        void OrdenAlfabeticoDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                if (searchBar.Text == null)
+                    searchBar.Text = "";
+                lsvPueblos.ItemsSource = GetSearchResults(searchBar.Text).OrderByDescending(pueblo => pueblo.Nombre).ToList();
+            }
+            else
+            {
+                lsvPueblos.ItemsSource = Pueblos;
+            }
         }
     }
 }

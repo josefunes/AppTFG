@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using AppTFG.Paginas;
+using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppTFG.Walkthrough
@@ -14,15 +16,13 @@ namespace AppTFG.Walkthrough
 
 			_views = new View[]
 			{
-				new BikingHardView(),
-				new AcrobaticsView(),
-				new SoExcitedView(),
-				//new BikingCoolView()
+				new BuscarSitioView(),
+				new PaseoView(),
+				new CocheFamiliaView()
 			};
 
 			Carousel.ItemsSource = _views;
 		}
-
 
 		private void OnCarouselPositionSelected(object sender, CarouselView.FormsPlugin.Abstractions.PositionSelectedEventArgs e)
 		{
@@ -32,6 +32,11 @@ namespace AppTFG.Walkthrough
 			{
 				animatedView.StartAnimation();
 			}
+		}
+
+		void SaltarClick(object sender, EventArgs e)
+		{
+			Application.Current.MainPage = new AppShell();
 		}
 	}
 }

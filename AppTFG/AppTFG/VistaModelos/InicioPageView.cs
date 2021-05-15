@@ -10,6 +10,17 @@ namespace AppTFG.VistaModelos
 {
     public class InicioPageView : BaseViewModel
     {
+        private Pueblo puebloSeleccionado;
+        public Pueblo PuebloSeleccionado
+        {
+            get { return puebloSeleccionado; }
+            set
+            {
+                puebloSeleccionado = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Ruta rutaSeleccionada;
         public Ruta RutaSeleccionada
         {
@@ -55,21 +66,21 @@ namespace AppTFG.VistaModelos
 
         public ICommand SelectionCommand => new Command(() =>
         {
-            //if (rutaSeleccionada != null)
-            //{
-            //    RutaSeleccionada = rutaSeleccionada;
-            //    Application.Current.MainPage.Navigation.PushAsync(new PaginaRuta(RutaSeleccionada));
-            //}
-            //if (actividadSeleccionada != null)
-            //{
-            //    ActividadSeleccionada = actividadSeleccionada;
-            //    Application.Current.MainPage.Navigation.PushAsync(new PaginaActividad(ActividadSeleccionada));
-            //}
-            //if (fotoSeleccionada != null)
-            //{
-            //    FotoSeleccionada = fotoSeleccionada;
-            //    Application.Current.MainPage.Navigation.PushAsync(new SubirFoto(FotoSeleccionada));
-            //}
+            if (puebloSeleccionado != null)
+            {
+                PuebloSeleccionado = puebloSeleccionado;
+                Application.Current.MainPage.Navigation.PushAsync(new PaginaVistaPueblo(PuebloSeleccionado));
+            }
+            if (rutaSeleccionada != null)
+            {
+                RutaSeleccionada = rutaSeleccionada;
+                Application.Current.MainPage.Navigation.PushAsync(new PaginaVistaRuta(RutaSeleccionada));
+            }
+            if (actividadSeleccionada != null)
+            {
+                ActividadSeleccionada = actividadSeleccionada;
+                Application.Current.MainPage.Navigation.PushAsync(new PaginaVistaActividad(ActividadSeleccionada));
+            }
             if (fotoOtraSeleccionada != null)
             {
                 FotoOtraSeleccionada = fotoOtraSeleccionada;

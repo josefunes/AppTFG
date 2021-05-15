@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
@@ -6,7 +7,7 @@ using Xamarin.Forms;
 
 namespace AppTFG.Modelos
 {
-    public class Ruta
+    public class Ruta : IComparable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -21,5 +22,10 @@ namespace AppTFG.Modelos
         public Video VideoUrl { get; set; }
         [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            return Nombre.CompareTo(obj);
+        }
     }
 }

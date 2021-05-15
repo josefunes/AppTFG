@@ -9,6 +9,7 @@ using Acr.UserDialogs;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace AppTFG.Paginas
 {
@@ -35,7 +36,7 @@ namespace AppTFG.Paginas
 
             Loading(true);
             Actividades = await FirebaseHelper.ObtenerTodasActividades();
-            lsvActividades.ItemsSource = GetSearchResults(searchBar.Text);
+            lsvActividades.ItemsSource = Actividades;
             Loading(false);
         }
 
@@ -61,13 +62,118 @@ namespace AppTFG.Paginas
 
         void OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            lsvActividades.ItemsSource = GetSearchResults(e.NewTextValue);
+            if (e.NewTextValue == "")
+                lsvActividades.ItemsSource = Actividades;
+            else
+                lsvActividades.ItemsSource = GetSearchResults(e.NewTextValue);
         }
 
-        public static List<Actividad> GetSearchResults(string queryString)
+        public List<Actividad> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
-            return Actividades.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+            var listaActividades = (List<Actividad>)lsvActividades.ItemsSource;
+            return listaActividades.Where(f => f.Nombre.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+        }
+
+        void OrdenAlfabeticoAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                if (searchBar.Text == null)
+                    searchBar.Text = "";
+                lsvActividades.ItemsSource = GetSearchResults(searchBar.Text).OrderBy(varName => varName.Nombre).ToList();
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+
+        void OrdenAlfabeticoDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                if (searchBar.Text == null)
+                    searchBar.Text = "";
+                lsvActividades.ItemsSource = GetSearchResults(searchBar.Text).OrderByDescending(varName => varName.Nombre).ToList();
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+
+        void DistanciaAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                var localizacionUsuario = Geolocation.GetLocationAsync();
+
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+
+        void DistanciaDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+        
+        void ValoracionAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+
+        void ValoracionDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+        
+        void FechaAscendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
+        }
+
+        void FechaDescendenteChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+
+            }
+            else
+            {
+                lsvActividades.ItemsSource = Actividades;
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 
 namespace AppTFG.Modelos
 {
-    public class Actividad
+    public class Actividad : IComparable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -18,5 +19,10 @@ namespace AppTFG.Modelos
         public Video VideoUrl { get; set; }
         [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            return Nombre.CompareTo(obj);
+        }
     }
 }

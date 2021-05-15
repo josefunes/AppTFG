@@ -12,6 +12,21 @@
             <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDSemiBold"
                    Placeholder="Buscar pueblo" CancelButtonColor="{DynamicResource OtroPageBackgroundColor}" PlaceholderColor="{DynamicResource OtroPageBackgroundColor}"
                    TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
+            <Grid BackgroundColor="{DynamicResource TertiaryTextColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Content="Orden ascendente" Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="OrdenAlfabeticoAscendenteChanged" BorderColor="#86e51a"/>
+                <RadioButton Content="Orden descendente" Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="OrdenAlfabeticoDescendenteChanged" BorderColor="#86e51a"/>
+            </Grid>
             <ListView x:Name="lsvPueblos" ItemSelected="LsvPueblos_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

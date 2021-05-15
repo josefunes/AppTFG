@@ -1,21 +1,17 @@
 ﻿using Xamanimation;
+using Xamarin.Forms.Xaml;
 
 namespace AppTFG.Walkthrough
 {
-	public partial class BikingCoolView : IAnimatedView
+	public partial class BuscarSitioView : IAnimatedView
 	{
-		public BikingCoolView()
+		public BuscarSitioView()
 		{
 			InitializeComponent ();
 		}
 
 		public void StartAnimation()
 		{
-			if (Resources["BackgroundColorAnimation"] is ColorAnimation backgroundColorAnimation)
-			{
-				backgroundColorAnimation.Begin();
-			}
-
 			if (Resources["InfoPanelAnimation"] is StoryBoard animation)
 			{
 				animation.Begin();

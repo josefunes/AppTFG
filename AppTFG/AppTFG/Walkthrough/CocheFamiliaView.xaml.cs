@@ -2,9 +2,9 @@
 
 namespace AppTFG.Walkthrough
 {
-	public partial class SoExcitedView : IAnimatedView
+	public partial class CocheFamiliaView : IAnimatedView
 	{
-		public SoExcitedView ()
+		public CocheFamiliaView()
 		{
 			InitializeComponent ();
 		}

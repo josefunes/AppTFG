@@ -36,11 +36,6 @@ namespace AppTFG.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
 
-            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.RecordAudio) != Permission.Granted)
-            {
-                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.RecordAudio }, 1);
-            }
-
             ImageCircleRenderer.Init();
             UserDialogs.Init(this);
             LoadApplication(new App());

@@ -2,7 +2,7 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="AppTFG.Walkthrough.BikingHardView"
+    x:Class="AppTFG.Walkthrough.BuscarSitioView"
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation">
     <ContentView.Resources>
@@ -49,18 +49,14 @@
             Opacity="0"
             TranslationY="250">
             <Label
-                Text="Lorem ipsum"
+                Text="Bienvenido a TRAPP"
                 Style="{StaticResource TutorialTitle}" />
             <Label
                 Style="{StaticResource TutorialInfo}">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span
-                            Text="Lorem ipsum dolor sit amet" />
-                        <Span
-                            Text="consectetur adipiscing elit, sed do eiusmod " />
-                        <Span
-                            Text="tempor incididunt ut labore et dolore magna aliqua." />
+                            Text="Planifica tu viaje e infórmate sobre las rutas y actividades que se pueden hacer de una manera sencilla." />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

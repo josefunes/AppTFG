@@ -10,6 +10,35 @@
             <SearchBar x:Name="searchBar" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" TextColor="{DynamicResource OtroPageBackgroundColor}"
                    Placeholder="Buscar actividad" CancelButtonColor="{DynamicResource OtroPageBackgroundColor}" PlaceholderColor="{DynamicResource OtroPageBackgroundColor}"
                    TextTransform="Lowercase" HorizontalTextAlignment="Start" TextChanged="OnTextChanged" BackgroundColor="{DynamicResource TertiaryTextColor}"/>
+            <Grid BackgroundColor="{DynamicResource TertiaryTextColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Content="Orden ascendente" Grid.Column="0" Grid.Row="0" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="OrdenAlfabeticoAscendenteChanged" BorderColor="#86e51a"/>
+                <RadioButton Content="Orden descendente" Grid.Column="1" Grid.Row="0" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="OrdenAlfabeticoDescendenteChanged" BorderColor="#86e51a"/>
+                <RadioButton Content="Valoración ascendente" Grid.Column="0" Grid.Row="1" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="ValoracionAscendenteChanged" BorderColor="#86e51a"/>
+                <RadioButton Content="Valoración descendente" Grid.Column="1" Grid.Row="1" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="ValoracionDescendenteChanged" BorderColor="#86e51a"/>
+                <RadioButton Content="Fecha ascendente" Grid.Column="0" Grid.Row="2" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="FechaAscendenteChanged" BorderColor="#86e51a"/>
+                <RadioButton Content="Fecha descendente" Grid.Column="1" Grid.Row="2" BackgroundColor="{DynamicResource TertiaryTextColor}"
+                     FontFamily="BSDRegular" TextColor="{DynamicResource OtroPageBackgroundColor}"
+                     CheckedChanged="FechaDescendenteChanged" BorderColor="#86e51a"/>
+            </Grid>
             <ListView x:Name="lsvActividades" ItemSelected="LsvActividades_ItemSelected" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -2,7 +2,7 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="AppTFG.Walkthrough.BikingCoolView"
+    x:Class="AppTFG.Walkthrough.CocheFamiliaView"
     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation">
     <ContentView.Resources>
@@ -11,8 +11,8 @@
             <xamanimation:ColorAnimation
                 x:Key="BackgroundColorAnimation"
                 Target="{x:Reference MainPanel}"
-                ToColor="{StaticResource BikingCoolColor}"
-                Duration="500" />
+                ToColor="{StaticResource SoExcitedColor}"
+                Duration="250" />
             
             <xamanimation:StoryBoard
                 x:Key="InfoPanelAnimation"
@@ -30,23 +30,23 @@
     </ContentView.Resources>
     <Grid
         x:Name="MainPanel"
-        BackgroundColor="{StaticResource SoExcitedColor}">
+        BackgroundColor="{StaticResource AcrobaticsColor}">
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="2.5*" />
             <RowDefinition
                 Height="*" />
         </Grid.RowDefinitions>
-        <!--<forms:AnimationView
+        <forms:AnimationView
             x:Name="LottieAnimation"
             Grid.Row="0"
-            Animation="biking_is_cool.json"
+            Animation="chica_paseando_bosque.json"
             AutoPlay="true"
             Loop="True"
             Speed="1"
             Scale="1"
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand" />-->
+            VerticalOptions="FillAndExpand" />
         <StackLayout
             x:Name="InfoPanel"
             Padding="0,-24,0,0"
@@ -55,18 +55,14 @@
             Opacity="0"
             TranslationY="250">
             <Label
-                Text="Sed do eiusmod tempo"
+                Text="Comienza tu aventura"
                 Style="{StaticResource TutorialTitle}" />
             <Label
                 Style="{StaticResource TutorialInfo}">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span
-                            Text="Lorem ipsum dolor sit amet" />
-                        <Span
-                            Text="consectetur adipiscing elit, sed do eiusmod " />
-                        <Span
-                            Text="tempor incididunt ut labore et dolore magna aliqua." />
+                            Text="Elige un lugar de destino y empieza a explorar nuevos sitios." />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

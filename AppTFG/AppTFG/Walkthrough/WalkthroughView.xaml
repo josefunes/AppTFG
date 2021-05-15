@@ -11,8 +11,11 @@
                 TargetType="Label"
                 x:Key="SkipStyle">
                 <Setter
+                    Property="FontFamily"
+                    Value="BSDSemiBold"  />
+                <Setter
                     Property="FontSize"
-                    Value="14" />
+                    Value="20" />
                 <Setter
                     Property="TextColor"
                     Value="White" />
@@ -47,8 +50,12 @@
                 HorizontalOptions="EndAndExpand"
                 AutomationId="skip">
                 <Label
-                    Text="SKIP"
-                    Style="{StaticResource SkipStyle}" />
+                    Text="SALTAR"
+                    Style="{StaticResource SkipStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SaltarClick"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
         </Grid>
     </ContentPage.Content>

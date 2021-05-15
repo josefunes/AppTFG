@@ -113,6 +113,15 @@
     <Compile Update="Temas\TemaOscuro.xaml.cs">
       <DependentUpon>TemaOscuro.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Walkthrough\BuscarSitioView.xaml.cs">
+      <DependentUpon>BuscarSitioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Walkthrough\PaseoView.xaml.cs">
+      <DependentUpon>PaseoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Walkthrough\CocheFamiliaView.xaml.cs">
+      <DependentUpon>CocheFamiliaView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -178,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Paginas\Registrarse.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Walkthrough\CocheFamiliaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
