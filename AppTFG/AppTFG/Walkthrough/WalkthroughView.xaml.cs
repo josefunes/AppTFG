@@ -1,5 +1,6 @@
-﻿using AppTFG.Paginas;
+﻿using AppTFG.Modelos;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,11 +10,10 @@ namespace AppTFG.Walkthrough
 	public partial class WalkthroughView : ContentPage
 	{
 		private View[] _views;
-
+		private Saltar Saltar;
 		public WalkthroughView()
 		{
 			InitializeComponent();
-
 			_views = new View[]
 			{
 				new BuscarSitioView(),
@@ -34,8 +34,10 @@ namespace AppTFG.Walkthrough
 			}
 		}
 
-		void SaltarClick(object sender, EventArgs e)
+		async void SaltarClick(object sender, EventArgs e)
 		{
+			Saltar = new Saltar();
+			await App.Database.SaveSaltarAsync(Saltar);
 			Application.Current.MainPage = new AppShell();
 		}
 	}
