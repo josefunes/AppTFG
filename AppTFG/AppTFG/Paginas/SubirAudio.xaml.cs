@@ -88,7 +88,7 @@ namespace AppTFG.Paginas
                     }
                     return isTimerRunning;
                 });
-                recorder.FilePath = Path.GetTempPath() + "/" + Guid.NewGuid().ToString() + ".wav";
+                recorder.FilePath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".wav";
                 var audioRecordTask = await recorder.StartRecording();
 
                 bntRecord.IsEnabled = false;
@@ -126,18 +126,24 @@ namespace AppTFG.Paginas
             {
                 //Esta instrucción sirve para dejar de reproducir un audio cuando se quiere reproducir otro
                 player.Pause();
-                var filePath = recorder.GetAudioFilePath();
-
-                if (filePath != null)
+                var filePath1 = recorder.GetAudioFilePath();
+                var filePath2 = recorder.FilePath;
+                if (filePath1 != null)
                 {
                     StopRecording();
-                    player.Play(filePath);
+                    player.Play(filePath1);
+                    bntPlay.BackgroundColor = Color.FromHex("#1ae579");
+                }
+                else if (filePath2 != null)
+                {
+                    StopRecording();
+                    player.Play(filePath2);
+                    bntPlay.BackgroundColor = Color.FromHex("#1ae579");
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                throw ex;
             }
         }
 
@@ -177,7 +183,7 @@ namespace AppTFG.Paginas
                             audio1.Numero = int.Parse(txtNumero.Text);
                             audio1.Nombre = txtNombre.Text;
                             audio1.Descripcion = txtDescripcion.Text;
-                            if (!string.IsNullOrEmpty(recorder.FilePath))
+                            if (!string.IsNullOrEmpty(recorder.FilePath) || !string.IsNullOrEmpty(recorder.GetAudioFilePath()))
                             {
                                 bool answer = await UserDialogs.Instance.ConfirmAsync("Hay información grabada con el micrófono. ¿Desea guardarla?", "Atención", "Sí", "No");
                                 if (answer == true)
@@ -231,7 +237,7 @@ namespace AppTFG.Paginas
                         Nombre = txtNombre.Text,
                         Descripcion = txtDescripcion.Text
                     };
-                    if (!string.IsNullOrEmpty(recorder.FilePath))
+                    if (!string.IsNullOrEmpty(recorder.FilePath) || !string.IsNullOrEmpty(recorder.GetAudioFilePath()))
                     {
                         bool answer = await UserDialogs.Instance.ConfirmAsync("Hay información grabada con el micrófono. ¿Desea guardarla?", "Atención", "Sí", "No");
                         if (answer == true)

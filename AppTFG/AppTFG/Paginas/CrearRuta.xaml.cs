@@ -378,7 +378,7 @@ namespace AppTFG.Paginas
         private void BtnPoner1Pin_Clicked(object sender, EventArgs e)
         {
             Map.MapClicked += OnTapCrearPin;
-            pagina.BackgroundColor = Color.White;
+            pagina.BackgroundColor = Color.Gray;
         }
 
         private void BtnPonerRuta_Clicked(object sender, EventArgs e)
@@ -426,9 +426,10 @@ namespace AppTFG.Paginas
 
         private void LsvAudios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            if (UltimoAudioPulsado == null)
+                UltimoAudioPulsado = new Audio();
             try
             {
-                UltimoAudioPulsado = new Audio();
                 var seleccionado = (Audio)e.SelectedItem;
                 if (UltimoAudioPulsado.Id.Equals(seleccionado.Id))
                 {

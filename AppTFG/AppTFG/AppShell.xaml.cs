@@ -57,7 +57,7 @@ namespace AppTFG
 
             CircleImage imagen = new CircleImage()
             {
-                Source = "logo.png",
+                Source = "ic_launcher.png",
                 BorderThickness = 1,
                 BorderColor = Color.Black,
                 WidthRequest = 70,

@@ -16,7 +16,7 @@
                Aspect="AspectFill" HeightRequest="200"/>
         <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
-                <Label x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
+                <Label x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
                        BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
                 <Label x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
                         Margin="10, -5, 10, 10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"

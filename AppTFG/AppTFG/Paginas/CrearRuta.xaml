@@ -110,7 +110,7 @@
                         <TabCtrls:CustomTab x:Name="AudiosTab" IsVisible="False" 
                               VerticalOptions="Fill" HorizontalOptions="FillAndExpand" 
                               BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
-                            <ListView x:Name="lsvAudios" HasUnevenRows="True" ItemSelected="LsvAudios_ItemSelected">
+                            <ListView x:Name="lsvAudios" HasUnevenRows="True" ItemSelected="LsvAudios_ItemSelected" SelectionMode="Single">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
