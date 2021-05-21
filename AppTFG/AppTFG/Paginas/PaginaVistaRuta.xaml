@@ -3,37 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTFG.Paginas.PaginaVistaRuta"
              BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
-    <!--<ScrollView Margin="0" VerticalScrollBarVisibility="Never">-->
-        <!--<StackLayout Spacing="0" Padding="0" Margin="0">-->
-            <!--<ActivityIndicator x:Name="indicator" Color="DarkOrange" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="0"/>-->
-    <Grid Padding="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.15*"/>
-            <RowDefinition Height="0.65*"/>
-        </Grid.RowDefinitions>
-        <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
+    <ScrollView Margin="0" VerticalScrollBarVisibility="Never">
+        <Grid Padding="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="-15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="0.65*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" x:Name="imgRuta" Source="{Binding ImagenPrincipal}" 
                Aspect="AspectFill" HeightRequest="200"/>
-        <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
-            <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
-                <Label x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
+            <Frame Grid.Row="1" CornerRadius="15" Padding="0" BackgroundColor="{DynamicResource OtroPageBackgroundColor}">
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Start" Margin="10">
+                    <Label x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
                        BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
-                <Label x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
+                    <Label x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
                         Margin="10, -5, 10, 10" BackgroundColor="{DynamicResource OtroPageBackgroundColor}"
                         FontSize="Medium" FontFamily="BSDRegular"/>
-            </StackLayout>
-        </Frame>
-        <StackLayout Grid.Row="2" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">
-            <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1"/>
-            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,5,0,0">
-                <Button FontSize="Medium" Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="40"/>
-                <Button FontSize="Medium" Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="40"/>
-                <Button FontSize="Medium" Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="40"/>
-            </StackLayout>
-            <Button Text="Iniciar ruta" TextColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDRegular" 
+                </StackLayout>
+            </Frame>
+            <StackLayout Grid.Row="2" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1">
+                <StackLayout x:Name="stackMapa" Spacing="0" Padding="0" Margin="0, 0, 0, 0" HeightRequest="-1" WidthRequest="-1"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,5,0,0">
+                    <Button FontSize="Medium" Text="Street" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                    <Button FontSize="Medium" Text="Satélite" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                    <Button FontSize="Medium" Text="Híbrido" Clicked="BtnMapa_Clicked" BackgroundColor="{DynamicResource PrimaryColor}" TextColor="{DynamicResource SecondaryTextColor}" FontFamily="BSDRegular" HeightRequest="40"/>
+                </StackLayout>
+                <Button Text="Iniciar ruta" TextColor="{DynamicResource OtroPageBackgroundColor}" FontFamily="BSDRegular" 
                     FontSize="Medium" BackgroundColor="{DynamicResource PrimaryColor}" 
                     HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="100" 
                     HeightRequest="40" Margin="5" Clicked="BtnIniciar_Clicked"/>
-        </StackLayout>
-    </Grid>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

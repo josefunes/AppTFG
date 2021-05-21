@@ -191,7 +191,7 @@ namespace AppTFG.Paginas
                                     audio1.Sonido = await FirebaseHelper.SubirAudio(recorder.GetAudioFileStream(), audio1.Nombre);
                                 }
                             }
-                            await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                            await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios, ruta.Valoraciones);
                         }
                         break;
                     }
@@ -251,7 +251,7 @@ namespace AppTFG.Paginas
                         return;
                     }
                     ruta.Audios.Add(audioNuevo);
-                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                    await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios, ruta.Valoraciones);
                 }
             }
             Loading(false);
@@ -274,7 +274,7 @@ namespace AppTFG.Paginas
                         break;
                     }
                 }
-                await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios);
+                await FirebaseHelper.ActualizarRuta(ruta.Id, ruta.Nombre, ruta.Descripcion, ruta.ImagenPrincipal, ruta.VideoUrl, ruta.IdPueblo, ruta.Camino, ruta.Ubicaciones, ruta.Audios, ruta.Valoraciones);
                 Loading(false);
                 UserDialogs.Instance.Alert("Explicación eliminada correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();

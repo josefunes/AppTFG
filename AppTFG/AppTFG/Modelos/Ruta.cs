@@ -18,6 +18,7 @@ namespace AppTFG.Modelos
         public List<Posicion> Camino { get; set; }
         public List<Ubicacion> Ubicaciones { get; set; }
         public List<Audio> Audios { get; set; }
+        public List<int> Valoraciones { get; set; }
         public Video VideoUrl { get; set; }
         [ForeignKey("FK_IdPueblo")]
         public int IdPueblo { get; set; }

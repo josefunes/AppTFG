@@ -33,6 +33,7 @@ namespace AppTFG.Paginas
             {
                 Title = Actividad.Nombre;
             }
+            label1.Text = ObtenerValoracionMedia();
         }
 
         void Loading(bool mostrar)
@@ -127,22 +128,22 @@ namespace AppTFG.Paginas
             {
                 if (actividad.Stream == null)
                 {
-                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo, actividad.Valoraciones);
                 }
                 else
                 {
-                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.ActualizarActividad(actividad.Id, actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo, actividad.Valoraciones);
                 }
             }
             else
             {
                 if(actividad.Stream == null)
                 {
-                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal, actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo, actividad.Valoraciones);
                 }
                 else
                 {
-                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo);
+                    await FirebaseHelper.InsertarActividad(actividad.Id = Constantes.GenerarId(), actividad.Nombre, actividad.Descripcion, actividad.ImagenPrincipal = await FirebaseHelper.SubirFoto(actividad.Stream, "Imagen principal de " + actividad.Nombre), actividad.Fecha, actividad.Hora, actividad.VideoUrl, actividad.IdPueblo, actividad.Valoraciones);
                 }
             }
             Loading(false);
@@ -159,6 +160,25 @@ namespace AppTFG.Paginas
                 UserDialogs.Instance.Alert("Registro eliminado correctamente", "Correcto", "OK");
                 await Navigation.PopAsync();
             }
+        }
+
+        public string ObtenerValoracionMedia()
+        {
+            string cadena = "";
+            int cont = 0;
+            double result = 0;
+            if (Actividad.Valoraciones != null)
+            {
+                for (int i = 0; i < Actividad.Valoraciones.Count; i++)
+                {
+                    cont += Actividad.Valoraciones[i];
+                }
+                result = (double)Math.Round((decimal)cont / Actividad.Valoraciones.Count, 2);
+                cadena = "La valoración media de la actividad es " + result.ToString() + ".";
+            }
+            else
+                cadena = "Esta actividad no ha sido valorada aún.";
+            return cadena;
         }
     }
 }

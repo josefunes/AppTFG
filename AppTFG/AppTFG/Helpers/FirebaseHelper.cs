@@ -224,7 +224,6 @@ namespace AppTFG.Helpers
         }
 
         //MÉTODOS CRUD RUTA
-
         public static async Task<List<Ruta>> ObtenerTodasRutas()
         {
             try
@@ -243,7 +242,8 @@ namespace AppTFG.Helpers
                     IdPueblo = item.Object.IdPueblo,
                     Camino = item.Object.Camino,
                     Ubicaciones = item.Object.Ubicaciones,
-                    Audios = item.Object.Audios
+                    Audios = item.Object.Audios,
+                    Valoraciones = item.Object.Valoraciones
                 }).ToList();
                 return listaRutas;
             }
@@ -302,13 +302,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar ruta
-        public static async Task<bool> InsertarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones, List<Audio> audios)
+        public static async Task<bool> InsertarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones, List<Audio> audios, List<int> valoraciones)
         {
             try
             {
                 await firebase
                 .Child("Rutas")
-                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones, Audios = audios });
+                .PostAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones, Audios = audios, Valoraciones = valoraciones });
                 return true;
             }
             catch (Exception e)
@@ -319,7 +319,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar ruta
-        public static async Task<bool> ActualizarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones, List<Audio> audios)
+        public static async Task<bool> ActualizarRuta(int id, string nombre, string descripcion, string imagen, Video video, int idPueblo, List<Posicion> camino, List<Ubicacion> ubicaciones, List<Audio> audios, List<int> valoraciones)
         {
             try
             {
@@ -329,7 +329,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Rutas")
                 .Child(actualizarRuta.Key)
-                .PutAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones, Audios = audios });
+                .PutAsync(new Ruta() { Id = id, Nombre = nombre, Descripcion = descripcion, ImagenPrincipal = imagen, VideoUrl = video, IdPueblo = idPueblo, Camino = camino, Ubicaciones = ubicaciones, Audios = audios, Valoraciones = valoraciones });
                 return true;
             }
             catch (Exception e)
@@ -603,6 +603,7 @@ namespace AppTFG.Helpers
                     Hora = item.Object.Hora,
                     Stream = item.Object.Stream,
                     VideoUrl = item.Object.VideoUrl,
+                    Valoraciones = item.Object.Valoraciones,
                     IdPueblo = item.Object.IdPueblo
                 }).ToList();
                 return listaActividades;
@@ -662,13 +663,13 @@ namespace AppTFG.Helpers
         }
 
         //Insertar
-        public static async Task<bool> InsertarActividad(int id, string nombre, string descrpcion, string imagen, string fecha, string hora, Video video, int idPueblo)
+        public static async Task<bool> InsertarActividad(int id, string nombre, string descrpcion, string imagen, string fecha, string hora, Video video, int idPueblo, List<int> valoraciones)
         {
             try
             {
                 await firebase
                 .Child("Actividades")
-                .PostAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Fecha = fecha, Hora = hora, VideoUrl = video, IdPueblo = idPueblo });
+                .PostAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Fecha = fecha, Hora = hora, VideoUrl = video, IdPueblo = idPueblo, Valoraciones = valoraciones });
                 return true;
             }
             catch (Exception e)
@@ -679,7 +680,7 @@ namespace AppTFG.Helpers
         }
 
         //Actualizar
-        public static async Task<bool> ActualizarActividad(int id, string nombre, string descrpcion, string imagen, string fecha, string hora, Video video, int idPueblo)
+        public static async Task<bool> ActualizarActividad(int id, string nombre, string descrpcion, string imagen, string fecha, string hora, Video video, int idPueblo, List<int> valoraciones)
         {
             try
             {
@@ -689,7 +690,7 @@ namespace AppTFG.Helpers
                 await firebase
                 .Child("Actividades")
                 .Child(actualizarActividad.Key)
-                .PutAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Fecha = fecha, Hora = hora, VideoUrl = video, IdPueblo = idPueblo });
+                .PutAsync(new Actividad() { Id = id, Nombre = nombre, Descripcion = descrpcion, ImagenPrincipal = imagen, Fecha = fecha, Hora = hora, VideoUrl = video, IdPueblo = idPueblo, Valoraciones = valoraciones });
                 return true;
             }
             catch (Exception e)

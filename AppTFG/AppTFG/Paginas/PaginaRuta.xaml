@@ -38,19 +38,21 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Entry Grid.Row="0" Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
+                            <Label FontSize="Medium" x:Name="label1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextColor="{DynamicResource SecondaryColor}" FontFamily="BSDRegular"/>
+                            <Entry Grid.Row="1" Grid.Column="0" x:Name="txtNombre" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Nombre}" 
                                 Placeholder="Ingresa el nombre de la ruta" FontFamily="BSDRegular"
                                 PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Medium"/>
-                            <Button Grid.Row="0" Grid.Column="1" x:Name="btnImagen" Text="Foto ruta"
+                            <Button Grid.Row="1" Grid.Column="1" x:Name="btnImagen" Text="Foto ruta"
                                 BackgroundColor="{DynamicResource PrimaryColor}" Margin="0" FontSize="Small"
                                 TextColor="{DynamicResource OtroPageBackgroundColor}" WidthRequest="90"  FontFamily="BSDRegular"
                                 HorizontalOptions="End" Clicked="BtnImagen_Clicked"/>
-                            <Editor Grid.Row="1" Grid.ColumnSpan="2" x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
+                            <Editor Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="txtDescripcion" TextColor="{DynamicResource SecondaryColor}" Text="{Binding Descripcion}" 
                                 Placeholder="Ingresa una descripción de la ruta"  Margin="10, -5, 10, 10" AutoSize="TextChanges"
                                 PlaceholderColor="LightGray" BackgroundColor="{DynamicResource OtroPageBackgroundColor}" FontSize="Medium" FontFamily="BSDRegular"/>
                         </Grid>
