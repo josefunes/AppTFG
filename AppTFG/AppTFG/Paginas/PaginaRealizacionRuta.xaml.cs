@@ -86,6 +86,10 @@ namespace AppTFG.Paginas
 
         void PonerRuta()
         {
+            if (Ruta.Camino == null)
+            {
+                return;
+            }
             Position position1;
             Position position2;
             for (int i = 0; i < Ruta.Camino.Count; i++)
@@ -113,6 +117,10 @@ namespace AppTFG.Paginas
 
         void PonerPins()
         {
+            if (Ruta.Ubicaciones == null)
+            {
+                return;
+            }
             Pin pin1;
             for (int i = 0; i < Ruta.Ubicaciones.Count; i++)
             {
